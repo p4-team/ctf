@@ -113,8 +113,8 @@ W tym momencie możemy uścisnąć sobie dłonie - praktycznie rozwiązaliśmy z
 
 Ale od czego zależy ta liczba? W pakiecie mamy ciekawą daną z której jeszcze nie skorzystaliśmy - oznaczoną w mojej strukturze jako 'hash'. Kiedy ta liczba jest równa 0, xorujemy dane z e9f9. Kiedy ta liczba jest równa 4567 xorujemy z 503f. W jaki sposób może być wyprowadzany wynikowy hash? Zgadnijmy...:
 
->>> hex(0x503f + 0x4567)
-'0x95a6'
+    >>> hex(0x503f + 0x4567)
+    '0x95a6'
 
 Jest to proste dodawanie wartości w polu 'hash' oraz magicznej stałej. Zaiste silne szyfrowanie ;).
 

@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	(void)argc; (void)argv; //unused
+
+	std::string part1;
+	cout << "Part1: Enter flag:" << endl;
+	cin >> part1;
+
+
+
+	return 0;
+}
+
