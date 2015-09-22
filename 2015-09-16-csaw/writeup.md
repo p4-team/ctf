@@ -37,6 +37,16 @@ opis zadania opis zadania
 * forensics 100 Transfer
 * forensics 100 Flash
 * forensics 150 pcapin
+* forensics 200 airport
+* forensics 400 sharpturn
+* recon 100 Julian Cohen
+* recon 100 Alexander Taylor
+* trivia 100 Trivia 1
+* trivia 100 Trivia 2
+* trivia 100 Trivia 3
+* trivia 100 Trivia 4
+* trivia 100 Trivia 5
+* trivia 100 Math aside, we are all black hats Now
 
 # Zakończenie
 
