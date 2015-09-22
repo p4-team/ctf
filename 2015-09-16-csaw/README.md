@@ -14,7 +14,7 @@ A teraz opisy zadań po kolei.
 # Spis treści:
 
 * web 100 K_{Stairs}
-* web 200 Lawn Care Simulator
+* [Lawn Care Simulator (web 200)](web_200_lawn_care_simulator)
 * exploit 100 precision
 * exploit 300 FTP 2
 * exploit 400 memeshop
@@ -32,14 +32,18 @@ A teraz opisy zadań po kolei.
 * forensics 150 pcapin
 * forensics 200 airport
 * forensics 400 sharpturn
-* recon 100 Julian Cohen
-* recon 100 Alexander Taylor
+* [Julian Cohen (recon 100)](recon_100_julian_cohen)
+* [Alexander Taylor (recon 100)](recon_100_alexander_taylor)
 * trivia 100 Trivia 1
 * trivia 100 Trivia 2
 * trivia 100 Trivia 3
 * trivia 100 Trivia 4
 * trivia 100 Trivia 5
-* trivia 100 Math aside, we are all black hats Now
+* [Math aside, we are all black hats Now (trivia 10)](trivia_10_black_hat)
+
+Zadania niedokończone:
+
+* [Weebdate (web 500)](web_500_weebdate)
 
 # Zakończenie
 
