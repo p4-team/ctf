@@ -12,7 +12,7 @@ Już wiecie co jest flagą? My też nie wiedzieliśmy jak ją wydobyć… przez 
 
 Strona robiła zapytanie get do skryptu encrypt.php, który jako parametr m przyjmował wiadomość do zaszyfrowania.
 
-Już po godzinie stwierdziliśmy, że zależność między literkami przedstawia się następująco
+Już po godzinie od rozpoczęcia konkursu (nie wiem kiedy zabraliśmy sie za to zadanie) stwierdziliśmy, że zależność między literkami przedstawia się następująco
 
 ```
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
