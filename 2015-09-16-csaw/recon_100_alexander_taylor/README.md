@@ -34,7 +34,8 @@ Dalsza część poszukiwań doprowadza nas for informacji że do złamania była
 
 Gdzie czeka na nas kolejna zagadka:
 
-`CSAW 2015 FUZYLL RECON PART 4 OF 5: Okay, okay. This isn't Engima, but the next location was "encrypted" with the JavaScript below: Pla$ja|p$wpkt$kj$}kqv$uqawp$mw>$+gwes6451+pla}[waa[ia[vkhhmj
+```
+CSAW 2015 FUZYLL RECON PART 4 OF 5: Okay, okay. This isn't Engima, but the next location was "encrypted" with the JavaScript below: Pla$ja|p$wpkt$kj$}kqv$uqawp$mw>$+gwes6451+pla}[waa[ia[vkhhmj
 
 var s = "THIS IS THE INPUT"
 var c = ""
@@ -42,7 +43,7 @@ for (i = 0; i < s.length; i++) {
     c += String.fromCharCode((s[i]).charCodeAt(0) ^ 0x4);
 }
 console.log(c);
-`
+```
 
 Jak nie trudno zauważyć funkcja "szyfrująca" korzysta jedynie z operacji XOR na stałym kluczu więc do jej odwrócenia wystarczy wykonać identyczną operację po raz drugi. W ten sposób uzyskujemy: `they_see_me_rollin` i przechodzimy do:
 
@@ -87,7 +88,8 @@ Some googling later we find out that it was `Enigma` so we go to:
 
 Where another riddle is waiting:
 
-`CSAW 2015 FUZYLL RECON PART 4 OF 5: Okay, okay. This isn't Engima, but the next location was "encrypted" with the JavaScript below: Pla$ja|p$wpkt$kj$}kqv$uqawp$mw>$+gwes6451+pla}[waa[ia[vkhhmj
+```
+CSAW 2015 FUZYLL RECON PART 4 OF 5: Okay, okay. This isn't Engima, but the next location was "encrypted" with the JavaScript below: Pla$ja|p$wpkt$kj$}kqv$uqawp$mw>$+gwes6451+pla}[waa[ia[vkhhmj
 
 var s = "THIS IS THE INPUT"
 var c = ""
@@ -95,7 +97,7 @@ for (i = 0; i < s.length; i++) {
     c += String.fromCharCode((s[i]).charCodeAt(0) ^ 0x4);
 }
 console.log(c);
-`
+```
 
 As can be easily seen the encryption function is a simple XOR with static key and therefore it can be decoded by applying the same operation again. This gives us decoded message: `they_see_me_rollin` so we go to:
 
