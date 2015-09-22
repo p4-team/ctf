@@ -5,7 +5,7 @@ Uczestniczyliśmy (msm, Rev, Shalom, other019 i nazywam) w MMA CTF, i znowu spr�
 insert lanie_wody into writeup;
 
 Ogólne wrażnia:
-Konkurs miał kilka ciekawych zadań, ale jednak troche odbiegał od tego czego można oczekiwać po ctf'ie z prawdziwego zdarzenia. Niektóre zadania opierały się na zgadywaniu tego co autorzy mieli na myśli, szczególnie w zadaniu notesy i airport.
+Konkurs miał kilka ciekawych zadań, ale jednak troche odbiegał od tego czego można oczekiwać po ctf'ie z prawdziwego zdarzenia. Niektóre zadania opierały się na zgadywaniu tego co autorzy mieli na myśli, w szczególności notesy i airport.
 
 insert lanie_wody into writeup;
 
