@@ -1,4 +1,4 @@
-## Lawn Care Simulator (web, 200p, 450 solves solves)
+## Lawn Care Simulator (web, 200p, 450 solves)
 `http://54.165.252.74:8089/`
 
 `for ENG version scroll down`
