@@ -8,9 +8,10 @@ Pod wskazanym adresem znajduje się strona z textboxem który szyfruje wpisany t
 
 ![](./notesy.png)
 
+Strona robiła zapytanie get do skryptu encrypt.php, który jako parametr m przyjmował wiadomość do zaszyfrowania. Placeholder w tekst boksie brzmiał `Give me like a note dude`, javascript odmawiał szyfrowania wiadomosci krótszych niż 5 znaków. 
+
 Już wiecie co jest flagą? My też nie wiedzieliśmy jak ją wydobyć… przez 20 godzin… trzymając ją w rękach….
 
-Strona robiła zapytanie get do skryptu encrypt.php, który jako parametr m przyjmował wiadomość do zaszyfrowania.
 
 Już po godzinie od rozpoczęcia konkursu (nie wiem kiedy zabraliśmy sie za to zadanie) stwierdziliśmy, że zależność między literkami przedstawia się następująco
 
