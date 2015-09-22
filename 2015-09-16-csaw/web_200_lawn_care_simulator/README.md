@@ -1,6 +1,7 @@
 ## Lawn Care Simulator (web, 200p, 450 solves)
 `http://54.165.252.74:8089/`
 
+### PL Version
 `for ENG version scroll down`
 
 Zadanie polegało na zalogowaniu się do konta premium w internetowym symulatorze hodowania trawy.
@@ -15,7 +16,7 @@ Zajęliśmy się więc podmienianiem parametrów w formularzu po operacji hashow
 Tym samym zupełnie przypadkiem ominęliśmy praktycznie wszystkie pułapki zastawione przez autorów zadania i nie musieliśmy poświęcać cennego czasu na analizę kodu strony (do którego można było uzyskać dostęp poprzez link w źródle strony). Późniejsza analiza pozwoliła stwierdzić, że przypadkiem wykorzystaliśmy faktyczną lukę w skrypcie, nie tą zamierzoną przez autorów zadania :)
 
 
-`ENG`
+### ENG Version
 
 The task was to log-in on a premium account in an internet lawn care simulator.
 Standard approach with SQLInjection on form fields yielded no results, however we noticed that data from password field are hashed on webbrowser side before sending to the server.

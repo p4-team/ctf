@@ -1,5 +1,6 @@
 ## Alexander Taylor (recon, 100p, 424 solves)
 
+### PL Version
 `for ENG version scroll down`
 
 Dostajemy link od którego możemy wystartować `http://fuzyll.com/csaw2015/start`
@@ -54,7 +55,7 @@ Gdzie znajduje się poszukiwana przez nas flaga:
 `CSAW 2015 FUZYLL RECON PART 5 OF 5: Congratulations! Here's your flag{I_S3ARCH3D_HI6H_4ND_L0W_4ND_4LL_I_F0UND_W4S_TH1S_L0USY_FL4G}!`
 
 
-`ENG`
+### ENG Version
 
 We get a link to start with: `http://fuzyll.com/csaw2015/start`
 There we can find the first riddle:
