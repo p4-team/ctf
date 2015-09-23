@@ -1,4 +1,4 @@
-## ones_and_zer0es (crypto, 50p, 753 solves)
+## wh1ter0se (crypto, 50p, 753 solves)
 
 > Note: The flag is the entire thing decrypted
 > [eps1.7_wh1ter0se_2b007cf0ba9881d954e85eb475d0d5e4.m4v](wh1ter0se.bin)
