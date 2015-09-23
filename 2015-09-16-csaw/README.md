@@ -24,8 +24,8 @@ A teraz opisy zadań po kolei.
 * [zer0-day (crypto 50)](crypto_50_zer0_day)
 * [notesy (crypto 100)](crypto_100_notesy)
 * reversing 200 Hacking Time
-* [FTP (reversing 300)](reversing_300_ftp)
-* [wyvern (reversing 500)](reversing_500_wyvern)
+* [FTP (reversing 300)](re_300_ftp)
+* [wyvern (reversing 500)](re_500_wyvern)
 * [Keep Calm and CTF (forensics 100)](forensics_100_keep_calm_and_ctf)
 * forensics 100 Transfer
 * [Flash (forensics 100)](forensics_100_flash)

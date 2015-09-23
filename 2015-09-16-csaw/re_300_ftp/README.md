@@ -3,7 +3,7 @@
 > We found an ftp service, I'm sure there's some way to log on to it.
 > 
 > nc 54.172.10.117 12012
-> ftp_0319deb1c1c033af28613c57da686aa7
+> [ftp_0319deb1c1c033af28613c57da686aa7](ftp)
 
 Pobieramy zalinkowany plik i ładujemy do IDY. Jest to faktycznie, zgodnie z opisem, serwer FTP.
 
