@@ -1,6 +1,7 @@
 ## Keep Calm and CTF (forensics, 100p, 1064 solves)
 `My friend sends me pictures before every ctf. He told me this one was special.
 Note: this flag doesn't follow the "flag{}" format`
+
 ![](./kc&ctf.jpg)
 
 ### PL Version
