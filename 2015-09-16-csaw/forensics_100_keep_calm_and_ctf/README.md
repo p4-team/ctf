@@ -22,7 +22,8 @@ Pierwszą rzeczą jaką robimy w takich sytuacjach jest przejrzenie hexdumpu, ta
 I mamy następną flagę.
 
 ### ENG Version
-So the first thing we do in similar cases is looking in hexdump of the file, just in case. Sometimes there is appended another file or
+
+The first thing we do in similar cases is to look inside the hexdump of the file, just in case. Sometimes there can be another file appended or
 archive with flag. We did it with  `xxd img.jpg | less`.
 
 ```

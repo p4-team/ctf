@@ -27,18 +27,18 @@ Próbowaliśmy naprawdę nieschematycznego myślenia, ale nic nie pomogło. Dopi
 
 ### ENG Version
 
-We are given a web page textbox, that encrypts entered messages.
+We are given a link to a web page with a textbox which encrypts entered messages.
 
 ![](./notesy.png)
 
-The page made GET request to php script encrypt.php, passing our message as m parameter. Placeholder on the main site was `Give me like a note dude`, javascript refuses to encrypt messages shorter than 5 characters. We have tried wide range of various attempts: sending short messages directly to php script, really long messages, but nothing succeeded.
+The page was making a GET request to a php script encrypt.php, passing our message as parameter. Placeholder on the main site was `Give me like a note dude`, javascript refuses to encrypt messages shorter than 5 characters. We have tried wide range of various attempts: sending short messages directly to php script, really long messages, but nothing succeeded.
 
-Do you know now what the flag is? We didn't for about 20 hours… right in front of our eyes…
+Do you already know now what the flag is? We didn't for about 20 hours… while it was right in front of our eyes…
 
-Just an hour after the contest began (we don't know exact time of starting our attempts to solve the task), we've noticed that dependency between letters is as follows:
+Just an hour after the contest began (we don't know the exact time when we started to work on this task) we've noticed that dependency between letters is as follows:
 
 ```
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 UNHMAQWZIDYPRCJKBGVSLOETXF
 ```
-We tried to think really out of the box, but that didn't help much. The hint helped us a lot (If you have the ability to encrypt and decrypt, what do you think the flag is?) it became clear that the flag is the cipher's key. But because this was substitution cipher, there was no key per se. So flag could only be `UNHMAQWZIDYPRCJKBGVSLOETXF`. This had to be the most frustrating challenge we have faced since a very long time.
+We tried to think really out of the box, but that didn't help much. The hint helped us a lot (If you have the ability to encrypt and decrypt, what do you think the flag is?) it became clear that the flag is the cipher's key. But because this was a substitution cipher, there was no key per se. So flag could only be `UNHMAQWZIDYPRCJKBGVSLOETXF`. This was the most frustrating challenge we have faced for a very long time.
