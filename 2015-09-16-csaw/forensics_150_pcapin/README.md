@@ -176,4 +176,4 @@ Jak widać wszystkie dane z png zostały pięknie przeczytane. Pozostaje zapisa�
 
 Zadanie rozwiązane.
 
-Źródła całego dekodera (nie wiem po co napisanego, skoro prawdopodobnie żaden program na świecie nie używa takiego formatu do komunikacji, ale lubimy pisać parsery :P) znajdują się w pliku [parser.c](parser.c)
+Źródła całego dekodera (nie wiem po co napisanego, skoro prawdopodobnie żaden program na świecie nie używa takiego formatu do komunikacji, ale lubimy pisać parsery) znajdują się w pliku [parser.c](parser.c)
