@@ -9,7 +9,7 @@ Zadanie polegało na odzyskaniu wektora inicjalizacyjnego IV dla szyfru AES na p
 
 Wynika z nich że dysponujemy:
 
-* Częścią klucza `5d6I9pfR7C1J` z brakującymi ostatnimi 2 bajtami
+* Częścią klucza `5d6I9pfR7C1JQt` z brakującymi ostatnimi 2 bajtami
 * Wiadomością `The message is protected by AES!`
 * Fragmentem zaszyfrowanego tekstu `fe000000000000000000000000009ec3307df037c689300bbf2812ff89bc0b49` (przez 0 oznaczam padding nieznanych elementów)
 
@@ -33,7 +33,7 @@ To oznacza, że dla danych:
 Deszyfrowanie za pomocą poprawnego klucza pozwoli uzyskać poprawnie odszyfrowany 16 bajt wiadomości (licząc od 0), niezależnie od wektora IV.
 W związku z tym próbujemy przetestować wszystkie możliwości ostatnich 2 znaków klucza, sprawdzając dla których deszyfrowany tekst zawiera odpowiednie wartości w drugim bloku na pozycjach na których w pierwszym bloku mamy ustawione poprawne wartości (pierwszy bajt oraz dwa ostatnie):
 
-	KEY = "5d6I9pfR7C1J"
+	KEY = "5d6I9pfR7C1JQt"
 	IV = "0000000000000000"
 	
 	def valid_key(correct_bytes, decrypted):
@@ -56,7 +56,7 @@ W związku z tym próbujemy przetestować wszystkie możliwości ostatnich 2 zna
 
 	real_key = break_key(KEY, "fe000000000000000000000000009ec3307df037c689300bbf2812ff89bc0b49", [(16, "r"), (30, "S"), (31, "!")])
 
-Uzyskujemy w ten sposób klucz: `5d6I9pfR7C1JQt`
+Uzyskujemy w ten sposób klucz: `5d6I9pfR7C1JQt7$`
 
 Wektor IV którego poszukujemy służy do szyfrowania 1 bloku i opiera się na podobnej zasadzie jak szyfrowanie kolejnych bloków przedstawione wyżej - pierwszy bajt pierwszego bloku zależy od pierwszego bajtu wektora IV, drugi od drugiego itd. Żeby móc w takim razie odzyskać wektor IV potrzebujemy znać pierwszy blok zaszyfrowanej wiadomości. W tym celu stosujemy zabieg identyczny jak powyżej, ale tym razem próbujemy dopasować kolejne bajty zaszyfrowanego pierwszego bloku wiadomości, sprawdzając kiedy deszyfrowanie daje nam poprawnie deszyfrowany bajt z drugiego bloku:
 
@@ -102,7 +102,7 @@ The task was to recover initialization vector IV for AES cipher based on knowled
 
 From this we can get:
 
-* Part of the key: `5d6I9pfR7C1J` with missing 2 bytes
+* Part of the key: `5d6I9pfR7C1JQt` with missing 2 bytes
 * Message: `The message is protected by AES!`
 * Part of ciphertext: `fe000000000000000000000000009ec3307df037c689300bbf2812ff89bc0b49` (0s in the first block are missing part)
 
@@ -126,7 +126,7 @@ It means that for input:
 Deciphering usign a proper key will give us properly decoded 16th byte (counting from 0), regardless of IV vector used.
 Therefore, we test all possible values for the missing 2 key characters, testing for which of them the decipered text has proper values in the second block on the positions where in the first block we have proper values (first byte and last two bytes):
 
-	KEY = "5d6I9pfR7C1J"
+	KEY = "5d6I9pfR7C1JQt"
 	IV = "0000000000000000"
 	
 	def valid_key(correct_bytes, decrypted):
@@ -149,7 +149,7 @@ Therefore, we test all possible values for the missing 2 key characters, testing
 
 	real_key = break_key(KEY, "fe000000000000000000000000009ec3307df037c689300bbf2812ff89bc0b49", [(16, "r"), (30, "S"), (31, "!")])
 
-This way we get the key: `5d6I9pfR7C1JQt`
+This way we get the key: `5d6I9pfR7C1JQt7$`
 
 IV vector we are looking for is used to encode 1 block and it is used on the same principle as encoding next blocks decribed above - encoded 1 byte of 1 block depends on 1 byte of 1 block of IV vector, 2 depends on 2 etc. Therefore, to be able to get the IV vector we need to know the whole first encoded block. To get it we use a very similar approach as the one we used to get the key, but this time we test bytes of the encoded 1 block, checking which value after decoding gives us properly decoded byte from 2 block:
 
