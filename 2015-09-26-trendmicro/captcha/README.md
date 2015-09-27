@@ -12,11 +12,8 @@ W celu rozwiązania zadania napisaliśmy skrypt w pythonie korzystając z Python
 Cały skrypt dostępy jest [tutaj](captcha.py).
 
 Działanie skryptu:
-Na początek usuwane są różnokolorowe pionowe kreski. W tym celu:
-
-* Pobieramy rozkład kolorów dla pikseli i odszukujemy dwa dominujące kolory - wypełnienie oraz tekst captchy (pomijamy kolor biały)
-* Skanujemy obraz i każdy piksel innego koloru niż 2 dominujące jest zamieniany na dominujący. Jeśli piksel sąsiaduje z pikselami o kolorze tekstu wybieramy ten kolor, jeśli nie używamy koloru wypełnienia.
-
+Na początek usuwane są różnokolorowe pionowe kreski. W tym celu pobieramy rozkład kolorów dla pikseli i odszukujemy dwa dominujące kolory - wypełnienie oraz tekst captchy (pomijamy kolor biały) a następnie skanujemy obraz i każdy piksel innego koloru niż 2 dominujące jest zamieniany na dominujący. Jeśli piksel sąsiaduje z pikselami o kolorze tekstu wybieramy ten kolor, jeśli nie używamy koloru wypełnienia.
+Wykonujemy to skryptem:
 
 	def get_filling(pixels, i, j, best_colors, x_range):
 		left = pixels[(i - 1) % x_range, j]
@@ -102,10 +99,8 @@ In order to solve this we prepared a python script using Python Images Library, 
 Whole script is available [here](captcha.py).
 
 The script works as follows:
-First we remove the colorful vertical lines. For this we:
-
-* Get the color distribution of image pixels and we get the two dominant colors - filling and text (skipping white)
-* We scan the picture and if a pixel has different color than the 2 dominants, we change it to dominant. If it is next to text-color pixel we choose text-color, otherwise we use filling color.
+First we remove the colorful vertical lines. For this we get the color distribution of image pixels and we get the two dominant colors - filling and text (skipping white) and then we scan the picture and if a pixel has different color than the 2 dominants, we change it to dominant. If it is next to text-color pixel we choose text-color, otherwise we use filling color.
+We do this with:
 
 	def get_filling(pixels, i, j, best_colors, x_range):
 		left = pixels[(i - 1) % x_range, j]
