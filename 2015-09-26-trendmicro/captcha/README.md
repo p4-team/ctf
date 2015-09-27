@@ -17,6 +17,7 @@ Na początek usuwane są różnokolorowe pionowe kreski. W tym celu:
 * Pobieramy rozkład kolorów dla pikseli i odszukujemy dwa dominujące kolory - wypełnienie oraz tekst captchy (pomijamy kolor biały)
 * Skanujemy obraz i każdy piksel innego koloru niż 2 dominujące jest zamieniany na dominujący. Jeśli piksel sąsiaduje z pikselami o kolorze tekstu wybieramy ten kolor, jeśli nie używamy koloru wypełnienia.
 
+
 	def get_filling(pixels, i, j, best_colors, x_range):
 		left = pixels[(i - 1) % x_range, j]
 		right = pixels[(i + 1) % x_range, j]
@@ -42,6 +43,7 @@ Na początek usuwane są różnokolorowe pionowe kreski. W tym celu:
 				if color not in best_colors:
 					pixels[i, j] = get_filling(pixels, i, j, best_colors, im.size[0])
 		return best_colors[0]
+
 
 W efekcie z powyższego obrazu uzyskujemy:
 
