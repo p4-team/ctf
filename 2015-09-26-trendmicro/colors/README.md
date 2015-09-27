@@ -1,10 +1,12 @@
-## Colors (ppc/Programming, 200p)
+## Colors (ppc/Programming, 100p)
 
 ### PL Version
 `for ENG version scroll down`
 
 System wyświetlał na stronie internetowej obrazek złożony z kwadratów. Wsystkie kwadraty oprócz jednego miały taki sam kolor - jeden z nich miał lekko inny odcień. Celem zadania było kliknięcie w ten odmienny kwadrat. System rejestrował gdzie kliknęliśmy i na tej podstawie oceniał poprawność rozwiązania i prezentował kolejny przykład.
 Celem było rozwiązanie kilkudziesieciu przykładów pod rząd w celu uzyskania flagi.
+
+![](./squares.png)
 
 Aby rozwiązać zadany problem przygotowaliśmy skrypt w pythonie z użyciem Python Images Library dostępny [tutaj](colors.py).
 Skrypt pobiera zadany obraz, wylicza rozkład kolorów pikseli i na tej podstawie wybiera najrzadziej występujący kolor (pomiajając biały, który oddziela kwadarty od siebie). Następnie skanujemy obraz w poszukiwaniu jakiegoś piksela tego koloru i zwracamy pozycję tego piksela jako rozwiązanie.

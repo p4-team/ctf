@@ -9,8 +9,8 @@ Ogólne wrażenia:
 
 # Spis treści:
 
-* [Calculator (ppc/Programming 100)](calculator)
-* [Colors (ppc/Programming 200)](colors)
+* [Calculator (ppc/Programming 200)](calculator)
+* [Colors (ppc/Programming 100)](colors)
 * [Captcha (ppc/Misc 300)](captcha)
 * [RSA (crypto 100)](rsa)
 * [AES (crypto 200)](aes)

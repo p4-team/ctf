@@ -1,4 +1,4 @@
-## Calculator (ppc/Programming, 100p)
+## Calculator (ppc/Programming, 200p)
 
 ### PL Version
 `for ENG version scroll down`
