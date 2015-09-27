@@ -14,7 +14,6 @@ Ogólne wrażenia:
 * [Captcha (ppc/Misc 300)](captcha)
 * [RSA (crypto 100)](rsa)
 * [AES (crypto 200)](aes)
-
 * [Maze (ppc 300)](maze)
 * [Offensive 100 (Web?/Analysis-offensive 100)](offensive100)
 * [Defense 100(?/Analysis-defensive 100)](defense100)
