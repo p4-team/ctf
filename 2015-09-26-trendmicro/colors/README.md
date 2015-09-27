@@ -32,6 +32,8 @@ Po rozwiązaniu kilkudziesięciu przykładów otrzymujemy: `TMCTF{U must have R0
 
 The system displays on a webpage an image consisting of squares. All but one have the same color - one has a slighly different shade. The task was to click in on the square with different color. The system would register the click location and decide if our solution is correct. We had to solve multiple consecutive examples in order to get the flag.
 
+![](./squares.png)
+
 To solve the task we prepared a python script using Python Images Library available [here](colors.py).
 The script downloads the picture, calculates the colors disitrbution and base don this selects the least frequent color (omitting white, which separates the squares). Next we can the picture looking for a pixel with this color and we return this pixel position as the solution.
 
