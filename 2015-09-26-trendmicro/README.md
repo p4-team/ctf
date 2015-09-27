@@ -17,7 +17,7 @@ Ogólne wrażenia:
 * [Maze (ppc 300)](maze)
 * [Offensive 100 (Web?/Analysis-offensive 100)](offensive100)
 * [Defense 100(?/Analysis-defensive 100)](defense100)
-* [Other 100 (?/Analysis-other 100)](other100)
+* [Other 100 (forensics/Analysis-other 100)](other100)
 
 
 # Zakończenie
