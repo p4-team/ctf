@@ -10,6 +10,8 @@ W tym momencie należy więc skorzystać z jakiegoś narzędzia do dumpowania st
 
 Ładujemy pdf, i jeden ze streamów wydaje sie ciekawszy (dla oka ludzkiego) niż pozostałe - zawiera XML z metadanymi. Szczególnie ciekawa jest zawartość `<xmpGImg:image>` - dekodujemy więc ją i zapisujemy do oddzielnego pliku (pamiętając żeby zamienić/usunąć wcześniej ciągi `&#xA;` z base64 - autor tego writeupa zapomniał o tym na początku i już myślał że jego pomysł na zadanie okazał się ślepą uliczką).
 
-Otrzymujemy taki oto obrazek: []('result.jpg')
+Otrzymujemy taki oto obrazek:
+
+![](./result.jpg)
 
 Odczytujemy z niego flagę: TMCTF{There is always light behind the clouds}.
