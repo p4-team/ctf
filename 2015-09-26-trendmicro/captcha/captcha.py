@@ -77,7 +77,7 @@ while True:
             # <h2>6/500</h2>
             m = re.search("<h2>(\d+)/\d+</h2>", data)
             if m is not None:
-				s = m.group(1)
+		s = m.group(1)
                 print(s)
                 if int(s) < lastScore:
                     lastScore = int(s)
