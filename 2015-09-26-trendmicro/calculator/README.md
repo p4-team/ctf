@@ -1,7 +1,7 @@
 ## Calculator (ppc/Programming, 200p)
 
 ### PL Version
-`for ENG version scroll down`
+[click for ENG](#eng-version)
 
 Zadanie polegało na połączeniu się za pomocą NC z podanym serwerem. Serwer podawał na wejściu działania i oczekiwał na ich rozwiązania. Należało rozwiązać kilkadziesiąt przykładów pod rząd aby uzyskać flagę. Działania przychodzące z serwera miały postać:
 
