@@ -1,5 +1,6 @@
 #Offensive 100 (web, 100p)
 
+## PL
 `For eng scroll down`
 
 W tym zadaniu dostajemy stronę z 3 sekcjami:
@@ -18,6 +19,8 @@ W tym zadaniu trzeba było zauważyć 2 rzeczy:
  Nie działa, robimy reload strony iiii...
  
  ![Alt text](pic1.png)
+
+## ENG
 
 In this task we get a web site with 3 sections:
  * Sign up button
