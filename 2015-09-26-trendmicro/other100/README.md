@@ -1,5 +1,8 @@
 # Fix my pdf (misc, 100p)
 
+## PL 
+`For ENG scroll down`
+
 Dostajemy [taki oto pdf](fix_my_pdf.pdf) od autorów zadania.
 
 Wszelkie próby załadowania go do jakiegoś czytnika pdf kończą się niepowodzeniem - wyraźnie wygląda na uszkodzony.
@@ -15,3 +18,22 @@ Otrzymujemy taki oto obrazek:
 ![](./result.jpg)
 
 Odczytujemy z niego flagę: TMCTF{There is always light behind the clouds}.
+
+## ENG
+
+We get [this pdf file](fix_my_pdf.pdf) from the task authors.
+
+All attempts to open it with a pdf reader fail - it seems to be broken.
+
+We can still open it with notepad/vim/emacs to look at the internal structure -  unfortunately all pdf streams are compressed so we can't easily read them.
+
+We decided to use a pdf stream dump tool. We could have used qpdf but since we're on windows at the moment we chose a different tool - pdf stream dumper.
+
+We load the pdf and one of the streams seems more interesting than the others (at least from human point of view) - it contains XML with metadata.
+Particularly insteresting is `<xmpGImg:image>` - we decode this and we save it to a different file (remembering to replace/remove `&#xA;` from base64 - author of this writeup forgot about this initially and almost assumed that his approach to solve the task was incorrect)
+
+We finally get this picture:
+
+![](./result.jpg)
+
+We read the flag from it: `TMCTF{There is always light behind the clouds}.`
