@@ -36,7 +36,7 @@ Z równania `v3[8 * (i % 3)][2 * (i / 3)] - password[i] != 1` od razu wynika co 
 
 Wyliczyliśmy hasło na podstawie podanych stałych i zdobyliśmy flagę.
 
-### ENG
+### ENG version
 
 We get a [binary](./r100) (elf to be exact), which performs a simple password check and returns if the password was correct or not.
 
