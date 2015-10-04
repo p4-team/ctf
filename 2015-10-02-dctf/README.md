@@ -3,6 +3,7 @@
 Uczestniczyliśmy (msm, Rev, other019, nazywam i Shalom) w DefCamp CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
 Ogólne wrażenia:
+Większość zadań wymagała łączenia się przez VPN aby uzyskać dostęp do infrastruktury organizatora. Było to o tyle problematyczne, że VPN lubił zrywać połączenie i działać bardzo wolno, co mocno utrudniało pracę nad niektórymi zadaniami.
 
 A teraz opisy zadań po kolei.
 
