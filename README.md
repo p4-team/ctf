@@ -1,6 +1,6 @@
-# ctf
+# CTF writeups from P4 Team
 
-![](./logo.png)
+![](./logo-small.png)
 
 * [Defcamp quals 2015(3651/4600p)(17/960th place)](2015-10-02-dctf)
 * [TrendMicro 2015](2015-09-26-trendmicro)
