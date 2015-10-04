@@ -41,7 +41,7 @@ Jak nie trudno zauważyć konieczne będzie przetworzenie obrazu do wersji bardz
 				else:
 					pixels[i, j] = black
 					
-Pierwsza służy do usunięciu z obrazu wszystkich oprócz 2 dominujacych kolorów (którymi jest wypełnienie i tekst), przy czym szukajac dominujących kolorównie bierzemy pod uwagę białego i czarnego, aby nie wybrać któregoś z nich jako koloru wypełnienia.
+Pierwsza służy do usunięciu z obrazu wszystkich oprócz 2 dominujacych kolorów (którymi jest wypełnienie i tekst), przy czym szukajac dominujących kolorów nie bierzemy pod uwagę białego i czarnego, aby nie wybrać któregoś z nich jako koloru wypełnienia.
 
 Druga funkcja zamienia kolor tekstu na czarny a kolor wypełnienia na biały. W efekcie uzyskujemy:
 
