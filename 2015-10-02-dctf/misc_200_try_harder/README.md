@@ -7,7 +7,7 @@ W zadaniu dostajemy dwa archiwa:
 * gzip o nazwie part0
 * zip o nazwie part3, wymagające hasła do dekodowania
 
-Rozpoczęliśmy od analizy archiwum part0 i pierwsze co rzuciło sie w oczy to fakt, że 4MB archiwum dekompresowało sie do 4GB pliku jpg. Analiza archiwum za pomocą hexedytora pozwoliła zauważyć, że w rzeczywistości archiwum jest wypełnione dużą ilością dziwngo paddingu. Jego usuniecie pozwoliło wypakować z archiwum [plik](./misc200.jpg). Nie jest to w rzeczywistości plik jpg a DOS/MBR bootsector. Jego zamontowanie daje dostęp do obazka:
+Rozpoczęliśmy od analizy archiwum part0 i pierwsze co rzuciło sie w oczy to fakt, że 4MB archiwum dekompresowało sie do 4GB pliku jpg. Analiza archiwum za pomocą hexedytora pozwoliła zauważyć, że w rzeczywistości archiwum jest wypełnione dużą ilością dziwngo paddingu. Okazało się, że był to plik jpg tylko z rozszerzenia - tak naprawdę był to DOS/MBR bootsector. Jego zamontowanie daje dostęp do obazka:
 
 ![](./pk8gZNX.jpg)
 
@@ -35,13 +35,15 @@ Dała jako wynik:
 	['01010011', '01100101', '01100011', '01101111', '01101110', '01100100', '00100000', '01110000', '01100001', '01110010', '01110100', '00100000', '01101001', '01101110', '00100000', '01101101', '01101001', '01110011', '01100011', '00110010', '00110000', '00110000', '01110000', '01100001', '01110010', '01110100', '00110010', '00101110', '01111010', '01101001', '01110000']
 	Second part in misc200part2.zip
 	
-Kolejne archiwum zawiera pliki [file1.bmp](./file1.bmp) oraz [file2](./file2). Analiza drugiego pliku pozwala zauważyć, że można go także intepretować jako obraz bmp i że zawiera on tekst:
+Kolejne archiwum zawiera pliki [file1.bmp](./file1.bmp) oraz [file2](./file2). Analiza drugiego pliku pozwala zauważyć, że bajty w nim można także intepretować jako obraz bmp i że zawiera on tekst:
 
 ![](./second.png)
 
 `binary_and_xor_is_how_we`
 
-Oba pliki mają identyczne rozmiary więc xorujemy je i jako efekt uzyskujemy obraz z całym tekstem: `binary_and_xor_is_how_we_all_start`
+Oba pliki mają identyczne rozmiary i wewnętrznie przypominają bitmapy. Ale tam gdzie powinien być nagłówek bmp w drugim pliku, znajdowały się zera. Więc przekeiliśmy nagłówek z pierwszego pliku i jako efekt uzyskaliśmy obraz z całym tekstem: `binary_and_xor_is_how_we_all_start`
+
+![](./fullsecond.bmp)
 
 Testujemy tą wiadomość jako hasło dla pliku part3.zip i bingo! Rozpakowujemy archiwum i znajdujemy tam [zdjecie](./part3.jpg) które zawiera szukaną flagę:
 
@@ -53,11 +55,11 @@ We get two archives:
 * gzip named part0
 * zip named part3, encrypted with a password
 
-We start with analysis of the part0 archive and first thing we notice is that 4MB archive decompresses into a 4GB jpg file. Hexeditor analysis shown that the archive is filled with some strange padding. Removing it made it possible to recover the [file](./misc200.jpg). In reality it is not a jpg file at all, it's a DOS/MBR bootsector. Mounting it gives the picture:
+We start with analysis of the part0 archive and first thing we notice is that 4MB archive decompresses into a 4GB jpg file. In reality it turned out that is isn't a jpg file at all, it's a DOS/MBR bootsector. Mounting it gives the picture:
 
 ![](./pk8gZNX.jpg)
 
-Further analysis of bootsector file with hexeditor gives us also some links to imgur but nothing useful. Further analysis of the part0 archive with binwalk give us a hidden [plik mp3](./3pm.redrah-yrt.mp3), containing a reversed recording of `try harder`. Analysis of this file allows us to find an interesting string inside ID3 tags:
+Further analysis of bootsector file with hexeditor gives us also some links to imgur but nothing useful. Further analysis of the part0 archive with binwalk give us a hidden [mp3 file](./3pm.redrah-yrt.mp3), containing a reversed recording of `try harder`. Analysis of this file allows us to find an interesting string inside ID3 tags:
 
 `aHR0cDovL2RjdGYuZGVmLmNhbXAvX19kbmxkX18yMDE1X18vcGFydDEuaHRtbATXXX`
 
@@ -86,7 +88,9 @@ Next archive contains [file1.bmp](./file1.bmp) and [file2](./file2). Second file
 
 `binary_and_xor_is_how_we`
 
-Both files have identical size so we xor them and as a result we get a picture with full text: `binary_and_xor_is_how_we_all_start`
+Both files have identical size, and looks like bmp files when looked at in hexeditor - but second file's header was replaced with zeroes. So we copied header from first file to second, and as a result we got a picture with full text: `binary_and_xor_is_how_we_all_start`
+
+![](./fullsecond.bmp)
 
 We try this message as a password for part3.zip and bingo! We decompress the archive and find a single [picture](./part3.jpg) with the flag:
 
