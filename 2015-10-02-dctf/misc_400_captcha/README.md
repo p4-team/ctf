@@ -1,15 +1,15 @@
-## Can you read Pacifico? (misc/ppc, 400+1p)
+ï»¿## Can you read Pacifico? (misc/ppc, 400+1p)
 
 ### PL Version
 [ENG](#eng-version)
 
-Zadanie polega³o na napisaniu ³amacza captchy. Captche mia³y nastêpuj¹cy format:
+Zadanie polegaÅ‚o na napisaniu Å‚amacza captchy. Captche miaÅ‚y nastÄ™pujÄ…cy format:
 
 ![](./captcha.png)
 
-Nale¿a³o rozwi¹zaæ 1337 kodów pod rz¹d bezb³êdnie w celu uzyskania flagi.
+NaleÅ¼aÅ‚o rozwiÄ…zaÄ‡ 1337 kodÃ³w pod rzÄ…d bezbÅ‚Ä™dnie w celu uzyskania flagi.
 
-Jak nie trudno zauwa¿yæ konieczne bêdzie przetworzenie obrazu do wersji bardziej przystêpnej do automatycznej analizy. Stosujemy algorytm, który przetworzy podany obraz do postaci czarnego tekstu na bia³ym tle. Wykonujemy to za pomoc¹ zestawu 2 funkcji:
+Jak nie trudno zauwaÅ¼yÄ‡ konieczne bÄ™dzie przetworzenie obrazu do wersji bardziej przystÄ™pnej do automatycznej analizy. Stosujemy algorytm, ktÃ³ry przetworzy podany obraz do postaci czarnego tekstu na biaÅ‚ym tle. Wykonujemy to za pomocÄ… zestawu 2 funkcji:
 
 	def fix_colors(im):
 		colors_distribution = im.getcolors(1000)
@@ -41,32 +41,32 @@ Jak nie trudno zauwa¿yæ konieczne bêdzie przetworzenie obrazu do wersji bardziej
 				else:
 					pixels[i, j] = black
 					
-Pierwsza s³u¿y do usuniêciu z obrazu wszystkich oprócz 2 dominujacych kolorów (którymi jest wype³nienie i tekst), przy czym szukajac dominuj¹cych kolorównie bierzemy pod uwagê bia³ego i czarnego, aby nie wybraæ któregoœ z nich jako koloru wype³nienia.
+Pierwsza sÅ‚uÅ¼y do usuniÄ™ciu z obrazu wszystkich oprÃ³cz 2 dominujacych kolorÃ³w (ktÃ³rymi jest wypeÅ‚nienie i tekst), przy czym szukajac dominujÄ…cych kolorÃ³wnie bierzemy pod uwagÄ™ biaÅ‚ego i czarnego, aby nie wybraÄ‡ ktÃ³regoÅ› z nich jako koloru wypeÅ‚nienia.
 
-Druga funkcja zamienia kolor tekstu na czarny a kolor wype³nienia na bia³y. W efekcie uzyskujemy:
+Druga funkcja zamienia kolor tekstu na czarny a kolor wypeÅ‚nienia na biaÅ‚y. W efekcie uzyskujemy:
 
 ![](./captcha_color.png)
 
-A nastêpnie:
+A nastÄ™pnie:
 
 ![](./captcha_bw.png)
 
-Niestety jak nie trudno zauwa¿yæ nasze captche s¹ bardzo bardzo ma³e. Za ma³e ¿eby OCR by³ w stanie poprawnie i bezb³êdnie je odczytaæ. Stosujemy wiêc inn¹ metodê. Jeden z naszych kolegów poœwieci³ siê i zmapowa³ stosowan¹ czcionkê tworz¹c pliki z ka¿dym potrzebnym symbolem:
+Niestety jak nie trudno zauwaÅ¼yÄ‡ nasze captche sÄ… bardzo bardzo maÅ‚e. Za maÅ‚e Å¼eby OCR byÅ‚ w stanie poprawnie i bezbÅ‚Ä™dnie je odczytaÄ‡. Stosujemy wiÄ™c innÄ… metodÄ™. Jeden z naszych kolegÃ³w poÅ›wieciÅ‚ siÄ™ i zmapowaÅ‚ stosowanÄ… czcionkÄ™ tworzÄ…c pliki z kaÅ¼dym potrzebnym symbolem:
 
 ![](./alphabet.png)
 
-Algorytm dekodowania captcha wygl¹da³ nastêpujaco:
+Algorytm dekodowania captcha wyglÄ…daÅ‚ nastÄ™pujaco:
 
 1. Pobieramy captche
-2. Poprawiamy kolory i zamieniamy na czarno-bia³e
-3. Pobieramy prostok¹t obejmujacy captchê
-4. Dla ka¿dego symbolu z alfabetu znajdujemy najlepsze dopasowanie go do captchy (takie gdzie najbardziej siê z ni¹ pokrywa), zapamiêtujemy te¿ pozycje tego dopasowania
+2. Poprawiamy kolory i zamieniamy na czarno-biaÅ‚e
+3. Pobieramy prostokÄ…t obejmujacy captchÄ™
+4. Dla kaÅ¼dego symbolu z alfabetu znajdujemy najlepsze dopasowanie go do captchy (takie gdzie najbardziej siÄ™ z niÄ… pokrywa), zapamiÄ™tujemy teÅ¼ pozycje tego dopasowania
 5. Wybieramy najlepiej dopasowany symbol
-6. Usuwamy z captchy dopasowany symbol poprzez zamalowanie go na bia³o
+6. Usuwamy z captchy dopasowany symbol poprzez zamalowanie go na biaÅ‚o
 7. Kroki 4-6 powtarzamy 6 razy, bo szukamy 6 symboli.
-8. Sortujemy uzyskane symbole wzglêdem pozycji dopasowania w kolejnosci rosnacej aby odtworzyæ poprawn¹ kolejnoœæ symboli
+8. Sortujemy uzyskane symbole wzglÄ™dem pozycji dopasowania w kolejnosci rosnacej aby odtworzyÄ‡ poprawnÄ… kolejnoÅ›Ä‡ symboli
 
-Dla prezentowanej wy¿ej captchy sesja dekodowania wygl¹da tak (najlepiej dopasowany symbol oraz obraz po jego usuniêciu):
+Dla prezentowanej wyÅ¼ej captchy sesja dekodowania wyglÄ…da tak (najlepiej dopasowany symbol oraz obraz po jego usuniÄ™ciu):
 
 `('H', 155)`
 
@@ -94,7 +94,7 @@ Dla prezentowanej wy¿ej captchy sesja dekodowania wygl¹da tak (najlepiej dopasow
 
 W wyniku czego uzyskujemy kod: `EUZGH9`
 
-Dwie funkcje, o których warto wspomnieæ to funkcja licz¹ca jak dobre dopasowanie znaleŸliœmy oraz funkcja usuwaj¹ca symbole z obrazu.
+Dwie funkcje, o ktÃ³rych warto wspomnieÄ‡ to funkcja liczÄ…ca jak dobre dopasowanie znaleÅºliÅ›my oraz funkcja usuwajÄ…ca symbole z obrazu.
 
 	def test_configuration(im_pixels, start_x, start_y, symbol_len, symbol_h, symbol_pixels, symbol_x_min, symbol_y_min):
 		counter = 0
@@ -110,7 +110,7 @@ Dwie funkcje, o których warto wspomnieæ to funkcja licz¹ca jak dobre dopasowanie
 					counter -= 1
 		return counter
 	
-Dla zadanego offsetu (w poziomie - start_x oraz w pionie - start_y) na obrazie z captch¹ iterujemy po pikselach i porównujemy je z pikselami testowanego symbolu. Jeœli trafimy na czarne piksele na obrazie to sprawdzamy czy wystêpuj¹ tak¿e w symbolu i dodajemy lub odejmujemy 1 od licznika pasuj¹cych pikseli. Jeœli na obrazie mamy kolor bia³y a symbol ma czarne piksele to odejmujemy 1 od licznika. Ta druga czêœæ jest doœæ istotna, poniewa¿ w innym wypadku litery "ca³kowicie obejmuj¹ce inne" mog³yby byæ wskazane jako poprawne dopasowanie.
+Dla zadanego offsetu (w poziomie - start_x oraz w pionie - start_y) na obrazie z captchÄ… iterujemy po pikselach i porÃ³wnujemy je z pikselami testowanego symbolu. JeÅ›li trafimy na czarne piksele na obrazie to sprawdzamy czy wystÄ™pujÄ… takÅ¼e w symbolu i dodajemy lub odejmujemy 1 od licznika pasujÄ…cych pikseli. JeÅ›li na obrazie mamy kolor biaÅ‚y a symbol ma czarne piksele to odejmujemy 1 od licznika. Ta druga czÄ™Å›Ä‡ jest doÅ›Ä‡ istotna, poniewaÅ¼ w innym wypadku litery "caÅ‚kowicie obejmujÄ…ce inne" mogÅ‚yby byÄ‡ wskazane jako poprawne dopasowanie.
 
 	def is_to_remove(symbol_pixels, x, y):
 		black = (0, 0, 0)
@@ -130,13 +130,13 @@ Dla zadanego offsetu (w poziomie - start_x oraz w pionie - start_y) na obrazie z
 				if is_to_remove(symbol_pixels, symbol_x_min + i - offset_x, symbol_y_min + j - offset_y):
 					picture_pixels[i, j] = white
 
-Usuwaj¹c symbol z obrazu iterujemy po obrazie zgodnie ze znalezionym offsetem i kolorujemy na bia³o te piksele, które s¹ czarne tak¿e w symbolu. Nie kolorujemy ca³ego boxa na bia³o! Jest to doœæ istotne, bo captche czasem by³y takie:
+UsuwajÄ…c symbol z obrazu iterujemy po obrazie zgodnie ze znalezionym offsetem i kolorujemy na biaÅ‚o te piksele, ktÃ³re sÄ… czarne takÅ¼e w symbolu. Nie kolorujemy caÅ‚ego boxa na biaÅ‚o! Jest to doÅ›Ä‡ istotne, bo captche czasem byÅ‚y takie:
 
 ![](./captcha4.png)
 
-Jak widaæ symbol `5` znajduje sie wewn¹trz boxa obejmuj¹cego literê `T` i zamalowanie ca³ego boxa na bia³o "zniszczy" symbol `5`.
+Jak widaÄ‡ symbol `5` znajduje sie wewnÄ…trz boxa obejmujÄ…cego literÄ™ `T` i zamalowanie caÅ‚ego boxa na biaÅ‚o "zniszczy" symbol `5`.
 
-Kod ca³ego solvera dostêpny jest [tutaj](./captcha.py). Tak przygotowany solver + pypy i szybki internet pozwoli³ po pewnym czasie uzyskaæ flagê:
+Kod caÅ‚ego solvera dostÄ™pny jest [tutaj](./captcha.py). Tak przygotowany solver + pypy i szybki internet pozwoliÅ‚ po pewnym czasie uzyskaÄ‡ flagÄ™:
 
 `DCTF{6b91e112ee0332616a5fe6cc321e48f1}`
 		
