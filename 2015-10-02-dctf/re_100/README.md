@@ -1,6 +1,6 @@
 ﻿## Reverse 100 (re, 100p)
 
-Dostajemy program (elf konkretnie), który wykonuje bardzo proste sprawdzenie hasła i odpowiada czy hasło jest poprawne czy nie.
+Dostajemy [program](./r100) (elf konkretnie), który wykonuje bardzo proste sprawdzenie hasła i odpowiada czy hasło jest poprawne czy nie.
 
 Domyślamy się że poprawne hasło jest flagą.
 
