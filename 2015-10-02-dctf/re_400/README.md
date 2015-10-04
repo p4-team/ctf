@@ -1,14 +1,14 @@
 ﻿## Reverse 400 (re, 400p)
 
-Najtrudniejsze zadanie z RE na tym CTFie. Dostajemy [program](./r400.exe) (znowu elf), który pobiera od usera hasło. Domyślamy się że to hasło jest flagą.
+Najtrudniejsze zadanie z RE na tym CTFie. Dostajemy [program](./r400) (znowu elf), który pobiera od usera hasło. Domyślamy się że to hasło jest flagą.
 
 Tutaj niespodzianka, bo hasło nie jest sprawdzane nigdzie w programie. Po chwili grzebania/debugowania, okazuje się, że hasło jest zamieniane na DWORD (cztery znaki) i pewna tablica bajtów jest "deszyfrowana" (tzn. xorowana) z nim, a następnie wykonywana. Xorowane dane wyglądają tak:
 
-    5E 68 0E 59 46 06 47 5E  55 11 15 41 5C 0A 03 16
-    44 0A 08 52 14 16 0E 16  52 0D 13 5E 14 3B 09 43
-    5C 0D 08 45 15 0A 0A 57  40 0B 0E 44 55 16 13 5E
-    77 0D 08 51 8E 48 66 36  34 EB 87 8D 35 62 66 36
-    8C 66 66 36 34 AF E6 8E  35 62 66 36 F9 E2 F6 A6
+    5E 68 0E 59 46 06 47 5E 55 11 15 41 5C 0A 03 16
+    44 0A 08 52 14 16 0E 16 52 0D 13 5E 14 3B 09 43
+    5C 0D 08 45 15 0A 0A 57 40 0B 0E 44 55 16 13 5E
+    77 0D 08 51 8E 48 66 36 34 EB 87 8D 35 62 66 36
+    8C 66 66 36 34 AF E6 8E 35 62 66 36 F9 E2 F6 A6
 
 Pierwsze próby zgadnięcia hasła nie udały się (myśleliśmy że może ten fragment to funkcja, i zacznie się jakimś klasycznym prologiem). Ale szybko wpadliśmy na lepszy pomysł. Otóż jaki jest najczęściej spotykany bajt w kodzie? Oczywiście zero. Więc jeśli znajdziemy najczęściej występujący bajt w zaszyfrowanym fragmencie, będziemy wiedzieli że prawdopodobnie były to oryginalnie zera. Kod wyszukujący najczęstsze bajty:
 
