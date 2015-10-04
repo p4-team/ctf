@@ -25,6 +25,8 @@ A teraz opisy zadań po kolei.
 * [Try harder! (misc/stego 200)](misc_200_try_harder)
 * [Can you read Pacifico? (misc/ppc 400+1)](misc_400_captcha)
 
+# Wykres
+
 ![](chart.png)
 
 # Zakończenie
