@@ -1,7 +1,7 @@
 ﻿## Reverse 300 (re, 300p)
 
 ### PL
-(ENG)[eng-version]
+[ENG](#eng-version)
 
 Dostajemy [program](./r300.exe) (tym razem PE windowsowe), który pobiera od usera parę username:hasło. Mamy zdobyć hasło dla użytkownika "Administrator".
 
@@ -26,7 +26,7 @@ for (int i = 0; i < strlen(password) - 1; i++) {
 
 Z tego odczytaliśmy wymagane hasło dla administratora: `#y1y3#y1y3##` i zdobyliśmy flagę.
 
-### ENG
+### ENG version
 
 We get a [binary](./r300.exe) (this time a windows PE), which takes user:password pair as input. We need a password for "Administrator" user.
 

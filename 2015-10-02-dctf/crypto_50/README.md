@@ -2,7 +2,7 @@
 
 ### PL
 
-(ENG)[#eng-version]
+[ENG](#eng-version)
 
 Bardzo przyjemne (dla autora tego writeupa) zadanie. Dostajemy 10 tekstów zaszyfrowanych tym samym stream cipher (z tym samym IV/kluczem), i mamy za zadanie rozszyfrować 11.
 

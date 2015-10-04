@@ -13,7 +13,7 @@ A teraz opisy zadań po kolei.
 * [Rocket Science Admin Panel (web 300)]()
 * [CSS Engineer (web 400)]()
 * [Custom function engineering (crypto 300)](crypto_300_custom_function)
-* [11 (? 50)](crypto_50)
+* [11 (crypto 50)](crypto_50)
 * [Password encrypting tool (? 100)]()
 * [No Crypto (? 200)]()
 * [Entry language (reverse 100)](re_100_entry)

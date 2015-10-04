@@ -1,7 +1,7 @@
 ﻿## Reverse 400 (re, 400p)
 
 ### PL
-(ENG)[#eng-version]
+[ENG](#eng-version)
 
 Najtrudniejsze zadanie z RE na tym CTFie. Dostajemy [program](./r400) (znowu elf), który pobiera od usera hasło. Domyślamy się że to hasło jest flagą.
 
@@ -42,7 +42,7 @@ Okazało się to być strzałem w dziesiątkę! (Jeśli dobrze pamiętamy, jeden
 
 W ten sposób rozwiązaliśmy najtrudniejsze zadanie RE na CTFie i zdobyliśmy kolejną flagę, wartą 400 punktów.
 
-### ENG
+### ENG version
 
 The most difficult RE task on this CTF. We get a [binary](./r400) (elf again) which takes password as input. We expect the password to be the flag.
 

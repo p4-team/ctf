@@ -1,7 +1,7 @@
 ﻿## Reverse 100 (re, 100p)
 
 ### PL
-(ENG)[#eng-version]
+[ENG](#eng-version)
 
 Dostajemy [program](./r100) (elf konkretnie), który wykonuje bardzo proste sprawdzenie hasła i odpowiada czy hasło jest poprawne czy nie.
 

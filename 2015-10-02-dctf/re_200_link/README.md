@@ -1,7 +1,7 @@
 ﻿## Reverse 200 (re, 200p)
 
 ### PL
-(ENG)[eng-version]
+[ENG](#eng-version)
 
 Dostajemy [program](./r200) (elf konkretnie), który, podobnie jak poprzedni, wykonuje sprawdzenie hasła i odpowiada czy hasło jest poprawne czy nie.
 
@@ -57,7 +57,7 @@ Gdzie list to globalna zmienna - lista asocjacyjna, wyglądająca mniej więcej 
 
 Z tego odczytaliśmy wymagane hasło - "rotors".
 
-### ENG
+### ENG version
 
 We get a [binary](./r200) (elf to be exact), which, as previously, performs a password check and returns if the password was correct or not,
 
