@@ -39,11 +39,7 @@ W kodzie widać też nieużywaną nigdzie funkcję socksend która wysyła podan
 
 Po chwili zastanowienia dochodzimy do wniosku że możemy pominąć kanarka po prostu xorując go z zerami. Następnie jedyne co musimy zrobić, to nadpisać adres powrotu w odpowiedni sposób, tak żeby wywołać funkcję socksend z parametrami socksend(fd, password, BUF_SIZE) (w ten sposób program sam wyśle do nas flagę).
 
-Niestety nie jest tak prosto, na stosie nie ma wystarczająco wiele miejsca żeby zmieścic argumenty dla funkcji socksend (po nadpisaniu zmiennej 'counter' kończy się wykonanie funkcji). Ale jeśli postaramy się, możemy przeskoczyć do ramki funkcji niżej:
-
-![](./shellcode.png)
-
-Znaleźliśmy do tego odpowiedni gadget na stosie:
+Niestety nie jest tak prosto, na stosie nie ma wystarczająco wiele miejsca żeby zmieścic argumenty dla funkcji socksend (po nadpisaniu zmiennej 'counter' kończy się wykonanie funkcji). Ale jeśli postaramy się, możemy przeskoczyć do ramki funkcji niżej. Używamy do tego następującego gadgetu:
 
 ```
 gadget_pop:
@@ -55,9 +51,15 @@ pop     ebp         ; zdjęcie elementu ze stosu (i zapisanie do ebp)
 retn                ; zdjęcie elementu ze stosu i skoczenie od niego
 ```
 
+Który zdejmuje 7 elementów ze stosu, i skacze pod 8.
+
 Więc ostateczny plan jest taki: skaczemy pod ten gadget, on zdejmuje odpowiednią ilość parametrów ze stosu, wtedy wykonanie trafia na początek naszego czystego, niexorowanego bufora w pamięci i możmy zrobić co tylko chcemy.
 
-Skrypt którego użyliśmy:
+Docelowo stos będzie wyglądał tak:
+
+![](./shellcode.png)
+
+Skrypt którego użyliśmy :o wygenerowania shellcodu i wysłania go do programu:
 
 ```
 # -*- coding: utf-8 -*-
