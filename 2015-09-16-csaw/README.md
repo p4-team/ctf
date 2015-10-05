@@ -16,9 +16,9 @@ A teraz opisy zadań po kolei.
 * web 100 K_{Stairs}
 * [Lawn Care Simulator (web 200)](web_200_lawn_care_simulator)
 * exploit 100 precision
-* exploit 300 FTP 2
+* [exploit 300 FTP 2](pwn_300_ftp2)
 * exploit 400 memeshop
-* exploit 500 rhinoxorus
+* [exploit 500 rhinoxorus](pwn_500_rhinoxorus)
 * [ones_and_zer0es (crypto 50)](crypto_50_ones_and_zer0es)
 * [whiter0se (crypto 50)](crypto_50_wh1ter0se)
 * [zer0-day (crypto 50)](crypto_50_zer0_day)
