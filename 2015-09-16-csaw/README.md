@@ -27,7 +27,7 @@ A teraz opisy zadań po kolei.
 * [FTP (reversing 300)](re_300_ftp)
 * [wyvern (reversing 500)](re_500_wyvern)
 * [Keep Calm and CTF (forensics 100)](forensics_100_keep_calm_and_ctf)
-* Transfer (forensics 100)
+* [Transfer (forensics 100)](forensics_100_transfer)
 * [Flash (forensics 100)](forensics_100_flash)
 * [pcapin (forensics 150)](forensics_150_pcapin)
 * airport (forensics 200)
