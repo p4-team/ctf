@@ -15,22 +15,22 @@ A teraz opisy zadań po kolei.
 
 * web 100 K_{Stairs}
 * [Lawn Care Simulator (web 200)](web_200_lawn_care_simulator)
-* exploit 100 precision
-* [exploit 300 FTP 2](pwn_300_ftp2)
-* exploit 400 memeshop
-* [exploit 500 rhinoxorus](pwn_500_rhinoxorus)
+* [precision (exploit 100)](pwn_100_precision)
+* [FTP 2 (exploit 300)](pwn_300_ftp2)
+* memeshop (exploit 400)
+* [rhinoxorus (exploit 500)](pwn_500_rhinoxorus)
 * [ones_and_zer0es (crypto 50)](crypto_50_ones_and_zer0es)
 * [whiter0se (crypto 50)](crypto_50_wh1ter0se)
 * [zer0-day (crypto 50)](crypto_50_zer0_day)
 * [notesy (crypto 100)](crypto_100_notesy)
-* reversing 200 Hacking Time
+* Hacking Time (reversing 200)
 * [FTP (reversing 300)](re_300_ftp)
 * [wyvern (reversing 500)](re_500_wyvern)
 * [Keep Calm and CTF (forensics 100)](forensics_100_keep_calm_and_ctf)
-* forensics 100 Transfer
+* Transfer (forensics 100)
 * [Flash (forensics 100)](forensics_100_flash)
 * [pcapin (forensics 150)](forensics_150_pcapin)
-* forensics 200 airport
+* airport (forensics 200)
 * [sharpturn (forensics 400)](forensics_400_sharpturn)
 * [Julian Cohen (recon 100)](recon_100_julian_cohen)
 * [Alexander Taylor (recon 100)](recon_100_alexander_taylor)
