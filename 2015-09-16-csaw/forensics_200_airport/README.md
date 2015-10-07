@@ -18,7 +18,7 @@ Warto byłoby dowiedzieć się, co to za lotniska, używając google images dost
 
 Jak możnaby je połączyć w jedną całość? A na przykłąd używając kodów lotnisk :)
 
-Odpalamy program i jako hasło wklepujemy HAVHKGLAXYYZ, dostajemy flagę iH4t3A1rp0rt5
+Odpalamy program i jako hasło wklepujemy `HAVHKGLAXYYZ`, dostajemy flagę iH4t3A1rp0rt5
 
 #ENG version
 
@@ -38,4 +38,4 @@ It's time we found out what theese airport are, using google images we get follo
 
 How can we merge them into a password? Let's try airport codes!
 
-We run steghide again and this time input HAVHKGLAXYYZ, the program runs for some time and returns iH4t3A1rp0rt5, hooray!
+We run steghide again and this time input `HAVHKGLAXYYZ`, the program runs for some time and returns iH4t3A1rp0rt5, hooray!
