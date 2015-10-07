@@ -9,7 +9,7 @@ W zadaniu dostajemy obrazek [png](./m100.png) z zepsutym nagłówkiem. Rozpakowu
 from PIL import Image
 with open('zlibdec.bin','rb') as f:
 	data=f.read()
-im = Image.frombytes('RGBA',(891,550),data)
+im = Image.frombytes('RGB',(891,550),data)
 im.show()
 ```
 i w wyniku otrzymujemy:
@@ -21,7 +21,7 @@ We get png picture with broken header checksum. With pixels extracted from file 
 from PIL import Image
 with open('zlibdec.bin','rb') as f:
 	data=f.read()
-im = Image.frombytes('RGBA',(891,550),data)
+im = Image.frombytes('RGB',(891,550),data)
 im.show()
 ```
 as a result we get:
