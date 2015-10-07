@@ -21,7 +21,7 @@ A teraz opisy zadań po kolei.
 * [LBS Checker (reverse 300)](re_300_lbs_checker) 
 * [Such exploit, much random (pwn 300)]()
 * [Master of Reversing (reverse 400)](re_400_master_of_reversing)
-* [She said it doesn't matter (misc/stego 100)]()
+* [She said it doesn't matter (misc/stego 100)](misc_100_doesnt_matter)
 * [Try harder! (misc/stego 200)](misc_200_try_harder)
 * [Can you read Pacifico? (misc/ppc 400+1)](misc_400_captcha)
 
