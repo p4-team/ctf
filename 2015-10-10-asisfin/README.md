@@ -16,12 +16,10 @@ Opisy zadań po kolei.
 * [Fake (re 150)](re_150_fake)
 * [FlagHunter (misc 75)](misc_75_flaghunter)
 * Impossible (web 225)
-* [License (re 125](re_100_license)
+* [License (re 125)](re_100_license)
 * [MeowMeow (misc 75)](misc_75_meowmeow)
 * Shop-1 (pwn 150)
 * [Strange (forensic 150)](forensic_150_strange)
-
-
 
 # Zakończenie
 
