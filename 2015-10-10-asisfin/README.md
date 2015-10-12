@@ -1,6 +1,6 @@
 # Writeup DefCamp CTF 2015
 
-Uczestniczyliśmy (Rev, Shalom, other019, nazywam i msm) w finałach ASIS CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
+Uczestniczyliśmy (Rev, Shalom, other019, nazywam, pp i msm) w finałach ASIS CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
 Ogólne wrażenia:
 
