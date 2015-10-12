@@ -10,7 +10,7 @@ Opisy zadań po kolei.
 * [AsisHash (re 150)](re_150_asishash)
 * BigLie (forensic 100)
 * Bodu (crypto 175)
-* [Calcexec I (pwn 200)](pwn_100_shop_1)
+* [Calcexec I (pwn 200)](pwn_200_calcexec_I)
 * CalmDown (trivia 75)
 * ExampleFlag (trivia 1)
 * [Fake (re 150)](re_150_fake)
@@ -18,7 +18,7 @@ Opisy zadań po kolei.
 * Impossible (web 225)
 * [License (re 125)](re_100_license)
 * [MeowMeow (misc 75)](misc_75_meowmeow)
-* Shop-1 (pwn 150)
+* [Shop-1 (pwn 100)](pwn_100_shop_1)
 * [Strange (forensic 150)](forensic_150_strange)
 
 # Zakończenie
