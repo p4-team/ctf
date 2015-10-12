@@ -11,7 +11,7 @@ Opisy zadań po kolei.
 * [Big Lie (forensic 100)](forensic_100_big_lie)
 * Bodu (crypto 175)
 * [Calcexec I (pwn 200)](pwn_200_calcexec_I)
-* CalmDown (trivia 75)
+* [Calm Down (trivia 75)](trivia_75_calm_down)
 * ExampleFlag (trivia 1)
 * [Fake (re 150)](re_150_fake)
 * [FlagHunter (misc 75)](misc_75_flaghunter)
