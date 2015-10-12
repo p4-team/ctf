@@ -3,7 +3,7 @@
 ### PL
 [ENG](#eng-version)
 
-W tym zadaniu zostanie przetestowana nasza umiejętność otwierania dużych obrazków, dostajemy plik [strange.png]() ważący 16MB ale pojawia się jeden problem:
+W tym zadaniu zostanie przetestowana nasza umiejętność otwierania dużych obrazków, dostajemy plik [strange.png](strange.png) ważący 16MB ale pojawia się jeden problem:
 
 ![alt](file.png)
 
@@ -13,11 +13,11 @@ Tak, zgadza się, obrazek ma `344987x344987` pikseli, nawet z 1 bitową mapą da
 
 Należałoby zaglądnąć do środka tej binarki, żeby dowiedzieć się co tak na prawdę tam w środku siedzi. 
 
-Okazuje się, że znaczną większość pliku stanowią nullbyte-y, w sumie to wytnijmy linijki z samymi nullami, zmniejszmy rozmiary obrazka i zobaczmy co się stanie...
+Okazuje się, że znaczną większość pliku stanowią nullbyte-y. Więc w sumie spróbujmy wyciąć linijki z samymi nullami, zmniejszmy rozmiar obrazka w EXIFie i zobaczmy co się stanie...
 
 ![alt](cropped_enlarged.png)
 
-Teraz tylko spróbujemy je posklejać i...
+Teraz tylko spróbujmy je posklejać i...
 
 ![alt](solution.png)
 
@@ -25,7 +25,7 @@ Flaga jest nasza!
 
 ### ENG version
 
-In this task we're given an png image, there's just one problem:
+In this task we're given an 16MB [png image](strange.png), there's just one problem:
 
 ![alt](file.png)
 
