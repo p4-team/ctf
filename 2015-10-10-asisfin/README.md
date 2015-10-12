@@ -11,6 +11,7 @@ Opisy zadań po kolei.
 * [AsisHash (re 150)](re_150_asishash)
 * [Fake (re 150)](re_150_fake)
 * [MeowMeow (misc 75)](misc_75_meowmeow)
+* [FlagHunter (misc 75)](misc_75_flaghunter)
 
 # Zakończenie
 
