@@ -84,8 +84,8 @@ Wszystkie operacje tutaj są odwracalne, więc po chwili mamy kod tworzący popr
 
 Uruchamiamy więc program z odpowiednią [licencją](kot), i...
 
-vagrant@precise64:~$ ./license
-program successfully registered to ASIS{8d2cc30143831881f94cb05dcf0b83e0}
+    vagrant@precise64:~$ ./license
+    program successfully registered to ASIS{8d2cc30143831881f94cb05dcf0b83e0}
 
 gotowe.
 
