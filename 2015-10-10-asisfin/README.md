@@ -10,7 +10,7 @@ Opisy zadań po kolei.
 * [AsisHash (re 150)](re_150_asishash)
 * BigLie (forensic 100)
 * Bodu (crypto 175)
-* Calcexec I (pwn 200)
+* [Calcexec I (pwn 200)](pwn_100_shop_1)
 * CalmDown (trivia 75)
 * ExampleFlag (trivia 1)
 * [Fake (re 150)](re_150_fake)
