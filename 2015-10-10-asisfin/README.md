@@ -12,6 +12,7 @@ Opisy zadań po kolei.
 * [Fake (re 150)](re_150_fake)
 * [MeowMeow (misc 75)](misc_75_meowmeow)
 * [FlagHunter (misc 75)](misc_75_flaghunter)
+* [Strange (forensic 150)](forensic_150_strange)
 
 # Zakończenie
 
