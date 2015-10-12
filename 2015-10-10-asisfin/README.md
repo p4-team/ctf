@@ -18,7 +18,7 @@ Opisy zadań po kolei.
 * Impossible (web 225)
 * [License (re 125](re_100_license)
 * [MeowMeow (misc 75)](misc_75_meowmeow)
-* Shop-1 (pwn 150)]
+* Shop-1 (pwn 150)
 * [Strange (forensic 150)](forensic_150_strange)
 
 
