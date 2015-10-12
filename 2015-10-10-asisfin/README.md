@@ -7,12 +7,21 @@ Ogólne wrażenia:
 Opisy zadań po kolei.
 
 # Spis treści:
-* [License (re 100](re_100_license)
 * [AsisHash (re 150)](re_150_asishash)
+* BigLie (forensic 100)
+* Bodu (crypto 175)
+* Calcexec I (pwn 200)
+* CalmDown (trivia 75)
+* ExampleFlag (trivia 1)
 * [Fake (re 150)](re_150_fake)
-* [MeowMeow (misc 75)](misc_75_meowmeow)
 * [FlagHunter (misc 75)](misc_75_flaghunter)
+* Impossible (web 225)
+* [License (re 125](re_100_license)
+* [MeowMeow (misc 75)](misc_75_meowmeow)
+* Shop-1 (pwn 150)]
 * [Strange (forensic 150)](forensic_150_strange)
+
+
 
 # Zakończenie
 
