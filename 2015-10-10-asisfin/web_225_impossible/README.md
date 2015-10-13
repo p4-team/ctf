@@ -3,15 +3,15 @@
 ### PL
 [ENG](#eng-version)
 
-Według opisu zadania flaga jest schowana na stronie http://impossible.asis-ctf.ir/
+Według opisu zadania, flaga jest schowana na stronie http://impossible.asis-ctf.ir/
 Możemy tam zakładać konta, ale muszą one zostać aktywowane żeby się zalogować.
-Jak zwykle zaczynamy od sprawdzenia `robots.txt` aby sprawdzić co autorzy strony chcą przed nami ukryć.
+Jak zwykle zaczynamy od ściągnięcia `robots.txt` aby sprawdzić co autorzy strony chcą przed nami ukryć.
 http://impossible.asis-ctf.ir/robots.txt ma tylko jeden wpis:
 
     User-agent: *
     Disallow: /backup
 
-Pod http://impossible.asis-ctf.ir/backup/ znajdziemy zrzut całej strony, który znacząco ułatwi nam zadanie.
+Pod http://impossible.asis-ctf.ir/backup/ znajdziemy zrzut całej strony. Znacząco ułatwia nam to zadanie.
 
 W `functions.php` znajduje się mini-implementacja bazy danych:
 
@@ -44,7 +44,7 @@ W `functions.php` znajduje się mini-implementacja bazy danych:
 		return array("", "");
 	}
 
-`register.php` umożliwia nam stworzenie nowego konta o ile nie istnieje już jakieś o tej samej nazwie:
+`register.php` umożliwia nam stworzenie nowego konta - o ile nie istnieje już jakieś o tej samej nazwie:
 	
 	$check = preg_match("/^[a-zA-Z0-9]+$/", $_POST['username']);
 	if (!$check) {
@@ -58,7 +58,7 @@ W `functions.php` znajduje się mini-implementacja bazy danych:
 		$title = "Registration Complete";
 	}
 
-`index.php` umożliwia zalogowanie się o ile użytkownik jest aktywny i ma pasujące hasło:
+`index.php` umożliwia zalogowanie się - o ile użytkownik jest aktywny i ma pasujące hasło:
 
 	if(username_exist($_POST['username'])) {
 		$user_info = get_user($_POST['username']);
@@ -67,14 +67,14 @@ W `functions.php` znajduje się mini-implementacja bazy danych:
 		}
 	}
 
-Nasz atak wykorzystuje kilka luk w tych skryptach:
+Nasz atak wykorzystuje kilka luk:
 
 1. W `passwords.dat` nazwy użytkownika są zahaszowane MD5 ale hasła są tylko zakodowane base64.
 2. `register.php` wypisuje hasło nowo utworzonego użytkownika. Albo, dokładniej, hasło pierwszego użytkownika którego nazwa ma takie samo md5.
 3. Skróty md5 są porównywane operatorem `==`. Jeżeli porównywane łańcuchy są poprawnymi liczbami, zostaną porównane jako liczby.
 4. Dziwnym zbiegiem okoliczności aktywny użytkownik z takim numerycznym md5 już istnieje w bazie: `md5("adm2salwg") == "0e004561083131340065739640281486"`
 
-`0e004561083131340065739640281486` po przekonwertowaniu na liczbę jest równe 0. Potrzebna nam będzie inna nazwa, której md5 jest również równe 0 po skonwertowaniu na liczbę.
+`0e004561083131340065739640281486` po przekonwertowaniu na liczbę jest równe 0 (w notacji matematycznej 0*10<sup>4561083131340065739640281486</sup>). Potrzebna nam będzie inna nazwa, której md5 jest również równe 0 po skonwertowaniu na liczbę.
 Nawet w PHP, przeszukując kolejne liczby dostaniemy wynik po zaledwie kilku minutach:
 
 	$p = md5("adm2salwg");
