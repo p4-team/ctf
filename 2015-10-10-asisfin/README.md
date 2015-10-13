@@ -12,7 +12,7 @@ Opisy zadań po kolei.
 # Spis treści:
 * [AsisHash (re 150)](re_150_asishash)
 * [Big Lie (forensic 100)](forensic_100_big_lie)
-* Bodu (crypto 175)
+* [Bodu (crypto 175)](crypto_175_bodu)
 * [Calcexec I (pwn 200)](pwn_200_calcexec_I)
 * [Calm Down (trivia 75)](trivia_75_calm_down)
 * ExampleFlag (trivia 1)
