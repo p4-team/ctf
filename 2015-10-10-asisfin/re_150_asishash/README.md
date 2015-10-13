@@ -18,7 +18,7 @@ Dostajemy [program](./hash.elf) (elf). Analizujemy jego działanie, w dużym upr
     }
 
 Funkcja hash_password jest bardzo skomplikowana i nawet nie próbowaliśmy analizować jej działania. Zamiast tego zrobiliśmy coś prostszego - ponieważ
-hash jest monotoniczny (dla dłuższych haseł/wyższych znaków ascii daje wyższe wyniki), spróbowaliśmy
+hash jest monotoniczny (dla dłuższych haseł/wyższych znaków ascii daje wyższe wyniki), spróbowaliśmy zgadnac hash (docelowy hash flagi jest stay i równy 27221558106229772521592198788202006619458470800161007384471764) za pomocą bruteforcowania z nawrotami wszystkich możliwych flag:
 
     import subprocess
 
@@ -83,7 +83,7 @@ We get a [binary](./hash.elf) (elf). We analyse its behaviour and it is doing:
         }
     }
 
-The `hash_password` function is very complex and we didn't ever try to analyse it. Instead we did something simpler - since the hash is monotonous (for longer input/higher characters it gives higher results) we tried:
+The `hash_password` function is very complex and we didn't ever try to analyse it. Instead we did something simpler - since the hash is monotonous (for longer input/higher characters it gives higher results) we tried guessing correct flag (flag hash is known and equal to (27221558106229772521592198788202006619458470800161007384471764) using bruteforce with backtracing:
 
     import subprocess
 
