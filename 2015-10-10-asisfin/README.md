@@ -1,8 +1,11 @@
-# Writeup DefCamp CTF 2015
+# Writeup ASIS CTF Finals 2015
 
 Uczestniczyliśmy (Rev, Shalom, other019, nazywam, pp i msm) w finałach ASIS CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
 Ogólne wrażenia:
+- Pierwszy CTF gdzie pierwsze punkty udało nam się zdobyć dopiero po kilku godzinach.
+- Wyjątkowo dużo zadań nad którymi musieliśmy pracować w kilka osób (robiąc research, pisząc część skryptów etc.). Zwykle jedno zadanie rozwiązuj 1-2 osoby, tutaj było kilka nad którymi pracowały 3-4 osoby na raz.
+- Przeważająca większość zadań to re, pwn i crypto, czyli generalnie kategorie w których nie jesteśmy najmocniejsi. 
 
 Opisy zadań po kolei.
 
