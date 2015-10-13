@@ -1,4 +1,4 @@
-## Impossible
+## Impossible (web, 225p)
 
 ### PL
 [ENG](#eng-version)

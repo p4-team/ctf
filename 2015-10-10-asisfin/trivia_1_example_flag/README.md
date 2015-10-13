@@ -1,4 +1,4 @@
-## What's example flag?
+## What's example flag? (triv, 1p)
 
 ### PL
 [ENG](#eng-version)
