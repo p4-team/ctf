@@ -15,7 +15,7 @@ Opisy zadań po kolei.
 * [Bodu (crypto 175)](crypto_175_bodu)
 * [Calcexec I (pwn 200)](pwn_200_calcexec_I)
 * [Calm Down (trivia 75)](trivia_75_calm_down)
-* [ExampleFlag (trivia 1)[(trivia)
+* [ExampleFlag (trivia 1)](trivia)
 * [Fake (re 150)](re_150_fake)
 * [FlagHunter (misc 75)](misc_75_flaghunter)
 * [Impossible (web 225)](web_225_impossible)
