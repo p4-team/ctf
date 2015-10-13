@@ -32,7 +32,10 @@ Dostajemy [program](./fake) (elf), do analizy, i rozpoczynamy od zdekompilowania
 Jak widać wykonywane jest tutaj sporo operacji matematycznych, a potem wynikowa liczba wypisywana jako tekst na konsolę.
 
 Piszemy więc prosty skrypt w pythonie, który po prostu zbrutuje możliwe liczby i wypisze wynik. Założenie jest takie, że output zaczyna się od ASIS{ oraz zawiera tylko znaki 0..9a..f. Sprawdzamy więc bruteforcując wszystkie możliwe dane wejściowe dla pierwszej operacji.
-Wiemy że X * M === 'ASIS{...' (mod 2^64) <=> X === 'ASIS{...' * M^-1 (mod 2^64).
+Wiemy że:
+
+    X * M === 'ASIS{...' (mod 2^64) <=> X === 'ASIS{...' * M^-1 (mod 2^64).
+    
 Odwrotność modularną M możmy łatwo wyliczyć za pomocą rozszerzonego algorytmu euklitesa, więc mamy 2^24 możliwości do sprawdzenia na trzy pozostałe bajty
 (to był błąd swoją drogą, wystarczyło sprawdzać charset 0..9a..f zamiast pełnego zakresu bajta, wtedy możliwoścy byłoby ledwo 4096).
 Następnie dla każdej z tych opcji sprawdzamy czy zgadza się kolejne równanie (czyli bajty 2676064947712729*... są w charsecie 0..9a..f), i otrzymujemy porządnie przefiltrowaną listę możliwych rozwiązań.
@@ -165,7 +168,10 @@ We get a [binary](./fake) (elf), for analysis and we start by decompilation:
 As can be notices there are a lot of mathematical operations and the the result number is printed out to the console.
 
 So we write a simple python script, which will brute-force all possible numbers and print the result. The assumption is that the output starts with `ASIS{` and contains only 0..9a..f. So we test the results of multiplication by bruteforcing every possible input for first operation.
-We know that X * M === 'ASIS{...' (mod 2^64) <=> X === 'ASIS{...' * M^-1 (mod 2^64).
+We know that:
+
+    X * M === 'ASIS{...' (mod 2^64) <=> X === 'ASIS{...' * M^-1 (mod 2^64).
+    
 We can easily compute modular inverse of M using extended euclidean algorithm, so we have 2^24 possible values to test for remaining three bytes
 (by the way, checking entire byte range was an overkill, 0..9a..f had to be enough and would reduce search space to 4096).
 Then, for each checked input, we verify next equation (i.e. all bytes of 2676064947712729*... are in 0..9a..f range), and we get just a few possible solutions.
