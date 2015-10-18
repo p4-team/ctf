@@ -58,11 +58,11 @@ Algorytm Rabina szyfruje jako:
 
 W naszym przypadku możemy przyjąć, że `e = e'*32` i uzyskujemy dzięki temu:
 
-`cipher_text = (plain_text^e)%n = (plain_text^(e'*32))%n
+`cipher_text = (plain_text^e)%n = (plain_text^(e'*32))%n`
 
 Teraz jeśli oznaczymy `x = plain_text^e'*16` to nasze równanie będzie miało postać `cipher_text = (x^2)%n` czyli dokładnie postać znaną z Algorytmu Rabina! Oznacza to, że dekodując nasz zaszyfrowany tekst Algorytmem Rabina możemy uzyskać potencjalne wartości `x`. Warto wspomnieć, że takich potencjalnych wartości będzie 4 bo algorytm jest niejednoznaczny.
 
-Możemy zaprezentowaną metodę stosować wielokrotnie, a każde zastosowaniede szyfrowania z Algorytmu Rabina spowoduje "usunięcie" jednego czynnika 2 z wykładnika. To oznacza, ze jednokrotne deszyfrowanie da nam możliwe wartości `plain_text^e'*16`, kolejne plain_text^e'*8`, ..., a piąte `plain_text^e'`
+Możemy zaprezentowaną metodę stosować wielokrotnie, a każde zastosowaniede szyfrowania z Algorytmu Rabina spowoduje "usunięcie" jednego czynnika 2 z wykładnika. To oznacza, ze jednokrotne deszyfrowanie da nam możliwe wartości `plain_text^e'*16`, kolejne `plain_text^e'*8`, ..., a piąte `plain_text^e'`
 
 Widzimy więc, że po pięciu deszyfrowaniach uzyskamy wreszcie postać którą będziemy mogli odszyfrować za pomocą RSA, pamiętając przy tym, że nasza eksponenta uległa zmianie i wynosi teraz `31415926535897932384/32`.
 
@@ -93,7 +93,7 @@ for potential_rsa_ct in partially_decoded_ct:
 print(potential_plaintext)
 ```
 
-Kompletny kod dla tego kroku jest dostępny [tutaj](rabin_rsa.py).
+Kompletny kod dla tego kroku jest dostępny [tutaj](rsa_rabin.py).
 
 Teoretycznie każde deszyfrowanie Rabina mogło dać nam 4 różne potencjalne plaintexty, w praktyce niektóre są identyczne więc ich liczba finalnie wyniosła 16.
 
@@ -228,11 +228,11 @@ Rabin Algorithm does this by:
 
 If we introduce a new variable `e'` such that `e = e'*32` we get:
 
-`cipher_text = (plain_text^e)%n = (plain_text^(e'*32))%n
+`cipher_text = (plain_text^e)%n = (plain_text^(e'*32))%n`
 
 Now if we introduce a new variable `x` such that `x = plain_text^e'*16` then our equation will be `cipher_text = (x^2)%n` which is exactly the ciphertext formula from Rabin Algorithm! This means that we can use decrypt function from Rabin Algorithm on our ciphertext and get potential `x` values. It's worth noting that there will be 4 potential values since this algorithm is ambigious.
 
-We can use the presented method multiple times and each Rabin decryption run will "remove" a 2 factor from exponent. This means that single decryption will give us potential values of `plain_text^e'*16`, next one plain_text^e'*8`, ..., and the fifth will give `plain_text^e'`
+We can use the presented method multiple times and each Rabin decryption run will "remove" a 2 factor from exponent. This means that single decryption will give us potential values of `plain_text^e'*16`, next one `plain_text^e'*8`, ..., and the fifth will give `plain_text^e'`
 
 We can see that after five consecutive decryptions we will finally get a ciphertext that can be decoded by RSA. We need to keep in mind here that the exponent for RSA is now changed because we removed the 32 so it is now: `31415926535897932384/32`.
 
@@ -263,7 +263,7 @@ for potential_rsa_ct in partially_decoded_ct:
 print(potential_plaintext)
 ```
 
-Complete code for this step is available [here](rabin_rsa.py).
+Complete code for this step is available [here](rsa_rabin.py).
 
 Theoretically each Rabin decryption could give 4 different potential plaintexts, however in reality a lot of them were identical so finally there were only 16 to check.
 
