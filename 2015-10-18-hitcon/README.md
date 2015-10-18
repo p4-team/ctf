@@ -10,6 +10,7 @@ Opisy zadań po kolei.
 # Spis treści:
 * [Puzzleng (forensic 250)](forensic_250_puzzleng)
 * [Rsabin (crypto 314)](crypto_314_rsabin)
+* [Babyfirst (web 100)](web_100_babyfirst)
 
 # Zakończenie
 
