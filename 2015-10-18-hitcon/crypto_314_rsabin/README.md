@@ -45,8 +45,8 @@ p = 123722643358410276082662590855480232574295213977
 q = n / p
 ```
 
-Na pierwszy rzut oka szyfrowanie wygląda na klasyczne RSA. Uwagę przykuwa jednak dość nietypowy wybór eksponenty szyfrującej `e`. Jej dalsza analiza pozwala stwierdzić, że całe szyfrowanie jest wykonane `niepoprawnie`, ponieważ eksponenta nie spełnia założenia `gcd(e, (p-1)(q-1) == 1`. Brak tego założenia sprawia, że RSA nie może poprawnie zdekodować zaszyfrowanej wiadomości.
-Faktoryzacja `e` pozwala stwierdzyć że ma ona `2^5` w swoim rozkładzie na czynniki i z tego powodu ma wspólne dzielniki z `(p-1)(q-1)`. Musimy się więc pozbyć tego czynnika z wykładnika. Kilka godzin czytania na temat RSA oraz arytmetyki modularnej pozwala nam dojść do wniosku, że możemy wykorzystać Algorytm Rabina (stąd też zapewne gra słów w tytule zadania) aby pozbyć się niechcianego czynnika z eksponenty.
+Na pierwszy rzut oka szyfrowanie wygląda na klasyczne RSA. Uwagę przykuwa jednak dość nietypowy wybór eksponenty szyfrującej `e`. Jej dalsza analiza pozwala stwierdzić, że całe szyfrowanie jest wykonane `niepoprawnie`, ponieważ eksponenta nie spełnia założenia `gcd(e, (p-1)(q-1)) == 1`. Brak tego założenia sprawia, że RSA nie może poprawnie zdekodować zaszyfrowanej wiadomości.
+Faktoryzacja `e` pozwala stwierdzić że ma ona `2^5` w swoim rozkładzie na czynniki i z tego powodu ma wspólne dzielniki z `(p-1)(q-1)`. Musimy się więc pozbyć tego czynnika z wykładnika. Kilka godzin czytania na temat RSA oraz arytmetyki modularnej pozwala nam dojść do wniosku, że możemy wykorzystać Algorytm Rabina (stąd też zapewne gra słów w tytule zadania) aby pozbyć się niechcianego czynnika z eksponenty.
 
 RSA koduje dane poprzez:
 
@@ -214,7 +214,7 @@ p = 123722643358410276082662590855480232574295213977
 q = n / p
 ```
 
-At the first glance the cipher resembles classical RSA. What catches attention is an unusual choice of cipher exponent `e`. Exponent analysis leads us to conclusion that the whole cipher is `incorrect` as RSA since the exponent violates the assumption `gcd(e, (p-1)(q-1) == 1`. Lack of this property means that RSA cannot correctly decrypt the message simply by applying the decryption exponent `d`.
+At the first glance the cipher resembles classical RSA. What catches attention is an unusual choice of cipher exponent `e`. Exponent analysis leads us to conclusion that the whole cipher is `incorrect` as RSA since the exponent violates the assumption `gcd(e, (p-1)(q-1)) == 1`. Lack of this property means that RSA cannot correctly decrypt the message simply by applying the decryption exponent `d`.
 
 Factorization of `e` shows us that is has `2^5` as factor and therefore it has common divisors with `(p-1)(q-1)`. We need to get rid of this factor from exponent. Few hours reading about RSA and modular arythmetics leads us to conclusion that we can use Rabin Algorithm (this is probably the reason for word play in the task title) to remove the unwanted part of exponent.
 
