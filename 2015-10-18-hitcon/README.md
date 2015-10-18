@@ -1,4 +1,4 @@
-# Writeup Hitcon CTF Finals 2015
+# Writeup Hitcon CTF Quals 2015
 
 Uczestniczyliśmy (msm, Rev, Shalom, other019, nazywam i pp) w Hitcon CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
