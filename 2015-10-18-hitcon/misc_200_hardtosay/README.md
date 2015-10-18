@@ -84,7 +84,7 @@ import sys
 print encode(sys.argv[1])
 ```
 
-    hitcon{what does the ruby say? @#$%!@&(%!#$&(%!@#$!$?...}
+Flaga: `hitcon{what does the ruby say? @#$%!@&(%!#$&(%!@#$!$?...}`
 
 +50 punktów. Zdobyliśmy w ten sposób pierwszą flagę. Niestety, okazało się że nie da się ukraść jednej flagi mając shella od drugiej flagi (brak uprawnień) i musieliśmy
 kombinować dalej...
@@ -93,19 +93,19 @@ Postanowiliśmy złożyć string "sh". Nasza druga próba, dla 64 znaków, wygl�
 
     _=$$;$_=*?`..?{;`#{$_[_*_+_-_/_]+$_[_+_]}`
 
-    hitcon{Ruby in Peace m(_ _)m
+Flaga: `hitcon{Ruby in Peace m(_ _)m`
 
 +50 punktów. A następnie dla 36 bajtów:
 
     _=*?[..?{;`#{_[~--$$-$$]+_[~$$*$$]}`
 
-    hitcon{My cats also know how to code in ruby :cat:}
+Flaga: `hitcon{My cats also know how to code in ruby :cat:}`
 
 +50 punktów. Później myśleliśmy dłuższą chwilę, ale wpadliśmy na to, że wykonanie $0 również powinno dać nam shell - spróbowaliśmy więc:
 
     `$#{~-$.}`
 
-    hitcon{It's hard to say where ruby went wrong QwO} 
+Flaga: `hitcon{It's hard to say where ruby went wrong QwO}`
 
 W ten sposób zdobyliśmy kolejne 50 punktów, rozwiązując w ten sposób całe zadanie.
 
