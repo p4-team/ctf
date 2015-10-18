@@ -105,8 +105,8 @@ def crack_flag(ct, n):
             for c in range(32, 127):
                 brute = (a * 256 * 256 + b * 256 + c) * (256**(flag_len - 10))
                 flag = (ct - const - brute) % n 
-                flag = (flag - ord('}')) * modinv(256, n)
-                flagstr = long_to_bytes(flag % n)
+                flag = (flag - ord('}')) * modinv(256, n) % n
+                flagstr = long_to_bytes(flag)
                 if all(32 <= ord(c) <= 128 for c in flagstr):
                     print chr(a) + chr(b) + chr(c) + flagstr
 
