@@ -1,4 +1,4 @@
-﻿## HardToSay (misc, 200p, ?? solves)
+﻿## HardToSay (misc, 200p, (111, 88, 73, 28) solves)
 
     Ruby on Fails.
     FLAG1: nc 54.199.215.185 9001
