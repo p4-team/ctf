@@ -8,7 +8,7 @@ Ogólne wrażenia:
 Opisy zadań po kolei.
 
 # Spis treści:
-* [Puzzleng (forensics 250)](forensics_250_puzzleng)
+* [Puzzleng (forensic 250)](forensic_250_puzzleng)
 
 # Zakończenie
 
