@@ -8,7 +8,7 @@ Ogólne wrażenia:
 Opisy zadań po kolei.
 
 # Spis treści:
-* [Nazwa (re 150)](link)
+* [Puzzleng (forensics 250)](forensics_250_puzzleng)
 
 # Zakończenie
 
