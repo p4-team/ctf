@@ -16,6 +16,7 @@ Opisy zadań po kolei.
 
 # Table of contents:
 * [Puzzleng (forensic 250)](forensic_250_puzzleng#eng-version)
+* [Simple (crypto 100)](crypto_100_simple#eng-version)
 * [Rsabin (crypto 314)](crypto_314_rsabin#eng-version)
 * [Babyfirst (web 100)](web_100_babyfirst#eng-version)
 * [Hardtosay (misc 200)](misc_200_hardtosay#eng-version)
