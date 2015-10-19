@@ -13,6 +13,14 @@ Opisy zadań po kolei.
 * [Babyfirst (web 100)](web_100_babyfirst)
 * [Hardtosay (misc 200)](misc_200_hardtosay)
 
+# Table of contents:
+* [Puzzleng (forensic 250)](forensic_250_puzzleng#eng-version)
+* [Rsabin (crypto 314)](crypto_314_rsabin#eng-version)
+* [Babyfirst (web 100)](web_100_babyfirst#eng-version)
+* [Hardtosay (misc 200)](misc_200_hardtosay#eng-version)
+
+
+
 # Zakończenie
 
 Zachęcamy do komentarzy/pytań/czegokolwiek.
