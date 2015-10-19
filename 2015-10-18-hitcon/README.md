@@ -9,6 +9,7 @@ Opisy zadań po kolei.
 
 # Spis treści:
 * [Puzzleng (forensic 250)](forensic_250_puzzleng)
+* [Simple (crypto 100)](crypto_100_simple)
 * [Rsabin (crypto 314)](crypto_314_rsabin)
 * [Babyfirst (web 100)](web_100_babyfirst)
 * [Hardtosay (misc 200)](misc_200_hardtosay)
