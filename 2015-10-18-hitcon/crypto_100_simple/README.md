@@ -6,6 +6,7 @@
 > [simple-01018f60e497b8180d6c92237e2b3a67.rb](simple.rb)
 
 ### PL
+[ENG](#eng-version)
 
 Możemy wykonać HTTP `GET` oraz `POST` do podanej usługi. `POST` szyfruje JSONa złożonego z podanego loginu oraz hasła 128-bitowym AESem w trybie CFB. `GET` deszyfruje go i sprawdza czy JSON ma pole `'admin': true`. Jeżeli tak, to podaje nam flagę. Klucz AESa jest stały i prywatny, a IV generowany losowo i przypinany do ciphertekstu.
 
@@ -37,7 +38,7 @@ print response.content
 
 **hitcon{WoW_CFB_m0dE_5o_eAsY}**
 
-[ENG](#eng-version)
+### ENG version
 
 We can do a HTTP `GET` and `POST` to the provided service. `POST` encrypts a JSON of provided "username" and "password" with a 128-bit AES in CFB mode. `GET` decrypts it and if the JSON has a `'admin': true` field it gives us the flag. Key for the AES is constant and private while IV is randomly generated and prepended to the ciphertext.
 
