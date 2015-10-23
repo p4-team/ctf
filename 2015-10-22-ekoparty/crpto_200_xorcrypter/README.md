@@ -35,7 +35,7 @@ The cipher is actually very simple, it was very strange that the task was worth 
 
 `ABCD ^ ABCD >> 16 = ABCD ^ 00AB = (A^0)(B^0)(C^A)(D^B) = AB(C^A)(D^B)`
 
-As can be notices, first two bytes are unchanged and last two are xored with those two unchanged. We also know that xor is reversible and `(A^B)^B = A` so we can revert the cipher of the last two bytes by xoring them again with first and second byte (keeping in mind the byte order).
+As can be noticed, first two bytes are unchanged and last two are xored with those two unchanged. We also know that xor is reversible and `(A^B)^B = A` so we can revert the cipher of the last two bytes by xoring them again with first and second byte (keeping in mind the byte order).
 
 ```python
 data = "CjBPewYGc2gdD3RpMRNfdDcQX3UGGmhpBxZhYhFlfQA="
