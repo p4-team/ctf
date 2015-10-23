@@ -1,5 +1,7 @@
 # CTF writeups from P4 Team
 
+* [2015.10.18 **Ekoparty CTF 2015** (28th place / 356 teams)](2015-10-22-ekoparty)
+* [2015.10.18 **Hack.lu CTF 2015** (17th place / 248 teams)](2015-10-20 hacklu)
 * [2015.10.18 **Hitcon CTF 2015** (22th place / 382 teams)](2015-10-18-hitcon)
 * [2015.10.10 **ASIS CTF Finals 2015** (17th place / 197 teams)](2015-10-10-asisfin)
 * [2015.10.02 **Defcamp CTF Qualification 2015** (17th place / 378 teams)](2015-10-02-dctf)
