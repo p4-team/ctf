@@ -55,7 +55,7 @@ The task was to revert given algorithm, implemented in javascript, for given cip
 Ciphertext: `51136f3b763d7d5e5910106d423f0908093931284bc6eda1a4ffa595c390b390ef89a4a08ffb9797a2b797f5af92b7a0aaac9cf2dbf9ccecd5c8b3cbb9fffefa4fcf0c26d761f9145793fb6a44ed048cb92a1c0f420e3af756d66f2d1ee94414ed335f180b34fca1fda4f9698a23287ca9e9acb2e8b7c0216c132c078c93a438217e0927ce1afbcf016fd7cc6b1f8b903ec3c0a19f723ae5c0fa46679ded50d17259f89688a5ff4340784a155d`
 
 The analysis of the code showed us that every byte in the encoded text is a result of XOR operations on 3 values: byte from input, byte from special table with values 0-128 and byte from key.
-If the the key was too short, it was extended byt duing a left bitshift, the some more bit operations and in the end it was appended to the original key.
+If the the key was too short, it was extended by doing a left bitshift, the some more bit operations and in the end it was appended to the original key.
 Shifting bits of element of the key in order to get a new element of the key means that for sufficiently large text some bytes will be xored with original key, next bytes with shifted key etc.
 Out of those 3 elements xored to get the ciphertext/plaintext only the key could have a lighted higest bit, since when the key was "extended" it was shifting bits to the left. This means that we could check if the higest bit of ciphertext is lighted or not and based on that decide if the highest bit of the key was lighted or not.
 

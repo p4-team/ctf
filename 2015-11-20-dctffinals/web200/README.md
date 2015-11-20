@@ -2,6 +2,8 @@
 
 ### PL
 
+[ENG](#eng-version)
+
 W zadaniu dostajemy link do webowego uploadera plików, oraz informacje, że mamy wyciągnąć jakieś informacje z tabeli `flag`.
 Analiza uploadera oraz jego działania pozwala zauważyć, że uploader po załadowaniu pliku pobiera z niego dane `exif` a następnie na podstawie pola `exif.primary.Software` wyszukuje w bazie danych oraz wyświetla zdjęcia utworzone tym samym oprogramowaniem.
 
@@ -22,14 +24,14 @@ W związku z tym postanowiliśmy wykorzystać atak `remote timing` na bazę dany
 benchmark(~-((select*from flag)like'%" + window + "%'),1)
 ```
 
-Funkcja benchmark wykonuje podany kod tyle razy ile wynosi pierwszy argument. W naszym przypadku wartość boolean jest zamieniana na liczbę za pomocą unarnego minusa a następnie bity są negowane. Problem z tym roziązaniem polegał na tym, że taki benchmark wykonuje się bardzo (!) długo a w naszym kodzie uruchamiamy go dla każdego nie pasującego symbolu, więc dla każdego zgadywanego znaku pesymistycznie prawie 40 razy.
+Funkcja benchmark wykonuje podany kod tyle razy ile wynosi pierwszy argument. W naszym przypadku wartość boolean jest zamieniana na liczbę za pomocą unarnego minusa a następnie bity są negowane. Problem z tym rozwiązaniem polegał na tym, że taki benchmark wykonuje się bardzo (!) długo a w naszym kodzie uruchamiamy go dla każdego nie pasującego symbolu, więc dla każdego zgadywanego znaku pesymistycznie prawie 40 razy.
 
 Skutek był taki, że położyliśmy serwer 5 razy uzyskując raptem 2/3 flagi a organizatorzy postanowili zablokować funkcję benchmark.
 
 Nasze drugie podejście wykorzystało inny sposób - logowanie błędów mysql. Użyliśmy zapytania:
 
 ```sql
-rlike(if(mid((select*from flag),"+NUMER_ZNAKU+",1)='"+ZNAK+"','',1))
+rlike(if(mid((select*from flag),"+CHARACTER_INDEX+",1)='"+CHARACTER+"','',1))
 ```
 
 Dzięki czemu w zależności od spełnienia warunku skrypt wykonywał się poprawnie lub zgłaszał błąd składniowy.
@@ -55,12 +57,10 @@ A jego wynik:
 
 `DCTF{09D5D8300A7ADC45C5D434BB467F2A85}`
 
-[ENG](#eng-version)
-
 ### ENG version
 
-In the task we get a link to a web file upoloader and an information tha we need to extract some data from `flag` table.
-Analysis of the uploader and its behaviour reveales that the uploader, after loading the file, collected `exif` data and then based on `exif.primary.Software` finds and displays other pictures made with the same software.
+In the task we get a link to a web file upoloader and an information that we need to extract some data from `flag` table.
+Analysis of the uploader and its behaviour reveals that the uploader, after loading the file, collected `exif` data and then based on `exif.primary.Software` finds and displays other pictures made with the same software.
 
 We used `SQL Injection` via exif field using script:
 
@@ -70,7 +70,7 @@ We used `SQL Injection` via exif field using script:
     img.writeFile('file.jpg')
 ```
 
-This script was adding the query to the file and preparing it for execution. The query was then placed in `where` clause, right after the comparison with a string. Unformtunately we hade a hard limit of 50 characters for the query, which was a strong limiting factor. On top of that it was impossible to use `union` and the table on which the selection was executed had 0 rows.
+This script was adding the query to the file and preparing it for execution. The query was then placed in `where` clause, right after the comparison with a string. Unfortunately we hade a hard limit of 50 characters for the query, which was a strong limiting factor. On top of that it was impossible to use `union` and the table on which the selection was executed had 0 rows.
 
 Therefore we decided to use `remote timing` attack on the database with testing single character of the sole element of flags table (where we expected to find the flag) - using short-circuit AND operator and if the condition was not matching we were executing a long running task (sleep was unavailable). Since the characters number limitation we could not use `substring` or `mid` functions and we had to relay on a moving window with known flag prefix/suffix. The SQL code was:
 
@@ -85,7 +85,7 @@ As a result we crashed the server 5 times and still got only 2/3 of the flag and
 Our second attempt was using a different approach - exploiting errors in mysql. We used:
 
 ```sql
-rlike(if(mid((select*from flag),"+NUMER_ZNAKU+",1)='"+ZNAK+"','',1))
+rlike(if(mid((select*from flag),"+CHARACTER_INDEX+",1)='"+CHARACTER+"','',1))
 ```
 
 And therefore the script would execute normally or crash with a syntax error, depending on the condition value.
