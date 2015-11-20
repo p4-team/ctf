@@ -3,21 +3,21 @@
 Uczestniczyliśmy (msm, Rev, other019 i Shalom) w DefCamp CTF i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
 Ogólne wrażenia:
-Większość zadań wymagała łączenia się przez VPN aby uzyskać dostęp do infrastruktury organizatora. Było to o tyle problematyczne, że VPN lubił zrywać połączenie i działać bardzo wolno, co mocno utrudniało pracę nad niektórymi zadaniami.
+Większość zadań wymagała łączenia się przez VPN aby uzyskać dostęp do infrastruktury organizatora.
 
 A teraz opisy zadań po kolei.
 
 # Spis treści:
-* [web 100]()
-* [web 200]()
-* [web 300]()
-* [crypto 100 (Morse c'est)]()
-* [crypto 300]()
-* [crypto 400]()
-* [reverse 200]()
-* [reverse 300]()
-* [pwn 100]()
-* [pwn 200]()
+* [web 100](web100)
+* [web 200](web200)
+* [web 300](web300)
+* [crypto 100 (Morse c'est)](crypto100)
+* [crypto 300](crypto300)
+* [crypto 400](crypto400)
+* [reverse 200](reverse200)
+* [reverse 300](reverse300)
+* [pwn 100](pwn100)
+* [pwn 200](pwn200)
 
 
 
