@@ -14,8 +14,8 @@ A teraz opisy zadań po kolei.
 * [crypto 100 (Morse c'est)](crypto100)
 * [crypto 300](crypto300)
 * [crypto 400](crypto400)
-* [reverse 200](reverse200)
-* [reverse 300](reverse300)
+* [reverse 200 (Time is not your friend)](reverse200)
+* [reverse 300 (Try harder)](reverse300)
 * [pwn 100](pwn100)
 * [pwn 200](pwn200)
 
