@@ -18,7 +18,7 @@ Zastosowaliśmy więc technikę `SQL Injection` poprzez pole exif, za pomocą sk
 Który dopisywał nasze zapytanie do pliku i przygotowywał je do wykonania. Zapytanie trafiało do klauzuli `where` zaraz za porównaniem ze stringiem. Niestety mieliśmy twarde ograniczenie wynoszące 50 znaków dla tego pola exif, co mocno ograniczało nasze możliwości.
 Dodatkowo wykluczona była operacja union a tabela z której dokonywano selekcji miała 0 rekordów.
 
-W związku z tym postanowiliśmy wykorzystać atak `remote timing` na bazę danych wraz z testowaniem pojedyńczych znaków jedynego elementu tabeli flags (gdzie spodziewaliśmy się flagi) - wykorzystać operator AND w wersji short-circuit i jeśli porównanie symbolu było niepoprawne wykonywaliśmy długo liczący się kod (sleep nie był dostępny). Z racji małej liczby znaków nie mogliśmy użyć funkcji `substring` ani `mid`, musieliśmy opierać się o przesuwające się okno ze znamym fragmentem flagi. Kod sql to:
+W związku z tym postanowiliśmy wykorzystać atak `remote timing` na bazę danych wraz z testowaniem pojedyńczych znaków jedynego elementu tabeli flags (gdzie spodziewaliśmy się flagi) - jeśli porównanie symbolu było niepoprawne wykonywaliśmy długo liczący się kod (sleep nie był dostępny). Z racji małej liczby znaków nie mogliśmy użyć funkcji `substring` ani `mid`, musieliśmy opierać się o przesuwające się okno ze znamym fragmentem flagi. Kod sql to:
 
 ```sql
 benchmark(~-((select*from flag)like'%" + window + "%'),1)
@@ -72,7 +72,7 @@ We used `SQL Injection` via exif field using script:
 
 This script was adding the query to the file and preparing it for execution. The query was then placed in `where` clause, right after the comparison with a string. Unfortunately we hade a hard limit of 50 characters for the query, which was a strong limiting factor. On top of that it was impossible to use `union` and the table on which the selection was executed had 0 rows.
 
-Therefore we decided to use `remote timing` attack on the database with testing single character of the sole element of flags table (where we expected to find the flag) - using short-circuit AND operator and if the condition was not matching we were executing a long running task (sleep was unavailable). Since the characters number limitation we could not use `substring` or `mid` functions and we had to relay on a moving window with known flag prefix/suffix. The SQL code was:
+Therefore we decided to use `remote timing attack` on the database with testing single character of the sole element of flags table (where we expected to find the flag) - if the condition was not matching we were executing a long running task (sleep was unavailable). Since the characters number limitation we could not use `substring` or `mid` functions and we had to relay on a moving window with known flag prefix/suffix. The SQL code was:
 
 ```sql
 benchmark(~-((select*from flag)like'%" + window + "%'),1)
