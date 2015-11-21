@@ -66,5 +66,6 @@ int check(char *s) {
 }
 ```
 
-Wygląda to na skomplikowane działania, nawet nie próbowaliśmy tutaj nic reversować. Za to po prostu napisaliśmy bruferorcer w C++, który generował możliwe flagi, i sprawdzał dla każdej czy przechodzi ona funkcję 'check'. W ten sposób dość szybko znaleźliśmy "prawdziwą" flagę, przyjmowaną przez stronę (która również nie była unikalna).
+Wygląda to na skomplikowane działania, nawet nie próbowaliśmy tutaj nic reversować. Za to po prostu napisaliśmy bruferorcer w C++, który generował możliwe flagi, i sprawdzał dla każdej czy przechodzi ona funkcję 'check'. W ten sposób dość szybko znaleźliśmy "prawdziwą" flagę, przyjmowaną przez stronę (która również nie była unikalna):
 
+    DCTF{906400b5011160b0a19f47ec47b35f8f
