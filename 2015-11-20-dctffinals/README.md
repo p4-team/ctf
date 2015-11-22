@@ -1,6 +1,7 @@
 # Writeup DefCamp CTF Finals 2015
 
 Uczestniczyliśmy (msm, Rev, other019 i Shalom) w DefCamp CTF i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
+![](./IMG_20151119_104301.jpg)
 
 Ogólne wrażenia:
 Większość zadań wymagała łączenia się przez VPN aby uzyskać dostęp do infrastruktury organizatora.
