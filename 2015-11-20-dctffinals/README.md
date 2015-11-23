@@ -1,5 +1,7 @@
 # Writeup DefCamp CTF Finals 2015
 
+![](./IMG_20151119_104301.jpg)
+
 # Spis treści:
 * [web 200](web200)
 * [crypto 100 (Morse c'est)](crypto100)
