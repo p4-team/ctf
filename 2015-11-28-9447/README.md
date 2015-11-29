@@ -24,7 +24,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [flag finder (Reverse engineering) 1]
 * [calcpop (Exploitation) 80]
 * [Get help (Misc) 10]
-* [sanutf8y_check (Web) 1]
+* [sanutf8y_check (Web) 1](sanutf8y_check)
 
 ## ENG version
 ### Table of contents:
@@ -47,5 +47,5 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [flag finder (Reverse engineering) 1]
 * [calcpop (Exploitation) 80]
 * [Get help (Misc) 10]
-* [sanutf8y_check (Web) 1]
+* [sanutf8y_check (Web) 1](sanutf8y_check#eng-version)
 
