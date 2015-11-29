@@ -4,7 +4,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 
 ![](results.png)
 
-# Spis treści:
+### Spis treści:
 * [binned (Steganography) 100]
 * [Give feedback (Misc) 15]
 * [dub-key (Crypto) 130]
@@ -26,8 +26,8 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [Get help (Misc) 10]
 * [sanutf8y_check (Web) 1]
 
-### ENG version
-# Table of contents:
+## ENG version
+### Table of contents:
 * [binned (Steganography) 100]
 * [Give feedback (Misc) 15]
 * [dub-key (Crypto) 130]
