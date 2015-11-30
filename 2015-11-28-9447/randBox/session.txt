@@ -1,0 +1,93 @@
+Alphabet is '0123456789abcdef', max len is 64
+You need to send a string that encrypts to '787fadc8d1944a35b3ed9d1433a9060f'
+Guess 0/21 (Round 1/10)
+
+ciphertext = 787fadc8d1944a35b3ed9d1433a9060f
+sending 10000000000000000000000000000000
+sending 4a35b3ed9d1433a9060f787fadc8d194
+Guess 1/21 (Round 1/10)
+787fadc8d1944a35b3ed9d1433a9060f
+You got it!
+You need to send a string that encrypts to 'b88f17fb0934a1e191459e88aa4ee2f6'
+Guess 2/21 (Round 2/10)
+
+ciphertext = b88f17fb0934a1e191459e88aa4ee2f6
+sending 0123456789abcdef
+sending a99e06ea1825b0f080548f99bb5ff3e7
+Guess 3/21 (Round 2/10)
+b88f17fb0934a1e191459e88aa4ee2f6
+You got it!
+You need to send a string that encrypts to 'f98c916fcd72efe7ca81cfa622824995'
+Guess 4/21 (Round 3/10)
+
+ciphertext = f98c916fcd72efe7ca81cfa622824995
+sending 0123456789abcdef
+sending 9feaf709ab148981ace7a9c044e42ff3
+Guess 5/21 (Round 3/10)
+f98c916fcd72efe7ca81cfa622824995
+You got it!
+You need to send a string that encrypts to 'a2c34da98257dc1a76dc884b8bfb3aac'
+Guess 6/21 (Round 4/10)
+
+ciphertext = a2c34da98257dc1a76dc884b8bfb3aac
+sending 0123456789abcdef
+sending a2c34da98257dc1a76dc884b8bfb3aac
+Guess 7/21 (Round 4/10)
+a2c34da98257dc1a76dc884b8bfb3aac
+You got it!
+You need to send a string that encrypts to '440646d0a5994a5c90c2797c4f41bd04'
+Guess 8/21 (Round 5/10)
+
+ciphertext = 440646d0a5994a5c90c2797c4f41bd04
+sending 00000000000000000000000000000000
+sending 20aeaaf08131ae7c7c6add9c2be91124
+Guess 9/21 (Round 5/10)
+440646d0a5994a5c90c2797c4f41bd04
+You got it!
+You need to send a string that encrypts to '62a15f41bf289ccc926bd65ae9909fb3'
+Guess 10/21 (Round 6/10)
+
+ciphertext = 62a15f41bf289ccc926bd65ae9909fb3
+sending 0
+sending a6e59385f36cd000d6af1a9e2dd4d3f7
+Guess 11/21 (Round 6/10)
+62a15f41bf289ccc926bd65ae9909fb3
+You got it!
+Begin hard rounds!
+You need to send a string that encrypts to '4cb1d78b6e4294bc8858042798ea126e'
+Guess 12/21 (Round 7/10)
+
+ciphertext = 4cb1d78b6e4294bc8858042798ea126e
+sending 0
+sending 3f458f7ca402bf4808d55134d5b1024a
+Guess 13/21 (Round 7/10)
+4cb1d78b6e4294bc8858042798ea126e
+You got it!
+You need to send a string that encrypts to '46afd8f5a23569eebe826814d117da84'
+Guess 14/21 (Round 8/10)
+
+ciphertext = 46afd8f5a23569eebe826814d117da84
+sending 0
+sending 1245eb7658121350d3aa429394066dec
+Guess 15/21 (Round 8/10)
+46afd8f5a23569eebe826814d117da84
+You got it!
+You need to send a string that encrypts to '219816a5c80db4fa026bf2b9cc5e4f07'
+Guess 16/21 (Round 9/10)
+
+ciphertext = 219816a5c80db4fa026bf2b9cc5e4f07
+sending 0123456789abcdef
+sending 0398704b9dc15abe31a73e8addf4e561
+Guess 17/21 (Round 9/10)
+219816a5c80db4fa026bf2b9cc5e4f07
+You got it!
+You need to send a string that encrypts to 'd689c1a78e419dc1043ff07a0afc01d8'
+Guess 18/21 (Round 10/10)
+
+ciphertext = d689c1a78e419dc1043ff07a0afc01d8
+sending 0
+sending 17f6ab16e045c1dcc8b4bbc66c3ffe3b
+Guess 19/21 (Round 10/10)
+d689c1a78e419dc1043ff07a0afc01d8
+You got it!
+9447{crYpt0_m4y_n0T_Be_S0_haRD}
