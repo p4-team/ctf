@@ -11,13 +11,13 @@ You need to send a string that encrypts to '787fadc8d1944a35b3ed9d1433a9060f'
 Guess 0/21 (Round 1/10)
 ```
 
-Zadanie polega³o na po³¹czeniu siê z serwerem a nastêpnie na z³amaniu 10 szyfrów (w praktyce tylko 7 by³o unikalnych), przy u¿yciu nie wiêcej ni¿ 21 prób.
-Z³amanie ka¿dego szyfru nale¿a³o udowodniæ poprzez wys³anie wiadomoœci, która po zakodowaniu da wylosowany przez serwer ci¹g znaków.
-Kod ca³ego rozwi¹zania znajduje sie [tutaj](randBox.py) a sesja rozwi¹zuj¹ca [tutaj](session.txt)
+Zadanie polegaÅ‚o na poÅ‚Ä…czeniu siÄ™ z serwerem a nastÄ™pnie na zÅ‚amaniu 10 szyfrÃ³w (w praktyce tylko 7 byÅ‚o unikalnych), przy uÅ¼yciu nie wiÄ™cej niÅ¼ 21 prÃ³b.
+ZÅ‚amanie kaÅ¼dego szyfru naleÅ¼aÅ‚o udowodniÄ‡ poprzez wysÅ‚anie wiadomoÅ›ci, ktÃ³ra po zakodowaniu da wylosowany przez serwer ciÄ…g znakÃ³w.
+Kod caÅ‚ego rozwiÄ…zania znajduje sie [tutaj](randBox.py) a sesja rozwiÄ…zujÄ…ca [tutaj](session.txt)
 
 ####Szyfr 1
 
-Pierwszy szyfr to standardowy szyfr Cezara, wiêc do jego z³amania potrzeba nam informacji o `przesuniêciu`. Uzyskujemy j¹, poprzez wys³anie na serwer pojedyñczego znaku `0`.
+Pierwszy szyfr to standardowy szyfr Cezara, wiÄ™c do jego zÅ‚amania potrzeba nam informacji o `przesuniÄ™ciu`. Uzyskujemy jÄ…, poprzez wysÅ‚anie na serwer pojedyÅ„czego znaku `0`.
 
 ```python
 def breakLevel1(ct, s):
@@ -31,7 +31,7 @@ def breakLevel1(ct, s):
 
 ####Szyfr 2
 
-Drugi szyfr to cykliczne przesuniêcie wejœciowego ci¹gu o losow¹ liczbê pozycji, zale¿n¹ od d³ugoœci wejœcia, wiêc do jego z³amania potrzebujemy informacji o tym o ile pozycji nast¹pi przeuniêcie. Informacje uzyskujemy poprzez wys³anie ci¹gu `0` oraz jednej `1` (o d³ugoœci takiej jak oczekiwany ciphertext) a nastêpnie policzenie o ile zosta³a przesuniêta `1`.
+Drugi szyfr to cykliczne przesuniÄ™cie wejÅ›ciowego ciÄ…gu o losowÄ… liczbÄ™ pozycji, zaleÅ¼nÄ… od dÅ‚ugoÅ›ci wejÅ›cia, wiÄ™c do jego zÅ‚amania potrzebujemy informacji o tym o ile pozycji nastÄ…pi przeuniÄ™cie. Informacje uzyskujemy poprzez wysÅ‚anie ciÄ…gu `0` oraz jednej `1` (o dÅ‚ugoÅ›ci takiej jak oczekiwany ciphertext) a nastÄ™pnie policzenie o ile zostaÅ‚a przesuniÄ™ta `1`.
 
 ```python
 def breakLevel2(ct, s):
@@ -45,7 +45,7 @@ def breakLevel2(ct, s):
 
 ####Szyfr 3,4,5
 
-Szyfry 3,4,5 to szyfry podstawieniowe i do ich z³amania potrzebujemy pobraæ z serwera informacje o tym, jak wygl¹da tablica zamian. Robimy to poprzez wys³anie ca³ego alfabetu i odczytanie jak zosta³y zamienione znaki.
+Szyfry 3,4,5 to szyfry podstawieniowe i do ich zÅ‚amania potrzebujemy pobraÄ‡ z serwera informacje o tym, jak wyglÄ…da tablica zamian. Robimy to poprzez wysÅ‚anie caÅ‚ego alfabetu i odczytanie jak zostaÅ‚y zamienione znaki.
 
 ```python
 def breakLevel3(ct, s):
@@ -60,7 +60,7 @@ def breakLevel3(ct, s):
 
 ####Szyfr 6
 
-Szyfr 6 przypomina szyfr Cezara, ale przesuniêcie jest liczone per znak a nie dla ca³ego ci¹gu identycznie. Wiêc np. pierwszy znak tekstu jest przesuniêty o X, drugi o Y, trzeci o Z. Przesuniêcia uzyskujemy wysy³aj¹c ci¹g 0 o d³ugoœci ciphertextu i z niego odczytujemy przesuniecia dla ka¿dej pozycji.
+Szyfr 6 przypomina szyfr Cezara, ale przesuniÄ™cie jest liczone per znak a nie dla caÅ‚ego ciÄ…gu identycznie. WiÄ™c np. pierwszy znak tekstu jest przesuniÄ™ty o X, drugi o Y, trzeci o Z. PrzesuniÄ™cia uzyskujemy wysyÅ‚ajÄ…c ciÄ…g 0 o dÅ‚ugoÅ›ci ciphertextu i z niego odczytujemy przesuniecia dla kaÅ¼dej pozycji.
 
 ```python
 def breakLevel6(ct, s):
@@ -75,7 +75,7 @@ def breakLevel6(ct, s):
 
 ####Szyfr 7
 
-Szyfr 7 zosta³ przez nas zwyczajnie zbrutowany, bo nie mieliœmy pomys³u na regu³ê. Szyfr wylicza³ kolejny element ciphertextu na podstawie dwóch poprzednich elementów plaintextu (z losowym elementem na pozycji -1), w wiêkszoœci sytuacji poprzez ich dodanie/odjêcie. Niemniej zasada kiedy odejmowaæ a kiedy dodawaæ nie by³a dla nas oczywista, wiêc wys³aliœmy do serwera zapytania postaci `000102030405...`, `10111213141516...`, `20212223242526...` i na podstawie wyników odczytaliœmy mapê wszystkich mo¿liwych podstawieñ - tzn. dla ka¿dej `poprzedniej` liczby wiedzieliœmy na co zostanie zamieniony ka¿dy symbol. Jedyna brakuj¹ca informacja to wartoœæ losowa na pozycji -1 która jest wykorzystywana aby wyliczyæ 1 znak ciphertextu. Odzyskujemy j¹ poprzez wys³anie `0` a potem odczytanie na podstawie wyniku dla jakiego `poprzednika` mogliœmy uzyskaæ taki wynik.
+Szyfr 7 zostaÅ‚ przez nas zwyczajnie zbrutowany, bo nie mieliÅ›my pomysÅ‚u na reguÅ‚Ä™. Szyfr wyliczaÅ‚ kolejny element ciphertextu na podstawie dwÃ³ch poprzednich elementÃ³w plaintextu (z losowym elementem na pozycji -1), w wiÄ™kszoÅ›ci sytuacji poprzez ich dodanie/odjÄ™cie. Niemniej zasada kiedy odejmowaÄ‡ a kiedy dodawaÄ‡ nie byÅ‚a dla nas oczywista, wiÄ™c wysÅ‚aliÅ›my do serwera zapytania postaci `000102030405...`, `10111213141516...`, `20212223242526...` i na podstawie wynikÃ³w odczytaliÅ›my mapÄ™ wszystkich moÅ¼liwych podstawieÅ„ - tzn. dla kaÅ¼dej `poprzedniej` liczby wiedzieliÅ›my na co zostanie zamieniony kaÅ¼dy symbol. Jedyna brakujÄ…ca informacja to wartoÅ›Ä‡ losowa na pozycji -1 ktÃ³ra jest wykorzystywana aby wyliczyÄ‡ 1 znak ciphertextu. Odzyskujemy jÄ… poprzez wysÅ‚anie `0` a potem odczytanie na podstawie wyniku dla jakiego `poprzednika` mogliÅ›my uzyskaÄ‡ taki wynik.
 
 ```python
     initial = "0"
@@ -93,7 +93,7 @@ Szyfr 7 zosta³ przez nas zwyczajnie zbrutowany, bo nie mieliœmy pomys³u na regu³
 
 ####Szyfr 8
 
-Szyfr 8 polega³ na sumowaniu poprzednich wyrazów modulo 16, z losow¹ wartoœci¹ na pozycji -1. Losow¹ wartoœæ odzyskujemy wysy³aj¹c 0 a nastêpnie odczytuj¹c j¹ bezpoœrednio z wyniku. Nastêpnie kodujemy dane licz¹c jakiej wartoœci `brakuje` nam aby uzyskaæ spodziewany znak ciphertextu po dodaniu jej do poprzedniej modulo 16.
+Szyfr 8 polegaÅ‚ na sumowaniu poprzednich wyrazÃ³w modulo 16, z losowÄ… wartoÅ›ciÄ… na pozycji -1. LosowÄ… wartoÅ›Ä‡ odzyskujemy wysyÅ‚ajÄ…c 0 a nastÄ™pnie odczytujÄ…c jÄ… bezpoÅ›rednio z wyniku. NastÄ™pnie kodujemy dane liczÄ…c jakiej wartoÅ›ci `brakuje` nam aby uzyskaÄ‡ spodziewany znak ciphertextu po dodaniu jej do poprzedniej modulo 16.
 
 ```python
 def breakLevel8(ct, s):
@@ -114,7 +114,7 @@ def breakLevel8(ct, s):
 
 ####Szyfr 9
 
-Szyfr 9 byl szyfrem podstawieniowym ze zmian¹ kolejnoœci bajtów w s³owie. Jeœli np. X kodowany by³ przez 1 a Y przez 0 to zakodowanie XY dawa³o 01. Aby odczytaæ mapê podstawieñ wysy³aliœmy ca³y alfabet a nastêpnie odczytywaliœmy podstawienia zamieniaj¹c pary miejscami.
+Szyfr 9 byl szyfrem podstawieniowym ze zmianÄ… kolejnoÅ›ci bajtÃ³w w sÅ‚owie. JeÅ›li np. X kodowany byÅ‚ przez 1 a Y przez 0 to zakodowanie XY dawaÅ‚o 01. Aby odczytaÄ‡ mapÄ™ podstawieÅ„ wysyÅ‚aliÅ›my caÅ‚y alfabet a nastÄ™pnie odczytywaliÅ›my podstawienia zamieniajÄ…c pary miejscami.
 
 ```python
 def breakLevel9(ct, s):
@@ -135,7 +135,7 @@ def breakLevel9(ct, s):
     send_via_nc(s, result)
 ```
 
-W trakcie trwania konkursu kolejnoœæ szyfrów w zadaniu uleg³a przemieszaniu a niektóre szyfry by³y u¿yte kilkukrotnie st¹d unikalnych szyfrów jest tylko 7 a nie 10.
+W trakcie trwania konkursu kolejnoÅ›Ä‡ szyfrÃ³w w zadaniu ulegÅ‚a przemieszaniu a niektÃ³re szyfry byÅ‚y uÅ¼yte kilkukrotnie stÄ…d unikalnych szyfrÃ³w jest tylko 7 a nie 10.
 
 ```
 You need to send a string that encrypts to 'd689c1a78e419dc1043ff07a0afc01d8'
