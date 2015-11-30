@@ -62,7 +62,7 @@ https://www.google.pl/maps/@37.5750684,126.9768249,3a,75y,0.59h,85.8t/data=!3m6!
 
 N
 
-![](img/9.png)
+![](img/9.jpg)
 
 Zdjęcie bieguna południowego więc S
 
@@ -127,7 +127,7 @@ https://www.google.pl/maps/@37.5750684,126.9768249,3a,75y,0.59h,85.8t/data=!3m6!
 
 N
 
-![](img/9.png)
+![](img/9.jpg)
 
 Picture of South Pole so S
 
