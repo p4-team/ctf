@@ -13,7 +13,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [cards (Exploitation) 140]
 * [BWS (Exploitation) 190]
 * [danklang (Reverse engineering) 100]
-* [4w1h (Misc) 100]
+* [4w1h (Misc) 100](4w1h)
 * [randBox (Crypto) 120]
 * [RedOs (Exploitation) 160]
 * [calpop reloaded (Exploitation) 130]
@@ -36,7 +36,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [cards (Exploitation) 140]
 * [BWS (Exploitation) 190]
 * [danklang (Reverse engineering) 100]
-* [4w1h (Misc) 100]
+* [4w1h (Misc) 100](4w1h#eng-version)
 * [randBox (Crypto) 120]
 * [RedOs (Exploitation) 160]
 * [calpop reloaded (Exploitation) 130]
