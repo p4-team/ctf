@@ -1,4 +1,4 @@
-# Writeup 9447 CTF 2015
+# Writeup 9447 Security Society CTF 2015
 
 Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9447 CTF, i znowu spróbujemy opisać zadania z którymi walczyliśmy (a przynajmniej te, które pokonaliśmy).
 
@@ -14,7 +14,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [BWS (Exploitation) 190]
 * [danklang (Reverse engineering) 100]
 * [4w1h (Misc) 100](4w1h)
-* [randBox (Crypto) 120]
+* [randBox (Crypto) 120](randbox)
 * [RedOs (Exploitation) 160]
 * [calpop reloaded (Exploitation) 130]
 * [nicklesndimes (Web) 200]
@@ -37,7 +37,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 * [BWS (Exploitation) 190]
 * [danklang (Reverse engineering) 100]
 * [4w1h (Misc) 100](4w1h#eng-version)
-* [randBox (Crypto) 120]
+* [randBox (Crypto) 120](randbox#eng-version)
 * [RedOs (Exploitation) 160]
 * [calpop reloaded (Exploitation) 130]
 * [nicklesndimes (Web) 200]
