@@ -73,15 +73,14 @@ def fail(memes, calcium):
 I przepisujemy ją do takiej postaci:
 
 ```python
-def fail(memes, calcium):
-    dank = True
-    if calcium < memes:
-        if memes % calcium == 0:
-            dank = False
-        else:
-            wew = fail(memes, calcium + 1)
-            dank = wew
-    return dank
+def is_prime(number):
+    if number % 2 == 0:
+        return False
+    else:
+        for divisor in range(3, int(sqrt(number)) + 1, 2):
+            if number % divisor == 0:
+                return False
+    return True
 ```
 
 Dochodzimy do takiego stanu: [main2.py](main2.py)
@@ -147,7 +146,7 @@ def dootdoot(memes, seals):
     return dootdoot_table[seals][memes] 
 ```
 
-Na końcu trzy powiązane funkcje - suck, epicfail i bills:
+Na końcu trzy powiązane funkcje - such, epicfail i bills:
 
 ```python
 def epicfail(memes):
@@ -241,7 +240,7 @@ Uruchomiony kod wykonywał się dość długo, ale ostatecznie dostaliśmy wynik
 
 Po dodaniu stałych części:
 
-    9447{}
+    9447{2992959519895850201020616334426464120987}
 
 Zdobywamy punkty
 
