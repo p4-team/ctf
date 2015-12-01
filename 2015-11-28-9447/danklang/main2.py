@@ -42,10 +42,19 @@ def such(memes):
     return wow
 
 
+def precompute_fibonacci_mod_987654321():
+    table = []
+    N = 13379447+1
+    result = [0] * N
+    result[1] = 1
+    for i in xrange(2, N):
+        result[i] = (result[i-2] + result[i-1]) % 987654321
+    return result
+
+precomputed_fibonacci = precompute_fibonacci_mod_987654321()
+
 def fibonacci_mod_987654321(number):
-    # calc in sage to BinaryRecurrenceSequence(1, 1).period(987654321)
-    periods = pisano_period_for(987654321)
-    return pisano_period_for(987654321)[number % len(periods)]
+    return precomputed_fibonacci[number]
 
 
 def bill(memes):
