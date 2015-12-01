@@ -84,6 +84,8 @@ def fail(memes, calcium):
     return dank
 ```
 
+Dochodzimy do takiego stanu: [main2.py](main2.py)
+
 W tym momencie kończą się oczywiste pomysły na optymalizację, a wykonanie dalej jest bardzo powolne. Decydujemy się więc
 na więcej precomputingu, i obliczać z góry wszystko co się da.
 
