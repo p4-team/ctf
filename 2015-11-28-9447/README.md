@@ -7,12 +7,12 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 ### Spis treści:
 * [binned (Steganography) 100]
 * [Give feedback (Misc) 15]
-* [dub-key (Crypto) 130]
+* [dub-key (Crypto) 130](dub-key)
 * [imaged (Steganography) 90]
 * [Hello, Joe (Reverse engineering) 160]
 * [cards (Exploitation) 140]
 * [BWS (Exploitation) 190]
-* [danklang (Reverse engineering) 100]
+* [danklang (Reverse engineering) 100](danklang)
 * [4w1h (Misc) 100](4w1h)
 * [randBox (Crypto) 120](randBox)
 * [RedOs (Exploitation) 160]
@@ -30,12 +30,12 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w 9
 ### Table of contents:
 * [binned (Steganography) 100]
 * [Give feedback (Misc) 15]
-* [dub-key (Crypto) 130]
+* [dub-key (Crypto) 130](dub-key#eng-version)
 * [imaged (Steganography) 90]
 * [Hello, Joe (Reverse engineering) 160]
 * [cards (Exploitation) 140]
 * [BWS (Exploitation) 190]
-* [danklang (Reverse engineering) 100]
+* [danklang (Reverse engineering) 100](danklang#eng-version)
 * [4w1h (Misc) 100](4w1h#eng-version)
 * [randBox (Crypto) 120](randBox#eng-version)
 * [RedOs (Exploitation) 160]
