@@ -1,10 +1,10 @@
 ## dub-key (crypto, 120p)
 
-    My friend set up a small signing scheme, however she won't let me sign stuff. Can you get it signed?
-
-    Find it at dub-key-t8xd5pn6.9447.plumbing port 9447
-
-    [dub-key.py](dub-key.py)
+> My friend set up a small signing scheme, however she won't let me sign stuff. Can you get it signed?
+>
+> Find it at dub-key-t8xd5pn6.9447.plumbing port 9447
+>
+> [dub-key.py](dub-key.py)
 
 ###PL
 [ENG](#eng-version)
