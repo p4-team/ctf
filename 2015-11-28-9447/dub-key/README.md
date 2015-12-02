@@ -70,7 +70,7 @@ while True:
     print recv(), recv(), recv()
 ```
 
-I, co zaskakujące, zadziałał za pierwszym razem (po okolo 3 minutach i 20 próbach)
+I, co zaskakujące, zadziałał za pierwszym razem.
 
 Flaga:
 
@@ -134,7 +134,7 @@ while True:
     print recv(), recv(), recv()
 ```
 
-And it actually worked on first attempt (after about 3 minutes and 20 tries).
+And it actually worked on first attempt.
 
 Flag:
 
