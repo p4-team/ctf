@@ -70,8 +70,11 @@ while True:
     print recv(), recv(), recv()
 ```
 
-I, co zaskakujące, zadziałał za pierwszym razem.
+I, co zaskakujące, zadziałał za pierwszym razem (po okolo 3 minutach i 20 próbach)
 
+Flaga:
+
+    9447{Th1s_ta5k_WAs_a_B1T_0F_A_DaG} 
 
 ### ENG version
 
@@ -131,5 +134,8 @@ while True:
     print recv(), recv(), recv()
 ```
 
-And it actually worked on first attempt.
+And it actually worked on first attempt (after about 3 minutes and 20 tries).
 
+Flag:
+
+    9447{Th1s_ta5k_WAs_a_B1T_0F_A_DaG} 
