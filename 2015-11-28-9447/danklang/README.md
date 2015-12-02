@@ -235,8 +235,7 @@ def me():
 ```
 
 Przepisywanie tego zajęło dość dużo czasu, ale ostatecznie doszliśmy do takiej formy jak [main3.py](main3.py).
-Uruchomiony kod wykonywał się dość długo, ale ostatecznie dostaliśmy wynik:
-
+Uruchomiony kod wykonywał się dość długo, ale ostatecznie dostaliśmy wynik: `2992959519895850201020616334426464120987`
 
 Po dodaniu stałych części:
 
@@ -247,3 +246,227 @@ Zdobywamy punkty
 
 ### ENG version
 
+Task full of memes (which you can see even from the task description).
+
+We get a [long code in a made-up language](main.dc).
+
+It's difficult to read so we rewrite it to python:  [main1.py](main1.py).
+
+It is clear that it's not optimal and execution of main1.py would not finish before we die (and for sure not before CTF ends).
+
+We start with trying to recognize some function we could optimize:
+
+For example this function is fibonacci(memes) % 987654321:
+
+```python
+def brotherman(memes):
+    hues = 0
+    if memes != 0:
+        if memes < 3:
+            return 1
+        else:
+            wew = brotherman(memes - 1)
+            hues = wew
+            wew = brotherman(memes - 2)
+            hues += wew
+    return hues % 987654321
+```
+
+And since the memes variable is not so big, we can simply calculate all values before (precomputing):
+
+```python
+def precompute_fibonacci_mod_987654321():
+    table = []
+    N = 13379447+1
+    result = [0] * N
+    result[1] = 1
+    for i in xrange(2, N):
+        result[i] = (result[i-2] + result[i-1]) % 987654321
+    return result
+
+precomputed_fibonacci = precompute_fibonacci_mod_987654321()
+
+def fibonacci_mod_987654321(number):
+    return precomputed_fibonacci[number]
+```
+
+Here we recognize primarity test:
+
+```python
+def fail(memes, calcium):
+    dank = True
+    if calcium < memes:
+        if memes % calcium == 0:
+            dank = False
+        else:
+            wew = fail(memes, calcium + 1)
+            dank = wew
+    return dank
+```
+
+And change it for a faster one:
+
+```python
+def is_prime(number):
+    if number % 2 == 0:
+        return False
+    else:
+        for divisor in range(3, int(sqrt(number)) + 1, 2):
+            if number % divisor == 0:
+                return False
+    return True
+```
+
+We end up with a new version: [main2.py](main2.py)
+
+At this point we run out of obvious ideas to optimize the code, and the execution time is still too long. We decide to do even more precomputing and just calculate all possible values.
+
+We precompute primarity check:
+
+```python
+def precompute_primes():
+    limit = 13379447 + 1
+    a = [True] * limit
+    for i in xrange(2, len(a)):
+        isprime = a[i]
+        if isprime:
+            for n in xrange(i*i, limit, i):
+                a[n] = False
+    return a
+
+primes = precompute_primes()
+
+def is_prime(number):
+    return primes[number]
+```
+
+Function dootdoot (we didn't recognize it at the time, but it is just number of combinations):
+
+```python
+def dootdoot(memes, seals):
+    if seals <= memes:
+        if seals == 0:
+            return 1
+        else:
+            if seals == memes:
+                return 1
+            else:
+                return dootdoot(memes - 1, seals - 1) + dootdoot(memes - 1, seals)
+```
+
+We change into:
+
+```python
+def precompute_dootdoot():
+    table = []
+    MAXH, MAXW = 6, 13379447+1
+    for i in range(MAXH):
+        table.append([0] * MAXW)
+    for i in range(0, MAXH):
+        for j in xrange(0, MAXW):
+            if i > j:
+                table[i][j] = 0
+            elif i == 0:
+                table[i][j] = 1
+            elif i == j:
+                table[i][j] = 1
+            else:
+                table[i][j] = table[i][j-1] + table[i-1][j-1]
+    return table
+
+dootdoot_table = precompute_dootdoot()
+def dootdoot(memes, seals):
+    return dootdoot_table[seals][memes] 
+```
+
+And finally three connected function - such, epicfail i bills:
+
+```python
+def epicfail(memes):
+    if memes > 1:
+        if dank(memes, 2):
+            return 1 + bill(memes - 1)
+        else:
+            return such(memes - 1)
+    return 0
+
+def such(memes):
+    wow = dootdoot(memes, 5)
+    if wow % 7 == 0:
+        wew = bill(memes - 1)
+        wow += 1
+    else:
+        wew = epicfail(memes - 1)
+    wow += wew
+    return wow
+
+def bill(memes):
+    wow = fibonacci_mod_987654321(memes)
+    if wow % 3 == 0:
+        wew = such(memes - 1)
+        wow += 1
+    else:
+        wew = epicfail(memes - 1)
+    wow += wew
+    return wow
+```
+
+Are changed into:
+
+```python
+def bill(memes):
+    wow = fibonacci_mod_987654321(memes)
+    if wow % 3 == 0:
+        wew = suchs[memes - 1]
+        wow += 1
+    else:
+        wew = epicfails[memes - 1]
+    wow += wew
+    return wow
+
+def such(memes):
+    wow = dootdoot(memes, 5)
+    if wow % 7 == 0:
+        wew = bills[memes - 1]
+        wow += 1
+    else:
+        wew = epicfails[memes - 1]
+    wow += wew
+    return wow
+
+def epicfail(i):
+    if i > 1:
+        if is_prime(i):
+            return 1 + bill(i - 1)
+        else:
+            return such(i - 1)
+    return 0
+
+epicfails = [0] * (13379447 + 1)
+suchs = [0] * (13379447 + 1)
+bills = [0] * (13379447 + 1)
+
+def upcompute_epicfails():
+    for i in xrange(1, 13379447+1):
+        if i % 10000 == 0:
+            print i
+        epicfails[i] = epicfail(i)
+        suchs[i] = such(i)
+        bills[i] = bill(i)
+
+upcompute_epicfails()
+```
+
+And now solving the task is trivial - we have all values calculated so we simply need to read the result from the array:
+
+```python
+def me():
+    memes = 13379447
+    wew = epicfails[memes]
+    print(wew)
+```
+
+It took us a while to rewrite this but we finally got [main3.py](main3.py).
+The code was still running for quite a while but finally we got the result: `2992959519895850201020616334426464120987` which resulted in flag:
+
+    9447{2992959519895850201020616334426464120987}
