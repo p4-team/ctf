@@ -9,7 +9,7 @@ login.pwn.seccon.jp:10000
 
 Po połączeniu się z serwerem za pomocą nc dostajemy:
 
-![](connection.png)
+![](conection.png)
 
 Wpisanie dowolnego loginu także nie daje żadnych efektów. Próbowaliśmy podejść do tego zadania z różnych stron, bez efektów. W końcu uznaliśmy, że skoro zadanie wspomina o wolnym połączeniu to może spróbujemy ataku czasowego albo próby wyczerpania wątków serwera. Jednak w trakcie pisania skryptu zauważyliśmy dość dziwny wynik:
 
@@ -25,7 +25,7 @@ Naszą uwagę zwróciły niepiśmienne znaki o numerze ascii 8, czyli backspace.
 
 After connecting with nc we get:
 
-![](connection.png)
+![](conection.png)
 
 Using any login doesn't help us moving forward with the task. We tried different approaches but to no avail. Finally we decided that, since the task mentions and weak slow connection, we could try a timing attack or try to exhaust server threads. However, while writing a script we noticed a strange data coming from server:
 
