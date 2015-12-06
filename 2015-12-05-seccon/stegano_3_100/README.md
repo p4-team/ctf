@@ -12,8 +12,8 @@ Dostajemy obraz:
 
 ![](desktop_capture.png)
 
-Na podstawie którego chcemy uzyskaæ flagê. Pierwszym krokiem jest odtworzenie binarki otwartej w hexedytorze. Zrobiliœmy to za pomoc¹ OCRa a nastêpnie rêcznego poprawiania b³êdów. Wynikiem jest program [elf](elf.bin).
-Uruchomienie go daje w wyniku wiadomoœæ `Flood fill` zakodowan¹ jako base64. Po pewnym czasie wpadliœmy wreszcie na rozwi¹zanie, które polega³o na u¿yciu "wyp³eniania kolorem" na pocz¹tkowym obrazie:
+Na podstawie ktÃ³rego chcemy uzyskaÄ‡ flagÄ™. Pierwszym krokiem jest odtworzenie binarki otwartej w hexedytorze. ZrobiliÅ›my to za pomocÄ… OCRa a nastÄ™pnie rÄ™cznego poprawiania bÅ‚Ä™dÃ³w. Wynikiem jest program [elf](elf.bin).
+Uruchomienie go daje w wyniku wiadomoÅ›Ä‡ `Flood fill` zakodowanÄ… jako base64. Po pewnym czasie wpadliÅ›my wreszcie na rozwiÄ…zanie, ktÃ³re polegaÅ‚o na uÅ¼yciu "wypÅ‚eniania kolorem" na poczÄ…tkowym obrazie:
 
 ![](floodfill.png)
 

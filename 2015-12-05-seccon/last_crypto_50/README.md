@@ -17,7 +17,7 @@ Plain: ??????????????????????
 ###PL
 [ENG](#eng-version)
 
-Dostajemy do rozwi¹zania prost szyfr podstawieniowy. Na podsatwie pierwszej pary plaintext-ciphertext generujemy mapê podstawieñ a nastêpnie dekodujemy flagê:
+Dostajemy do rozwiÄ…zania prost szyfr podstawieniowy. Na podsatwie pierwszej pary plaintext-ciphertext generujemy mapÄ™ podstawieÅ„ a nastÄ™pnie dekodujemy flagÄ™:
 
 ```python
 data1 = "PXFR}QIVTMSZCNDKUWAGJB{LHYEO"
