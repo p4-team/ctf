@@ -3,7 +3,7 @@
 ###PL
 [ENG](#eng-version)
 
-Dostajemy [kod](pallier.txt) skryptu pracującego na serwerze. Skrypt szyfruje pewną wiadomość za pomocą szyfru Palliera a następnie podaje nam zaszyfrowaną wiadomość oraz kilka innych parametrów. Naszym zadaniem jest złamać szyfr.
+Dostajemy [kod](paillier.txt) skryptu pracującego na serwerze. Skrypt szyfruje pewną wiadomość za pomocą szyfru Pailliera a następnie podaje nam zaszyfrowaną wiadomość oraz kilka innych parametrów. Naszym zadaniem jest złamać szyfr.
 Szyfr jest lekko zbliżony do szyfrowania metodą RSA i jego łamanie przebiega w dość podobny sposób. Pierwszym krokiem do złamania szyfru jest uzyskanie informacji o liczbie `n` która jest podstawą dla operacji reszty z dzielenia podczas szyfrowania. Wykorzystujemy tutaj informacje przychodzące z serwera:
 
 ```python
@@ -81,11 +81,11 @@ print(m % n)
 
 Co daje nam: `1510490612` a umieszczenie tej liczby na serwerze daje flagę: `SECCON{SECCoooo_oooOooo_ooooooooN}`
 
-Kompletny użyty skrypt znajduje sie [tutaj](crypto_pallier.py)
+Kompletny użyty skrypt znajduje sie [tutaj](crypto_paillier.py)
 
 ### ENG version
 
-We get the [source code](pallier.txt) of a script that is used on the server. The cipher encodes a certain message using Pallier cipher and the returns to us the encoded message and some parameters. Our task is to break the code.
+We get the [source code](paillier.txt) of a script that is used on the server. The cipher encodes a certain message using Paillier cipher and the returns to us the encoded message and some parameters. Our task is to break the code.
 The cipher is a bit like RSA and the approach to break it is very similar. First step is to get the `n` number which is the basis for all modulo operations in the cipher. For this we use data we get from server:
 
 ```python
@@ -164,4 +164,4 @@ print(m % n)
 
 Which gives us: `1510490612` and placing this number on the server gives the flag: `SECCON{SECCoooo_oooOooo_ooooooooN}`
 
-Whole script is available [here](crypto_pallier.py)
+Whole script is available [here](crypto_paillier.py)

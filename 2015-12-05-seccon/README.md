@@ -19,7 +19,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w S
 * [QR puzzle (Nonogram) (Misc) 300]
 * [QR puzzle (Windows) 	Unknown 	200 	138
 * [Reverse-Engineering Android APK 1 (Misc) 400]
-* [Find the prime numbers (Crypto) 200](pallier_crypto_200)
+* [Find the prime numbers (Crypto) 200](paillier_crypto_200)
 * [Micro computer exploit code challenge (Exploit) 300]
 * [GDB Remote Debugging (Binary/Reverse) 200]
 * [FSB: TreeWalker (Exploit) 200]
