@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2015.12.05 **SECCON CTF 2015** (12st place / 872 teams)](2015-12-05-seccon)
 * [2015.11.28 **9447 Security Society CTF 2015** (21st place / 595 teams)](2015-11-28-9447)
 * [2015.11.20 **Defcamp CTF Finals 2015** (11th place / 15 teams out of 378 teams)](2015-11-20-dctffinals)
 * [2015.10.22 **Ekoparty CTF 2015** (28th place / 356 teams)](2015-10-22-ekoparty)
