@@ -10,7 +10,7 @@ Zadanie polegało na połączeniu się za pomocą NC z podanym serwerem. Serwer 
 Na co serwer w odpowiedzi oczekiwał na: `11121023402232863`
 
 Zadanie rozwiązaliśmy wykorzystując parser liczb słownych, parser liczb rzymskich oraz pythonową funkcję `eval()`.
-Same transformacje są raczej trywialne i łatwie do znalezienia w internecie, reszta solvera to:
+Same transformacje są raczej trywialne i łatwie do znalezienia w internecie (cały skrypt [tutaj](calculator.py) ), reszta solvera to:
 
 	def solve(data):
 		fixed = data.replace(",", "") #turn 3,200 into 3200
@@ -51,7 +51,7 @@ The challenge was to connect to a server via NC. Server was providing equations 
 And server was expecting a solution: `11121023402232863`
 
 We solved this using literal nubmbers parser, roman numbers parser and python `eval()` function.
-The parsers are trivial and easy to find on the internet, the rest was:
+The parsers are trivial and easy to find on the internet (whole script [here](calculator.py) ), the rest was:
 
 	def solve(data):
 		fixed = data.replace(",", "") #turn 3,200 into 3200
