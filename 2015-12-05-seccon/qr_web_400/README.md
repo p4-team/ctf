@@ -1,101 +1,41 @@
-## QR Puzzle (Unknown, 200p)
+## QR Puzzle: Web (Unknown, 400p)
 
-    Please solve a puzzle 300 times
-    QRpuzzle.zip
+    Solve the slide puzzle and decode the QR code.
+    http://puzzle.quals.seccon.jp:42213/slidepuzzle
 
 ###PL
 [ENG](#eng-version)
 
-Dostajemy program, który wyświetla poszatkowane QR cody po uruchomieniu:
+Podobnie jak w poprzednich QR Puzzle dostajemy QR code i mamy go rozwiązać. Tym razem problemem jest to, że brakuje fragmentu kodu.
 
 ![](screen.png)
 
+Z czasem zadania robią się coraz trudniejsze - na początku brakuje zawsze prawego dolnego rogu kodu, później również krawędzi, później środka, a na końcu może brakować również innego rogu (co okazało się problematyczne).
 Dość oczywisty jest cel zadania - należy napisać program który złoży taki QR code, rozwiąże go, oraz wyśle do programu.
-Moglibyśmy próbować go reversować, ale to wyraźnie co innego niż autorzy zadania zaplanowali dla nas, więc nie poszliśmy tą drogą.
 
-Napisaliśmy w tym celu pewien bardzo duży solver, który:
- - robił screena programu
- - wyciągał z niego poszczególne fragmenty
- - składał części w jedną (najtrudniejsza część oczywiśćie)
- - dekodował wynikowy QR code
- - wysyłał zdekodowany tekst do aplikacji
- - czekał 500 ms i powtarzał ten cykl.
+Wykorzystaliśmy do tego solver z poprzedniego zadania QR Puzzle, jedynie nieznacznie musieliśmy przerobić funkcje pobierającą obrazki z ekranu, oraz nie wysyłaliśmy rozwiązań a przeklejaliśmy ręcznie.
 
-Kodu jest za dużo by omawiać go funkcja po funkcji, wklejona zostanie jedynie główna funkcja pokazująca te kroki:
-
-```csharp
-while (true)
-{
-    using (var bmp = CaptureApplication("QRpuzzle"))
-    {
-        var chunks = Split(
-            18, 77,
-            160, 167,
-            6, 13,
-            3,
-            bmp);
-        var result = Bundle.Reconstruct(chunks, 3);
-
-        var reader = new BarcodeReader { PossibleFormats = new[] { BarcodeFormat.QR_CODE }, TryHarder = true };
-
-        result.Save("Test2.png");
-        var code = reader.Decode(result);
-
-        SendKeys.Send(code.Text);
-        Thread.Sleep(500);
-    }
-}
-```
+Kodu jest za dużo by omawiać go funkcja po funkcji, ale działa prawie identycznie jak w poprzednim zadaniu - ma jedynie kilka poprawek.
 
 Flaga:
 
-    SECCON{402B00F89DC8}
+    SECCON{U_R_4_6R347_PR06R4MM3R!}
 
 
 
 ### ENG version
 
-We get a program that displays scrambled QR codes when run:
+We are given qr code, and we have to unscramble it - just like in earlier qr puzzle challenge. It's harder now, because there is much more fragments, and one piece is missing.
 
 ![](screen.png)
 
-It's obvious what task authors want from us - we have to write program that unscrambles given QR code and sends it to program.
-Of course we could try to reverse engineer given program, but clearly task authors wanted us to solve challenge different way.
+Qr codes are getting harder with time - at the beggining missing piece is always lower right corner, but later we can expect also missing edge, missing central piece, or even missing another corner (worst case scenario).
+It's obvious what task authors are expecting from us - we kave to write program that assembles such QR code, solve it, and then sends it to server.
 
-We have written large solver, that:
- - captured program window to bitmap
- - cut all 9 qr code fragments to different bitmaps
- - put fragments in correct order (hardest part, by far)
- - decoded resulting QR code
- - sent decoded text to program
- - slept 500 ms and repeated that cycle
+We used our solver from previons challenge - we only had to slightly rework function that captured qr code, and we didn't sent solutions automatically (it had to be done manually).
 
-Solver code is too large to be described function by function, so we will just paste main function here:
-
-```csharp
-while (true)
-{
-    using (var bmp = CaptureApplication("QRpuzzle"))
-    {
-        var chunks = Split(
-            18, 77,
-            160, 167,
-            6, 13,
-            3,
-            bmp);
-        var result = Bundle.Reconstruct(chunks, 3);
-
-        var reader = new BarcodeReader { PossibleFormats = new[] { BarcodeFormat.QR_CODE }, TryHarder = true };
-
-        result.Save("Test2.png");
-        var code = reader.Decode(result);
-
-        SendKeys.Send(code.Text);
-        Thread.Sleep(500);
-    }
-}
-```
+There is too much code to go through it function by function, but it is almost identical as in previous challenge - we only fixed few minor things.
 
 Flag:
 
-    SECCON{402B00F89DC8}
+    SECCON{U_R_4_6R347_PR06R4MM3R!}
