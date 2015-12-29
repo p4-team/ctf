@@ -6,6 +6,7 @@
 
 ### PL
 [ENG](#eng-version)
+
 Dostajemy paczkę z sześcioma zdjęciami i sześcioma plikami, które zostały nazwane RSPI_GPIO_23.txt. Na zdjęciach widzimy 4 wierszowy
 wyświetlacz podłączony do raspberry pi. Po nazwie zadania możemy wywnioskować, że jest to wyświetlacz oparty o sterownik Hitachi HD44780.
 Pliki tekstowe zawierają dwie linijki danych pierwsza to czas, druga stan lini.
@@ -47,7 +48,7 @@ a flaga to:
 
 `32C3_Never__let_you_down_Never__gonna_give_you_up_`
 
-Oprócz tego organizatorzy dają linka do YT jako bonus. [bit.ly/1fKy1tC](bit.ly/1fKy1tC).
+Oprócz tego organizatorzy dają linka do YT jako bonus. [bit.ly/1fKy1tC](http://bit.ly/1fKy1tC).
 
 
 ### ENG version
@@ -91,4 +92,4 @@ and a flag is:
 
 `32C3_Never__let_you_down_Never__gonna_give_you_up_`
 
-As a bonus we get link [bit.ly/1fKy1tC](bit.ly/1fKy1tC).
+As a bonus we get link [bit.ly/1fKy1tC](http://bit.ly/1fKy1tC).
