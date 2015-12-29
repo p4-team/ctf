@@ -33,7 +33,7 @@ Po dodaniu do url `?src=1` możemy zobaczyć kod strony:
 
 Skrypt pozwala na tworzenie plików z rozszerzeniem .php. Treść jest jednak ucinana do 7 znaków. `<?php ?` generuje `Internal Server Error`.
 
-Używająć krótkiego tagu startowego i pomijająć końcowy możemy wykonać jednoliterowe polecenie: `<?=\`*\`;`
+Używająć krótkiego tagu startowego i pomijająć końcowy możemy wykonać jednoliterowe polecenie: ``<?=`*`;``
 
 Jeżeli stworzymy pliki o nazwach `bash` i `bash2`, `*` rozwinie się do `bash bash2 index.html`. Możemy w ten sposób wykonywać 7 znakowe skrypty shellowe:
 
