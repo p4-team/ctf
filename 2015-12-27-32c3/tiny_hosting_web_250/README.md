@@ -84,7 +84,7 @@ After adding `?src=1` to the url php source is printed:
 
 Page doesn't block creating files with .php extension. The content is limited to 7 chars though. `<?php ?` generates `Internal Server Error`. 
 
-By using short start tags and ommiting end tag it's possible to execute single char shell command:  `<?=\`*\`;`
+By using short start tags and ommiting end tag it's possible to execute single char shell command:  ``<?=`*`;``
 
 If we create two files: `bash` and `bash2`, `*` will expand to: `bash bash2 index.html`. This way we can execute 7 char shell scripts:
 
