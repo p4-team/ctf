@@ -52,9 +52,9 @@ Oprócz tego organizatorzy dają linka do YT jako bonus. [bit.ly/1fKy1tC](http:/
 
 
 ### ENG version
-We got the archive with six picture and six text files named like RSPI_GPIO_23.txt. At the pictures we can see the four row
-LCD display interfaced with raspberry pi. Acording to the task name we can assume it is based on Hitachi HD44780 controller.
-Evry text file contains two lines with plenty of floating point values each.
+We got the archive with six pictures and six text files named like RSPI_GPIO_23.txt. In the pictures we can see a four rows
+LCD display interfaced with raspberry pi according to the task name we can assume it is based on Hitachi HD44780 controller.
+Every text file contains two lines with plenty of floating point values each.
 
 According to the pictures we know that the diplay and raspberry are connected as follows:
 ```
@@ -70,9 +70,9 @@ A catch in this task is that the display has four rows, while the controler orgi
 That implicts fancy maaping DRAM to chars on the display.
 ![http://forum.allaboutcircuits.com/data/photos/o/1/1380-1335426137-a68c5c9f44d7bbcfc514a0e33c4c9cc6.png](http://forum.allaboutcircuits.com/data/photos/o/1/1380-1335426137-a68c5c9f44d7bbcfc514a0e33c4c9cc6.png)
 
-When we know all that let's get down to work. We read data with [read.py](./read.py) file and sort them in term of their occurence.
+When we know all that let's get down to work. We read data with [read.py](./read.py) file and sort them by occurence time.
 Wikipedia inform us that clock signal is trigerred by falling edge. So we have to emulate state of every line and save when
-clock line go form state 1 to 0. Next on the [output](./read.out) of [read.py](./read.py) we execute [decode.py](./decode.py).
+clock line go form state 1 to 0. Next in the [output](./read.out) of [read.py](./read.py) we execute [decode.py](./decode.py).
 The display is connected via 4bit interface so we have to join two state to get one data or comand in result. At the end of
 this phase we get [decode.out](./decode.out) containing data and commands with comments. Now we can emulate that with
 [emulate.py](./emulate.py). Finaly we get a lot of screens from every phase of display in file [emulate.out](./emulate.out).
