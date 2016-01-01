@@ -34,7 +34,7 @@ Zobaczmy co się znajduje w pliku flag.txt:
 
 Zadanie gotowe!
 
-###ENG
+###ENG version
 
 When connected to the server we get the following response: 
 
