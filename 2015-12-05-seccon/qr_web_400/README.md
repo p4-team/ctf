@@ -15,7 +15,7 @@ Dość oczywisty jest cel zadania - należy napisać program który złoży taki
 
 Wykorzystaliśmy do tego solver z poprzedniego zadania QR Puzzle, jedynie nieznacznie musieliśmy przerobić funkcje pobierającą obrazki z ekranu, oraz nie wysyłaliśmy rozwiązań a przeklejaliśmy ręcznie.
 
-Kodu jest za dużo by omawiać go funkcja po funkcji, ale działa prawie identycznie jak w poprzednim zadaniu - ma jedynie kilka poprawek.
+Kodu jest za dużo by omawiać go funkcja po funkcji, ale działa prawie identycznie jak w zadaniu [QR puzzle: Windows](https://github.com/p4-team/ctf/tree/master/2015-12-05-seccon/qr_windows_200) - ma jedynie kilka poprawek.
 
 Flaga:
 
@@ -34,7 +34,7 @@ It's obvious what task authors are expecting from us - we kave to write program 
 
 We used our solver from previons challenge - we only had to slightly rework function that captured qr code, and we didn't sent solutions automatically (it had to be done manually).
 
-There is too much code to go through it function by function, but it is almost identical as in previous challenge - we only fixed few minor things.
+There is too much code to go through it function by function, but it is almost identical as in [QR puzzle: Windows](https://github.com/p4-team/ctf/tree/master/2015-12-05-seccon/qr_windows_200) challenge - we only fixed few minor things.
 
 Flag:
 
