@@ -1,25 +1,25 @@
-##smartcat (Web, 50+50p)
+ï»¿##smartcat (Web, 50+50p)
 
 ###PL
 [ENG](#eng-version)
 
-W zadaniu dostajemy do dyspozycji webowy interfejs (CGI) pozwalaj¹cy pignowaæ wskazanego hosta. 
-Domyœlamy siê, ¿e pod spodem operacja jest realizowana jako wywo³anie `ping` w shellu z doklejonym podanym przez nas adresem.
+W zadaniu dostajemy do dyspozycji webowy interfejs (CGI) pozwalajÄ…cy pignowaÄ‡ wskazanego hosta. 
+DomyÅ›lamy siÄ™, Å¼e pod spodem operacja jest realizowana jako wywoÅ‚anie `ping` w shellu z doklejonym podanym przez nas adresem.
 
 #### Smartcat1
 
-Pierwsza czêœæ zadania polega na odczytaniu flagi znajduj¹cej siê w nieznanym pliku, wiêc wymaga od nas jedynie mo¿liwoœci czytania plików.
+Pierwsza czÄ™Å›Ä‡ zadania polega na odczytaniu flagi znajdujÄ…cej siÄ™ w nieznanym pliku, wiÄ™c wymaga od nas jedynie moÅ¼liwoÅ›ci czytania plikÃ³w.
 Operatory:
 	 $;&|({`\t 
 
-s¹ zablokowane, ale zauwa¿amy, ¿e znak nowej linii `\n` jest wyj¹tkiem.
-Mo¿emy dziêki temu wykonaæ dowoln¹ komendê podaj¹c na wejœciu np.
+sÄ… zablokowane, ale zauwaÅ¼amy, Å¼e znak nowej linii `\n` jest wyjÄ…tkiem.
+MoÅ¼emy dziÄ™ki temu wykonaÄ‡ dowolnÄ… komendÄ™ podajÄ…c na wejÅ›ciu np.
 
 `localhost%0Als`
 
 Co zostanie potraktowane jako 2 osobne komendy - `ping localhost` oraz `ls`
 
-Wywo³anie `ls` pozwala stwierdziæ, ¿e w bierz¹cym katalogu jest katalog `there`, ale nie mamy mo¿liwoœci listowaæ go bez u¿ycia spacji. Po chwili namys³u wpadliœmy na pomys³ ¿eby u¿yæ programu `find` który da³ nam:
+WywoÅ‚anie `ls` pozwala stwierdziÄ‡, Å¼e w bierzÄ…cym katalogu jest katalog `there`, ale nie mamy moÅ¼liwoÅ›ci listowaÄ‡ go bez uÅ¼ycia spacji. Po chwili namysÅ‚u wpadliÅ›my na pomysÅ‚ Å¼eby uÅ¼yÄ‡ programu `find` ktÃ³ry daÅ‚ nam:
 
 ```
 .
@@ -47,23 +47,23 @@ Wywo³anie `ls` pozwala stwierdziæ, ¿e w bierz¹cym katalogu jest katalog `there`,
 ./there/is/your/flag/or/maybe/not/what/do/you/think/really/please/tell/me/seriously/though/here/is/the/flag
 ```
 
-Pozosta³o nam tylko wywo³aæ `cat<./there/is/your/flag/or/maybe/not/what/do/you/think/really/please/tell/me/seriously/though/here/is/the/flag` i uzyskaæ flagê:
+PozostaÅ‚o nam tylko wywoÅ‚aÄ‡ `cat<./there/is/your/flag/or/maybe/not/what/do/you/think/really/please/tell/me/seriously/though/here/is/the/flag` i uzyskaÄ‡ flagÄ™:
 
 `INS{warm_kitty_smelly_kitty_flush_flush_flush}`
 
 #### Smartcat2
 
-Druga czêœæ zadania jest trudniejsza, poniewa¿ treœæ sugeruje, ¿e musimy odczytaæ flagê przez coœ znajduj¹cego siê w katalogu `/home/smartcat/` oraz, ¿e potrzebny bêdzie do tego shell.
-Zauwa¿amy po pewnym czasie, ¿e mo¿emy tworzyæ pliki w katalogu `/tmp`. 
-Mo¿emy tak¿e uruchamiaæ skrypty shell przez `sh<script.sh`, ale nadal mieliœmy problem z tym, jak umieœciæ w skrypcie interesuj¹c¹ nas zawartoœæ.
-Wreszcie wpadliœmy na to, ¿e istniej¹ pewne zmienne, na których zawartoœæ mo¿emy wp³yn¹æ - nag³ówki http.
-W szczególnoœci mo¿emy w dowolny sposób ustawiæ swój `user-agent`. 
-Nastêpnie mo¿emy zawartoœæ zmiennych œrodowiskowych wypisaæ przez `env` a wynik tej operacji zrzuciæ do pliku w `tmp`, a potem uruchomiæ przez `sh</tmp/ourfile`.
+Druga czÄ™Å›Ä‡ zadania jest trudniejsza, poniewaÅ¼ treÅ›Ä‡ sugeruje, Å¼e musimy odczytaÄ‡ flagÄ™ przez coÅ› znajdujÄ…cego siÄ™ w katalogu `/home/smartcat/` oraz, Å¼e potrzebny bÄ™dzie do tego shell.
+ZauwaÅ¼amy po pewnym czasie, Å¼e moÅ¼emy tworzyÄ‡ pliki w katalogu `/tmp`. 
+MoÅ¼emy takÅ¼e uruchamiaÄ‡ skrypty shell przez `sh<script.sh`, ale nadal mieliÅ›my problem z tym, jak umieÅ›ciÄ‡ w skrypcie interesujÄ…cÄ… nas zawartoÅ›Ä‡.
+Wreszcie wpadliÅ›my na to, Å¼e istniejÄ… pewne zmienne, na ktÃ³rych zawartoÅ›Ä‡ moÅ¼emy wpÅ‚ynÄ…Ä‡ - nagÅ‚Ã³wki http.
+W szczegÃ³lnoÅ›ci moÅ¼emy w dowolny sposÃ³b ustawiÄ‡ swÃ³j `user-agent`. 
+NastÄ™pnie moÅ¼emy zawartoÅ›Ä‡ zmiennych Å›rodowiskowych wypisaÄ‡ przez `env` a wynik tej operacji zrzuciÄ‡ do pliku w `tmp`, a potem uruchomiÄ‡ przez `sh</tmp/ourfile`.
 
-Pierwsza próba zawieraj¹ca user-agent: `a; echo "koty" >/tmp/msm123; a` zakoñczy³a siê sukcesem. 
+Pierwsza prÃ³ba zawierajÄ…ca user-agent: `a; echo "koty" >/tmp/msm123; a` zakoÅ„czyÅ‚a siÄ™ sukcesem. 
 
-Mogliœmy wiêc z powodzeniem wykonaæ dowolny kod, w tym u¿yæ `nc` lub `pythona` do postawienia reverse-shell. Zamiast tego najpierw wylistowaliœmy katalog `/home/smartcat/` znajduj¹c tam program `readflag`, który przed podaniem flagi wymaga³ uruchomienia, odczekania kilku sekund i przes³ania komunikatu.
-Wys³aliœmy wiêc na serwer skrypt, który wykonywa³ w³aœnie te czynnoœci z podanym programem i dostaliœmy:
+MogliÅ›my wiÄ™c z powodzeniem wykonaÄ‡ dowolny kod, w tym uÅ¼yÄ‡ `nc` lub `pythona` do postawienia reverse-shell. Zamiast tego najpierw wylistowaliÅ›my katalog `/home/smartcat/` znajdujÄ…c tam program `readflag`, ktÃ³ry przed podaniem flagi wymagaÅ‚ uruchomienia, odczekania kilku sekund i przesÅ‚ania komunikatu.
+WysÅ‚aliÅ›my wiÄ™c na serwer skrypt, ktÃ³ry wykonywaÅ‚ wÅ‚aÅ›nie te czynnoÅ›ci z podanym programem i dostaliÅ›my:
 
 	Flag:
 				___
