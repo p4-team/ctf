@@ -13,6 +13,8 @@
 
 Zaczynamy od sprawdzenia co możemy zrobić. Możemy dodawać 'jedzenie' do lodówki, wyciągać swoje jedzenie, oraz wyszukiwać użytkowników i jedzenie.
 
+[](screen.png)
+
 Ta ostatnia opcja wydaje się ciekawa, ponieważ oba pola wyszukiwania prowadzą ostatecznie do bardzo podobnej strony. Wyszukanie użytkownika 'aaa' redirectuje do:
 
 http://fridge.insomnihack.ch/search/c5c376484a22a1a196ced727b32c05ce706fa0919a8b040b2a2ba335c7c45726/
@@ -142,7 +144,7 @@ Jeden z popularnych schematów paddingu (konkretnie, PKCS7) działa tak:
 
 Ostatni warunek jest konieczny, żeby deszyfrowanie było zawsze jednoznaczne. Tak więc trzeba pamiętać, że ostatni zaszyfrowany blok będzie "fałszywym" blokiem składającym się wyłącznie z bajtów 0x10, i musimy go pominąć a później dokleić na końcu.
 
-Łącząc te wszystkie pomysły, napisaliśmy taki kod:
+Łącząc te wszystkie pomysły, napisaliśmy taki kod [final.py](final.py):
 
 ```python
 def hack(query):
