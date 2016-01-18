@@ -13,7 +13,7 @@
 
 Zaczynamy od sprawdzenia co możemy zrobić. Możemy dodawać 'jedzenie' do lodówki, wyciągać swoje jedzenie, oraz wyszukiwać użytkowników i jedzenie.
 
-[](screen.png)
+[](screen.PNG)
 
 Ta ostatnia opcja wydaje się ciekawa, ponieważ oba pola wyszukiwania prowadzą ostatecznie do bardzo podobnej strony. Wyszukanie użytkownika 'aaa' redirectuje do:
 
