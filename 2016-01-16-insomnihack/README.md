@@ -7,4 +7,5 @@ Team: cr019283, c7f.m0d3, msm, Rev, other019, nazywam, Shalom
 * [Toasted (Pwn) 250](pwn_250_toasted)
 * [Smartcat (Web) 100](web_100_smartcat)
 * [Greenbox (Web) 300](web_300_greenbox)
+* [Bring the noise (Crypto) 200](crypto_200_bring_the_noise)
 
