@@ -131,7 +131,15 @@ Spowoduje wykonanie zapytania w rodzaju
 
 Idealnie.
 
-A blok `[ Where 1=1 --]` (i dowolny inny) możemy spokojnie zaszyfrować - zrobi to za nas strona.
+A blok `[ Where 1=1 --]` (i dowolny inny) możemy spokojnie zaszyfrować - zrobi to za nas strona. 
+Wystarczy, że SQLi które chcemy zaszyfrować będzie wypełniać całkowicie kilka następujących po sobie bloków. 
+Wynika to ze słabości ECB - blok plaintextu zawsze jest szyfrowany do tej samej postaci, bez względu na położenie.
+Potrzebujemy jedynie dopełnić blok z prefixem (9 bajtów) a potem dodać na końcu naszego SQLi padding (np. spacje), tak żeby suffix dodawany przez serwer trafił w całości do ostaniego bloku:
+
+    [prefix123456789][SQLi part1]...[SQLi partN     ][|type=user]
+
+Wysyłając taki payload otrzymamy w wyniku N+2 bloki. Pierwszy i ostatni blok odrzucamy bo zawierają tylko prefix i suffix od serwera, a wszystkie pozostałe zawierają nasz kod.
+Możemy je teraz wstawić pomiędzy dowolne inne bloki a serwer zdekoduje je i doklei w odpowiednie miejsce.
 
 Jest tylko jedna pułapka - padding. Dane szyfrowane szyfrem blokowym muszą mieć długośc równą wielokrotności 16 bajtów. Co jeśli są krótsze?
 
@@ -312,7 +320,15 @@ And it will cause following query to be executed:
 
     SELECT (?) FROM objsearch_user WHERE 1=1 -- ???
 
-Great.
+Great. Now we need to get our SQLi code in the form of ecnrypted blocks so we can append them somewhere.
+We can do this easily using the server itself for encryption, as long as our code will be filling entirely consecutive encryption blocks.
+This is a weakness of ECB encryption mode - plaintext block is always encrypted into the same cipher block, regardless of the position in input.
+We need only to fill the prefix block (missing 9 bytes) and then add some padding (eg. spaces) to our SQLi so that the server suffix ends up in the last block:
+
+    [prefix123456789][SQLi part1]...[SQLi partN     ][|type=user]
+
+By sending such payload we will get N+2 blocks. First one contains prefix and our filling, last one only suffix, and all the rest contain our encrypted SQLi code.
+Now we can put those blocks in between any other blocks and the server will decrypt them and glue in this place.
 
 One last think we have to watch out - padding. Length of data encrypted with block cipher must be multiple of 16 bytes, always. What if we are encrypting something shorter? That's when padding comes in:
 
