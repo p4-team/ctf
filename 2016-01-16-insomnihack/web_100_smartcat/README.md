@@ -10,7 +10,8 @@ Domyślamy się, że pod spodem operacja jest realizowana jako wywołanie `ping`
 
 Pierwsza część zadania polega na odczytaniu flagi znajdującej się w nieznanym pliku, więc wymaga od nas jedynie możliwości czytania plików.
 Operatory:
-	 $;&|({`\t 
+
+	$;&|({` \t 
 
 są zablokowane, ale zauważamy, że znak nowej linii `\n` jest wyjątkiem.
 Możemy dzięki temu wykonać dowolną komendę podając na wejściu np.
@@ -92,7 +93,7 @@ We predict that underneath this is calling `ping` from shell with adress we give
 First part of the task requires reading a flag residing in an unknown file, so we only need to be able to read files.
 In the web interface characters 
 	
-	$;&|({`\t
+	$;&|({` \t
 
 are blocked, but we notice that newline character `\n` or `%0A` is an exception.
 Thanks to that we can execute any command we want by using input:
