@@ -24,7 +24,7 @@ Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w N
 * ["Smashthestate" (Web) 400](web_4)
 * ["HQLol" (Web) 500](web_5)
 * ["CatchMeIfYouCan" (Forensics) 100](forensics_1)
-* ["Trivia 2" (Trivia) 200](trivia_2)
+* ["Trivia 2" (Trivia/Recon) 200](trivia_2)
 * ["Trivia 3" (Trivia) 300](trivia_3)
 * ["Trivia 4" (Trivia) 400](trivia_4)
 
