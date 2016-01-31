@@ -68,7 +68,7 @@ Sprawdzamy więc skąd pochodzi cytat i trafiamy na https://en.wikipedia.org/wik
 	
 ###ENG version
 
-We get a encrypted [file](warrior.txt) and set of [public keys](all_keys.txt)/
+We get a encrypted [file](warrior.txt) and set of [public keys](all_keys.txt)
 The file was encrypted with RSA private key (unusual, but mathematically correct) and one of the public keys we have is corresponding key to the private key used in encryption.
 
 In case of RSA cipher the key parameters are selected so that:
