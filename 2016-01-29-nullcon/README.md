@@ -1,4 +1,4 @@
-# Writeup Nullcon CTF 2016
+# Writeup HackIM (Nullcon) CTF 2016
 
 Uczestniczyliśmy (cr019283, c7f.m0d3, msm, Rev, other019, nazywam i Shalom) w Nullcon CTF 2016, i znowu spróbujemy opisać zadania z którymi walczyliśmy.
 
