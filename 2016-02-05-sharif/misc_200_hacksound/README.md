@@ -21,6 +21,7 @@ second. By ear, all the key sounds were identical though.
 
 However, we checked out Audacity's wave representation of keys and overlaid some of them in GIMP. Here is the result:
 ![](http://i.imgur.com/royrw1X.png)
+
 The first image is two "S" sounds overlaid - there were almost no changes. The second one - "O" and "I" - had minor
 differences, and the last one - "N" and "A" - showed noticeable changes. Apparently, the further the keys are on the
 keyboard, the more differences they have. 
@@ -55,6 +56,7 @@ pozostałych klawiszy. Te niestety były dla ludzkiego ucha nierozróżnialne.
 
 Sprawdziliśmy jednak reprezentację tych dźwięków w Audacity i nałożyliśmy niektóre z nich na siebie w GIMPie. Rezultat:
 ![](http://i.imgur.com/royrw1X.png)
+
 Pierwszy obrazek, to dwa dźwięki "S" nałożone na siebie - wyglądają jak jedna fala. Drugi - to "O" i "I" - miał niewielkie,
 pikselowe wręcz różnice. Ostatni zaś - "N" i "A" - ujawnił znaczące różnice w dźwiękach. Najwyraźniej im dalej klawisze
 się od siebie znajdują na klawiaturze, tym większa jest różnica w ich dźwiękach.
