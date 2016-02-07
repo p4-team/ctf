@@ -1,6 +1,6 @@
 # Writeup Sharif CTF 2016
 
-Team: cr019283, c7f.m0d3, msm, rev, other019, nazywam, shalom, akrasuski1
+Team: c7f.m0d3, msm, other019, nazywam, shalom, akrasuski1
 
 ### Table of contents
 * [Rail Dence Cipher (Crypto) 50](crypto_50_railfence)
