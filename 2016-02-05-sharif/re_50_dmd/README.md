@@ -1,4 +1,4 @@
-﻿## URE (Crypto, 100p)
+﻿## dMd (Reverse, 50p)
 
 > Flag is : The valid input
 > [Download](dMd)
