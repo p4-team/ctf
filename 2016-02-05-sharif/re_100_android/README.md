@@ -1,4 +1,4 @@
-﻿## SRM (Reverse, 50p)
+﻿## Android (Reverse, 100p)
 
 > Find the Flag!!
 > [Download](Sharif_CTF.apk)
