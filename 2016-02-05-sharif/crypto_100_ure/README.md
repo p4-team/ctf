@@ -8,7 +8,7 @@
 
 Naszym zadaniem jest zmiana ciphertextu tak, aby po zdeszyfrowaniu jego zawartośc (plaintext) się nie zmieniła:
 
-![](screen.png)
+![](task.png)
 
 Można się zastanowić czego dokładnie chcą od nas twórcy zadania w "matematycznych" słowach. `r` i `s` są liczbami losowymi, więc jeśli uda nam się je zamienić,
 otrzymamy jednocześnie rozwiązanie zadania.
@@ -47,7 +47,7 @@ I rozwiązanie:
 
 We have to change ciphertext in such way, that after decrypting plaintext is unchanged:
 
-![](screen.png)
+![](task.png)
 
 We need to think about what task authors really want from us - in mathematical terms. `r` and `s` are random numbers, so if we substitute them with another numbers
 plaintext will surely be unchanged.
