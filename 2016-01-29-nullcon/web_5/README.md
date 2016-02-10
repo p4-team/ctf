@@ -47,14 +47,14 @@ else:
 
 ###ENG version
 
-In the task we get a webpage writen in gradne, which allows us to browse hacker movies and search them.
+In the task we get a webpage writen in gradle, which allows us to browse hacker movies and search them.
 This last option is interesting since it's clear that there is a SQL Injection vulnerability there, and also because it prints out the whole error messages with stacktraces.
 
 Database queries are handled by Hibernate and the database is H2.
 Hibernate and HQL restricts us a little bit, because we can't use `union select`, however we can still execute subqueries.
 Since we can see error logs we can perform incorrect casts in `where` condition (eg. string to int) and read the value from error message.
 
-Additionally the task description states that the tabel with flag is not mapped by Hibernate, so any attempt to query this table will end up with `flag table is not mapped by Hibernate`.
+Additionally the task description states that the table with flag is not mapped by Hibernate, so any attempt to query this table will end up with `flag table is not mapped by Hibernate`.
 
 The task description also informs us that we're not admin so we can't use `file_read()` function from H2 database.
 
