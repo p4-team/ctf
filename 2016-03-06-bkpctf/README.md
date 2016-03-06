@@ -1,6 +1,6 @@
 # Writeup Boston Key Party CTF 2016
 
-Team: akrasuski1, cr019283, c7f.m0d3, other019, rev, shalom, nazywam, ppr 
+Team: akrasuski1, cr019283, c7f.m0d3, other019, rev, msm, shalom, nazywam, ppr 
 
 ### Table of contents
 * Cookbook (pwn_6)
