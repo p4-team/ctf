@@ -6,7 +6,7 @@ Team: akrasuski1, cr019283, c7f.m0d3, other019, rev, shalom, nazywam, ppr
 * Cookbook (pwn_6)
 * Simple Calc (pwn_5)
 * hmac_crc (crypto_5)
-* Frog Fractions 2 (reversing_5)
+* [Frog Fractions 2 (reversing_5)](Frog_Fractions_2)
 * segsh (pwn_6)
 * Found it? (misc_1)
 * Good Morning (web_3)
