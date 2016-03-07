@@ -1,6 +1,6 @@
 ## Frog Fractions 2(reversing, 5 points, 65 solves)
 	Turns out Frog Fractions 2 is not battletoads
-We're given a 64bit elf file, let's start by deassembling it and describing important points in the program.
+We're given a 64bit elf file, let's start by disassembling it and describing important points in the program.
 
 The program uses a library called libgmp to handle big numbers, it makes the debugging less friendly. 
 
