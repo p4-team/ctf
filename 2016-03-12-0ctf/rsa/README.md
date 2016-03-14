@@ -43,7 +43,8 @@ This problem brings to mind Chinese Reminder Theorem ( https://en.wikipedia.org/
 We consider this for a while and we come up with the idea that if we could calculate cubic modular root from ciphertext (mod prime) for each of our 3 primes, we could then calcualte the combined root.
 We can to this with Gauss Algorithm ( http://www.di-mgt.com.au/crt.html#gaussalg )
 
-So we proceed and calculate 
+So we proceed and calculate:
+
 `pt^3 = ciperhtext mod p = 20827907988103030784078915883129`
 
 `pt^3 = ciperhtext mod q = 19342563376936634263836075415482`
