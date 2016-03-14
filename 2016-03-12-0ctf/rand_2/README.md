@@ -192,5 +192,5 @@ for output in iter(proc.stdout.readline,''):
 		proc.kill()
 		break
 ```
-Próbująć odgadnąć 8 ziaren na raz, wystarczyło tylko kilka prób aby odgadnąć jedno mieszcząć się w czasie.
+Próbująć odgadnąć 8 ziaren na raz, wystarczyło tylko kilka prób aby odgadnąć jedno mieszcząc się w czasie.
 
