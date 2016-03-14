@@ -7,12 +7,15 @@ We get a ciphertext that seems to be encrypted via RSA from openssl commandline.
 We also have access to the public key, and therefore we proceed like with standard RSA cipher, by recovering parameters:
 
 `e = 3`
+
 `n = 23292710978670380403641273270002884747060006568046290011918413375473934024039715180540887338067`
 
 And using YAFU we factor the modulus into:
 
 `p = 26440615366395242196516853423447`
+
 `q = 27038194053540661979045656526063`
+
 `r = 32581479300404876772405716877547`
 
 We get 3 prime numbers. This is still fine, this could simply be multiprime RSA. 
@@ -42,7 +45,9 @@ We can to this with Gauss Algorithm ( http://www.di-mgt.com.au/crt.html#gaussalg
 
 So we proceed and calculate 
 `pt^3 = ciperhtext mod p = 20827907988103030784078915883129`
+
 `pt^3 = ciperhtext mod q = 19342563376936634263836075415482`
+
 `pt^3 = ciperhtext mod r = 10525283947807760227880406671000`
 
 And then it took us a while to come up with solving this equations for pt (publications mention only some special cases for those roots...)
