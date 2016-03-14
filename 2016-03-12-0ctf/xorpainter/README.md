@@ -36,68 +36,68 @@ After this optimization, processing all the data takes only a couple of minutes.
 The result is 16384x16384 image. ImageMagick is able to load and navigate through such big image.
 Some letters are visible, but it's mostly empty space.
 The image becomes more usefull after removing empty rows and columns.
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
 
-	#include <stdio.h>
-	#include <stdlib.h>
+#define size 16384
 
-	#define size 16384
+static int flip[size][size];
+static int non_empty_x[size];
+static int non_empty_y[size];
 
-	static int flip[size][size];
-	static int non_empty_x[size];
-	static int non_empty_y[size];
-
-	int main(int argc, char*argv[]) {
-		int x0,y0,x1,y1;
-		int row = 0;
-		while(scanf("%d, %d, %d, %d", &x0, &x1, &y0, &y1) == 4) {
-			for(int x=x0;x<x1;x++){
-				flip[y0][x]^=1;
-				flip[y1][x]^=1;
-			}
-			row++;
-			if((row&0xfff) == 0) {
-				fprintf(stderr, "row: %d\r", row);
-			}
-		}	
-
-		row = 0;
-		for(int y=1;y<size;y++){
-			for(int x=0;x<size;x++){
-				flip[y][x] ^= flip[y-1][x];
-			}
-			row++;
-			if((row&0xfff) == 0) {
-				fprintf(stderr, "flip: %d\r", row);
-			}
+int main(int argc, char*argv[]) {
+	int x0,y0,x1,y1;
+	int row = 0;
+	while(scanf("%d, %d, %d, %d", &x0, &x1, &y0, &y1) == 4) {
+		for(int x=x0;x<x1;x++){
+			flip[y0][x]^=1;
+			flip[y1][x]^=1;
 		}
-
-		for(int y=0;y<size;y++){
-			for(int x=0;x<size;x++){
-				non_empty_x[x] |= flip[y][x];
-				non_empty_y[y] |= flip[y][x];
-			}
+		row++;
+		if((row&0xfff) == 0) {
+			fprintf(stderr, "row: %d\r", row);
 		}
+	}	
 
-		int xsize = 0;
-		int ysize = 0;
-
-		for(int i=0;i<size;i++){
-			xsize += non_empty_x[i];
-			ysize += non_empty_y[i];
+	row = 0;
+	for(int y=1;y<size;y++){
+		for(int x=0;x<size;x++){
+			flip[y][x] ^= flip[y-1][x];
 		}
-
-
-		printf("P1 %d %d\n",xsize,ysize);
-		for(int y=0;y<size;y++){
-			for(int x=0;x<size;x++){
-				if(non_empty_x[x] && non_empty_y[y]) {
-					printf("%d ",flip[y][x]);
-				}
-			}
-			printf("\n");
+		row++;
+		if((row&0xfff) == 0) {
+			fprintf(stderr, "flip: %d\r", row);
 		}
 	}
 
+	for(int y=0;y<size;y++){
+		for(int x=0;x<size;x++){
+			non_empty_x[x] |= flip[y][x];
+			non_empty_y[y] |= flip[y][x];
+		}
+	}
+
+	int xsize = 0;
+	int ysize = 0;
+
+	for(int i=0;i<size;i++){
+		xsize += non_empty_x[i];
+		ysize += non_empty_y[i];
+	}
+
+
+	printf("P1 %d %d\n",xsize,ysize);
+	for(int y=0;y<size;y++){
+		for(int x=0;x<size;x++){
+			if(non_empty_x[x] && non_empty_y[y]) {
+				printf("%d ",flip[y][x]);
+			}
+		}
+		printf("\n");
+	}
+}
+```
 It looks like only outlines of the letters are visible - probably due to off by one error.
 The image is also still 3195 x 3321 pixels, but we can read a flag from it.
 
