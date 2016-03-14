@@ -51,8 +51,8 @@ After this, "config.php" is returned as base64 encoded data uri:
 ```
 ###PL version
 
-Ptrzymujemy strone PHP wraz ze źródłem. Flaga przetrzymywana jest w pliku config.php.
-Wszystkie wartośći wejśćiowe wydają się dobrze sprawdzane.
+Otrzymujemy strone PHP wraz ze źródłem. Flaga przetrzymywana jest w pliku config.php.
+Wszystkie wartośći wejściowe wydają się dobrze sprawdzane.
 Jednak walidacja 'nickname' nie zadziała jeżeli przekażemy go jako tablicę: `nickname[]=`
 
 SQL injection może jednak okazać się problematyczne. Wszystkie `\\` oraz "podejżane" słowa kluczowe są usuwane:

@@ -99,7 +99,7 @@ We try 8 sessions at once. After only a few tries valid seed is found and flag r
 ###PL version
 
 
-Stronka używa funckcji rand() do generowania liczn.
+Stronka używa funckcji rand() do generowania liczb.
 Pierwsza jest wypisywana przy starcie skryptu.
 Pięć następnych jest zapisywanych a zwracany jest tylko hasz md5.
 Flaga zostanie nam ujawniona gdy podamy te pięć nieznanych nam liczb.
@@ -192,5 +192,5 @@ for output in iter(proc.stdout.readline,''):
 		proc.kill()
 		break
 ```
-Próbująć odgadnąć 8 ziaren na raz, wystarczyło tylko kilka prób aby odgadnąć jedno odgadnąć mieszcząć się w czasie.
+Próbująć odgadnąć 8 ziaren na raz, wystarczyło tylko kilka prób aby odgadnąć jedno mieszcząć się w czasie.
 
