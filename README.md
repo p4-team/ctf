@@ -1,4 +1,5 @@
 # CTF writeups from P4 Team
+* [2016.03.12 **0CTF 2016** (13th place / 874 teams)](2016-03-12-0ctf)
 * [2016.03.06 **Boston Key Party CTF 2016** (10th place / 734 teams)](2016-03-06-bkpctf)
 * [2016.02.20 **Internetwache CTF 2016** (8th place / 647 teams)](2016-02-20-internetwache)
 * [2016.02.05 **SharifCTF CTF 2016** (7th place / 448 teams)](2016-02-05-sharif)
