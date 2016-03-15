@@ -13,4 +13,5 @@ Team: akrasuski1, cr019283, c7f.m0d3, mnmd21891, other019, rev, msm, shalom, naz
 * [trace (re)](trace)
 * [rand_2 (web)](rand_2)
 * [piapiapia (web)](piapiapia)
+* boomshakalaka (mobile)
 
