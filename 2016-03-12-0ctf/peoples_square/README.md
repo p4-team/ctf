@@ -175,8 +175,8 @@ for (uint32_t i = 0; i < 1024; i++) {
         goodGuesses++;
     }
 
-    print(zeroes);
-    print(ones);
+    print(encrypt(zeroes));
+    print(encrypt(ones));
 }
 
 if (goodGuesses == 1024) {
@@ -493,7 +493,7 @@ const __m128i *__fastcall sub_4013C5(const __m128i *a1, __int64 a2)
 ```
 
 Zaczęliśmy od doprowadzania go do sensownej postaci
-(ręcznie refaktoryzując dostarczony kod):
+(ręcznie refaktoryzując zdekompilowany kod):
 
 ```cpp
 __int64 realMain()
@@ -572,7 +572,7 @@ void realEncrypt(__m128i *a1, __m128i *key)
 
 W porównaniu do poprzedniego - 100 razy czytelniejsze (np. wklejona poprzednio funkcja przed refaktoryzacją to "realEncrypt" - skróciła się do 4 linijek!
 
-Jak widać - cały ten program to po prostu AES szyfrujący jakieś dane. RealEncrypt to dokładnie implementacja "prawdziwego" AESa, ale zamiast pełnej liczby rund są tylko 4 (co pozwoli na nasz atak, swoją drogą).
+Jak widać - cały ten program to po prostu AES szyfrujący jakieś dane. RealEncrypt to dokładnie implementacja "prawdziwego" AESa, ale zamiast pełnej liczby rund są tylko 4 (co pozwoli, swoją drogą, na nasz atak).
 
 Konkretnie, w pseudokodzie działanie programu można przedstawić tak:
 
@@ -605,8 +605,8 @@ for (uint32_t i = 0; i < 1024; i++) {
         goodGuesses++;
     }
 
-    print(zeroes);
-    print(ones);
+    print(encrypt(zeroes));
+    print(encrypt(ones));
 }
 
 if (goodGuesses == 1024) {
@@ -615,9 +615,9 @@ if (goodGuesses == 1024) {
 }
 ```
 
-Gdzie encrypt jest naszym zmodyfikowanym, czterorundowym AESem.
+Gdzie encrypt jest naszym zmodyfikowanym, cztero-rundowym AESem.
 
-Jak się zabrać za taki atak? Otóż, możemy wykorzystać znaną technikę ataku kryptograficznego, czyli `square attack` albo `integral cryptanalysis`.
+Jak się zabrać za taki atak? Otóż, możemy wykorzystać technikę ataku kryptograficznego znana jako `square attack` albo `integral cryptanalysis`.
 
 Żeby zrozumieć w jaki sposób ten atak będzie działać, trzeba najpierw wiedzieć (chociaż mniej-więcej) jak działa AES.
 
