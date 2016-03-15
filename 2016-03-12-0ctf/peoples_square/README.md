@@ -11,7 +11,7 @@
 ###ENG
 [PL](#pl-version)
 
-We start by unpacking and analsing binary that we were given in challenge. In fact, that binary wasn't working on our computers
+We start by unpacking and analysing binary that we were given in challenge. In fact, that binary wasn't working on our computers
 (not everyone of us has newest laptop model), but in spite of it we managed to decompile it.
 
 Decompilation turned out to be only first step of analysis, because (as it's often the case with automatic decompilers) code was not very readable.
@@ -211,7 +211,7 @@ we end up with:
     S[11] S[12]  S[9] S[10]
     S[16] S[13] S[14] S[15]
 
-ShiftRows - rows of matrix are, well, shifted. For example given matrix:
+ShiftRows - rows of matrix are shifted by `row_number` positions to the left. For example given matrix:
 
     in_matrix:
      1  2  3  4
@@ -268,29 +268,36 @@ The catch is, instead of traditional addition we are using 'xor' operation (in t
     C^R8  G^R9  K^RA  O^RB
     D^RC  H^RD  L^RE  P^RF
     
-Why bother with all that theory? Because now we are going to describe actual attack.
+Why bother with all that theory? Because now we are going to describe the actual attack.
 
 Assume that we can get ciphertexts for 256 chosen (by us) plaintexts - in such a way, that every byte is constant among all plaintexts, except one byte that gets every possible byte value.
 
 Example of such set could be for example:
 
 00 00 00 00 00 ... 00
+
 01 00 00 00 00 ... 00
+
 02 00 00 00 00 ... 00
+
 03 00 00 00 00 ... 00
+
 04 00 00 00 00 ... 00
+
 ..
+
 FE 00 00 00 00 ... 00
+
 FF 00 00 00 00 ... 00
 
-Than we can represent AES state at the beggining with following matrix:
+Then we can represent AES state at the beginning with the following matrix:
 
     X   C   C   C
     C   C   C   C
     C   C   C   C
     C   C   C   C
 
-*Important* - C means that byte is the same on corresponging positions in matrix for every considered plaintext from our set.
+*Important* - C means that byte is the same on corresponding positions in matrix for every considered plaintext from our set.
 And X means that byte at that position gets *every possible byte value* for some considered plaintexts.
 
 So, let's check what AES will do with our set of chosen plaintexts:
@@ -382,9 +389,11 @@ Then we will always get 0! That's because we know that that byte is taking every
 So what? After all, our AES has 4 rounds, not 3.
 
 But we can *guess* one byte of key to *decrypt* one byte of encrypted data after 4th round. From previos relationship we can conclude that
-if we guess the byte correctly, decrypt some byte in ciphertexgt with it, and xor it all together, we must get 0.
+if we guess the byte correctly, decrypt some byte in ciphertext with it, and xor it all together, we must get 0.
 
 Then we can repeat that process 16 times - once fo each byte of key. On average we will 2 good values (one correct, and 256 * 1/256 chance of false positive). We can just try every possibility - that will give us 2^16 complexity of attach - a LOT better than naive 2^128.
+
+We can also quite easily recover the master cipher key from any round key.
 
 Can we use that attach in this challenge? Of course - if we take first 256 plaintexts, we can see that every one of them is differing only on ony byte - lowest byte of 'i'.
 
@@ -422,7 +431,6 @@ After running it for provided ciphertexts we get following result:
     solved [23, 74, 34, 20, 64, 53, 100, 117, 220, 227, 160, 55, 163, 23, 237, 75]
 
 Awesome! Now we can just decrypt encrypted flag (we have key, after all).
-Świetnie, teraz wystarczy zdeszyfrować flagę (zaszyfrowana flaga jest na samym końcu podanego outputu):
 
     0CTF{~R0MAN_l0VES_B10CK_C1PHER~}
 
@@ -633,7 +641,7 @@ robi się:
     S[11] S[12]  S[9] S[10]
     S[16] S[13] S[14] S[15]
 
-ShiftRows - macierz jest przesuwana w wierszach. Czyli z macierzy:
+ShiftRows - macierz jest przesuwana w wierszach o `numer_wierszu` pozycji w lewo. Czyli z macierzy:
 
     in_matrix:
      1  2  3  4
@@ -694,12 +702,19 @@ Po co ten cały wstęp? Bo teraz przejdźmy do ataku właściwego.
 Załóżmy, że możemy uzyskać ciphertexty dla 256 wybranych plaintextów - w taki sposób tak, że wszystkie bajty są stałe, poza jednym, który przyjmuje po kolei wszystkie możliwe wartości.
 
 00 00 00 00 00 ... 00
+
 01 00 00 00 00 ... 00
+
 02 00 00 00 00 ... 00
+
 03 00 00 00 00 ... 00
+
 04 00 00 00 00 ... 00
+
 ..
+
 FE 00 00 00 00 ... 00
+
 FF 00 00 00 00 ... 00
 
 Wtedy przy szyfrowaniu stan AES przyjmie takie wartości:
@@ -793,14 +808,14 @@ Co to oznacza? Otóż uwaga - jeśli ustalimy dowolną pozycję stanu (np. 2 wie
 
     state_01[2][2] ^ state_02[2][2] ^ state03_[2][2] ^ ... ^ stateFF[2][2]
 
-To wynik zawsze wyjdzie równy zero! Bo skoro wiemy na pewno że każdy bajt przyjmuje wszystkie możliwe wartości, to xorujemy (w różnej kolejności) liczby:
+To wynik zawsze wyjdzie równy zero! Bo skoro wiemy na pewno, że każdy bajt przyjmuje wszystkie możliwe wartości, to xorujemy (w różnej kolejności) liczby:
 
     0 ^ 1 ^ 2 ^ 3 ... ^ 0xFE ^ 0xFF
 
 Ok, i co z tego wynika? Nasz AES ma 4 rundy, a nie 3.
 
 Ale możemy *zgadnąć* jeden bajt klucza, żeby *odszyfrować* jeden bajt zaszyfrowanych danych po czwartej rundzie! Z wyprowadzonej przed chwilą zależności
-wynika że jeśli zgadniemy ten bajt dobrze, i odszyfrujemy nim wszystkie wybrane plaintexty, to po xorowaniu wszystkich wynikiem będzie zero.
+wynika, że jeśli zgadniemy ten bajt dobrze, i odszyfrujemy nim wszystkie wybrane plaintexty, to po xorowaniu wszystkich wynikiem będzie zero.
 
 Następnie możemy powtórzyć to 16 razy - dla wszystkich bajtów klucza. Średnio wyjdą dwie dobre wartości (jedna z nich poprawna) dla każdego bajta klucza - to daje nam złożoność ataku 2^16 - o niebo lepiej niż 2^128.
 
