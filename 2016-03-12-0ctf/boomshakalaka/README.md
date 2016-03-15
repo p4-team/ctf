@@ -1,6 +1,8 @@
 ## boomshakalaka (mobile, 3 points)
 	play the game, get the highest score
-	[boomshakalaka](plane.apk)
+
+[boomshakalaka](plane.apk)
+
 We're given an android apk, after decompiling it, we learned that our flag is stored in Cocos2dxPrefsFile.xml in shared_prefs folder.
 When we looked in the specified file, it turned out that the flag is only partially complete: 
 
