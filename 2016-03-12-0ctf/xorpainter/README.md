@@ -101,6 +101,8 @@ int main(int argc, char*argv[]) {
 It looks like only outlines of the letters are visible - probably due to off by one error.
 The image is also still 3195 x 3321 pixels, but we can read a flag from it.
 
+`0ctf{5m@LL_fL@g_#n_BiG_Bitmap}`
+
 ###PL version
 
 Otrzymujemy 317 megabajtowy plik CSV.
@@ -203,3 +205,4 @@ Tylko krawędź liter jest widoczna - prawdobodobnie powinniśmy użyć <= zamia
 Obrazek nadal ma aż 3195 x 3321 pikseli.
 Nie przeszkadza to jednak w odczytaniu flagi.
 
+`0ctf{5m@LL_fL@g_#n_BiG_Bitmap}`
