@@ -476,7 +476,7 @@ Basic block #30
 
 This code also prints order in which blocks were executed. That allowed us to draw this pretty graph (I allowed myself to color functions):
 
-![graph.png](graph.png)
+![](./graph.png)
 
 As you might have noticed, I recognised red and green function immediately (that's only because they were rather obvious) - they were strlen and strcpy respectively.
 I also analysed what the code is doing at the beginnign (EP is in block 15) - it is creating one big buffer in memory, and appending flag to it.
@@ -1214,7 +1214,7 @@ Basic block #30
 
 Ten skrypt wypisał też kolejność w której bloki zostały wykonane. To pozwoliło nam narysować ten piękny graf (pokolorowałem w nim funkcje):
 
-![graph.png](graph.png)
+![](./graph.png)
 
 Zielona i czerwona funkcja były łatwe do rozpoznania - to były odpowiednio strcpy i strlen.
 Przeanalizowałem też kod na początku - tworzy on duży bufor w pamięci, i dokleja do niego flagę.
