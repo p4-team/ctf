@@ -742,7 +742,7 @@ That left us with only 4 possibilities (2 characters had 2 possible values each,
 We just bruteforced that 4 possible flags, and finally got our well-deserved 4 points.
 We really did a lot of hard work when solving this challenge, it's probable that this was NOT the easiest way.
 
-If I remember correctly, correct flag from 4 possible values were `0ctf{tr135m1k5lA6551r9l5r}`.
+If I remember correctly, correct flag from 4 possible values were `0ctf{tr135m1k5l96551s9l5r}`.
 
 ###PL version
 
@@ -1480,4 +1480,4 @@ Po prostu bruteforcowaliśmy te 4 możłiwości na panelu do zgłaszania flag, i
 
 Naprawdę sporo pracy zrobiliśmy podczas rozwiązywania tego zadania - prawdopodpobnie to nie był najprostszy sposób na rozwiązanie tego.
 
-Jeśli dobrze pamiętam, poprawną flagą z 4 możliwych flag było ostatecznie `0ctf{tr135m1k5lA6551r9l5r}`.
+Jeśli dobrze pamiętam, poprawną flagą z 4 możliwych flag było ostatecznie `0ctf{tr135m1k5l96551s9l5r}`.
