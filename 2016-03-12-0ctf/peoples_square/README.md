@@ -433,7 +433,7 @@ For that reason, our code is published on CC 3.0 BY SA license, but writeup text
 
 ###PL version
 
-Najpierw analizujemy binarkę którą dostajemy w zadaniu. Coprawda nie działała ona na większości naszych komputerów za bardzo
+Najpierw analizujemy binarkę którą dostajemy w zadaniu. Co prawda nie działała ona na większości naszych komputerów za bardzo
 (nie wszyscy mamy najnowsze laptopy), udało nam się ją zdekompilować.
 
 Dekompilacja to dopiero pierwszy krok analizy, ponieważ jak to z automatyczną dekompilacją zawsze - kod był bardzo nieczytelny.
