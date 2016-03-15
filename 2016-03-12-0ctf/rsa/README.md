@@ -37,7 +37,7 @@ Here is't even easier since `e=3` and therefore `e' = e/3 = 1` which means our e
 So the whole decryption requires modular cubic root (mod n) from ciphertext.
 
 Some reading about modular roots brings us to conclusion that it's possible to do, but only in finite fields.
-So it can't be done for `n` that is a complex number, which we know it is since it's `p*q*r`.
+So it can't be done for `n` that is a composite number, which we know it is since it's `p*q*r`.
 
 This problem brings to mind Chinese Reminder Theorem ( https://en.wikipedia.org/wiki/Chinese_remainder_theorem )
 We consider this for a while and we come up with the idea that if we could calculate cubic modular root from ciphertext (mod prime) for each of our 3 primes, we could then calcualte the combined root.
