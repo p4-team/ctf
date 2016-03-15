@@ -8,7 +8,7 @@
 ###ENG
 [PL](#pl-version)
 
-We are given very long execytiun trace (list of opcodes executed by processor, in order) and want to get flag out of it.
+We are given very long execution trace (list of opcodes executed by processor, in order) and want to get flag out of it.
 
 It seems funny, because that was really interesting challenge. At the beginning we didn't even know where tha flag was, because tracelog doesn't contain any data (only opcodes).
 
