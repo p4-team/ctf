@@ -8,11 +8,11 @@ We start off by decompiling the apk file using [javadecompilers](http://www.java
 
 There is one problem though, we have no money and 0days are expensive! There are 2 solutions though. 
 
-We can craft the requests ourselfed and send them directly to the recovered url or rebuild the apk with our money upped and exploits' prices lowered. 
+We can craft the requests ourselfed and send them directly to the recovered url or rebuild the apk with our money and/or exploits' prices faked. 
 
 ![alt text](screen1.png)
 
-After a purchase has been made a JSON request to `http://paygate.godric.me/order` with products price, id and our devices id is sent. 
+After a purchase has been made a JSON request to `http://paygate.godric.me/order` is sent with products price, id and our devices id. 
 
 ![alt](screen2.png)
 
