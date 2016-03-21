@@ -1,0 +1,82 @@
+#!/usr/bin/env python2
+
+import web
+import rsa
+import json
+import random
+import time
+import hashlib
+from base64 import b64encode, b64decode
+
+class order:
+    def POST(self):
+        try:
+            params = web.data()
+            data = json.loads(params)
+            androidID = data['androidID']
+            productID = data['productID']
+            if productID == 0:
+                price = 50000
+            elif productID == 1:
+                price = 80000
+            elif productID == 2:
+                price = 100000
+            elif productID == 3:
+                price = 120000
+            elif productID == 4:
+                price = 500000
+            else:
+                raise ValueError("productID is not correct!")
+
+            rand = random.randint(1,100000000)
+            orderID = androidID + str(rand)
+            timestamp = int(time.time()*1000)
+            orderStr = "orderID="+orderID
+            orderStr += ("&price="+str(price))
+            orderStr += ("&productID="+str(productID))
+            orderStr += ("&timestamp="+str(timestamp))
+            orderStr += ("&signer=RSA")
+            orderStr += ("&hash=sha256")
+
+            nonce = "%016x" % random.getrandbits(64)
+            orderStr += ("&nonce="+nonce)
+            messageHash = hashlib.sha256(orderStr).digest()
+
+            messageSign = rsa.sign(orderStr, privKey, 'SHA-256')
+            orderStr += ("&sign="+b64encode(messageSign))
+
+            return json.dumps({'status':1, 'data':orderStr})
+        except:
+            return json.dumps({'status':0})
+
+class pay:
+
+    def POST(self):
+        try:
+            orderStr = web.data()
+            subIndex = orderStr.rfind('&sign=')
+            signedStr = orderStr[:subIndex]
+            messageHash = hashlib.sha256(signedStr).digest()
+            if not rsa.verify(signedStr, b64decode(orderStr[subIndex+6:]), pubKey)):
+                raise Exception
+
+        except:
+            return json.dumps({'status':2})
+
+        try:
+            orderStrParts = orderStr.split('&')
+            price = 0
+            orderID = ""
+            for part in orderStrParts:
+                if part.startswith('price='):
+                    price = int(part[6:])
+                if part.startswith('orderID='):
+                    orderID = part[8:]
+            if price > 0:
+                raise Exception
+
+            return json.dumps({'status':4, 'data':'BCTF{XXXXXXXXXXXXXXXX}'})
+
+        except:
+            return json.dumps({'status':3})
+
