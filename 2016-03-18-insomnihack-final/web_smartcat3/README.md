@@ -22,6 +22,8 @@ to use `ping` with payload - builting `ping` command has a nice feature: `-p pat
 pattern. If we `ping` ourselves with pattern equal to output of the executed command, we are able to sniff it, and receive it.
 Sample output, as seen in Wireshark, of `ls -al` (first 16 bytes):
 ![Output](wireshark.png)
+You can clearly see `-rw-r----- 1 roo`, meaning that the first file was owned by root and had `-rw-r-----` permissions.
+
 Trying the usual stuff, such as `ls -al /`, we found that there are two interesting files in the root directory: `flag` and 
 `read_flag`. `flag` was not readable by us, but `read_flag` was executable. When ran, it showed output like:
 ```
