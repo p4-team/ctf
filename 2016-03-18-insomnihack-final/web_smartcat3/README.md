@@ -21,7 +21,9 @@ incorrectly, making our work harder), told us that all the ports on the server a
 to use `ping` with payload - builting `ping` command has a nice feature: `-p pattern` makes a `ping` probe with selected
 pattern. If we `ping` ourselves with pattern equal to output of the executed command, we are able to sniff it, and receive it.
 Sample output, as seen in Wireshark, of `ls -al` (first 16 bytes):
+
 ![Output](wireshark.png)
+
 You can clearly see `-rw-r----- 1 roo`, meaning that the first file was owned by root and had `-rw-r-----` permissions.
 
 Trying the usual stuff, such as `ls -al /`, we found that there are two interesting files in the root directory: `flag` and 
