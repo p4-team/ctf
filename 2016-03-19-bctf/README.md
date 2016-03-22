@@ -10,5 +10,5 @@ Team: akrasuski1, c7f.m0d3, cr019283, graszka, msm, nazywam, other019, rev, shal
 * memo (exploit, 300)
 * BetaFour (ppc, 500)
 * bcloud (exploit, 150)
-* zerodaystore (misc, 200)
-* hsab (misc, 250)
+* [zerodaystore (misc, 200)](misc_200_zerodaystore)
+* [hsab (misc, 250)](misc_200_hsab)
