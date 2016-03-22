@@ -83,7 +83,7 @@ Wysłaliśmy więc na serwer skrypt, który wykonywał właśnie te czynności z
 
 `INS{shells_are _way_better_than_cats}`
 
-###ENG
+###ENG version
 
 In the task we get a web interface (CGI) for pinging selected host.
 We predict that underneath this is calling `ping` from shell with adress we give.
