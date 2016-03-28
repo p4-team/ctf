@@ -9,7 +9,7 @@ Mega doesn't store keys to decrypt your data, you are given them with the url, i
 
 After the download is complete, the file is then decrypted using aes and passed to the normal download folder.
 
-The downloaded flag loogs like gibberish: `}Żv#ĘÖ›{QřČxJZzŃ\M÷2Ž¸IĆ&N˛<­z´ŕ´„ĽĹ*‹—ýk/ĂĂµ`
+The downloaded flag looks like gibberish: `}Żv#ĘÖ›{QřČxJZzŃ\M÷2Ž¸IĆ&N˛<­z´ŕ´„ĽĹ*‹—ýk/ĂĂµ`
 
 Let's then try viewing the flag before it's been decrypted by using Chrome developer tools.
 
