@@ -6,7 +6,7 @@ Team: akrasuski1, nazywam, graszka22, c7f.m0d3, cr019283, mnmd21891, msm, other0
 * Auswählen (Rev)
 * Build Throw (Phy)
 * D3lc1d10 (Steg)
-* Death Sequence (PPC-M)
+* [Death Sequence (PPC-M)](death_sequence)
 * Dizzness Ring (Phy)
 * Drone Fail (Phy)
 * Dump (For)
