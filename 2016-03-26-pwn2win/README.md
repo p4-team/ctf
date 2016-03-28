@@ -16,7 +16,7 @@ Team: akrasuski1, nazywam, graszka22, c7f.m0d3, cr019283, mnmd21891, msm, other0
 * [Free Web Access (Web)](free_web_access)
 * g00d b0y (Bonus)
 * Give Feedback (Bonus)
-* Hidden in Plain Sight (For)
+* [Hidden in Plain Sight (For)](hidden_in_plain_sight)
 * How to Win (PPC-M)
 * Magic Patterns (PPC)
 * Member Management System (Rev)
