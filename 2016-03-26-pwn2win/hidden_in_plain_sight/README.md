@@ -13,6 +13,6 @@ The downloaded flag loogs like gibberish: `}Żv#ĘÖ›{QřČxJZzŃ\M÷2Ž¸�
 
 Let's then try viewing the flag before it's been decrypted by using Chrome developer tools.
 
-![img1](screen1)
+![img1](scr1.png)
 
 Bingo!
