@@ -4,5 +4,5 @@ Team: akrasuski1, nazywam, graszka22, c7f.m0d3, cr019283, mnmd21891, msm, other0
 
 ### Table of contents
 * [YACS2 (PPC)](yacs2)
-*
+* [Image Archeology (Admin)](image_archeology)
 
