@@ -18,7 +18,7 @@ Team: akrasuski1, nazywam, graszka22, c7f.m0d3, cr019283, mnmd21891, msm, other0
 * Give Feedback (Bonus)
 * [Hidden in Plain Sight (For)](hidden_in_plain_sight)
 * How to Win (PPC-M)
-* [iMathz (PPC)](imathz)
+* [iMathze (PPC)](imathz)
 * Magic Patterns (PPC)
 * Member Management System (Rev)
 * Painel Message (For)
