@@ -4,9 +4,9 @@ Team: akrasuski1, c7f.m0d3, cr019283, mnmd21891, msm, nazywam, shalom
 
 ### Table of contents
 
- * Invest (Forensics)
- * Secure File Reader (Exploit Me)
  * Catch me if you can (Forensics)
+ * Invest (Forensics)
  * Matryoshka (Crackme)
- * Trolololo (Forensics)
+ * Secure File Reader (Exploit Me)
  * Toil33t (Crypto)
+ * Trolololo (Forensics)
