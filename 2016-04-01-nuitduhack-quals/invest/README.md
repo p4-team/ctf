@@ -1,4 +1,4 @@
-## Invest (Forensics)
+## Invest (Forensics, 50points)
 	tl;dr dump http objects, use scheme to get the key, decode the encrypted file using aes-256-cbc
 
 We're given a [pcap file](invest.pcapng) that contains some internet traffic, there are lots of downloaded files so we decided to export the using `Export Objects -> HTTP`.
