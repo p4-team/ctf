@@ -1,7 +1,7 @@
 ## Invest (Forensics, 50points)
 	tl;dr dump http objects, use scheme to get the key, decode the encrypted file using aes-256-cbc
 
-We're given a [pcap file](invest.pcapng) that contains some internet traffic, there are lots of downloaded files so we decided to export the using `Export Objects -> HTTP`.
+We're given a [pcap file](invest.pcapng) that contains some internet traffic, there are lots of downloaded files so we decide to export them using `Export Objects -> HTTP`.
 
 There are 2 folders: `chall` and `key`. Chall contains a lot of base64 encoded files which turn out to be a split encrypted message. We can concact them simply using `cat * > out` 
 
