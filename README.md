@@ -1,4 +1,5 @@
 # CTF writeups from P4 Team
+* [2016.04.01 **Nuit du Hack CTF Quals 2016** (29th place / 447 teams)](2016-04-01-nuitduhack-quals)
 * [2016.03.26 **Pwn2Win CTF 2016** (1st place / 312 teams)](2016-03-26-pwn2win)
 * [2016.03.26 **Volga CTF 2016 Quals** (15th place / 199 teams)](2016-03-26-volga2016-quals)
 * [2016.03.19 **BCTF 2016** (18th place / 588 teams)](2016-03-19-bctf)
