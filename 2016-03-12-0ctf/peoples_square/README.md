@@ -187,7 +187,7 @@ if (goodGuesses == 1024) {
 
 Where encrypt is our modified, 4-round AES.
 
-How would we begin cracking something like that? It turns out we can use well-known cryptographic attack technique, called `square attach` or `integral cryptanalysis`.
+How would we begin cracking something like that? It turns out we can use well-known cryptographic attack technique, called `square attack` or `integral cryptanalysis`.
 
 To understand how this attack is supposed to work, we need to first get a high level (simplified) overview of AES.
 
@@ -391,13 +391,13 @@ So what? After all, our AES has 4 rounds, not 3.
 But we can *guess* one byte of key to *decrypt* one byte of encrypted data after 4th round. From previos relationship we can conclude that
 if we guess the byte correctly, decrypt some byte in ciphertext with it, and xor it all together, we must get 0.
 
-Then we can repeat that process 16 times - once fo each byte of key. On average we will 2 good values (one correct, and 256 * 1/256 chance of false positive). We can just try every possibility - that will give us 2^16 complexity of attach - a LOT better than naive 2^128.
+Then we can repeat that process 16 times - once fo each byte of key. On average we will find 2 good values (one correct, and 256 * 1/256 chance of false positive). We can just try every possibility - that will give us 2^16 complexity of attack - a LOT better than naive 2^128.
 
 We can also quite easily recover the master cipher key from any round key.
 
-Can we use that attach in this challenge? Of course - if we take first 256 plaintexts, we can see that every one of them is differing only on ony byte - lowest byte of 'i'.
+Can we use that attack in this challenge? Of course - if we take first 256 plaintexts, we can see that every one of them is differing only on ony byte - lowest byte of 'i'.
 
-So we can implement that attach in python (AES implementation skipped here, but it will be provided with full code in writeup)
+So we can implement that attack in python (AES implementation skipped here, but it will be provided with full code in writeup)
 ```python
 def integrate(index):
     potential = []
