@@ -191,7 +191,7 @@ How would we begin cracking something like that? It turns out we can use well-kn
 
 To understand how this attack is supposed to work, we need to first get a high level (simplified) overview of AES.
 
-So AES is working on 128bit blocks (or 192bit, or 256bit, but in our case we are concerned only with aes 128). These 128 bits are treated as 4x4 byte array, and we are performing some "operations" on that array.
+So AES is working on 128bit blocks. These 128 bits are treated as 4x4 byte array, and we are performing some "operations" on that array.
 
 What kind of operations?
 
@@ -621,7 +621,7 @@ Jak się zabrać za taki atak? Otóż, możemy wykorzystać technikę ataku kryp
 
 Żeby zrozumieć w jaki sposób ten atak będzie działać, trzeba najpierw wiedzieć (chociaż mniej-więcej) jak działa AES.
 
-Otóż, AES działa na blokach rozmiaru 128 bitów (albo 192, albo 256, ale w naszym przypadku 128) traktowanych jako tablica 4x4 bajty, i robi na nich pewne operacje.
+Otóż, AES działa na blokach rozmiaru 128 bitów traktowanych jako tablica 4x4 bajty, i robi na nich pewne operacje.
 
 Te operacje to:
 
