@@ -92,7 +92,7 @@ With this file safely uploaded in the server as `847cf5ebb78615e61ab646189e3ffbf
 
 `http://pixelshop.pwning.xxx/?a=system&b=ls&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
 
-Which runs `system('ls')`.
+Which runs `system('ls /')`.
 
 ![](ls.png)
 
@@ -106,7 +106,7 @@ And we finally get the flag:
 
 Dostajemy dostęp do strony pozwalającej na uploadowanie ikonek (max 32x32) oraz na rysowanie/edytowanie ikonek przez wbudowany edytor.
 Ikonki są następnie zapisywane w katalogu /uploads z losową nazwą jako pliki png.
-Pierwsza rzecz którą zauważaliśmy to fakt, ze nawigacja strony odbywa się za pomocą parametru GET `op`, np. `http://pixelshop.pwning.xxx/?op=upload`
+Pierwsza rzecz którą zauważyliśmy to fakt, że nawigacja strony odbywa się za pomocą parametru GET `op`, np. `http://pixelshop.pwning.xxx/?op=upload`
 Próba umieszczania tam różnych wartości pozwala stwierdzić że ten parametr jest używany jako argument dla include plików `.php`
 Wykorzystaliśmy więc filtr-wrapper php `php://filter/read=convert.base64-encode/resource=` żeby wymusić konwersje pliku do base64 przed includowaniem:
 
@@ -191,7 +191,7 @@ Z tym plikiem bezpiecznie leżącym na serwerze jako `847cf5ebb78615e61ab646189e
 
 `http://pixelshop.pwning.xxx/?a=system&b=ls&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
 
-Co daje nam przykładowo `system('ls')`.
+Co daje nam przykładowo `system('ls /')`.
 
 ![](ls.png)
 
