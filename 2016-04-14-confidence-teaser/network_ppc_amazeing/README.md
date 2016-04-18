@@ -15,5 +15,6 @@ some kind of maze or something, so we wrote a quick python script
 (`doit.py`) which discovers whole board using DFS - note that we had 
 to increase stack limit.
 
-Drawing the board gives us the following image with the flag:
+Drawing the board gives us the following image with the flag hidden on the bottom right corner:
+
 ![flag](flag.png)
