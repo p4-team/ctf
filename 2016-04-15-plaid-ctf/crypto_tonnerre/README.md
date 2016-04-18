@@ -7,7 +7,7 @@
 ###ENG
 [PL](#pl-version)
 
-This task consisted of two parts: website vulnerable to SQL injection and server authenticating via `zero knowledge proof protocol`.
+This task consisted of two parts: website vulnerable to SQL injection and server authenticating via `zero knowledge proof protocol` specifically `Secure Remote Password protocol`.
 
 Using [script](doit.py) we quickly exploited the SQL vulnerability to dump information about the only user stored in database: `username`, `verifier` and `salt` (although we didn't need salt).
 
@@ -29,7 +29,6 @@ if c not in forbidden set:
 ```
 
 It then sent us `res` and asked for resulting key.
-If we knew the `secret` factorization of `N` then we could simply use EGCD to recover `r` exponent (like in RSA), but of course we don't know it.
 
 We know `N` and `g` from the source code, while `v` is the verifier value we extracted via SQL injection.
 
@@ -91,7 +90,7 @@ And since we know `pS`, the task is solved and the flag is `PCTF{SrP_v1_BeSt_sRp
 
 ###PL version
 
-Zadanie składało się z dwóch części: strony podatnej na SQL injection oraz serwera autentykującego za pomocą `zero knowledge proof protocol`.
+Zadanie składało się z dwóch części: strony podatnej na SQL injection oraz serwera autentykującego za pomocą `zero knowledge proof protocol`, konkretnie `Secure Remote Password protocol`.
 
 Korzystając ze [skryptu](doit.py) szybko exploitowalismy podatność SQL i pobralismy informacje na temat jedynego użytkownika z nazy danych - `username`, `verifier` i `salt` (akurat salt nie był nam potrzebny).
 
@@ -113,7 +112,6 @@ if c not in forbidden set:
 ```
 
 Następnie przesyłał nam wartość `res` i pytał o wynikowy klucz.
-Gdybyśmy znali `sekret` czyli faktoryzacje `N` moglibyśmy użyć EGCD do odzyskania wykładnika `r` (jak w RSA), ale oczywiście nie możemy tego zrobić.
 
 Wiemy ile wynoszą `N` oraz `g` z źródła serwera, podczas gdy `v` zostało przez nas wyciągnięte z bazy danych przez SQL Injection.
 
