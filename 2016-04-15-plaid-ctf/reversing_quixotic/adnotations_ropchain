@@ -1,0 +1,862 @@
+0x80ad0df - ROP offset: 0x0
+   0x80ad0df <mempcpy+31>:	mov    esi,edx
+   0x80ad0e1 <mempcpy+33>:	ret    
+0x80ac554 - ROP offset: 0x4
+   0x80ac554 <strlen+4>:	mov    edx,0x3
+   0x80ac559 <strlen+9>:	and    edx,eax
+   0x80ac55b <strlen+11>:	je     0x80ac581 <strlen+49>
+   0x80ac55d <strlen+13>:	jp     0x80ac576 <strlen+38>
+   0x80ac55f <strlen+15>:	cmp    BYTE PTR [eax],dh
+   0x80ac561 <strlen+17>:	je     0x80ac606 <strlen+182>
+   0x80ac567 <strlen+23>:	inc    eax
+   0x80ac568 <strlen+24>:	cmp    BYTE PTR [eax],dh
+   0x80ac56a <strlen+26>:	je     0x80ac606 <strlen+182>
+   0x80ac570 <strlen+32>:	inc    eax
+0x804820a - ROP offset: 0x8
+=> 0x804820a <_init+34>:	pop    ebx
+   0x804820b <_init+35>:	ret    
+0x0 - ROP offset: 0xc
+
+0x805db7d - ROP offset: 0x10
+   0x805db7d <addbyter+29>:	add    ebx,eax
+   0x805db7f <addbyter+31>:	nop
+   0x805db80 <addbyter+32>:	mov    eax,0xffffffff
+   0x805db85 <addbyter+37>:	ret    
+0x8187036 - ROP offset: 0x14
+   0x8187036:	pop    ecx
+   0x8187037:	ret    
+0x81cc444 - ROP offset: 0x18
+
+0x811cb0d - ROP offset: 0x1c
+   0x811cb0d <free_category+141>:	pop    edi
+   0x811cb0e <free_category+142>:	xchg   ax,ax
+   0x811cb10 <free_category+144>:	ret    
+0x0 - ROP offset: 0x20
+
+0x80add96 - ROP offset: 0x24
+   0x80add96 <argz_count+38>:	add    edi,esi
+   0x80add98 <argz_count+40>:	rol    BYTE PTR [ecx],1
+   0x80add9a <argz_count+42>:	ret    
+0x80a2311 - ROP offset: 0x28
+   0x80a2311 <_IO_new_file_seekoff+417>:	mov    edx,edi
+   0x80a2313 <_IO_new_file_seekoff+419>:	pop    esi
+   0x80a2314 <_IO_new_file_seekoff+420>:	pop    edi
+   0x80a2315 <_IO_new_file_seekoff+421>:	pop    ebp
+   0x80a2316 <_IO_new_file_seekoff+422>:	ret    
+0x81570f6 - ROP offset: 0x2c
+0x2835fecc - ROP offset: 0x30
+0x80cdec3 - ROP offset: 0x34
+
+0x80ad0df - ROP offset: 0x38
+   0x80ad0df <mempcpy+31>:	mov    esi,edx
+   0x80ad0e1 <mempcpy+33>:	ret    
+0x8174149 - ROP offset: 0x3c
+   0x8174149:	lea    ecx,[edx]
+   0x817414b:	ret    
+0x806497b - ROP offset: 0x40
+   0x806497b <curl_multi_socket+43>:	mov    eax,ebx
+   0x806497d <curl_multi_socket+45>:	pop    ebx
+   0x806497e <curl_multi_socket+46>:	ret    
+0xda7fafee - ROP offset: 0x44
+   0xda7fafee:	
+0x80b25f8 - ROP offset: 0x48
+   0x80b25f8 <__strcmp_ssse3+5080>:	sub    eax,ecx
+   0x80b25fa <__strcmp_ssse3+5082>:	ret    
+0x804820a - ROP offset: 0x4c
+=> 0x804820a <_init+34>:	pop    ebx
+   0x804820b <_init+35>:	ret    
+0x0 - ROP offset: 0x50
+   0x0:	
+0x805db7d - ROP offset: 0x54
+   0x805db7d <addbyter+29>:	add    ebx,eax
+   0x805db7f <addbyter+31>:	nop
+   0x805db80 <addbyter+32>:	mov    eax,0xffffffff
+   0x805db85 <addbyter+37>:	ret    
+0x804e242 - ROP offset: 0x58
+   0x804e242 <getparameter+9570>:	pop    edx
+   0x804e243 <getparameter+9571>:	ret    
+0x35 - ROP offset: 0x5c
+   0x35:	
+0x8066aa7 - ROP offset: 0x60
+   0x8066aa7 <curlx_tvdiff+55>:	sub    edx,ebx
+   0x8066aa9 <curlx_tvdiff+57>:	lea    eax,[ecx+edx*1]
+   0x8066aac <curlx_tvdiff+60>:	pop    ebx
+   0x8066aad <curlx_tvdiff+61>:	ret    
+0x0 - ROP offset: 0x64
+   0x0:	
+0x811a256 - ROP offset: 0x68
+   0x811a256 <_Unwind_GetDataRelBase+6>:	pop    eax
+   0x811a257 <_Unwind_GetDataRelBase+7>:	ret    
+0x94 - ROP offset: 0x6c
+   0x94:	
+0x80ab65e - ROP offset: 0x70
+   0x80ab65e <malloc_usable_size+30>:	cmovne eax,ebx
+   0x80ab661 <malloc_usable_size+33>:	pop    ebx
+   0x80ab662 <malloc_usable_size+34>:	ret    
+0x81887e4 - ROP offset: 0x74
+   0x81887e4:	add    esp,edi
+   0x81887e6:	add    DWORD PTR [edx],ecx
+   0x81887e8:	ret    
+; NOTE: either jump to the next instruction, or to ROP no. 0x11c
+
+; NOTE: this is FAILING place. Don't analyze this, it just prints "wrong" and exits.
+	0x80ad35d - ROP offset: 0x78
+	   0x80ad35d <memcpy+77>:	mov    edi,eax
+	   0x80ad35f <memcpy+79>:	mov    esi,edx
+	   0x80ad361 <memcpy+81>:	mov    eax,DWORD PTR [esp+0x4]
+	   0x80ad365 <memcpy+85>:	ret    
+	0x80cf31a - ROP offset: 0x7c
+	   0x80cf31a <__lll_lock_wait_private+42>:	pop    edx
+	   0x80cf31b <__lll_lock_wait_private+43>:	ret    
+	0x81cc444 - ROP offset: 0x80
+	   0x81cc444 <_IO_wide_data_1+36>:	add    BYTE PTR [eax],al
+	   0x81cc446 <_IO_wide_data_1+38>:	add    BYTE PTR [eax],al
+	   0x81cc448 <_IO_wide_data_1+40>:	add    BYTE PTR [eax],al
+	   0x81cc44a <_IO_wide_data_1+42>:	add    BYTE PTR [eax],al
+	   0x81cc44c <_IO_wide_data_1+44>:	add    BYTE PTR [eax],al
+	   0x81cc44e <_IO_wide_data_1+46>:	add    BYTE PTR [eax],al
+	   0x81cc450 <_IO_wide_data_1+48>:	add    BYTE PTR [eax],al
+	   0x81cc452 <_IO_wide_data_1+50>:	add    BYTE PTR [eax],al
+	   0x81cc454 <_IO_wide_data_1+52>:	add    BYTE PTR [eax],al
+	   0x81cc456 <_IO_wide_data_1+54>:	add    BYTE PTR [eax],al
+	0x81887e4 - ROP offset: 0x84
+	   0x81887e4:	add    esp,edi
+	   0x81887e6:	add    DWORD PTR [edx],ecx
+	   0x81887e8:	ret    
+	0x8066cb9 - ROP offset: 0x88
+	   0x8066cb9 <Curl_global_host_cache_init+9>:	mov    eax,0x81ccf20
+	   0x8066cbe <Curl_global_host_cache_init+14>:	ret    
+	0x804e242 - ROP offset: 0x8c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x77 - ROP offset: 0x90
+	   0x77:	
+	0x8095621 - ROP offset: 0x94
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x98
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x9c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x72 - ROP offset: 0xa0
+	   0x72:	
+	0x8095621 - ROP offset: 0xa4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0xa8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0xac
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x6f - ROP offset: 0xb0
+	   0x6f:	
+	0x8095621 - ROP offset: 0xb4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0xb8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0xbc
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x6e - ROP offset: 0xc0
+	   0x6e:	
+	0x8095621 - ROP offset: 0xc4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0xc8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0xcc
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x67 - ROP offset: 0xd0
+	   0x67:	
+	0x8095621 - ROP offset: 0xd4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0xd8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0xdc
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0xa - ROP offset: 0xe0
+	   0xa:	
+	0x8095621 - ROP offset: 0xe4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0xe8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x8066cb9 - ROP offset: 0xec
+	   0x8066cb9 <Curl_global_host_cache_init+9>:	mov    eax,0x81ccf20
+	   0x8066cbe <Curl_global_host_cache_init+14>:	ret    
+	0x804e242 - ROP offset: 0xf0
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x6 - ROP offset: 0xf4
+	   0x6:	
+	0x8187036 - ROP offset: 0xf8
+	   0x8187036:	pop    ecx
+	   0x8187037:	ret    
+	0x0 - ROP offset: 0xfc
+	   0x0:	
+	0x80e8f3c - ROP offset: 0x100
+	   0x80e8f3c <__guess_grouping+60>:	add    ecx,eax
+	   0x80e8f3e <__guess_grouping+62>:	mov    eax,ecx
+	   0x80e8f40 <__guess_grouping+64>:	pop    ebx
+	   0x80e8f41 <__guess_grouping+65>:	pop    esi
+	   0x80e8f42 <__guess_grouping+66>:	ret    
+	0x1 - ROP offset: 0x104
+	   0x1:	
+	0xf - ROP offset: 0x108
+	   0xf:	
+	0x80cc6a2 - ROP offset: 0x10c
+	   0x80cc6a2 <write+66>:	mov    eax,0x4
+	   0x80cc6a7 <write+71>:	call   DWORD PTR ds:0x81ccb00
+	   0x80cc6ad <write+77>:	pop    ebx
+	   0x80cc6ae <write+78>:	xchg   DWORD PTR [esp],eax
+	   0x80cc6b1 <write+81>:	call   0x80cf3b0 <__libc_disable_asynccancel>
+	   0x80cc6b6 <write+86>:	pop    eax
+	   0x80cc6b7 <write+87>:	cmp    eax,0xfffff001
+	   0x80cc6bc <write+92>:	jae    0x80d82a0 <__syscall_error>
+	   0x80cc6c2 <write+98>:	ret    
+	0xdde97893 - ROP offset: 0x110
+	   0xdde97893:	
+	0x82a9131 - ROP offset: 0x114
+	   0x82a9131:	
+	0x80c7bd0 - ROP offset: 0x118
+	   0x80c7bd0 <_exit>:	mov    ebx,DWORD PTR [esp+0x4]
+	   0x80c7bd4 <_exit+4>:	mov    eax,0xfc
+	   0x80c7bd9 <_exit+9>:	call   DWORD PTR ds:0x81ccb00
+	   0x80c7bdf <_exit+15>:	mov    eax,0x1
+	   0x80c7be4 <_exit+20>:	int    0x80
+	   0x80c7be6 <_exit+22>:	hlt    
+	   0x80c7be7:	nop
+	   0x80c7be8:	nop
+	   0x80c7be9:	nop
+	   0x80c7bea:	nop
+
+; NOTE: This place is after the length check.
+0x8176458 - ROP offset: 0x11c
+   0x8176458:	pop    eax
+   0x8176459:	ret    
+0x81ccf20 - ROP offset: 0x120
+
+0x80fbb34 - ROP offset: 0x124
+   0x80fbb34 <_IO_switch_to_main_wget_area+36>:	mov    DWORD PTR [eax+0x20],ecx
+   0x80fbb37 <_IO_switch_to_main_wget_area+39>:	ret    
+0x8176458 - ROP offset: 0x128
+   0x8176458:	pop    eax
+   0x8176459:	ret    
+0x81ccf10 - ROP offset: 0x12c
+
+0x8091970 - ROP offset: 0x130
+   0x8091970 <MD5_Init+32>:	mov    DWORD PTR [eax],0x0
+   0x8091976 <MD5_Init+38>:	mov    DWORD PTR [eax+0x4],0x0
+   0x809197d <MD5_Init+45>:	ret    
+0x805910a - ROP offset: 0x134
+   0x805910a <tool_setopt_httppost+74>:	pop    ebp
+   0x805910b <tool_setopt_httppost+75>:	ret    
+0x36 - ROP offset: 0x138
+
+; NOTE: start of loop
+	0x8176458 - ROP offset: 0x13c
+	   0x8176458:	pop    eax
+	   0x8176459:	ret    
+	0x81ccf40 - ROP offset: 0x140
+
+	0x807bd79 - ROP offset: 0x144
+	   0x807bd79 <Curl_hash_next_element+25>:	mov    eax,DWORD PTR [eax]
+	   0x807bd7b <Curl_hash_next_element+27>:	pop    ebx
+	   0x807bd7c <Curl_hash_next_element+28>:	pop    esi
+	   0x807bd7d <Curl_hash_next_element+29>:	ret    
+	0x842344a - ROP offset: 0x148
+	0xf5d65e81 - ROP offset: 0x14c
+
+	0x8067a36 - ROP offset: 0x150
+	   0x8067a36 <max5data+102>:	pop    edi
+	   0x8067a37 <max5data+103>:	ret    
+	0x20 - ROP offset: 0x154
+
+	0x80f4821 - ROP offset: 0x158
+	   0x80f4821 <vfwprintf+881>:	add    eax,edi
+	   0x80f4823 <vfwprintf+883>:	ret    
+	0x805aeb7 - ROP offset: 0x15c
+	   0x805aeb7 <Curl_raw_toupper+7>:	lea    edx,[eax-0x20]
+	   0x805aeba <Curl_raw_toupper+10>:	cmp    cl,0x19
+	   0x805aebd <Curl_raw_toupper+13>:	cmovbe eax,edx
+	   0x805aec0 <Curl_raw_toupper+16>:	ret    
+	0x806626e - ROP offset: 0x160
+	   0x806626e <Curl_add_handle_to_pipeline+62>:	pop    edi
+	   0x806626f <Curl_add_handle_to_pipeline+63>:	ret    
+	0x78f00001 - ROP offset: 0x164
+
+	0x80f647e - ROP offset: 0x168
+	   0x80f647e <vfwprintf+8142>:	lea    eax,[edi+ebp*8-0x78f00001]
+	   0x80f6485 <vfwprintf+8149>:	ret    
+	0x8187036 - ROP offset: 0x16c
+	   0x8187036:	pop    ecx
+	   0x8187037:	ret    
+	0x0 - ROP offset: 0x170
+
+	0x80e8f3c - ROP offset: 0x174
+	   0x80e8f3c <__guess_grouping+60>:	add    ecx,eax
+	   0x80e8f3e <__guess_grouping+62>:	mov    eax,ecx
+	   0x80e8f40 <__guess_grouping+64>:	pop    ebx
+	   0x80e8f41 <__guess_grouping+65>:	pop    esi
+	   0x80e8f42 <__guess_grouping+66>:	ret    
+	0xf80a4ad6 - ROP offset: 0x178
+	0x827c259 - ROP offset: 0x17c
+
+	0x8076215 - ROP offset: 0x180
+	   0x8076215 <Curl_ipv6_scope+117>:	lea    eax,[eax+eax*2]
+	   0x8076218 <Curl_ipv6_scope+120>:	ret    
+	0x80bde4f - ROP offset: 0x184
+	   0x80bde4f <__rawmemchr_sse2_bsf+127>:	add    eax,ecx
+	   0x80bde51 <__rawmemchr_sse2_bsf+129>:	ret    
+	0x80d1f3e - ROP offset: 0x188
+	   0x80d1f3e <__fdelt_warn+14>:	shr    eax,0x5
+	   0x80d1f41 <__fdelt_warn+17>:	add    esp,0xc
+	   0x80d1f44 <__fdelt_warn+20>:	ret    
+	;;;0xc4c03938 - ROP offset: 0x18c
+	;;;0x83d025c - ROP offset: 0x190
+	;;;0x82751e8 - ROP offset: 0x194
+
+	0x80bdfb3 - ROP offset: 0x198
+	   0x80bdfb3 <__rawmemchr_sse2_bsf+483>:	add    eax,edx
+	   0x80bdfb5 <__rawmemchr_sse2_bsf+485>:	ret    
+	0x804edfc - ROP offset: 0x19c
+	   0x804edfc <tool_version_info+140>:	pop    ebx
+	   0x804edfd <tool_version_info+141>:	ret    
+	0x0 - ROP offset: 0x1a0
+
+	0x805db7d - ROP offset: 0x1a4
+	   0x805db7d <addbyter+29>:	add    ebx,eax
+	   0x805db7f <addbyter+31>:	nop
+	   0x805db80 <addbyter+32>:	mov    eax,0xffffffff
+	   0x805db85 <addbyter+37>:	ret    
+	0x81148c0 - ROP offset: 0x1a8
+	   0x81148c0 <__dlsym+96>:	mov    eax,ebx
+	   0x81148c2 <__dlsym+98>:	pop    ebx
+	   0x81148c3 <__dlsym+99>:	ret    
+	0xa54ed1fb - ROP offset: 0x1ac
+
+	0x80a40c9 - ROP offset: 0x1b0
+	   0x80a40c9 <__underflow+137>:	movzx  eax,BYTE PTR [eax]
+	   0x80a40cc <__underflow+140>:	add    esp,0x18
+	   0x80a40cf <__underflow+143>:	pop    ebx
+	   0x80a40d0 <__underflow+144>:	ret    
+	;;;0x829b62a - ROP offset: 0x1b4
+	;;;0x8284353b - ROP offset: 0x1b8
+	;;;0x7cf59391 - ROP offset: 0x1bc
+	;;;0x854c5c02 - ROP offset: 0x1c0
+	;;;0x87f1c24a - ROP offset: 0x1c4
+	;;;0xb2153916 - ROP offset: 0x1c8
+	0x83e7f17 - ROP offset: 0x1cc
+
+	0x8187036 - ROP offset: 0x1d0
+	   0x8187036:	pop    ecx
+	   0x8187037:	ret    
+	0x0 - ROP offset: 0x1d4
+	   0x0:	
+	0x80e8f3c - ROP offset: 0x1d8
+	   0x80e8f3c <__guess_grouping+60>:	add    ecx,eax
+	   0x80e8f3e <__guess_grouping+62>:	mov    eax,ecx
+	   0x80e8f40 <__guess_grouping+64>:	pop    ebx
+	   0x80e8f41 <__guess_grouping+65>:	pop    esi
+	   0x80e8f42 <__guess_grouping+66>:	ret    
+	0x8422919 - ROP offset: 0x1dc
+	0x818b37b - ROP offset: 0x1e0
+
+	0x804e242 - ROP offset: 0x1e4
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x81ccf10 - ROP offset: 0x1e8
+
+	0x80622e8 - ROP offset: 0x1ec
+	   0x80622e8 <Curl_pipeline_wanted+24>:	xor    eax,eax
+	   0x80622ea <Curl_pipeline_wanted+26>:	ret    
+	0x811c47b - ROP offset: 0x1f0
+	   0x811c47b <base_of_encoded_value+107>:	pop    ebx
+	   0x811c47c <base_of_encoded_value+108>:	ret    
+	0xffffff30 - ROP offset: 0x1f4
+
+	0x817f8f2 - ROP offset: 0x1f8
+	   0x817f8f2:	dec    ebp
+	   0x817f8f3:	ret    
+	0x80ab65e - ROP offset: 0x1fc
+	   0x80ab65e <malloc_usable_size+30>:	cmovne eax,ebx
+	   0x80ab661 <malloc_usable_size+33>:	pop    ebx
+	   0x80ab662 <malloc_usable_size+34>:	ret    
+	0x833ccc9 - ROP offset: 0x200
+
+	0x80ad35d - ROP offset: 0x204
+	   0x80ad35d <memcpy+77>:	mov    edi,eax
+	   0x80ad35f <memcpy+79>:	mov    esi,edx
+	   0x80ad361 <memcpy+81>:	mov    eax,DWORD PTR [esp+0x4]
+	   0x80ad365 <memcpy+85>:	ret    
+	0x81887e4 - ROP offset: 0x208
+	   0x81887e4:	add    esp,edi
+	   0x81887e6:	add    DWORD PTR [edx],ecx
+	   0x81887e8:	ret    
+	; NOTE: jump either to next instruction or ROP no. 0x13c
+
+0x80be6be - ROP offset: 0x20c
+   0x80be6be <__strnlen_sse2+1742>:	ror    BYTE PTR [edx],0x5f
+   0x80be6c1 <__strnlen_sse2+1745>:	ret    
+0x8178748 - ROP offset: 0x210
+   0x8178748:	rol    DWORD PTR [edx],1
+   0x817874a:	or     cl,BYTE PTR [esi]
+   0x817874c:	adc    al,0x46
+   0x817874e:	ret    
+0x8187036 - ROP offset: 0x214
+   0x8187036:	pop    ecx
+   0x8187037:	ret    
+0x1f9933d - ROP offset: 0x218
+
+0x8176458 - ROP offset: 0x21c
+   0x8176458:	pop    eax
+   0x8176459:	ret    
+0x81cc444 - ROP offset: 0x220
+
+0x80c54eb - ROP offset: 0x224
+   0x80c54eb <gmtime_r+27>:	xor    DWORD PTR [esi],ecx
+   0x80c54ed <gmtime_r+29>:	add    BYTE PTR [eax],al
+   0x80c54ef <gmtime_r+31>:	add    esp,0x1c
+   0x80c54f2 <gmtime_r+34>:	ret    
+;;;0x8079677 - ROP offset: 0x228
+;;;0x566a68e2 - ROP offset: 0x22c
+;;;0x73577d5f - ROP offset: 0x230
+;;;0x82e86a0 - ROP offset: 0x234
+;;;0x804c51d - ROP offset: 0x238
+;;;0x8228e2d - ROP offset: 0x23c
+;;;0x811d93a - ROP offset: 0x240
+
+0x80b643c - ROP offset: 0x244
+   0x80b643c <__strcpy_ssse3+5948>:	mov    eax,edx
+   0x80b643e <__strcpy_ssse3+5950>:	ret    
+0x807bd79 - ROP offset: 0x248
+   0x807bd79 <Curl_hash_next_element+25>:	mov    eax,DWORD PTR [eax]
+   0x807bd7b <Curl_hash_next_element+27>:	pop    ebx
+   0x807bd7c <Curl_hash_next_element+28>:	pop    esi
+   0x807bd7d <Curl_hash_next_element+29>:	ret    
+0x80bab3e - ROP offset: 0x24c
+0x8099d52 - ROP offset: 0x250
+
+0x80cce68 - ROP offset: 0x254
+   0x80cce68 <getcwd+1640>:	xor    eax,0xc7fffffa
+   0x80cce6d <getcwd+1645>:	ret    0xffe4
+0x80ad35d - ROP offset: 0x258
+   0x80ad35d <memcpy+77>:	mov    edi,eax
+   0x80ad35f <memcpy+79>:	mov    esi,edx
+   0x80ad361 <memcpy+81>:	mov    eax,DWORD PTR [esp+0x4]
+   0x80ad365 <memcpy+85>:	ret    
+; NOTE: now skipping 0xffe4 bytes, since there was weird ret.
+; BAM, there we are.
+0x80a2311 - ROP offset: 0x10240
+   0x80a2311 <_IO_new_file_seekoff+417>:	mov    edx,edi
+   0x80a2313 <_IO_new_file_seekoff+419>:	pop    esi
+   0x80a2314 <_IO_new_file_seekoff+420>:	pop    edi
+   0x80a2315 <_IO_new_file_seekoff+421>:	pop    ebp
+   0x80a2316 <_IO_new_file_seekoff+422>:	ret    
+0xca6ed026 - ROP offset: 0x10244
+0x8229c7c - ROP offset: 0x10248
+0x80dd6d6 - ROP offset: 0x1024c
+
+0x8176458 - ROP offset: 0x10250
+   0x8176458:	pop    eax
+   0x8176459:	ret    
+0x81ccf20 - ROP offset: 0x10254
+
+0x811a1e8 - ROP offset: 0x10258
+   0x811a1e8 <_Unwind_SetIP+8>:	mov    DWORD PTR [eax+0x4c],edx
+   0x811a1eb <_Unwind_SetIP+11>:	ret    
+0x8063122 - ROP offset: 0x1025c
+   0x8063122 <Curl_multi_content_length_penalty_size+18>:	xor    edx,edx
+   0x8063124 <Curl_multi_content_length_penalty_size+20>:	ret    
+0x80be4b9 - ROP offset: 0x10260
+   0x80be4b9 <__strnlen_sse2+1225>:	lea    eax,[eax+0x4]
+   0x80be4bc <__strnlen_sse2+1228>:	pop    edi
+   0x80be4bd <__strnlen_sse2+1229>:	ret    
+0x811a395 - ROP offset: 0x10264
+
+0x811a1e8 - ROP offset: 0x10268
+   0x811a1e8 <_Unwind_SetIP+8>:	mov    DWORD PTR [eax+0x4c],edx
+   0x811a1eb <_Unwind_SetIP+11>:	ret    
+0x80c7d2b - ROP offset: 0x1026c
+   0x80c7d2b <sysconf+75>:	ret    0xb8
+0x8091cc0 - ROP offset: 0x10270
+   0x8091cc0 <Curl_md5it>:	push   esi
+   0x8091cc1 <Curl_md5it+1>:	push   ebx
+   0x8091cc2 <Curl_md5it+2>:	sub    esp,0xb4
+   0x8091cc8 <Curl_md5it+8>:	mov    ebx,DWORD PTR [esp+0xc4]
+   0x8091ccf <Curl_md5it+15>:	mov    eax,gs:0x14
+   0x8091cd5 <Curl_md5it+21>:	mov    DWORD PTR [esp+0xac],eax
+   0x8091cdc <Curl_md5it+28>:	xor    eax,eax
+   0x8091cde <Curl_md5it+30>:	mov    esi,DWORD PTR [esp+0xc0]
+   0x8091ce5 <Curl_md5it+37>:	mov    DWORD PTR [esp+0x1c],0x67452301
+   0x8091ced <Curl_md5it+45>:	mov    DWORD PTR [esp+0x20],0xefcdab89
+; NOTE: skipping bytes again, due to weird ret.
+
+0x80835b3 - ROP offset: 0x10338
+   0x80835b3 <smtp_endofresp+83>:	mov    eax,esi
+   0x80835b5 <smtp_endofresp+85>:	pop    ebx
+   0x80835b6 <smtp_endofresp+86>:	pop    esi
+   0x80835b7 <smtp_endofresp+87>:	ret    
+0x4f3f8016 - ROP offset: 0x1033c
+0x8313b72 - ROP offset: 0x10340
+
+0x807bd79 - ROP offset: 0x10344
+   0x807bd79 <Curl_hash_next_element+25>:	mov    eax,DWORD PTR [eax]
+   0x807bd7b <Curl_hash_next_element+27>:	pop    ebx
+   0x807bd7c <Curl_hash_next_element+28>:	pop    esi
+   0x807bd7d <Curl_hash_next_element+29>:	ret    
+0xb28f220a - ROP offset: 0x10348
+0x81eb21f - ROP offset: 0x1034c
+
+0x811bf3e - ROP offset: 0x10350
+   0x811bf3e <__register_frame_info_bases+126>:	pop    edi
+   0x811bf3f <__register_frame_info_bases+127>:	ret    
+0x86f4fa3f - ROP offset: 0x10354
+
+0x80d6b6c - ROP offset: 0x10358
+   0x80d6b6c <__readvall+44>:	xor    eax,edi
+   0x80d6b6e <__readvall+46>:	ret    0xffe4
+0x80b84d0 - ROP offset: 0x1035c
+   0x80b84d0 <__strncpy_ssse3+8064>:	cmp    eax,0x5bffffff
+   0x80b84d5 <__strncpy_ssse3+8069>:	ret    
+; NOTE: Skipping bytes...
+; here:
+0x8176458 - ROP offset: 0x20344
+   0x8176458:	pop    eax
+   0x8176459:	ret    
+0x0 - ROP offset: 0x20348
+
+0x811c46b - ROP offset: 0x2034c
+   0x811c46b <base_of_encoded_value+91>:	pop    ebx
+   0x811c46c <base_of_encoded_value+92>:	ret    
+0xfffdfd1c - ROP offset: 0x20350
+
+0x80ab65e - ROP offset: 0x20354
+   0x80ab65e <malloc_usable_size+30>:	cmovne eax,ebx
+   0x80ab661 <malloc_usable_size+33>:	pop    ebx
+   0x80ab662 <malloc_usable_size+34>:	ret    
+0x82d562c - ROP offset: 0x20358
+
+0x80ad35d - ROP offset: 0x2035c
+   0x80ad35d <memcpy+77>:	mov    edi,eax
+   0x80ad35f <memcpy+79>:	mov    esi,edx
+   0x80ad361 <memcpy+81>:	mov    eax,DWORD PTR [esp+0x4]
+   0x80ad365 <memcpy+85>:	ret    
+0x804e242 - ROP offset: 0x20360
+   0x804e242 <getparameter+9570>:	pop    edx
+   0x804e243 <getparameter+9571>:	ret    
+0x81cc444 - ROP offset: 0x20364
+
+0x81887e4 - ROP offset: 0x20368
+   0x81887e4:	add    esp,edi
+   0x81887e6:	add    DWORD PTR [edx],ecx
+   0x81887e8:	ret    
+
+; NOTE: At this point, you can go to either the next instruction, or to FAIL.
+; next_stage:
+
+0x804e242 - ROP offset: 0x2036c
+   0x804e242 <getparameter+9570>:	pop    edx
+   0x804e243 <getparameter+9571>:	ret    
+0x81ccf38 - ROP offset: 0x20370
+
+0x80c91ef - ROP offset: 0x20374
+   0x80c91ef <get_scope+159>:	mov    edx,DWORD PTR [edx+0x8]
+   0x80c91f2 <get_scope+162>:	pop    ebx
+   0x80c91f3 <get_scope+163>:	mov    eax,edx
+   0x80c91f5 <get_scope+165>:	ret    
+0xa9c1b8fc - ROP offset: 0x20378
+
+0x811d340 - ROP offset: 0x2037c
+   0x811d340 <free_slotinfo+96>:	pop    esi
+   0x811d341 <free_slotinfo+97>:	ret    
+0x811d340 - ROP offset: 0x20380
+
+; NOTE: there are many repetitions of a few blocks. I will use semi-C-like #define to denote it.
+# define BASIC_BLOCK {
+	0x8061d38 - ROP offset: 0x20384
+	   0x8061d38 <multi_getsock.part.4.constprop.7+296>:	xor    eax,eax
+	   0x8061d3a <multi_getsock.part.4.constprop.7+298>:	ret    
+	0x804f005 - ROP offset: 0x20388
+	   0x804f005 <customrequest_helper+101>:	
+		xor    al,BYTE PTR [ebx+0x5e5b30c4]
+	   0x804f00b <customrequest_helper+107>:	pop    edi
+	   0x804f00c <customrequest_helper+108>:	ret    
+	0x84029d5 - ROP offset: 0x2038c
+
+	0x81768b5 - ROP offset: 0x20390
+	   0x81768b5:	xor    BYTE PTR [edx],al
+	   0x81768b7:	data16 or cl,BYTE PTR [esi]
+	   0x81768ba:	or     al,0x41
+	   0x81768bc:	ret    
+	0x8100dd4 - ROP offset: 0x20394
+	   0x8100dd4 <_nl_init_era_entries.part.0+324>:	inc    ebx
+	   0x8100dd5 <_nl_init_era_entries.part.0+325>:	sub    al,0x83
+	   0x8100dd7 <_nl_init_era_entries.part.0+327>:	ret    
+	0x80b1177 - ROP offset: 0x20398
+	   0x80b1177 <__memset_sse2_rep+1175>:	inc    edx
+	   0x80b1178 <__memset_sse2_rep+1176>:	ret    
+} ; end define
+; Now, there are 53 repetitions of it:
+; for _ in range(53): 
+;	print BASIC_BLOCK
+
+; This is what happens afterwards (note the partial basic block):
+
+0x8061d38 - ROP offset: 0x2087c
+   0x8061d38 <multi_getsock.part.4.constprop.7+296>:	xor    eax,eax
+   0x8061d3a <multi_getsock.part.4.constprop.7+298>:	ret    
+0x804f005 - ROP offset: 0x20880
+   0x804f005 <customrequest_helper+101>:	
+    xor    al,BYTE PTR [ebx+0x5e5b30c4]
+   0x804f00b <customrequest_helper+107>:	pop    edi
+   0x804f00c <customrequest_helper+108>:	ret    
+0x83e4f60 - ROP offset: 0x20884
+
+0x81768b5 - ROP offset: 0x20888
+   0x81768b5:	xor    BYTE PTR [edx],al
+   0x81768b7:	data16 or cl,BYTE PTR [esi]
+   0x81768ba:	or     al,0x41
+   0x81768bc:	ret    
+
+; end of partial basic block
+
+0x804e242 - ROP offset: 0x2088c
+   0x804e242 <getparameter+9570>:	pop    edx
+   0x804e243 <getparameter+9571>:	ret    
+0x81ccf38 - ROP offset: 0x20890
+
+0x80c91ef - ROP offset: 0x20894
+   0x80c91ef <get_scope+159>:	mov    edx,DWORD PTR [edx+0x8]
+   0x80c91f2 <get_scope+162>:	pop    ebx
+   0x80c91f3 <get_scope+163>:	mov    eax,edx
+   0x80c91f5 <get_scope+165>:	ret    
+0x81945bc - ROP offset: 0x20898
+
+0x80ad0df - ROP offset: 0x2089c
+   0x80ad0df <mempcpy+31>:	mov    esi,edx
+   0x80ad0e1 <mempcpy+33>:	ret    
+0x804ee67 - ROP offset: 0x208a0
+   0x804ee67 <tool_version_info+247>:	pop    ebx
+   0x804ee68 <tool_version_info+248>:	ret    
+0xfffffff6 - ROP offset: 0x208a4
+
+0x805d7b4 - ROP offset: 0x208a8
+   0x805d7b4 <Curl_version_init+20>:	add    ebx,esi
+   0x805d7b6 <Curl_version_init+22>:	ret    
+0x8063122 - ROP offset: 0x208ac
+   0x8063122 <Curl_multi_content_length_penalty_size+18>:	xor    edx,edx
+   0x8063124 <Curl_multi_content_length_penalty_size+20>:	ret    
+0x805cad8 - ROP offset: 0x208b0
+   0x805cad8 <showit+56>:	pop    esi
+   0x805cad9 <showit+57>:	ret    
+0x4 - ROP offset: 0x208b4
+
+; Now there is second large repetition
+# define BASIC_BLOCK2 {
+	0x8061d38 - ROP offset: 0x208b8
+	   0x8061d38 <multi_getsock.part.4.constprop.7+296>:	xor    eax,eax
+	   0x8061d3a <multi_getsock.part.4.constprop.7+298>:	ret    
+	0x8187951 - ROP offset: 0x208bc
+	   0x8187951:	or     eax,DWORD PTR [ebx+0xa]
+	   0x8187954:	ret    
+	0x8187036 - ROP offset: 0x208c0
+	   0x8187036:	pop    ecx
+	   0x8187037:	ret    
+	0x9b5f4690 - ROP offset: 0x208c4
+
+	0x80b2608 - ROP offset: 0x208c8
+	   0x80b2608 <__strcmp_ssse3+5096>:	sub    eax,ecx
+	   0x80b260a <__strcmp_ssse3+5098>:	ret    
+	0x810e47c - ROP offset: 0x208cc
+	   0x810e47c <isnanl+60>:	or     edx,eax
+	   0x810e47e <isnanl+62>:	mov    eax,0xfffe
+	   0x810e483 <isnanl+67>:	sub    eax,edx
+	   0x810e485 <isnanl+69>:	sar    eax,0x10
+	   0x810e488 <isnanl+72>:	ret    
+	0x805d7b4 - ROP offset: 0x208d0
+	   0x805d7b4 <Curl_version_init+20>:	add    ebx,esi
+	   0x805d7b6 <Curl_version_init+22>:	ret    
+}
+; Note that popped constants differ in every "iteration". They are available in separate file.
+; This time there are less repetitions:
+; for _ in range(14):
+;	  print BASIC_BLOCK2
+
+; This is after them.
+0x80a5190 - ROP offset: 0x20a40
+   0x80a5190 <_IO_default_showmanyc>:	mov    eax,0xffffffff
+   0x80a5195 <_IO_default_showmanyc+5>:	ret    
+0x810e435 - ROP offset: 0x20a44
+   0x810e435 <isinfl+85>:	and    eax,edx
+   0x810e437 <isinfl+87>:	ret    
+0x8083485 - ROP offset: 0x20a48
+   0x8083485 <smtp_multi_statemach+37>:	pop    ebx
+   0x8083486 <smtp_multi_statemach+38>:	ret    
+0xfffdf620 - ROP offset: 0x20a4c
+
+0x80ab65e - ROP offset: 0x20a50
+   0x80ab65e <malloc_usable_size+30>:	cmovne eax,ebx
+   0x80ab661 <malloc_usable_size+33>:	pop    ebx
+   0x80ab662 <malloc_usable_size+34>:	ret    
+0x81572da - ROP offset: 0x20a54
+
+0x80ad35d - ROP offset: 0x20a58
+   0x80ad35d <memcpy+77>:	mov    edi,eax
+   0x80ad35f <memcpy+79>:	mov    esi,edx
+   0x80ad361 <memcpy+81>:	mov    eax,DWORD PTR [esp+0x4]
+   0x80ad365 <memcpy+85>:	ret    
+0x80cf31a - ROP offset: 0x20a5c
+   0x80cf31a <__lll_lock_wait_private+42>:	pop    edx
+   0x80cf31b <__lll_lock_wait_private+43>:	ret    
+0x81cc444 - ROP offset: 0x20a60
+
+0x81887e4 - ROP offset: 0x20a64
+   0x81887e4:	add    esp,edi
+   0x81887e6:	add    DWORD PTR [edx],ecx
+   0x81887e8:	ret    
+; NOTE: this is yet another if(...) goto FAIL; stuff
+
+; good branch:
+; Don't analyze this - it just prints "right" and exits.
+; also, there is no code beyond this point :)
+	0x8066cb9 - ROP offset: 0x20a68
+	   0x8066cb9 <Curl_global_host_cache_init+9>:	mov    eax,0x81ccf20
+	   0x8066cbe <Curl_global_host_cache_init+14>:	ret    
+	0x804e242 - ROP offset: 0x20a6c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x72 - ROP offset: 0x20a70
+	   0x72:	
+	0x8095621 - ROP offset: 0x20a74
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20a78
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x20a7c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x69 - ROP offset: 0x20a80
+	   0x69:	
+	0x8095621 - ROP offset: 0x20a84
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20a88
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x20a8c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x67 - ROP offset: 0x20a90
+	   0x67:	
+	0x8095621 - ROP offset: 0x20a94
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20a98
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x20a9c
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x68 - ROP offset: 0x20aa0
+	   0x68:	
+	0x8095621 - ROP offset: 0x20aa4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20aa8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x20aac
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x74 - ROP offset: 0x20ab0
+	   0x74:	
+	0x8095621 - ROP offset: 0x20ab4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20ab8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x804e242 - ROP offset: 0x20abc
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0xa - ROP offset: 0x20ac0
+	   0xa:	
+	0x8095621 - ROP offset: 0x20ac4
+	   0x8095621 <__ctype_init+65>:	mov    DWORD PTR [eax],edx
+	   0x8095623 <__ctype_init+67>:	ret    
+	0x80e161f - ROP offset: 0x20ac8
+	   0x80e161f <__current_locale_name+15>:	inc    eax
+	   0x80e1620 <__current_locale_name+16>:	ret    
+	0x8066cb9 - ROP offset: 0x20acc
+	   0x8066cb9 <Curl_global_host_cache_init+9>:	mov    eax,0x81ccf20
+	   0x8066cbe <Curl_global_host_cache_init+14>:	ret    
+	0x804e242 - ROP offset: 0x20ad0
+	   0x804e242 <getparameter+9570>:	pop    edx
+	   0x804e243 <getparameter+9571>:	ret    
+	0x6 - ROP offset: 0x20ad4
+	   0x6:	
+	0x8187036 - ROP offset: 0x20ad8
+	   0x8187036:	pop    ecx
+	   0x8187037:	ret    
+	0x0 - ROP offset: 0x20adc
+	   0x0:	
+	0x80e8f3c - ROP offset: 0x20ae0
+	   0x80e8f3c <__guess_grouping+60>:	add    ecx,eax
+	   0x80e8f3e <__guess_grouping+62>:	mov    eax,ecx
+	   0x80e8f40 <__guess_grouping+64>:	pop    ebx
+	   0x80e8f41 <__guess_grouping+65>:	pop    esi
+	   0x80e8f42 <__guess_grouping+66>:	ret    
+	0x1 - ROP offset: 0x20ae4
+	   0x1:	
+	0xf - ROP offset: 0x20ae8
+	   0xf:	
+	0x80cc6a2 - ROP offset: 0x20aec
+	   0x80cc6a2 <write+66>:	mov    eax,0x4
+	   0x80cc6a7 <write+71>:	call   DWORD PTR ds:0x81ccb00
+	   0x80cc6ad <write+77>:	pop    ebx
+	   0x80cc6ae <write+78>:	xchg   DWORD PTR [esp],eax
+	   0x80cc6b1 <write+81>:	call   0x80cf3b0 <__libc_disable_asynccancel>
+	   0x80cc6b6 <write+86>:	pop    eax
+	   0x80cc6b7 <write+87>:	cmp    eax,0xfffff001
+	   0x80cc6bc <write+92>:	jae    0x80d82a0 <__syscall_error>
+	   0x80cc6c2 <write+98>:	ret    
+	0xc78ca030 - ROP offset: 0x20af0
+	   0xc78ca030:	
+	0x80c1e29 - ROP offset: 0x20af4
+	   0x80c1e29 <__strncasecmp_l_ssse3+4281>:	movdqa xmm2,XMMWORD PTR [edx]
+	   0x80c1e2d <__strncasecmp_l_ssse3+4285>:	movdqa xmm1,XMMWORD PTR [eax]
+	   0x80c1e31 <__strncasecmp_l_ssse3+4289>:	pcmpeqb xmm0,xmm1
+	   0x80c1e35 <__strncasecmp_l_ssse3+4293>:	pslldq xmm2,0x9
+	   0x80c1e3a <__strncasecmp_l_ssse3+4298>:	movdqa xmm5,xmm1
+	   0x80c1e3e <__strncasecmp_l_ssse3+4302>:	movdqa xmm7,xmm2
+	   0x80c1e42 <__strncasecmp_l_ssse3+4306>:	
+		movdqa xmm6,XMMWORD PTR ds:0x815cda0
+	   0x80c1e4a <__strncasecmp_l_ssse3+4314>:	
+		pcmpgtb xmm5,XMMWORD PTR ds:0x815cd90
+	   0x80c1e52 <__strncasecmp_l_ssse3+4322>:	
+		pcmpgtb xmm7,XMMWORD PTR ds:0x815cd90
+	   0x80c1e5a <__strncasecmp_l_ssse3+4330>:	pcmpgtb xmm6,xmm1
+	0x80c7bd0 - ROP offset: 0x20af8
+	   0x80c7bd0 <_exit>:	mov    ebx,DWORD PTR [esp+0x4]
+	   0x80c7bd4 <_exit+4>:	mov    eax,0xfc
+	   0x80c7bd9 <_exit+9>:	call   DWORD PTR ds:0x81ccb00
+	   0x80c7bdf <_exit+15>:	mov    eax,0x1
+	   0x80c7be4 <_exit+20>:	int    0x80
+	   0x80c7be6 <_exit+22>:	hlt    
+	   0x80c7be7:	nop
+	   0x80c7be8:	nop
+	   0x80c7be9:	nop
+	   0x80c7bea:	nop

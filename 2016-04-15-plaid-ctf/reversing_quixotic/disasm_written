@@ -1,0 +1,165 @@
+
+
+Notes: 
+at 0x81ccf10 : sum, initialized to 0
+at 0x81ccf40 : pointer to our password
+at 0x81ccf6c : apple
+at 0x81cc44  : pointer to our password
+
+; Note: skipped length check - password length=0x35.
+
+init loop:
+	eax=0x81ccf20
+	*0x81ccf40=our_pass
+	eax=0x81ccf10
+	*eax=0
+	*(eax+4)=0
+	ebp=0x36 ; counter
+
+loop:
+	eax=0x81ccf40
+	eax=*eax ; eax=our_pass
+	edi=0x20
+	eax+=edi
+	edx=eax-0x20 ; edx=our_pass
+	edi=0x78f00001
+	eax=edi-0x78f00001+ebp*8 ; eax=ebp*8
+	ecx=0
+	ecx+=eax ; ecx=ebp*8
+	eax=ecx
+	eax*=3 ; eax=ebp*24
+	eax+=ecx ; eax=ebp*24+ebp*8=ebp*32
+	eax>>=5 ; eax=ebp
+	eax+=edx ; eax=our_pass+ebp
+	eax=*eax ; eax=our_pass[ebp]
+	ecx=0
+	ecx+=eax ; ecx=char
+	edx=0x81ccf10
+	eax=0
+	ebx=0xffffff30
+	ebp--
+	if(ebp) eax=ebx
+	edi=eax
+	esi=edx
+	eax=*(esp+4)
+	esp+=edi ; our loop will break if ebp==0
+	*edx+=ecx ; sum+=our_pass[ebp+1]
+
+after_loop:
+	ror *edx, 0x5f ; ror sum
+	rol *edx, 1 ; rol sum
+	ecx=0x1f9933d
+	eax=0x81cc444
+	*esi^=ecx ; esi was sum, so sum^=0x1f9933d
+	*eax+=al ; our_pass[0]+=our_pass ; duh
+	eax=edx
+	eax=*eax
+	eax^=0xc7fffffa ; eax=sum^0xc7fffffa
+	edi=eax ; edi=sum^0xc7fffffa
+	esi=edx ; esi=&sum
+	edx=edi ; edx=sum^0xc7fffffa
+	esi=0xca6ed026 ; not sure, XXX
+	ebp=0x80dd6d6 ; not sure, XXX
+	eax=0x81ccf20
+	eax[0x4c]=edx ; LO(apple)=sum^0xc7fffffa
+	edx=0
+	eax+=4
+	edi=0x811a395 ; not sure, XXX
+	eax[0x4c]=edx ; HI(apple)=0
+	call Curl_md5it
+		; omitted prologue
+		eax=0
+		esi=esp[0xc0] ; esi=0x81ce9c0
+		MD5_Init(&ctx)
+		eax=strlen(apple)
+		esp[4]=&apple
+		ebx=esp+14
+		esp[0]=ebx
+		esp[8]=eax
+		call MD5_Update ; (&ctx, input=&apple, length=eax)
+		esp[4]=ebx
+		esp[0]=esi
+		call MD5_Final; (outbuffer=0x81ce9c0, &ctx)
+		; omitted epilogue
+	esi=0x81ce9c0 ; esi=outbuffer_md5
+	edi=&apple
+
+	eax=esi ; eax=outbuffer_md5
+	eax=*eax ; eax=outbuffer_md5[0] (as dword)
+	ebx=0xb28f220a
+	esi=0x81eb21f
+	edi=0x86f4fa3f
+	eax^=edi ; eax^=0x86f4fa3f
+	cmp eax, 0x5bffffff
+	eax=0
+	ebx=0xfffdfd1c
+	if ( was not equal ) { eax=ebx }
+	ebx=0x82d562c
+	edi=eax
+	esi=edx
+	eax=*(esp+4)
+	edx=0x81cc444
+	esp+=edi ; goto FAIL if the comparison failed. Otherwise continue.
+	*edx+=ecx
+
+next_stage:
+	edx=0x81ccf38
+	edx=edx[8] ; edx=our_pass
+	ebx=0xa9c1b8fc
+	eax=edx ; eax=our_pass
+	esi=0x811d340
+
+	repeated: 
+		; it's a simplification, but in reality it 
+		; xors our password with md5 as key (without nulls)
+		eax=0
+		al^=ebx[0x5e5b30c4] ; al=outbuffer_md5[ iteration ]
+		edi=0x84029d5
+		*edx^=al ; our_pass[ iteration ]^=al
+		cl|=*esi ; whatever
+		al|=0x41 ; nvm
+		ebx++
+		al-=0x83 ; nvm
+		edx++
+	eax=0
+	edi=0x84029d5
+	*edx^=al
+	cl|=*esi
+	al|=0x41
+	
+	edx=0x81ccf38
+	edx=edx[8] ; edx=our_pass
+	ebx=0x81945bc
+	eax=edx ; eax=our_pass
+	esi=edx ; esi=our_pass
+	ebx=0xfffffff6
+	ebx+=esi ; ebx=our_pass-0xa
+	edx=0
+	esi=4
+
+	another_repeated:
+		eax=0
+		eax|=ebx[0xa] ; (as dword) - eax=our_password[ iteration ]
+		ecx=0x9b5f4690
+		eax-=ecx ; eax=our_password[iteration]-wanted_value
+		edx|=eax ; set error flag if bad
+		eax=0xfffe
+		eax-=edx
+		eax>>=0x10
+		ebx+=esi ; increment iterator
+	
+	eax=-1
+	eax&=edx
+	ebx=0xfffdf620
+	if eax { eax=ebx }
+	ebx=0x81572da
+	edi=eax
+	esi=edx
+	eax=esp[4]
+	edx=0x81cc444
+	esp+=edi
+	*edx+=ecx
+	; now goto FAIL if comparison failed.
+	; otherwise goto SUCCESS
+	
+
