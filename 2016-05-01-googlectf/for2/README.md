@@ -7,9 +7,14 @@ After running it we get a nice graph that has our upside down flag ;)
 
 ![alt](scr1.png)
 
+If our LeftoverCaptureData is "01234567", then
+
+```
+"01" = button pressed (0 = nothing, 1 = rpm, etc...)
+
+"23" = signed x movement
+
+"45" = signed y movement
+```
+
 We used python+bokeh for plotting, the unsigned to signed conversion was kinda tricky: `if x >= 1<<7: x -= 1<<8` 
-
-
-
-
-
