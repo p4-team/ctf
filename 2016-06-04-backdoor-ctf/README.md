@@ -9,13 +9,13 @@ Team: c7f.m0d3, akrasuski1, cr019283, nazywam, msm, shalom
 * [Worst-pwn-ever (Pwn)](pwn_worst)
 * [ISolve (PPC)](ppc_isolve)
 * Busybee (Forensics)
-* Collision-course
-* CRC
+* [Collision-course (Crypto)](crypto_collision_course)
+* [CRC (Crypto)](crypto_crc)
 * Enter-the-matrix
-* Incomplete (Forensics)
+* [Incomplete (Forensics)](for_incomplete)
 * Debug (RE)
 * Imagelover (Web)
-* Forge (Crypto/PPC)
+* [Forge (Crypto)](crypto_forge)
 * Lossless
 * Infinite paths (Web)
 * Jigsaw (Misc)
