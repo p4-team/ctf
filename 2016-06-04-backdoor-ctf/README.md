@@ -18,5 +18,5 @@ Team: c7f.m0d3, akrasuski1, cr019283, nazywam, msm, shalom
 * [Forge (Crypto)](crypto_forge)
 * Lossless
 * Infinite paths (Web)
-* Jigsaw (Misc)
+* [Jigsaw (Misc)](misc_jigsaw)
 * [Television (Stegano)](stegano_television)
