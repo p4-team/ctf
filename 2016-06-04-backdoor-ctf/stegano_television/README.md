@@ -2,7 +2,7 @@
 	tl;dr Frames 231 and 463 contain parts of the flag
 
 We're given a gif file, with what looks like static noise. Let's start by splitting it to png of each frame using imagemagick: 
-`covert television.gif out.png`
+`convert television.gif out.png`
 
 That gave us 463 frames, our first guess was to read the noise as binary and search for the flag in all files but that didn't work out.
 
