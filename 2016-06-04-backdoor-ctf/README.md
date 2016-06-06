@@ -19,4 +19,4 @@ Team: c7f.m0d3, akrasuski1, cr019283, nazywam, msm, shalom
 * Lossless
 * Infinite paths (Web)
 * Jigsaw (Misc)
-* Television (Stegano)
+* [Television (Stegano)](stegano_television)
