@@ -1,4 +1,4 @@
-# Writeup Volga CTF 2016 Quals
+# Writeup Nuit du Hack CTF 2016 Quals
 
 Team: akrasuski1, c7f.m0d3, cr019283, mnmd21891, msm, nazywam, shalom
 
