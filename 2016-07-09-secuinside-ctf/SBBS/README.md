@@ -52,7 +52,7 @@ function hack(url, callback){
     xmlhttp.send();
 }
 
-callAjax("/{{ FLAG }}")
+hack("/{{ FLAG }}")
  
 </script>
 ```
