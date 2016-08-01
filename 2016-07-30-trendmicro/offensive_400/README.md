@@ -296,7 +296,7 @@ After all, main loop is xoring blob extracted from resources with key (key is eq
 
 I did it (after rewriting core to python), and I get... another swf. So I decompiled it, again... And that's what I get:
 
-```
+```actionscript
 YOLO = function() {
     var vrsntk = "Akstoniskrov";
     
@@ -697,7 +697,7 @@ Tak czy inaczej, ostatecznie główna pętla wykonuje xorowanie bloba wyciągni�
 
 Wykonałem to samo, i otrzymałem... kolejny swf. Zdekompilowałem i jego;
 
-```
+```actionscript
 YOLO = function() {
     var vrsntk = "Akstoniskrov";
     
