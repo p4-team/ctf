@@ -50,7 +50,7 @@ mnt();
 
 The file was bigger than that, but rest of file wasn't interesting. And I removed licence checking (with function 'licenseRequest'), because it wasn't letting me through. By the way, this code could work only under IE (because of ActiveXObject use).
 
-Whetever, but either way we can see that finally `<script>` element is created, and some decrypted data is put into it (gif is downloaded from fixed path, and than data is extracted from it).
+Either way we can see that finally `<script>` element is created, and some decrypted data is put into it (gif is downloaded from fixed path, and than data is extracted from it).
 I tried to decrypt that gif "manually" with python at first, but quickly I decided to do something simpler and I just replaced `sta.innerHTML = data` to `console.log(data)`.
 Thanks to this, I reached second stage.
 
