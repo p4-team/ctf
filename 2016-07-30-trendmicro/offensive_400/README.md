@@ -124,8 +124,7 @@ function uyGi(SKOx) {
 main(realMain, 'oU5qRoGfenAszlAOKYBE')
 ```
 
-To kod już po mojej częściowej deobfuskacji (zmiana nazw kilku funkcji, beautifikacja, etc) i wycięciu checków. Tutaj podobnie jak w poprzednim przypadku, wystarczyło wyciąć kilka checków i dodać `console.log(plZla)` zamiast `eval(plZla)`.
-Dzięki temu otrzymałem kolejny stage.
+This code is after small deobfuscation (I changed few function names, did beautification, etc) and cut few checks. Similary to previous stage, it was enough to cut few checks and add `console.log(plZla)` instead of `eval(plZla)`. Thanks to this I reached another stage.
 
 ```javascript
 if (document.referrer != "") {
@@ -396,7 +395,7 @@ i=0;j=0;for (var y=0; y<str.length; y++) {i=(i+1) % 256;j=(j+s[i]) % 256;x=s[i];
 document.write('<img src="data:image/gif;base64,'+res+'" width="0" height="0">');
 ```
 
-(kod po minimalnej deobfuskacji). Miałem minimalny problem z uruchomieniem tego (pokazywało u mnie pustą stronę), ale na szcześćie kolega z drużyny wykonał ten kod i volia, otrzymaliśmy flagę.
+This code is after minimal deobfuscation. I had problems with executing this code (it showed me empty page and nothing more), but luckily friend from team executed this code and volia, we get the flag:
 
 ![](flag.png)
 
@@ -797,6 +796,6 @@ i=0;j=0;for (var y=0; y<str.length; y++) {i=(i+1) % 256;j=(j+s[i]) % 256;x=s[i];
 document.write('<img src="data:image/gif;base64,'+res+'" width="0" height="0">');
 ```
 
-This code is after minimal deobfuscation. I had problems with executing this code (it showed me empty page and nothing more), but luckily friend from team executed this code and volia, we get the flag:
-
 ![](flag.png)
+
+(kod po minimalnej deobfuskacji). Miałem minimalny problem z uruchomieniem tego (pokazywało u mnie pustą stronę), ale na szcześćie kolega z drużyny wykonał ten kod i volia, otrzymaliśmy flagę.
