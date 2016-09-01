@@ -16,7 +16,7 @@ Team: akrasuski1, cr019283, c7f.m0d3, other019, rev, shalom
 * SPIM (Reverse 50)
 * File Checker (Reverse 60)
 * [ServerfARM (Reverse 70)](re_70)
-* [Eso Tape (Reverse 80)](reverse_80)
+* [Eso Tape (Reverse 80)](re_80)
 * The Cube (Reverse 90)
 * [Crypto-Pirat (Crypto 50)](crypto_50)
 * [Oh Bob! (Crypto 60)](crypto_60)
