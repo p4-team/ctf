@@ -1,0 +1,10 @@
+#!/bin/bash
+# wspace: http://web.archive.org/web/20150717140342/http://compsoc.dur.ac.uk/whitespace/download.php 0.3 Linux binary
+
+wspace program <<EOS
+100
+1000000000000
+EOS
+
+# Caution: Another input may make another output but that is not the correct flag.
+# Ex. If the input is "100\n1000", the output is TWCTF{3048} but it is not the flag.
