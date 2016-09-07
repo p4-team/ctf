@@ -1,6 +1,6 @@
 # Writeup Tokyo Westerns/MMA CTF 2016
 
-Team: xxx
+Team: akrasuski, c7f.m0d3, cr019283, ppr, shalom, nazywam, rev, msm
 
 ### Table of contents
 
