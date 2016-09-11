@@ -2,6 +2,11 @@
 
 Team: akrasuski, c7f.m0d3, cr019283, ppr, nazywam, rev, msm, shalom
 
+
+![](./asis_scoreboard.png)
+
+![](./asis_scoreboard2.png)
+
 ### Table of contents
 
 * [Secu Prim (PPC)](secu_prim)
