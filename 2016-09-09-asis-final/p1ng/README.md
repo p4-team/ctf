@@ -99,6 +99,8 @@ Nevertheless, after execution we had a lot of chunks on disk:
 ![](./part-18.png)
 ![](./part-20.png)
 
+(If you see only first chunk, that's because your browser rejects chunks with invalid CRC. Tell your browser to chill out).
+
 And, with a bit of determination, we could just read a flag from them:
 
 `ASIS{As_l0n9_4s_CTF_3x1sts_th3r3_w1ll_b3_ASIS_4nd_4s_l0n9_4s_ASIS_3x1sts_th3r3_w1ll_b3_PNG!}`
@@ -200,6 +202,8 @@ Tak czy inaczej, po wykonaniu tego skryptu otrzymaliśmy wiele chunków na dysku
 ![](./part-18.png)
 ![](./part-18.png)
 ![](./part-20.png)
+
+(Jeśli widzisz tylko jeden obrazek, to dlatego że Twoja przeglądarka odrzuca obrazy z nieprawidłowym CRC. Powiedz swojej przeglądarce żeby wyluzowała.)
 
 I, z odpowiednią determinacją, byliśmy w stanie odczytać flagę:
 
