@@ -3,73 +3,93 @@
 ###ENG
 [PL](#pl-version)
 
-In the task we get access to a service providing some form of encryption.
-The server challenges us for a PoW before we can interact, so first we had to solve the PoW, but it was the same as for some others tasks (prefix for string giving some hash value).
-After beating the PoW we could query the server for encryption code, key generation code, encrypted flag with current session key, current public session key and we could also encrypt something.
-
-The encryption code is:
+We are given quite complicated file, but after simplification, the only important part is this:
 
 ```python
-def encrypt(msg, pubkey):
-    n, g, u = pubkey
-    u += 1
-    r = getRandomRange(1, n ** u - 1)
-    enc = pow(g, msg, n ** u) * pow(r, n ** u, n ** u) % n ** u
-    return enc
+params = getParams(nbit)
+N, g, k = params
+email = 'admin@asis-ctf.ir'
+client.send('params = (N, g, k) = ' + str(params) + '\n')
+salt = urandom(32)
+N, g, _ = params
+x = Hash(salt, email, password)
+verifier = pow(g, x, N)
+
+client.send('Send the email address and the public random positive value A seperated by "," as "email, A": ' + '\n')
+ans = client.recv(_bufsize).strip()
+print ans
+email, A = ans.split(',')
+A = int(A)
+assert (A != 0 and A != N), client.send('Are you kidding me?! :P' + '\n')
+assert email == 'admin@asis-ctf.ir', client.send('You should login as admin@asis-ctf.ir' + '\n')
+b = getRandomRange(1, N)
+B = (k * verifier + pow(g, b, N)) % N
+
+client.send('(salt,  public_ephemeral) = (%s, %d) \n' % (salt.encode('base64')[:-1], B))
+
+u = Hash(A, B)
+
+client.send('Send the session key: ' + '\n')
+K_client = client.recv(_bufsize).strip()
+assert K_client.isdigit(), client.send('Please send a valid positive integer as session key.' + '\n')
+K_client = int(K_client)
+
+S_s = pow(A * pow(verifier, u, N), b, N)
+print 'S_s', S_s
+K_server = Hash(S_s)
+print 'K_server', K_server
+
+client.send('Send a POC of session key: ' + '\n')
+M_client = client.recv(_bufsize).strip()
+
+assert M_client.isdigit(), client.send('Please send valid positive integer as POC.' + '\n')
+M_client = int(M_client)
+
+assert (K_server == K_client), client.send('The session key is not correct!' + '\n')
+assert (M_client == Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)), client.send('The POC is not correct!' + '\n')
+
+M_server = Hash(A, M_client, K_server) # TODO: check server POC in clinet side
+
+client.send('Great, you got the flag: ' + flag + '\n')
+client.close()
 ```
 
-It looked very much like Paillier Cryptosystem so a little googling told us that this is actually a generalized version known as Damgård–Jurik Cryptosystem: https://en.wikipedia.org/wiki/Damgård–Jurik_cryptosystem
-
-It looks almost as the textbook implementation so we didn't expect vulnerability here.
-
-The key generation scheme was:
+This looks complicated, and hard to break, but let's look again. There are basically two checks we have to pass:
 
 ```python
-def get_keypair(kbit, u):
-    l = getRandomRange(kbit >> 4, kbit)
-    p = long(gmpy.next_prime(2 << l))
-    q = long(getPrime(kbit - l - 1))
-    n = p * q
-    d = (p - 1) * (q - 1) / GCD(p - 1, q - 1)
-    r = getRandomRange(1, n - 1)
-    while True:
-        t = getRandomRange(1, n - 1)
-        if GCD(t, n) == 1:
-            break
-    g = pow(n + 1, t, n ** (u + 1)) * r % n ** (u + 1)
-    pubkey = (n, g, u)
-    privkey = (n, d)
-    return pubkey, privkey
+assert (K_server == K_client), client.send('The session key is not correct!' + '\n')
+assert (M_client == Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)), client.send('The POC is not correct!' + '\n')
 ```
 
-At first glance it also looked fine, but after a while we noticed an interesting issue.
-The estimated `kbit` value, judging by some public keys we got, was just 512 bits.
-This means that `kbit >> 4` is actually `32`! 
-So the range for the first prime is between 32 and 512 bits, and for the second prime between 0 and 479 bits!
-
-This doesn't sound very safe, when the primes are not similar in size.
-Since for every connection we get a new key, we can expect that at some point we will get a key with reasonably small factor.
-For this we wrote a script to grab some public keys and corresponding encrypted flags for them:
+And the second one is no-issue (because every variable used in assert is given to us by challenge!). So we only have to calculate `K_client`.
+How are we going to achieve this? Well this looks impossible - algorithm here is almost bulletproof. Almost - except one small scar...
 
 ```python
-import codecs
-import hashlib
-import re
-import socket
-import itertools
-import string
-from time import sleep
+S_s = pow(A * pow(verifier, u, N), b, N)
+```
 
+A here is controlled by us. What if we could send A=0? Recovering `S_s` would be trivial (`0*anything == 0`). Alternatively we could send A=N. Unfortunatelly, challenge authors have thought about it:
 
-def recvuntil(s, tails):
-    data = ""
-    while True:
-        for tail in tails:
-            if tail in data:
-                return data
-        data += s.recv(1)
+```python
+assert (A != 0 and A != N), client.send('Are you kidding me?! :P' + '\n')
+```
 
+But wait, what if we could send A=2N?
 
+Well, this wasn't thought about, and this is how we solved this challenge.
+
+The only nontrivial part is this:
+
+```python
+A = 2*N
+K_client = 43388321209941149759420236104888244958223766953174235657296806338137402595305  # hardcoded K_client assuming that S_s = 0
+s.send(email + ', ' + str(A) + '\n')
+s.send(str(K_client) + '\n')
+```
+
+The rest is just basic mathematical operations on numbers given to us by challenge:
+
+```python
 def proof_of_work(s):
     data = recvuntil(s, ["Enter X:"])
     x_suffix, hash_prefix = re.findall("X \+ \"(.*)\"\)\.hexdigest\(\) = \"(.*)\.\.\.\"", data)[0]
@@ -82,167 +102,141 @@ def proof_of_work(s):
         if h.startswith(hash_prefix):
             return c
 
+print s.recv(9999)
 
-def grab_data(s):
-    s.sendall("G\n")  # get public key
-    sleep(1)
-    public = recvuntil(s, "\n") + recvuntil(s, "\n")
-    s.recv(99999)
-    s.sendall("S\n")  # get flag
-    sleep(1)
-    encflag = recvuntil(s, "\n")
-    s.recv(99999)
-    return public, encflag
+proof = proof_of_work(s)
+print proof
+s.send(proof)
 
+kot = recvuntil(s, ["public random"])
+print kot
 
-def main():
-    while True:
-        try:
-            url = "dam.asis-ctf.ir"
-            port = 34979
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect((url, port))
-            x = proof_of_work(s)
-            print(x)
-            s.sendall(x + "\n")
-            sleep(2)
-            data = s.recv(9999)
-            print(data)
-            public, encflag = grab_data(s)
-            with codecs.open("data.txt", "a") as keys_data:
-                keys_data.write(public)
-                keys_data.write(encflag + "\n")
-        except:
-            pass
+email = 'admin@asis-ctf.ir'
+ls = kot.split('\n')
+for l in ls:
+    if 'params' in l:
+        data = l[21:]
+        N, g, k = eval(data)
+        print N, g, k
 
+A = 2*N
+K_client = 43388321209941149759420236104888244958223766953174235657296806338137402595305
+s.send(email + ', ' + str(A) + '\n')
+s.send(str(K_client) + '\n')
 
-main()
+# almost done, just need to calculate POC
+
+kot = recvuntil(s, ['session key'])
+print kot
+ls = kot.split('\n')
+for l in ls:
+    if 'salt' in l:
+        data = l[28:]
+        salt, B = re.findall("\((.*),(.*)\)", data)[0]
+        salt = salt.decode('base64')
+        B = B.strip()
+        print salt, B
+
+poc = Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)
+
+print poc
+s.send(str(poc))
+
+print s.recv(999)
 ```
 
-This way we got quite a few keys after a while.
-Next step was to find the appropriate modulus with small factor - we simply passed the data to YAFU with some timeout and hoped for the best.
-Fortunately we got the data we hoped for:
+And that's it.
 
-```
-p = 531457043239
-q = 24388660549343689307668728357759111763660922989570087116087163747073216709529418907189891430183531024686147899385989241370687309994439728955541
-n = 12961525424113842581457481341117729721726176698202598934475332596021163792495193687500962257794764397492324080568328705801930173334863551881104393545637299
-g = 2132051839750573299754854507364380969444028499581423474830053011031379601163074792669440458939453573346412661307966491517309566840273475971253252815424138851541945813878339754880371934727997401840883756793174023026387912833787561873964774343104161427421558277429398462610380913199026766005036911561111911498015614446521644547923419768095811788791898552705927717854674901759443511325189376351325806917211560457327283300074902178726201347950069589670988213859630524059734789901571017367997352139514205408014889400527318603702898182503607166931422225113192039575979803468157633585201622512457745586383739179657894475772
-u = 3
-flag = 16146846956417499078189378495360455759223869595378485457630764561369105704825747347552639327825348858161202688846334168331082417561328878910128831138772951255714265696309304528530025841643933748756877476450078970791315331759262515894580524581915667726800504296931313616859751122921688756817297843797340121021959810015729726300012075071651090158205135737206806416627610169333331691704947002581388291641532314716891417238670535879838292937496483821606837803344591931921999217676036196239569436244254894652087250116786992703898654314284929464910202202816397917119926061000276191503543076180026132619912576609446737065690
-```
-
-We got a modulus with a very small factor, just 39 bits in size.
-This means we could now recover the private key, which in this case was LCM.
-
-With the private key now the last thing to do was to decrypt the flag corresponding to our broken key.
-This proved to be a problem since we couldn't find an implementation for this algorithm, which would not be a simplified version.
-
-So we ended up grabbing the paper: http://www.brics.dk/RS/00/45/BRICS-RS-00-45.pdf and coding this on our own:
-
-```python
-def L(x):
-    return (x - 1) / n
-
-
-def decrypt(ct, d, n, s):
-    ns1 = pow(n, s + 1)
-    a = pow(ct, d, ns1)
-    i = 0
-    for j in range(1, s + 1):
-        t1 = L(a % pow(n, j + 1))
-        t2 = i
-        for k in range(2, j + 1):
-            i -= 1
-            t2 = (t2 * i) % pow(n, j)
-            factorial = long(gmpy2.factorial(k))
-            up = (t2 * pow(n, k - 1))
-            down = gmpy2.invert(factorial, pow(n, j))
-            t1 = (t1 - up * down) % pow(n, j)
-        i = t1
-    return i
-```
-
-With this function we could now decrypt the flag ciphertext to get `jmd mod n^s` and by decrypting `g` value we could get `jd mod n^s` and modinv of this value to get plain `m`:
-
-```python
-ns = pow(n, u)
-jd = decrypt(g, d, n, u)
-jd_inv = gmpy2.invert(jd, ns)
-jmd = decrypt(flag, d, n, u)
-f = (jd_inv * jmd) % ns
-print("decrypted flag = " + long_to_bytes(f))
-```
 
 ###PL version
 
-W zadaniu dostajemy dostęp do serwisu umożliwiającego jakąś formę szyfrowania.
-Serwer wymaga od nas rozwiązania PoW aby móc z niego korzystać, więc musieliśmy najpierw rozwiązać PoW, niemniej było takie samo jak dla innych zadań (prefix dla stringu dającego odpowiednią wartość hasha).
-Po pokonaniu PoW mogliśmy uzyskać od serwisu algorytm szyfrowania, algorytm generacji klucza sesji, zaszyfrowaną kluczem sesji flagę, aktualny klucz publiczny sesji oraz mogliśmy też sami coś zaszyfrować.
-
-Kod szyfrowania:
+Dostajemy całkiem skomplikowany plik, ale po uproszczeniu, jedyna skomplikowana część to to:
 
 ```python
-def encrypt(msg, pubkey):
-    n, g, u = pubkey
-    u += 1
-    r = getRandomRange(1, n ** u - 1)
-    enc = pow(g, msg, n ** u) * pow(r, n ** u, n ** u) % n ** u
-    return enc
+params = getParams(nbit)
+N, g, k = params
+email = 'admin@asis-ctf.ir'
+client.send('params = (N, g, k) = ' + str(params) + '\n')
+salt = urandom(32)
+N, g, _ = params
+x = Hash(salt, email, password)
+verifier = pow(g, x, N)
+
+client.send('Send the email address and the public random positive value A seperated by "," as "email, A": ' + '\n')
+ans = client.recv(_bufsize).strip()
+print ans
+email, A = ans.split(',')
+A = int(A)
+assert (A != 0 and A != N), client.send('Are you kidding me?! :P' + '\n')
+assert email == 'admin@asis-ctf.ir', client.send('You should login as admin@asis-ctf.ir' + '\n')
+b = getRandomRange(1, N)
+B = (k * verifier + pow(g, b, N)) % N
+
+client.send('(salt,  public_ephemeral) = (%s, %d) \n' % (salt.encode('base64')[:-1], B))
+
+u = Hash(A, B)
+
+client.send('Send the session key: ' + '\n')
+K_client = client.recv(_bufsize).strip()
+assert K_client.isdigit(), client.send('Please send a valid positive integer as session key.' + '\n')
+K_client = int(K_client)
+
+S_s = pow(A * pow(verifier, u, N), b, N)
+print 'S_s', S_s
+K_server = Hash(S_s)
+print 'K_server', K_server
+
+client.send('Send a POC of session key: ' + '\n')
+M_client = client.recv(_bufsize).strip()
+
+assert M_client.isdigit(), client.send('Please send valid positive integer as POC.' + '\n')
+M_client = int(M_client)
+
+assert (K_server == K_client), client.send('The session key is not correct!' + '\n')
+assert (M_client == Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)), client.send('The POC is not correct!' + '\n')
+
+M_server = Hash(A, M_client, K_server) # TODO: check server POC in clinet side
+
+client.send('Great, you got the flag: ' + flag + '\n')
+client.close()
 ```
 
-Wyglądał bardzo podobnie do Kryptosystemu Pailliera i po chwili googlowania znaleźliśmy informacje że jest to wersja uogóliona, znana jako Kryptosystem Damgård–Jurik: https://en.wikipedia.org/wiki/Damgård–Jurik_cryptosystem
-
-Implementacja wyglądała na książkową, więc nie spodziewaliśmy się tutaj podatności.
-
-Algorytm generacji klucza:
+Wygląda na skomplikowane i trudne do złamania. Ale w sumie, są tylko dwa testy które musimy przejść:
 
 ```python
-def get_keypair(kbit, u):
-    l = getRandomRange(kbit >> 4, kbit)
-    p = long(gmpy.next_prime(2 << l))
-    q = long(getPrime(kbit - l - 1))
-    n = p * q
-    d = (p - 1) * (q - 1) / GCD(p - 1, q - 1)
-    r = getRandomRange(1, n - 1)
-    while True:
-        t = getRandomRange(1, n - 1)
-        if GCD(t, n) == 1:
-            break
-    g = pow(n + 1, t, n ** (u + 1)) * r % n ** (u + 1)
-    pubkey = (n, g, u)
-    privkey = (n, d)
-    return pubkey, privkey
+assert (K_server == K_client), client.send('The session key is not correct!' + '\n')
+assert (M_client == Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)), client.send('The POC is not correct!' + '\n')
 ```
 
-Na pierwszy rzut oka wygląda ok, ale po chwili zastanowienia zauważliśmy interesujący fakt.
-Szacowana przez nas wartość `kbit`, na podstawie kluczy publicznych które wyciagnęliśmy, wynosiła tylko 512 bitów.
-To oznacza że `kbit >> 4` to raptem `32`!
-Więc zsięg dla jednej z liczb to pomiędzy 32 a 512 bitów a dla drugiej pomiędzy 0 a 479 bitów!
-
-To nie brzmi zbyt bezpiecznie kiedy liczby pierwsze nie są podobnego rozmiaru.
-Ponieważ co połączenie dostajemy nowy klucz sesji, możemy oczekiwać, że kiedyś trafi nam się taki z względnie małym czynnikiem.
-W związku z tym napisaliśmy skrypt do pobrania kluczy publicznych i pasujących do nich flag:
+I drugi z nich to żaden problem (bo każda zmienna użyta w assercie jest wysyłana do nas przez serwer zadania) - więc musimy tylko obliczyć `K_client`.
+Jak zamierzamy to zrobić? Cóż, wygląda to na niemożliwe - algorytm jest prawie że kuloodporny. Prawie że - ma jeden drobny problem...
 
 ```python
-import codecs
-import hashlib
-import re
-import socket
-import itertools
-import string
-from time import sleep
+S_s = pow(A * pow(verifier, u, N), b, N)
+```
 
+A tutaj jest kontrolowane przez nas. Co jeśli wysłalibyśmy A=0? Odzyskanie `S_s` byłoby trywialne (`0*cokolwiek = 0`). Albo moglibyśmy wysłać A=N. Niestety, twórcy zadania pomyśleli o tym:
 
-def recvuntil(s, tails):
-    data = ""
-    while True:
-        for tail in tails:
-            if tail in data:
-                return data
-        data += s.recv(1)
+```python
+assert (A != 0 and A != N), client.send('Are you kidding me?! :P' + '\n')
+```
 
+Hmm, ale co jeśli wyślemy A=2N?
 
+Cóż, nikt o tym widać nie pomyślał, i w ten sposób rozwiązaliśmy to zadanie.
+
+Jedyna nietrywialna część naszego kodu to to:
+
+```python
+A = 2*N
+K_client = 43388321209941149759420236104888244958223766953174235657296806338137402595305  # hardcoded K_client assuming that S_s = 0
+s.send(email + ', ' + str(A) + '\n')
+s.send(str(K_client) + '\n')
+```
+
+Reszta to podstawowe operacje matematyczne na liczbach które dostajemy od zadania:
+
+```python
 def proof_of_work(s):
     data = recvuntil(s, ["Enter X:"])
     x_suffix, hash_prefix = re.findall("X \+ \"(.*)\"\)\.hexdigest\(\) = \"(.*)\.\.\.\"", data)[0]
@@ -255,89 +249,47 @@ def proof_of_work(s):
         if h.startswith(hash_prefix):
             return c
 
+print s.recv(9999)
 
-def grab_data(s):
-    s.sendall("G\n")  # get public key
-    sleep(1)
-    public = recvuntil(s, "\n") + recvuntil(s, "\n")
-    s.recv(99999)
-    s.sendall("S\n")  # get flag
-    sleep(1)
-    encflag = recvuntil(s, "\n")
-    s.recv(99999)
-    return public, encflag
+proof = proof_of_work(s)
+print proof
+s.send(proof)
 
+kot = recvuntil(s, ["public random"])
+print kot
 
-def main():
-    while True:
-        try:
-            url = "dam.asis-ctf.ir"
-            port = 34979
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect((url, port))
-            x = proof_of_work(s)
-            print(x)
-            s.sendall(x + "\n")
-            sleep(2)
-            data = s.recv(9999)
-            print(data)
-            public, encflag = grab_data(s)
-            with codecs.open("data.txt", "a") as keys_data:
-                keys_data.write(public)
-                keys_data.write(encflag + "\n")
-        except:
-            pass
+email = 'admin@asis-ctf.ir'
+ls = kot.split('\n')
+for l in ls:
+    if 'params' in l:
+        data = l[21:]
+        N, g, k = eval(data)
+        print N, g, k
 
+A = 2*N
+K_client = 43388321209941149759420236104888244958223766953174235657296806338137402595305
+s.send(email + ', ' + str(A) + '\n')
+s.send(str(K_client) + '\n')
 
-main()
+# almost done, just need to calculate POC
+
+kot = recvuntil(s, ['session key'])
+print kot
+ls = kot.split('\n')
+for l in ls:
+    if 'salt' in l:
+        data = l[28:]
+        salt, B = re.findall("\((.*),(.*)\)", data)[0]
+        salt = salt.decode('base64')
+        B = B.strip()
+        print salt, B
+
+poc = Hash(Hash(N) ^ Hash(g), Hash(email), salt, A, B, K_client)
+
+print poc
+s.send(str(poc))
+
+print s.recv(999)
 ```
 
-W ten sposób pobraliśmy trochę kluczy po jakimś czasie.
-Następny krok to znalezienie odpowiedniego modulusa z małym czynnikiem - po prostu wysłaliśmy uzyskane modulusu do YAFU z timeoutem i trzymaliśmy kciuki.
-Na szczęście udało się dość szybko i dostaliśmy:
-
-g = 2132051839750573299754854507364380969444028499581423474830053011031379601163074792669440458939453573346412661307966491517309566840273475971253252815424138851541945813878339754880371934727997401840883756793174023026387912833787561873964774343104161427421558277429398462610380913199026766005036911561111911498015614446521644547923419768095811788791898552705927717854674901759443511325189376351325806917211560457327283300074902178726201347950069589670988213859630524059734789901571017367997352139514205408014889400527318603702898182503607166931422225113192039575979803468157633585201622512457745586383739179657894475772
-u = 3
-flag = 16146846956417499078189378495360455759223869595378485457630764561369105704825747347552639327825348858161202688846334168331082417561328878910128831138772951255714265696309304528530025841643933748756877476450078970791315331759262515894580524581915667726800504296931313616859751122921688756817297843797340121021959810015729726300012075071651090158205135737206806416627610169333331691704947002581388291641532314716891417238670535879838292937496483821606837803344591931921999217676036196239569436244254894652087250116786992703898654314284929464910202202816397917119926061000276191503543076180026132619912576609446737065690
-
-Więc mieliśmy modulus z małym czynnikiem, raptem 39 bitów.
-To oznacza że mogliśmy teraz odzyskać klucz prywatny za pomocą LCM.
-
-Z kluczem prywatnym pozostało nam już tylko odszyfrować flagę pasującą do złamanego klucza.
-To okazało się problematyczne, bo nie mogliśmy nigdzie znaleźć implementacji tego algorytmu w wersji nie-uproszczonej.
-
-Więc finalnie wzięliśmy publikacje: http://www.brics.dk/RS/00/45/BRICS-RS-00-45.pdf i zaimplementowaliśmy kod samodzielnie:
-
-```python
-def L(x):
-    return (x - 1) / n
-
-
-def decrypt(ct, d, n, s):
-    ns1 = pow(n, s + 1)
-    a = pow(ct, d, ns1)
-    i = 0
-    for j in range(1, s + 1):
-        t1 = L(a % pow(n, j + 1))
-        t2 = i
-        for k in range(2, j + 1):
-            i -= 1
-            t2 = (t2 * i) % pow(n, j)
-            factorial = long(gmpy2.factorial(k))
-            up = (t2 * pow(n, k - 1))
-            down = gmpy2.invert(factorial, pow(n, j))
-            t1 = (t1 - up * down) % pow(n, j)
-        i = t1
-    return i
-```
-
-Z tą funkcja mogliśmy teraz odszyfrować flagę dostając `jmd mod n^s` a deszyfrując `g` dostaliśmy `jd mod n^s` z którego wyliczyliśmy modinv aby uzyskać wartość `m`:
-
-```python
-ns = pow(n, u)
-jd = decrypt(g, d, n, u)
-jd_inv = gmpy2.invert(jd, ns)
-jmd = decrypt(flag, d, n, u)
-f = (jd_inv * jmd) % ns
-print("decrypted flag = " + long_to_bytes(f))
-```
+I to w sumie tyle, wystarczyło to do zdobycia flagi.
