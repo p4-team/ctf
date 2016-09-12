@@ -1,4 +1,4 @@
-## Dam (Crypto, 277p)
+## Srpp (Crypto, 231p)
 
 ###ENG
 [PL](#pl-version)
