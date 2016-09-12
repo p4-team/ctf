@@ -89,6 +89,7 @@ Nevertheless, after execution we had a lot of chunks on disk:
 ![](./part-8.png)
 ![](./part-9.png)
 ![](./part-10.png)
+![](./part-11.png)
 ![](./part-12.png)
 ![](./part-13.png)
 ![](./part-14.png)
@@ -96,7 +97,7 @@ Nevertheless, after execution we had a lot of chunks on disk:
 ![](./part-16.png)
 ![](./part-17.png)
 ![](./part-18.png)
-![](./part-18.png)
+![](./part-19.png)
 ![](./part-20.png)
 
 (If you see only first chunk, that's because your browser rejects chunks with invalid CRC. Tell your browser to chill out).
@@ -193,6 +194,7 @@ Tak czy inaczej, po wykonaniu tego skryptu otrzymaliśmy wiele chunków na dysku
 ![](./part-8.png)
 ![](./part-9.png)
 ![](./part-10.png)
+![](./part-11.png)
 ![](./part-12.png)
 ![](./part-13.png)
 ![](./part-14.png)
@@ -200,7 +202,7 @@ Tak czy inaczej, po wykonaniu tego skryptu otrzymaliśmy wiele chunków na dysku
 ![](./part-16.png)
 ![](./part-17.png)
 ![](./part-18.png)
-![](./part-18.png)
+![](./part-19.png)
 ![](./part-20.png)
 
 (Jeśli widzisz tylko jeden obrazek, to dlatego że Twoja przeglądarka odrzuca obrazy z nieprawidłowym CRC. Powiedz swojej przeglądarce żeby wyluzowała.)
