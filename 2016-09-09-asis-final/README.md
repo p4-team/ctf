@@ -14,4 +14,7 @@ Team: akrasuski, c7f.m0d3, cr019283, ppr, nazywam, rev, msm, shalom
 * [RSA (Crypto)](rsa)
 * [DAM (Crypto)](dam)
 * [Races (Crypto)](races)
+* [SRPP (Crypto)](srpp)
+* [P1ng (Forensics)](p1ng)
+* [DSA (Crypto)](dsa)
 
