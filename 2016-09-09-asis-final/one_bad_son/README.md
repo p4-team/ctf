@@ -13,7 +13,12 @@ After some googling, the data turned out to be a [BSON](https://en.wikipedia.org
 
 Our first guess was to try to load the dump into mongo using a recovery tool, but that turned out to be pointless.
 
-Taking a step back, we've decided to convert the file to a standard JSON structured file using a python script:
+Taking a step back, we've decided to convert the file to a standard JSON structured file using a python script.
+The file itself was broken and the parser would not work on it.
+We used a debugger to see how the library is parsing bson files and we noticed that it first tries to read 4 big endian byte number as record length.
+In our case there was only a single `0x0` byte instead.
+Therefore we checked how long is a single record (`0x72` bytes) and then attached the missing 3 bytes in the beginning of data so that the data starts with `0x72 0x00 0x00 0x00` (big endian!).
+With this we could make a script to dump all the data:
 
 
 ``` python
@@ -37,9 +42,13 @@ This is how a single row looked like:
 
 `{u'raw': 100000000000000L, u'len': 2, u'dat': u'iVA=', u'crc': u'c0f36009', u'fname': u'flag', u'mtime': datetime.datetime(48652, 6, 24, 12, 40, 10, 460000), u'_id': u'0262404638'}`
 
-What's interesting, is that the data from 2 first rows sorted by `raw` fields creates `PNG`, so there's a png image encoded in that json!
+In reality we could have just as well written a parser `by hand`, since the structure was rather clear, but it turned out to be faster this way.
 
-So we have to decode all unique `flag` rows sorted by their `raw` field:
+What's interesting now, is that the base64 decoded `dat` data from first 2 rows (when data sorted by `raw` field) creates `PNG` string, so there's a png image encoded in that json!
+
+However some values from the `raw` field are duplicated so we had to make sure we use each chunk only once.
+
+We wrote a script to decode all unique `flag` rows sorted by their `raw` field:
 
 ``` python
 used_id = set()
