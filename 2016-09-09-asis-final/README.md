@@ -18,3 +18,4 @@ Team: akrasuski, c7f.m0d3, cr019283, ppr, nazywam, rev, msm, shalom
 * [P1ng (Forensics)](p1ng)
 * [DSA (Crypto)](dsa)
 * [One Bad Son (Forensics)](one_bad_son)
+* [Master Page(Rev/Web/Crypto)](master_page)
