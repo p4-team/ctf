@@ -1,6 +1,7 @@
 # CTF writeups from P4 Team
 
 
+* [2016.09.16 **CSAW CTF 2016 Quals** (7th place / 1273 teams)](2016-09-16-csaw)
 * [2016.09.09 **ASIS CTF Finals 2016** (5th place / 343 teams)](2016-09-09-asis-final)
 * [2016.09.05 **Tokyo Westerns/MMA CTF 2nd 2016** (6th place / 835 teams)](2016-09-05-tokyo-mma)
 * [2016.08.21 **BioTerra CTF 2016** (1st place / 150 teams)](2016-08-21-bioterra-ctf)
