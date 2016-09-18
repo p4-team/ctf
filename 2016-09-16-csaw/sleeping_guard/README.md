@@ -99,7 +99,7 @@ except Exception as ex:
 
 and got:
 
-[!](img.png)
+![](./img.png)
 
 
 ###PL version
@@ -200,4 +200,4 @@ except Exception as ex:
 
 I dostaliśmy:
 
-[!](img.png)
+![](./img.png)
