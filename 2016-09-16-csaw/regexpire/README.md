@@ -1,4 +1,4 @@
-## Regexpire (Misc/PPC)
+## Regexpire (Misc/PPC, 100p)
 
 ###ENG
 [PL](#pl-version)

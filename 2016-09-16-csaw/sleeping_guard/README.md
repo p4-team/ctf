@@ -1,4 +1,4 @@
-## Sleeping guard (Crypto)
+## Sleeping guard (Crypto, 50p)
 
 ###ENG
 [PL](#pl-version)
