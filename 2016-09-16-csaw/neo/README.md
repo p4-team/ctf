@@ -29,7 +29,10 @@ So if for a certain value we won't get decryption error this means we successful
 
 Now we can extend this to more bytes - to recover the byte `k-1` we need to change the last byte to `0x2` and if we find the byte with no error in decryption it means that the xored value is also `0x2`.
 
-This of course won't let us recover the first block, but this can't be helped.
+This of course won't let us recover the first block, but this can't be helped, unless some special conditions are met.
+In some cases the IV is placed as the first block of plaintext before encryption, and if this is the case, we could recover the IV as well.
+In our case we had no knowledge of the way IV was handled, and if the IV is needed for us or not.
+We assumed we don't need it and it turned out to be the right guess.
 
 The attack implementation in python (we used https://github.com/mpgn/Padding-oracle-attack/blob/master/exploit.py as template)
 
@@ -201,7 +204,9 @@ Więc jeśli dla jakiejś wartości nie wystąpi błąd deszyfrowania to znaczy 
 
 Możemy to teraz rozszerzyć na więcej bajtów - aby odzyskać teraz bajt `k-1` potrzebujemy aby ostatni bajt przyjął wartość `0x2` (możemy to zrobić bo znamy już wartość ostatniego bajtu) i jeśli znajdziemy teraz bajt na pozycji k-1 dla którego nie wystąpi błąd deszyfrowania to znaczy że wartość po XORowaniu wynosi teraz `0x2`.
 
-To oczywiście nie pozwoli nam odzyskać pierwszego bloku, ale z tym nic nie zrobimy.
+To oczywiście nie pozwoli nam odzyskać pierwszego bloku, ale z tym nic nie zrobimy, chyba że mamy do czynienia z pewną szczególną sytuacją, kiedy IV jest dodane jako pierwszy blok plaintextu.
+W takiej sytuacji jesteśmy w stanie odzyskać także IV.
+W naszym przypadku nie wiedzieliśmy nic na temat IV ani czy jest nam on do czegoś potrzebny, w związku z czym założyliśmy że nie i okazało się to być założeniem poprawnym.
 
 Atak zaimplementowaliśmy w pythonie (korzystając z https://github.com/mpgn/Padding-oracle-attack/blob/master/exploit.py jako szablonu)
 
