@@ -11,7 +11,7 @@ In this task, we got just the encrypted, hex-encoded file. It was easy to see so
 to `charCode` or `length` - some JavaScript function names - which seemed good, so we reversed the whole ciphertext. 
 We found a couple of such ciphertext-plaintext pairs and noticed
 that the lower nibbles of the character never changes - for example, `q` (ASCII 0x71) from `chqBcodE` was changed to `a`
-(ASCII 0x61). We wrote an interactive brute forcer <link here>, which allowed us to recover a couple
+(ASCII 0x61). We wrote an [interactive brute forcer](interactive.py), which allowed us to recover a couple
 dozens of plaintext bytes:
 ```
 `ufa,(hvensdio.(y{fq"p:];8)<7 <6 <8%<8'<9$<9 <7!<7$<8 <7)<8(<7&<8!<7%<6%<6&<8&<8"<7R={fq"p1][
@@ -25,8 +25,8 @@ dozens of plaintext bytes:
 267662267667666227767263533233233233233233233233233233233233233233233233233233233234537672635
 411040411011004050115556601101101101101101101101101101101101101101101101101101101101641155560
 ```
-We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a script to decrypt
-the whole file (<link>).
+We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a [script](solve.py)
+to decrypt the whole file.
 
 The decrypted file was the following script (after unpacking and unminifying):
 ```javascript
