@@ -16,16 +16,16 @@ dozens of plaintext bytes:
 ```
 `ufa,(hvensdio.(y{fq"p:];8)<7 <6 <8%<8'<9$<9 <7!<7$<8 <7)<8(<7&<8!<7%<6%<6&<8&<8"<7R={fq"p1][
  eval((function(){var j=[89,70,60,85,87,94,90,71,74,80,79,88,76,81,75,65,66,86,82,7B];var a=[
- ```
- If we write higher nibble of ciphertext, of plaintext, and of their xor, we will ge something like this:
- ```
- `ufa,(hvensdio.(y{fq"p:];8)<7 <6 <8%<8'<9$<9 <7!<7$<8 <7)<8(<7&<8!<7%<6%<6&<8&<8"<7R={fq"p1][
+```
+If we write higher nibble of ciphertext, of plaintext, and of their xor, we will get something like this:
+```
+`ufa,(hvensdio.(y{fq"p:];8)<7 <6 <8%<8'<9$<9 <7!<7$<8 <7)<8(<7&<8!<7%<6%<6&<8&<8"<7R={fq"p1][
  eval((function(){var j=[89,70,60,85,87,94,90,71,74,80,79,88,76,81,75,65,66,86,82,7B];var a=[
 676622676676662277672735332332332332332332332332332332332332332332332332332332332335376727355
 267662267667666227767263533233233233233233233233233233233233233233233233233233233234537672635
 411040411011004050115556601101101101101101101101101101101101101101101101101101101101641155560
 ```
-We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a [script](solve.py)
+We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a [script](solv.py)
 to decrypt the whole file.
 
 The decrypted file was the following script (after unpacking and unminifying):
