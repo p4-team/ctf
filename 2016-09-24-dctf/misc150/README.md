@@ -13,7 +13,17 @@ Hint 2: strrev(strtoupper($title))
 ###ENG
 [PL](#pl-version)
 
-In the task we have access to webpage with 6 lines of 16 byte strings.
+In the task we have access to webpage with 6 lines of 16 byte strings:
+
+```
+fw[TqCTfDCoXnEpO
+HsQd^DnInc}_tVeG
+FyIG`ebzDcE\sM{X
+fIivqEmcJo_snC\b
+TaYNwORnfgoFdRRc
+RukE\zEEPegOVu@h
+```
+
 Each time you refresh the page the strings change.
 Even before the hints were posted we did bitwise analysis of the data on the page and it seemed that in our sample of a few hundred strings there was a regularity: the least significant bit of each byte was constant.
 
@@ -25,7 +35,17 @@ After the task was `fixed` it turned out that the solution was as simple as trea
 
 ###PL version
 
-W zadaniu dostajemy dostęp do strony internetowej na której wyświetlane jest 6 linii tekstu po 16 bajtów w linii.
+W zadaniu dostajemy dostęp do strony internetowej na której wyświetlane jest 6 linii tekstu po 16 bajtów w linii:
+
+```
+fw[TqCTfDCoXnEpO
+HsQd^DnInc}_tVeG
+FyIG`ebzDcE\sM{X
+fIivqEmcJo_snC\b
+TaYNwORnfgoFdRRc
+RukE\zEEPegOVu@h
+```
+
 Za każdym refreshem stringi na stronie są inne.
 Jeszcze zanim pojawiły się hinty przeprowadziliśmy analizę bitów stringów na stronie, na próbce kilkuset różnych zestawów, i widać było regularność: niski bit każdego bajtu był stały.
 
