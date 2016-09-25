@@ -4,6 +4,8 @@ Team: psrok1, seikendev, c7f.m0d3, cr019283, nazywam, rev, msm, akrasuski1, shal
 
 ![](./scoreboard.png)
 
+![](./chart.png)
+
 ### Table of contents
 
 * [URL Anonymizer (Web 200)](web200)
