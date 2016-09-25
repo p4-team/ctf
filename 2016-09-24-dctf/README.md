@@ -6,6 +6,7 @@ Team: psrok1, seikendev, c7f.m0d3, cr019283, nazywam, rev, msm, akrasuski1, shal
 
 * [URL Anonymizer (Web 200)](web200)
 * [Bad OTPxploited (RevCrypt 100)](revcrypt100)
+* [Rucksak  (RevCrypt 200)](revcrypt200)
 * [Decoy (RevCrypt 300)](revcrypt300)
 * [dctfizer (RevCrypt 400)](revcrypt400)
 * [Warm heap (Exploit 100)](exp100)
