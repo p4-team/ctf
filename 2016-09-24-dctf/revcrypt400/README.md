@@ -25,7 +25,7 @@ If we write higher nibble of ciphertext, of plaintext, and of their xor, we will
 267662267667666227767263533233233233233233233233233233233233233233233233233233233234537672635
 411040411011004050115556601101101101101101101101101101101101101101101101101101101101641155560
 ```
-We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a [script](solve.py)
+We can notice a pattern: lower row is xor of last two numbers on top row. With this in mind, we wrote a [script](solv.py)
 to decrypt the whole file.
 
 The decrypted file was the following script (after unpacking and unminifying):
