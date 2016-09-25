@@ -94,4 +94,21 @@ function proceed(b, l, p) {
 }
 ```
 
-TODO: write the rest.
+This is a modified RC4 algorithm.
+In this code we can see a vulnerability in key expansion algorithm:
+
+```javascript
+    for (a = 0; a < Math["max"](234, b["length"]); a++) {
+        var h = l["charCodeAt"](a);
+        l += String["fromCharCode"]((h << 1 | h >> 7) & 255);
+    }
+```
+
+The key is basically rotating, so if the first byte was `1100` then the first byte of extended key part would be `1001` and in the next round `0011` and so on. 
+This means that if we could extract a single bit position of the key, with enough ciphertext length we could extract the whole key.
+However the code here was broken because `% 234` does not leave any bit position intact (maybe they wanted to do `& 234`?).
+We contacted admins and they admited that it was a mistake and it should have been `128` and not `234`, which basically coverges this task to the same problem as here:
+
+https://github.com/p4-team/ctf/tree/master/2015-11-20-dctffinals/crypto300#eng-version
+
+Because now the MSB of all of the XORed elements is 0 apart from the one from key, so we can extract all MSB bits from ciphertext and combine them to recover the key (we need to brute-force the key length as well but the range is small).
