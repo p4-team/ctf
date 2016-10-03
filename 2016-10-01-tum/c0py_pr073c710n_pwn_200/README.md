@@ -53,10 +53,10 @@ int main()
 
 License key is 33-chars string, which is interpreted as 16-bytes AES key and 16-bytes IV with one not-important char in the middle. If we look [how CBC mode works](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Block_Chaining_.28CBC.29), we can notice one interesting thing:
 
-First decrypted block is just xor'ed with IV, which means that if we have control over IV, we can "decrypt" this block to everything we want. Just get some (random) key, "decrypt" ciphertext using it and xor the result with code you want to execute
+First decrypted block is just xor'ed with IV, which means that if we have control over IV, we can "decrypt" this block to everything we want. Just get some (random) key, "decrypt" ciphertext using it and xor the result with code you want to execute.
 
 Unfortunately, using this method, we can write only one block, which means that our shellcode can be only 16 bytes length. 
-Binary hasn't any reference to system() inside, no code which could be helpful in spawning shell. It was difficult to place *"/bin/sh"* and *execve()* syscall in 16 bytes. Fortunately, libc contains string *"/bin/sh"* inside.
+Binary doesn't have any reference to system() inside, no code which could be helpful in spawning shell. It was difficult to place *"/bin/sh"* and *execve()* syscall in 16 bytes. Fortunately, libc contains string *"/bin/sh"* inside.
 
     (gdb) set environment LD_PRELOAD=libc2.19-18+deb8u4/libc-2.19.so libc2.19-18+deb8u4/ld-2.19.so
     ...
