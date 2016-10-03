@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2016.10.01 **TUM CTF 2016** (5th place / 435 teams)](2016-10-01-tum)
 * [2016.09.24 **Defcamp CTF Quals 2016** (1st place / 116 teams)](2016-09-24-dctf)
 * [2016.09.16 **CSAW CTF 2016 Quals** (7th place / 1273 teams)](2016-09-16-csaw)
 * [2016.09.09 **ASIS CTF Finals 2016** (5th place / 343 teams)](2016-09-09-asis-final)
