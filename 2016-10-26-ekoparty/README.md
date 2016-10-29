@@ -12,3 +12,8 @@ Team: nazywam, other019, c7f.m0d3, cr019283, msm, rev, shalom
 * [Bleeding (pwn 50)](pwn_50)
 * [My first service I (pwn 100)](pwn_100)
 * [Super duper advanced attack (web 100)](web_100)
+* [Old but gold (misc 250)](misc_250)
+* [Vsftpd dejavu (for 150)](for_150)
+* [Old times (re 100)](re_100)
+* [Metadata (fbi 50)](fbi_50)
+* [Carder (web 150)](web_150)
