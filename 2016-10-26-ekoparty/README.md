@@ -17,5 +17,5 @@ Team: nazywam, other019, c7f.m0d3, cr019283, msm, rev, shalom
 * [Old times (re 100)](re_100)
 * [Metadata (fbi 50)](fbi_50)
 * [Carder (web 150)](web_150)
-* [Hacker In Disguise (for 150)](for_100)
+* [Hacker In Disguise (for 100)](for_100)
  	
