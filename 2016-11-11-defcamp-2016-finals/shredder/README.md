@@ -1,3 +1,7 @@
 #shredder, Missedchalls 102
 
-TODO
+![original](shredder.jpg)
+
+->
+
+![gimped](gimp.png)
