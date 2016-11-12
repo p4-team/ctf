@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2016.11.10 **Defcamp D-CTF 2016 Finals** (4th place / 16 teams)](2016-11-11-defcamp-2016-finals)
 * [2016.11.05 **Hack The Vote CTF 2016** (6th place / 1030 teams)](2016-11-05-hack-the-vote)
 * [2016.10.26 **Ekoparty CTF 2016** (8th place / 721 teams)](2016-10-26-ekoparty)
 * [2016.10.23 **ECTF 2016** (2nd place / 20 teams)](2016-10-23-ectf)
