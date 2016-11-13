@@ -7,4 +7,5 @@ Team: akrasuski1, nazywam, msm, rev, shalom
 
 ### Table of contents
 
-* [LeCrypto (crypto 250)](lecrypto_250)
+* [LeCrypto (crypto 250)](lecrypto)
+* [Shredder (misc 100)](shredder)
