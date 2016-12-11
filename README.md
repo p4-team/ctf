@@ -1,5 +1,11 @@
 # CTF writeups from P4 Team
 
+* [2016.12.10 **SECCON 2016 Quals** (22nd place / 930 teams)](2016-12-10-seccon-2016-quals)
+* [2016.12.02 **HITCON 2016 Finals** (6th place / 13 teams) on site](2016-12-02-hitcon-2016-finals)
+* [2016.11.25 **Juniors CTF 2016** (35th place / 310 teams)](2016-11-25-juniors-2016)
+* [2016.11.19 **RC3 CTF 2016** (46th place / 663 teams)](2016-11-19-r3ctf-2016)
+* [2016.11.18 **Trend Micro CTF 2016 Finals** (2nd place / 10 teams) on site](2016-11-18-trendmicro-2016-finals)
+* [2016.11.17 **Qiwi-Infosec CTF-2016** (6th place / 234 teams)](2016-11-17-qiwi-2016)
 * [2016.11.10 **Defcamp D-CTF 2016 Finals** (4th place / 16 teams)](2016-11-11-defcamp-2016-finals)
 * [2016.11.05 **Hack The Vote CTF 2016** (6th place / 1030 teams)](2016-11-05-hack-the-vote)
 * [2016.10.26 **Ekoparty CTF 2016** (8th place / 721 teams)](2016-10-26-ekoparty)
