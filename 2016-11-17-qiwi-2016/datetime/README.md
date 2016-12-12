@@ -9,7 +9,7 @@ The flag is one of those hashes and we have to find the right one.
 The point is to find the message with correct timestamp - where day of the week matches the designated date.
 We do this with a simple python script and datetime library:
 
-```
+```python
 import codecs
 import os
 import datetime
@@ -53,7 +53,7 @@ Flaga jest jednym z tych hashy i musimy znaleźć odpowiedni.
 Idea zadania jest dość prosta - tylko jeden znacznik czasowy jest poprawny, tzn dzień tygodnia zgadza się z datą.
 Poprawny plik odnajdujemy za pomocą skryptu i biblioteki datetime:
 
-```
+```python
 import codecs
 import os
 import datetime
