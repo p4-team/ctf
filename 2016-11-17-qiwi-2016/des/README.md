@@ -8,16 +8,16 @@ The general idea was simple -  the authors used double encryption with DES and B
 The problems:
 
 * Authors used some shady website for encryption and not the ciphers directly. This website was adding random paddings and without knowing about it, there was no way to solve it. Fortunately this was released as a hint.
-* The authors for no apparent reason have given an example payload apart from the flag. This suggested a meet-in-the-middle attack using this payload, which was not a good approach, because the example payload was encrypoted with different keys than the flag.
+* The authors for no apparent reason have given an example payload apart from the flag. This suggested a meet-in-the-middle attack using this payload, which was not a good approach, because the example payload was encrypted with different keys than the flag.
 * The calculations for this task were a bit time consuming due to key universum size. Seriously, there is no need to make a task where bruteforce is taking minutes to run on 8 paralell cores. It doesn't make the task any "harder", only more annoying.
 
-So what we have here is the encrypoted flag:
+So what we have here is the encrypted flag:
 
 ```
 AiEjLYxiRUlgG+OYaYje5HOwvS8UFegdXRrCsIiy6pBH67fDvGbLF/gtZihyW7WYVOrsi7/N1sgaVUBU/VW1NwEOrOhguZZfP5T7Gw88sMx9KFepLfsjOLPKKVUuMbVu6Lno0FJjbU+7ft1VtdsQhAh1Lc91SDcduoI3J1FwffwwEwy1L7FKjg14LZ9fgaMF5c43T8avL+bpOBDFHiPzK1Mwv4ftVt6k5UV13cPV3VLm+Jx7Q/7LLamyQLLUU0O1pcKZOHi7oYPngpFh7VmIPIJwCsmoCAyt8+yC/uqNgpfUoD0SHfG7tvz7F8sZKL6RfezLvFN++8B+rs+6AGOiSHCmnGbO4PNcOdZfWP4lYZQRIZ/DTN4ntg==
 ```
 
-And we know that the flag was encrypoted first with DES with padding, the data were transformed into base64 and this was encrypoted again with Blowfish with padding and it was encoded as base64.
+And we know that the flag was encrypted first with DES with padding, the data were transformed into base64 and this was encrypted again with Blowfish with padding and it was encoded as base64.
 We also know that both keys are in the range 0-9999999.
 
 So we run bruteforce first on the outer layer - to decode Blowfish and take all proper base64 results as potential hits.
