@@ -1,7 +1,7 @@
 # CTF writeups from P4 Team
 
 * [2016.12.10 **Sharif CTF 7 2016** (8th place / 700 teams)](2016-12-16-sharifctf7)
-* [2016.12.10 **Whitehat 2016 GP** (22nd place / XX teams)](2016-12-16-whitehat)
+* [2016.12.10 **Whitehat 2016 GP** (22nd place / 111 teams)](2016-12-16-whitehat)
 * [2016.12.10 **SECCON 2016 Quals** (22nd place / 930 teams)](2016-12-10-seccon-2016-quals)
 * [2016.12.02 **HITCON 2016 Finals** (6th place / 13 teams) on site](2016-12-02-hitcon-2016-finals)
 * [2016.11.25 **Juniors CTF 2016** (35th place / 310 teams)](2016-11-25-juniors-2016)
