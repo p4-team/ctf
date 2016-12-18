@@ -82,7 +82,7 @@ Sadly the flag was at the very end of the plaintext to we had to wait for the wh
 
 Zadanie jest generalnie bardzo podobne do https://github.com/p4-team/ctf/tree/master/2016-04-15-plaid-ctf/crypto_rabit z tą różnicą że na Plaid CTF szyfrowanie odbywało się algorytmem Rabina a tutaj było to RSA.
 
-Dostajemy [binarke](lsb_oracle.vmp.exe.zip) która podaje nam klucz publiczny RSA.
+Dostajemy [binarke](lsb_oracle.vmp.exe.zip) która podaje nam klucz publiczny RSA i potrafi powiedzieć czy najniższy bit plaintextu jest 0 czy 1.
 Dostajemy też zaszyfrowaną flagę.
 
 Nasze podejście jest takie samo jak dla Rabit z Plaid CTF - możemy mnożyć plaintext przez 2 poprzez mnożenie ciphertextu przez `pow(2,e,n)`.
