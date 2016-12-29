@@ -2,6 +2,9 @@
 
 Team: akrasuski1, c7f.m0d3, cr019283, msm, nazywam, ppr, psrok, rev, shalom
 
+
+![rank](rank.png)
+
 ### Table of contents
 
 * [YOSO (web 250)](web_250_yoso)
