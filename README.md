@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2017.01.21 **InsomniHack Teaser CTF 2017** (4th place / 339 teams)](2017-01-21-insomnihack)
 * [2016.12.27 **33C3 CTF 2016** (15th place / 278 teams)](2016-12-27-33c3)
 * [2016.12.17 **3DSCTF 2016** (8th place / 536 teams)](2016-12-17-3dsctf)
 * [2016.12.10 **Sharif CTF 7 2016** (8th place / 700 teams)](2016-12-16-sharifctf7)

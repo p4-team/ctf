@@ -1,4 +1,4 @@
-# Writeup Whitehat CTF GP 2016
+# Writeup InsomniHack CTF 2017
 
 Team: msm, rev, shalom, akrasuski1, nazywam, c7f.m0d3, cr01283
 
