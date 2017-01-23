@@ -1,0 +1,36 @@
+0x4008091c - main
+0x400d0dcb - maintask
+0x400836ec - vtaskcreate
+0x400837c4 - vtaskdelete
+0x4010414c - appmain
+0x40104100 - http_server
+0x40104048 - serve
+0x40103fe8 - check_pass
+
+Check functions: [0x4010....]
+0x400d0a94 - pass
+0x400d0aa0 - MAC bytes
+0x400d0a98 - state
+state = 0
+! 3b40 - s[0]=='G' => state ^= 0x8001
+! 3b90 - s[14]-M[0]==9 => state ^= 0x4000
+. 3bbc - s[1]==153 => state ^= 0x12
+3bdc - state ^= 0x102
+3c00 - s[13]^s[1]==4 => state ^= 0x2002
+! 3c24 - s[12]=='s' => state ^= 0x1008
+. 3c44 - ((s[2]+72) & 0xFF) >>4 & 0xF == 108 => state ^= 0x804
+. 3c98 - s[3]&17 - 104 == 0 => state ^= 0x4008
+! 3ce0 - s[5]=='o' => state ^= 0x20
+!! 3d60 - s[8]-s[11]==10 => state ^= 0x900
+3d88 - s[8]&120 == s[8] => state ^= 0x100
+3dac - sext(ror(s[13], 4))==20 => state ^= 0x2040
+! 3dd8 - sext(ror(s[3], 4))==-11 => state ^= 0x8
+3e04 - ((M[4]&16)|32)^s[1]==0 => state ^= 0x2
+3e64 - [impossible] => state ^= 0x80
+! 3ec0 - s[3]==s[7] => state ^= 0x88
+! 3ee0 - s[9]=='t' => state^=0x200
+. 3f00 - sum(MAC)^s[10]==84 => state ^= 0x420
+! 3f3c - s[2]=='t' => state ^= 0x4
+! 3f5c - s[10]==M[2]-1 => state ^= 0x400
+! 3f84 - s[6]=='U' => state ^= 0x40
+! 3fb4 - s[4]==ror(M[4], 4) => state ^= 0x10
