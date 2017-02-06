@@ -9,3 +9,4 @@ Team: c7f.m0d3, cr01283, msm, rev, shalom, akrasuski1, nazywam, psrok1
 * [sherlock (crypto)](sherlock)
 * [beginners luck (crypto)](beginners_luck)
 * [woodstock 1&2 (forensics)](woodstock)
+* [riskv_and_reward](riskv_and_reward)
