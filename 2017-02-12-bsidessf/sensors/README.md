@@ -54,7 +54,7 @@ We can also notice that if the loaded file is not a proper configuration of a se
 00000000004016a3         xor        eax, eax
 00000000004016a5         call       debug_printf
 00000000004016aa         jmp        0x40163c
-``
+```
 
 So it will actually print the contents of the file using `debug_printf`.
 Looking at this function tells us that we simply need to set GET parameter `debug` to see the output of this function.
@@ -145,7 +145,7 @@ Możemy zauważyć też, ze jeśli wczytany plik nie jest poprawną konfiguracj�
 00000000004016a3         xor        eax, eax
 00000000004016a5         call       debug_printf
 00000000004016aa         jmp        0x40163c
-``
+```
 
 Więc ta funkcja wypisze nam zawartość niepoprwanego pliku za pomocą `debug_printf`.
 Analiza tej funkcji pozwala stwierdzić że wystarczy ustawić parametr GET `debug` żeby widzieć jej wyniki.
