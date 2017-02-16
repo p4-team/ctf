@@ -52,7 +52,7 @@ The general schema of the algorithm is:
 4. Finalize the algorithm by using `hash_update` with a certain fixed block dependent only on length of already hashed input
 5. Print current state as final hash
 
-What know that the cookie we get from the page is in fact hashed value of `secret+cookie_payload+final_hash_block`.
+We know that the cookie we get from the page is in fact hashed value of `secret+cookie_payload+final_hash_block`.
 If we now set this hash as `current state` of the hashing algorithm and perform `hash_update` with some additional payload we will actually get a proper hash value for `secret+cookie_payload+final_hash_block+additional_payload`!
 And since we know exactly how long this payload is, we can also add here the new `final_hash_block2`, as a result getting a proper hash value of `secret+cookie_payload+final_hash_block+additional_payload+final_hash_block2`.
 All of this without actually knowing the `secret` bytes at all, just the `state` of the algorithm.
