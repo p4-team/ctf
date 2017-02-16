@@ -15,6 +15,7 @@ By calculating `gcd` over payload lengths we have we can see that block size can
 
 If we try to modify the payload we quickly hit `decrypt failure` message.
 This seems like a nice setup for oracle padding attack, so we import our oracle padding breaker from crypto-commons are try to run it on the payloads.
+If you're interested in how padding oracle works see our other writeup which describes this more in detail: https://github.com/p4-team/ctf/tree/master/2016-09-16-csaw/neo
 We need to prepare oracle function, which will tell us if the decryption failed (presumably because of incorrect padding after decrypt):
 
 ```python
@@ -105,6 +106,7 @@ Licząc `gcd` z długości znanych payloadów wynika że blok może mieć najwy�
 
 Jeśli ręcznie zmodyfikujemy payload to szybko dostajemy komunikat `decrypt failure`.
 To sugeruje setup dla ataku oracle padding, więc importujemy nasz łamacz z crypto-commons i próbujemy uruchomić go dla posiadanych szyfrogramów.
+Po szczegóły dotyczące ataku padding oracle odsyłamy do innego writeupa który napisalismy kilka tygodni temu: https://github.com/p4-team/ctf/tree/master/2016-09-16-csaw/neo#pl-version
 Potrzebujemy do tego przygotować samą wyrocznie, która powie nam czy deszyfrowanie się powiodło czy nie (zakładamy że niepowodzenie wynika z niepopranego paddingu po deszyfrowaniu):
 
 ```python
