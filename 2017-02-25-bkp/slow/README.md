@@ -11,7 +11,7 @@ The main function was very simple, just `printf("FLAG{%lu}\n", real_main());`. S
 returns. Note that we couldn't simply run the binary - it throws `std::bad_alloc` immediately.
 
 Reverse engineering of the biggest function of the binary shows it is very sequential and repetitive code.
-First, it allocates two vectors of complex numbers - their size was 1LL<<48 though, which far too much too allocate,
+First, it allocates two vectors of complex numbers - their size was 1LL<<48 though, far too much too allocate,
 let alone initialize.
 
 After initialization (0+0i everywhere, and 1+0i in the very first cell), there was a couple of calls to a certain function -
