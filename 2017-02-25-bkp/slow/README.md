@@ -25,7 +25,7 @@ After around 20 or so `split`s, the only remaining repeating patterns were of on
 taking two arguments (say `a` and `b`), and swapping each index of array with `a`th bit set, with its corresponding cell,
 with bit `b` flipped. I believe this is controlled swap gate.
 
-The other repeating function was `rotate`, which multiplied each cell with certain bit set by (0+1i), or simply shift phase
+The other repeating function was `rotate`, which multiplied each cell with certain bit set by (0+1i), or simply shifted phase
 by 90 degrees.
 
 Finally, the code calculated a kind of checksum of the vector and returned the result to be printed as flag.
