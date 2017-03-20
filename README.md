@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2017.03.18 **0CTF Quals 2017** (24th place / 908 teams)](2017-03-18-0ctf-quals)
 * [2017.02.25 **Boston Key Party 2017** (6th place / 948 teams)](2017-02-25-bkp)
 * [2017.02.12 **BsidesSF CTF 2017** (6th place / 686 teams)](2017-02-12-bsidessf)
 * [2017.02.10 **Codegate 2017 prequals** (17th place / 300 teams)](2017-02-10-codegate-quals)
