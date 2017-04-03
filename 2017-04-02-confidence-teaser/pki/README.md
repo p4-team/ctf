@@ -45,7 +45,7 @@ def check_n(file):
 	r = get(url="https://factordb.com/index.php?query="+str(n))	
 	soup = BeautifulSoup(r.text)
 	data = soup.getText().split("\n")
-	return is_ok(data)
+	return is_ok(data[data.index('Result:')+4])
 ```
 
 With this after a while we manage to get two nice collisions with proper `n` values: [col1](col1), [col2](col2).
@@ -167,7 +167,7 @@ def check_n(file):
 	r = get(url="https://factordb.com/index.php?query="+str(n))	
 	soup = BeautifulSoup(r.text)
 	data = soup.getText().split("\n")
-	return is_ok(data)
+	return is_ok(data[data.index('Result:')+4])
 ```
 
 Dzięki temu po pewnym czasie udało nam się uzyskać kolizje z pasujacymi `n`: [col1](col1), [col2](col2).
