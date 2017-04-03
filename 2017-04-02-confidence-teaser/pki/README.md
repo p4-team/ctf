@@ -64,26 +64,26 @@ The signature is a pair `(s,r)` or in our case a single value `r*Q + s` which ca
 Directly from the way the value `s` is calcualted  we have:
 
 ```
-s_1 = modinv(k, (H(msg_1) + private_key*r)) mod q
-s_2 = modinv(k, (H(msg_2) + private_key*r)) mod q
+s_1 = modinv(k,q) * (H(msg_1) + private_key*r) mod q
+s_2 = modinv(k,q) * (H(msg_2) + private_key*r) mod q
 ```
 
 We can transform this further:
 
 ```
-(s_1 - s_2) modq = (modinv(k, (H(msg_1) + private_key*r)) - modinv(k, (H(msg_2) + private_key*r))) modq
+(s_1 - s_2) modq = (modinv(k,q) * (H(msg_1) + private_key*r) - modinv(k,q) * (H(msg_2) + private_key*r)) modq
 ```
 
 then:
 
 ```
-(s_1 - s_2) modq = (modinv(k, (H(msg_1) + private_key*r - H(msg_2) - private_key*r))) modq
+(s_1 - s_2) modq = modinv(k,q) * (H(msg_1) + private_key*r - H(msg_2) - private_key*r) modq
 ```
 
 which removes the unknown `private_key*r` part leaving:
 
 ```
-(s_1 - s_2) modq = modinv(k, H(msg_1) - H(msg_2)) modq
+(s_1 - s_2) modq = modinv(k,q) * H(msg_1) - H(msg_2) modq
 ```
 
 And therefore we get the equation for `k`:
@@ -95,7 +95,7 @@ k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) % q
 If we have `k` we can easily recover the `private_key` again transforming the equation:
 
 ```
-s = modinv(k, (H(msg) + private_key*r)) mod q
+s = modinv(k,q) * (H(msg) + private_key*r) mod q
 ```
 
 because now we know all the values, so we can transform this to:
@@ -187,26 +187,26 @@ Podpis to para `(s,r)` lub jak w naszym przypadku jedna wartość `r*Q + s` któ
 Bezpośrednio z tego jak liczymy `s` podczas generowania podpisu mamy:
 
 ```
-s_1 = modinv(k, (H(msg_1) + private_key*r)) mod q
-s_2 = modinv(k, (H(msg_2) + private_key*r)) mod q
+s_1 = modinv(k,q) * (H(msg_1) + private_key*r) mod q
+s_2 = modinv(k,q) * (H(msg_2) + private_key*r) mod q
 ```
 
 Co można przekształcić do:
 
 ```
-(s_1 - s_2) modq = (modinv(k, (H(msg_1) + private_key*r)) - modinv(k, (H(msg_2) + private_key*r))) modq
+(s_1 - s_2) modq = (modinv(k,q) * (H(msg_1) + private_key*r) - modinv(k,q) * (H(msg_2) + private_key*r)) modq
 ```
 
 a następnie uprościć:
 
 ```
-(s_1 - s_2) modq = (modinv(k, (H(msg_1) + private_key*r - H(msg_2) - private_key*r))) modq
+(s_1 - s_2) modq = modinv(k,q) * (H(msg_1) + private_key*r - H(msg_2) - private_key*r) modq
 ```
 
 Co pozwala pozbyć się nieznanej części `private_key*r`, zostawiając:
 
 ```
-(s_1 - s_2) modq = modinv(k, H(msg_1) - H(msg_2)) modq
+(s_1 - s_2) modq = modinv(k,q) * H(msg_1) - H(msg_2) modq
 ```
 
 A ty samym równanie dla `k` to:
@@ -218,7 +218,7 @@ k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) % q
 Mając `k` możemy teraz łatwo wyliczyć `private_key`, znów przekształcając równanie dla `s`:
 
 ```
-s = modinv(k, (H(msg) + private_key*r)) mod q
+s = modinv(k,q) * (H(msg) + private_key*r) mod q
 ```
 
 Ponieważ znamy wszystkie parametry możemy przekształcic to do postaci:
