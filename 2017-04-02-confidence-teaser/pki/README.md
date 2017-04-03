@@ -45,7 +45,7 @@ def check_n(file):
 	r = get(url="https://factordb.com/index.php?query="+str(n))	
 	soup = BeautifulSoup(r.text)
 	data = soup.getText().split("\n")
-	return is_ok(data)
+	return is_ok(data[data.index('Result:')+4])
 ```
 
 With this after a while we manage to get two nice collisions with proper `n` values: [col1](col1), [col2](col2).
@@ -125,7 +125,7 @@ The whole solver script is [here](solver.py)
 
 ## PL version
 
-W zadaniu dostajemy [kod](task.py) działająy na serwerze.
+W zadaniu dostajemy [kod](task.py) działający na serwerze.
 
 Możemy "zarejestrować" nowego użytkownika, a dla danego `loginu` oraz pewnych danych binarnych `n` dostaniemy zaszyfrowane za pomocą RSA z `(65537, n)` cyfrowy podpis dla stringa `'MSG = {n: ' + n + ', name: ' + name + '}'`.
 Bajty `n` są tutaj zwyczajnie rzutowane do inta.
@@ -142,10 +142,10 @@ def makeK(name, n):
   return 'K = {n: ' + n + ', name: ' + name + ', secret: ' + SECRET + '}'
 ```
 
-Wartość `k` powinna być sekretna i nieprzewidywalna dla każdego podpisu, ponieważ jeśli jesteśmy w stanie uzyskać 2 podpisy z tym samym `k`, możemy łatwo wyliczyć to `k`.
+Wartość `k` powinna być sekretna i nieprzewidywalna dla każdego podpisu, ponieważ jeśli jesteśmy w stanie uzyskać 2 podpisy z tym samym `k`, możemy łatwo wyliczyć `k`.
 W naszym przypadku ten warunek nie jest spełniony bo md5 jest podatne na kolizje.
-Jest to take hash konstrukcji Merkle-Damgard podatny na length extension a to oznacza, że jeśli uzyskamy kolizje dla pewnych dwóch zbiorów danych wejściowych to wartość hasha md5 dla nich będzie równa nawet jeśli dodamy na koniec jakieś dane, o ile dodajemy te same dane.
-To oznacza że jeśli znajdziemy kolizje dla prefixu `'K = {n: ' + n` dla dwóch różnych wartości `n` to uzyskamy identyczne wartości `k` dla nich (jeśli używamy takiego samego `name`) bo suffixy są takie same.
+Jest to takze hash konstrukcji Merkle-Damgard podatny na length extension a to oznacza, że jeśli uzyskamy kolizje dla pewnych dwóch zbiorów danych wejściowych to wartość hasha md5 dla nich będzie równa nawet jeśli dodamy na koniec jakieś dane, o ile dodajemy te same dane.
+To oznacza że jeśli znajdziemy kolizje dla prefixu `'K = {n: ' + n` dla dwóch różnych wartości `n` to uzyskamy identyczne wartości `k` dla nich (jeśli używamy takiego samego `name`), bo suffixy są takie same.
 
 Użyliśmy `fastcoll/hashclash` do generowania kolizji dla prefixu `'K = {n: ' + n` z losowymi bajtami jako `n`.
 
@@ -167,12 +167,12 @@ def check_n(file):
 	r = get(url="https://factordb.com/index.php?query="+str(n))	
 	soup = BeautifulSoup(r.text)
 	data = soup.getText().split("\n")
-	return is_ok(data)
+	return is_ok(data[data.index('Result:')+4])
 ```
 
 Dzięki temu po pewnym czasie udało nam się uzyskać kolizje z pasujacymi `n`: [col1](col1), [col2](col2).
 
-Obie są w pełni sfaktoryzowanne:
+Obie są w pełni sfaktoryzowane:
 
 ```
 factors1 = [234616432627, 705869477985961204313551643916777744071330628233585786045998984992545254851001542557142933879996265894077678757754161926225017823868556053452942288402098017612976595081470669501660030315795007199720049960329731910224810022789423585714786440228952065540955255662140767866791612922576360776884260619L]
@@ -182,7 +182,7 @@ factors2 = [119851, 236017, 5854608817710130372948444562294396040006311067115965
 
 Dzięki temu możemy użyć klasycznego RSA dla pierwszego podpisu i multiprime RSA dla drugiego, żeby zdekodować podpisy wysłane przez serwer.
 
-Podpis to para `(s,r)` lub jak w naszym przypadku jedna wartość `r*Q + s` którą łatwo rozłożyć na `s` i `r` za pomocą dzielenia i reszyt z dzielenia przez `Q`.
+Podpis to para `(s,r)` lub jak w naszym przypadku jedna wartość `r*Q + s` którą łatwo rozłożyć na `s` i `r` za pomocą dzielenia i reszty z dzielenia przez `Q`.
 
 Bezpośrednio z tego jak liczymy `s` podczas generowania podpisu mamy:
 
