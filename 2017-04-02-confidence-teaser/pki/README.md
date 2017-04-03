@@ -89,7 +89,7 @@ which removes the unknown `private_key*r` part leaving:
 And therefore we get the equation for `k`:
 
 ```
-k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) % q
+k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) modq
 ```
 
 If we have `k` we can easily recover the `private_key` again transforming the equation:
@@ -212,7 +212,7 @@ Co pozwala pozbyć się nieznanej części `private_key*r`, zostawiając:
 A ty samym równanie dla `k` to:
 
 ```
-k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) % q
+k modq = ((H(msg_1) - H(msg_2)) * modinv((s_1 - s_2), q)) modq
 ```
 
 Mając `k` możemy teraz łatwo wyliczyć `private_key`, znów przekształcając równanie dla `s`:
