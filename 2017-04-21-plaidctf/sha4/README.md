@@ -56,7 +56,8 @@ Great!
 ```
 
 Is vulnerable to race condition and template injection.
-We can first send a valid input that passes the `is_unsafe` and a malicious input that injects the template while `is_unsafe` is running with the valid input.
+We can first send a valid input that passes the `is_unsafe` check and then a malicious input that injects the template.
+The contents of the file will be overwritten for the first execution so it will actually evaluate the malicious payload.
 
 But in order to do that we need 2 different inputs that produce the same `hash`:
 
@@ -76,9 +77,24 @@ def hash(x):
 
 ![scr3](scr3.png)
 
-DES.encrypt was the problem, as it ignores the lsb. So we could perform bitflips to bypass the whitelist.
+DES.encrypt was the problem. 
+DES, although takes 8 bytes as key, is not using all 64 bits, but only 56.
+It ignores lsb of each byte.
+This means we can actually get identical encryption results as long as the key differs only on lsb.
+So we could perform bitflips to bypass the whitelist with one of the payloads, while the other payload with malicious injection would have the same hash.
 
 
-After generating a valid input pair we simply smash them agains the server and hope to get the flag via a usuall template injection.
+After generating a valid input pair we simply smash them agains the server and hope to get the flag via usual template injection:
+
+```python
+{{3*3*3*3}}
+{% set loadedClasses = " ".__class__.__mro__[2].__subclasses__() %}
+{% for loadedClass in loadedClasses %} {% if loadedClass.__name__ == "catch_warnings".strip() %}
+	{% set builtinsReference = loadedClass()._module.__builtins__ %}
+	{% set os = builtinsReference["__import__".strip()]("subprocess".strip()) %}
+		{{ os.check_output("cat sha4/flag_bilaabluagbiluariglublaireugrpoop".strip(), shell=True) }}
+	{% endif %}
+{% endfor %}
+```
 
 [full script](script.py)
