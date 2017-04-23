@@ -98,3 +98,5 @@ After generating a valid input pair we simply smash them agains the server and h
 ```
 
 [full script](script.py)
+
+Which gives `PCTF{th3 security aspect of cyber is very very tough}`
