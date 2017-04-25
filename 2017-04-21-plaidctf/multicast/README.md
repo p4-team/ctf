@@ -77,7 +77,7 @@ def main():
 		mm = ceil(beta**2 / (dd * epsilon))
 		tt = floor(dd * mm * ((1/beta) - 1))
 		XX = ceil(N**((beta**2/dd) - epsilon))
-		roots = coppersmith_howgrave_univariate(pol, N, beta, mm, tt, XX)
+		roots = pol.small_roots()
 		for root in roots:
 			print(long_to_bytes(root))
 	
@@ -88,7 +88,7 @@ So we read the data and partition them into the recovered polynomials coefficien
 We use Chinese Reminder Theorem to get values `ti` which for each dataset `i` should give 1 mod `ni` and 0 modulo any other of the moduli.
 Then we calculate the product of all moduli and create a polynomial ring with this value, because now all calculations will be mod `n1*n2*...`.
 
-Finally we create a polynomial suggested by Durfee and we find the roots using Coppersmith method (implemented as Howgrave version, borrowed from https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/coppersmith.sage ).
+Finally we create a polynomial suggested by Durfee and we find the roots using Coppersmith method.
 
 The extracted root is the message we were looking for: `PCTF{L1ne4r_P4dd1ng_w0nt_s4ve_Y0u_fr0m_H4s7ad!}`
 
@@ -169,7 +169,7 @@ def main():
 		mm = ceil(beta**2 / (dd * epsilon))
 		tt = floor(dd * mm * ((1/beta) - 1))
 		XX = ceil(N**((beta**2/dd) - epsilon))
-		roots = coppersmith_howgrave_univariate(pol, N, beta, mm, tt, XX)
+		roots = pol.small_roots()
 		for root in roots:
 			print(long_to_bytes(root))
 	
@@ -180,6 +180,6 @@ Pobieramy dane i dzielimy je na odpowiednie parametry wielomianów i modulusy.
 Następnie za pomocą Chińskiego Twierdzenia o Resztach wyliczamy współczynniki `ti` które dla każdego wejścia `i` dają 1 mod `ni` oraz 0 modulo dowolny inny modulus z zestawu.
 Następnie wyliczamy iloczyn wszystkich modulusów i tworzymy pierścień wielomianowy z tym iloczynem, ponieważ wszystkie obliczenia wykonywane będą teraz modulo `n1*n2*...`.
 
-Finalnie tworzymy wielomian zaproponowany przez Durfee i znajdujemy jego pierwiastki metodą Coppersmitha (w implementacji Howgrave, pożyczonej z https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/coppersmith.sage ).
+Finalnie tworzymy wielomian zaproponowany przez Durfee i znajdujemy jego pierwiastki metodą Coppersmitha.
 
 Znaleziony pierwiastek to szukana flaga: `PCTF{L1ne4r_P4dd1ng_w0nt_s4ve_Y0u_fr0m_H4s7ad!}`
