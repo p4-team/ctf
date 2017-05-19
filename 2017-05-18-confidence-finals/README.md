@@ -2,6 +2,8 @@
 
 Team: akrasuski1, msm, nazywam, rev
 
+![](photo.png)
+
 ### Table of contents
 
 * [Random (crypto 100)](random)
