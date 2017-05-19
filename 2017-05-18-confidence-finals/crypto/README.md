@@ -2,7 +2,9 @@
 
 ## ENG
 
-We are given file with "crypto service (see attached [enc_service.c](enc_service.c) ).
+The only serious 100% crypto challenge on CONFidence - thanks to adami (creator). I heard that it was originally supposed to be harder, but during internal testing it turned out that there was obvious unintended solution and it was left that way.
+
+We are given file with "crypto service" code (see attached [enc_service.c](enc_service.c) ).
 
 There are 16 "slots" for encryption keys in binary, and we have four operations:
  - copy key from Ith slot to `"current_key"` slot (if Ith key is shorter than `current_key`, not all will be overwritten).
@@ -13,8 +15,28 @@ There are 16 "slots" for encryption keys in binary, and we have four operations:
 My solution was not perfect, because it turned out that there was easier way, but i'll describe it anyway.
 
 Code initially looks conceptually like this:
+ - randomizes all keys
  - data = read('flag')
  - print `encrypt_data()`
+
+In original code:
+
+```cpp
+int i;
+for (i = 0; i < NUM_KEYS; i++) {
+        regenerate_key(i, MAX_KEY_LEN);
+}
+
+int fd = open("flag.txt", O_RDONLY);
+read(fd, data, DATA_SIZE);
+close(fd);
+
+load_key(MASTER_KEY_INDEX);
+encrypt();
+
+memset(data, 0, DATA_SIZE);
+regenerate_key(MASTER_KEY_INDEX, MAX_KEY_LEN);
+```
 
 data is memzeroed after this, and the original key is only in `current_key`.
 

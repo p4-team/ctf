@@ -2,7 +2,7 @@
 
 We were given this simple C++ code:
 
-```
+```cpp
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -96,3 +96,42 @@ def main():
         if stuff():
             break
 ```
+
+And `a.out` was compiled version of minimally modified given program:
+
+```cpp
+class RandStream
+{
+        //std::random_device rd;
+        std::mt19937 gen;
+
+public:
+        RandStream(int i) : gen(i) {}
+
+        unsigned int NextUInt()
+        {
+                return gen();
+        }
+};
+
+int main(int argc, char *argv[])
+{
+    unsigned int sought = std::strtoul(argv[1], NULL, 16);
+    unsigned int start = std::strtoul(argv[2], NULL, 16);
+    for (unsigned int i = start; i < 0xFFFFFFFE; i++) {
+        RandStream rand(i);
+        if (rand.NextUInt() != sought) {
+            continue;
+        }
+        for (int i = 0; i < 5; i++) {
+            rand.NextUInt();
+        }
+        for (int i = 0; i < 5; i++) {
+            cout << std::hex << rand.NextUInt() << ' ';
+        }
+        return 0;
+    }
+}
+```
+
+Just good, plain, old brute force.

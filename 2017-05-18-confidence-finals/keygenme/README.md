@@ -1,6 +1,6 @@
 # Keygenme (RE, 400p)
 
-This challenge took me a lot of time, but it was worth it (both because it was fun, and because it was worth a lot of points).
+This challenge took me a lot of time, but it was worth it (both because it was fun, and because it was worth a lot of points). It was created by redford (personally I'm fan of his challenges, but of course YMMV).
 
 So we had a binary with simple key checking. Entered key was simply treated as number in base36, and converted to usual base 256 (bytes). After that, we saw a big handcrafted assembly function.
 
@@ -8,7 +8,7 @@ It was one of the rare cases when assembly code was **much** more readable than 
 
 Reversing this step was fun, but rather easy (but quite time consuming). For example:
 
-```
+```asm
   ;; CF = SHL([GGG; HHH])
 shl     dword ptr [edi], 1
 rcl     dword ptr [edi+4], 1
@@ -25,7 +25,7 @@ As comment says, this all instructions is simple SHL of two concatenated registe
 Another popular operation was of course zeroing 128bit int:
 
 
-```
+```asm
   ;; [EEE] = 0
 mov     edx, [ebp+mag_consts]
 xor     eax, eax
@@ -38,7 +38,7 @@ mov     [esi+0Ch], eax
 And adding them:
 
 
-```
+```asm
   ;; [GGG; HHH] += [0; DDD]
 mov     eax, [edx]
 add     [edi], eax
@@ -54,8 +54,40 @@ adc     dword ptr [edi+18h], 0
 adc     dword ptr [edi+1Ch], 0
 ```
 
+And maybe assignment:
 
-After adding all that comments, i executed:
+```asm
+  ;; [GGG] = [DDD]
+mov     eax, [esi]
+mov     [edi+10h], eax
+mov     eax, [esi+4]
+mov     [edi+14h], eax
+mov     eax, [esi+8]
+mov     [edi+18h], eax
+mov     eax, [esi+0Ch]
+mov     [edi+1Ch], eax
+```
+
+And maybe comparsion:
+
+```asm
+  ;; CF = [DDD] < [*MAG]
+mov     eax, [esi]
+sub     eax, [edx]
+mov     eax, [esi+4]
+sbb     eax, [edx+4]
+mov     eax, [esi+8]
+sbb     eax, [edx+8]
+mov     eax, [esi+0Ch]
+sbb     eax, [edx+0Ch]
+
+  ;; IF CF GOTO loc_F41247
+jb      short loc_F41247
+```
+
+(proving that these are really equivalent is of course left as an exercise to reader)
+
+After finishing with adding all that comments, i executed:
 
 ```
 cat rawasm.asm  | grep ";;" | cut -c 6-
@@ -137,7 +169,7 @@ LOOP    loc_F412E9
 RETURN [CCC] == 0
 ```
 
-This may not look really pretty, but in fact we are only 10 minutes from getting quite readable code. When we change GOTOs to structural loops, we end up with this reasonable piece of pseudocode:
+This may not look really pretty, but in fact we are only 5-10 minutes from getting quite readable code. When we change GOTOs to structural loops, we end up with this reasonable piece of pseudocode:
 
 ```
 [BBB] == [ARG]
@@ -258,7 +290,7 @@ for mag, mmm in consts:
 assert (b + 0x31337) % drgns == 0
 ```
 
-Reversing it should be easy enough, right? Well, not for me - I wasted around 40 minutes, because I forgot -1 inside modinv. But leaving small mishappens aside, this code worked pretty well:
+Reversing it should be easy enough, right? Well, not for me - I wasted around 40 minutes, because at first I forgot that `-1` inside modinv. But leaving small mishappens aside, this code finally worked:
 
 ```
 def get_for(b):
@@ -283,5 +315,7 @@ while True:
         break
 ```
 
-One of valid keys was
+One of valid serial keys was
 `2S6JE-L492K-M8II0-KNU1M-XAXDV`
+
+This RE challenge was really interesting, because you were supposed to "go up" from meaningless operations on bits to higher understanding of what's going on, connecting smaller abstraction into bigger ones, finally ending up with 3 LoC python script.
