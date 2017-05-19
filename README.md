@@ -1,5 +1,6 @@
 # CTF writeups from P4 Team
 
+* [2017.05.20 **CONFidence CTF 2017** (2nd place / 21 teams)](2017-05-18-confidence-finals)
 * [2017.04.21 **Plaid CTF 2017** (19th place / 1150 teams)](2017-04-21-plaidctf)
 * [2017.04.02 **Confidence CTF Teaser 2017** (10th place / 258 teams)](2017-04-02-confidence-teaser)
 * [2017.04.01 **Nuit du Hack CTF Quals 2017** (5th place / 378 teams)](2017-04-01-nuit-du-hack-quals)
