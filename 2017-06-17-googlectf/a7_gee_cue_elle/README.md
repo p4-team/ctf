@@ -101,7 +101,7 @@ if the query doesn't return any rows - and we know `admin` user exists. So, if w
 username to `admin' AND some_check`, we might have error-based injection, and be able to 
 dump the password bit by bit. In fact, we used the following username:
 ```
-admin` AND password > 'checked_password
+admin' AND password > 'checked_password
 ```
 The full query then looks like:
 ```
