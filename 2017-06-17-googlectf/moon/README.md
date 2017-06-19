@@ -13,7 +13,8 @@ a demo-like graphical effect with some password to be typed in.
 After finding the main function, reversing the main logic was not too hard. The program
 was loading a couple of resources from read-only section - some of them being PNGs,
 some were random-looking hex strings, and there was even a shader program. One of the 
-"random" strings was later decrypted to another shader program. I found it pretty suspicious,
+"random" strings was later decrypted to another shader program (I saw it in debugger). 
+I found it pretty suspicious,
 so I decided to take a closer look at it:
 ```
 #version 430
