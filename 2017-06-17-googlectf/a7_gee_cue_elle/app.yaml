@@ -1,0 +1,25 @@
+service: anon2-lmuwucba5we9gi5a
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /login
+  script: main.app
+
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /(.+)
+  static_files: \1
+  upload: .*[.](?!py$).*
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+
+skip_files:
+- ^(.*/)?\.bak$
