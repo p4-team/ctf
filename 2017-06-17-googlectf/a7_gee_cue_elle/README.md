@@ -43,7 +43,7 @@ We obviously tried to fetch the `app.yaml`, but the request was blocked (maybe p
 issue). Anyway, after the hint, we thought to append a tilde character to the filename, as 
 though someone left editor temporary files on the server. And it worked! Here are the contents
 of the file:
-```
+```yaml
 service: anon2-lmuwucba5we9gi5a
 runtime: python27
 api_version: 1
@@ -104,7 +104,7 @@ dump the password bit by bit. In fact, we used the following username:
 admin' AND password > 'checked_password
 ```
 The full query then looks like:
-```
+```sql
 SELECT password FROM UserModel WHERE ANCESTOR IS :1 AND user = 'admin' AND password > 'checked_password'
 ```
 Now we can binary searched the password.
@@ -114,7 +114,7 @@ Now we can binary searched the password.
 abuse detection. When too many password checks have been done, or too many errors have 
 been made, it bans us for 90s. In addition, it bans us permamently after 2240s. It even 
 writes that in the response if we get banned:
-```
+```html
 <h1>Abuse detection system triggered!</h1>
 <h3>You have been banned for 90 seconds.</h3>
 <p>
