@@ -11,3 +11,4 @@ Team: akrasuski1, msm, nazywam, rev, c7f.m0d3, cr019283, shalom
 * [decrypt_the_undecryptable (re)](decrypt_the_undecryptable)
 * [fireplace (re)](fireplace)
 * [paged_out (misc/forensics)](paged_out)
+* [mprsa (crypto)](mprsa)
