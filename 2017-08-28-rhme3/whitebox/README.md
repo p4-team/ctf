@@ -6,3 +6,5 @@
 We were given binary implementing, as it turns out, whitebox implementation of AES. For a while I tried
 standard methods of breaking it, but in the end used `deadpool` library implementing various DFA attacks.
 I have no idea how they work, but they solved the puzzle. Scripts attached.
+
+-- akrasuski1
