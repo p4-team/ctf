@@ -37,10 +37,10 @@ We can modify the ciphertext to get a predictable change of the decrypted plaint
 
 Specifically:
 
-- `paillier_decrypt(pow(ct, multiplier, n2)) = pt*multiplier`
-- `paillier_decrypt(pow(ct, modinv(divisor,n), n2)) = pt*modinv(divisor,n)` which is basically modular division
-- `paillier_decrypt(ct*encrypt(addend, g, n, n2)) = pt+addend`
-- `paillier_decrypt(ct*encrypt(n-subtract, g, n, n2)) = pt-subtract`
+- `paillier_decrypt(pow(ct, multiplier, n2)) = pt*multiplier % n`
+- `paillier_decrypt(pow(ct, modinv(divisor,n), n2)) = pt*modinv(divisor,n) % n` which is basically modular division
+- `paillier_decrypt(ct*encrypt(addend, g, n, n2)) = (pt + addend) % n`
+- `paillier_decrypt(ct*encrypt(n-subtract, g, n, n2)) = (pt - subtract) % n`
 
 It was not obvious how to recover the whole plaintext in this task.
 It's simple enough to recover half of the bits once we know the other half.
