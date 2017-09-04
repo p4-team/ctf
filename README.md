@@ -2,6 +2,7 @@
 
 
 * [2017.08.25 **HackIT 2017** (4th place / 338 teams)](2017-08-25-hackit)
+* [2017.09.02 **Tokyo Westerns CTF 2017** (12th place / 901 teams)](2017-09-02-tokyo)
 * [2017.07.15 **CTFZone 2017 Quals** (3rd place / 55 teams)](2017-07-15-ctfzone)
 * [2017.06.17 **Google CTF 2017 Quals** (17th place / 1977 teams)](2017-06-17-googlectf)
 * [2017.05.20 **CONFidence CTF 2017** (2nd place / 21 teams)](2017-05-18-confidence-finals)
