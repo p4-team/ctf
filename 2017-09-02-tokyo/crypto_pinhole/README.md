@@ -47,7 +47,7 @@ It's simple enough to recover half of the bits once we know the other half.
 To get low bits we could simply multiply the plaintext by `2` and thus shift the bits to the left, and then recovery of 512-th bit would give us in fact 511-th bit, but only assuming that `plaintex*2 < n` because otherwise the value would be cut by modulo.
 So we would need to know the highest bit and subtract it from the plaintext before multiplication if it's set.
 
-On the other hand to get high bits we could simply divide the plaintext by `2` and thus shift the bits to the right, so that the recovery of 512-th bit would in fact give us 513-th bit, but only assuming `pt % 2 == 0` because otherwise the multiplication by modinv(2,n) is not a simple division, and to make sure that `pt` is even we would need to subtract the lowest bit if it's set, but for that we would need to know the lowst bit first!
+On the other hand to get high bits we could simply divide the plaintext by `2` and thus shift the bits to the right, so that the recovery of 512-th bit would in fact give us 513-th bit, but only assuming `pt % 2 == 0` because otherwise the multiplication by modinv(2,n) is not a simple division, and to make sure that `pt` is even we would need to subtract the lowest bit if it's set, but for that we would need to know the lowest bit first!
 
 Finally we figured that we can actually recover low bits without any prior knowledge by using addition and integer overflows.
 
