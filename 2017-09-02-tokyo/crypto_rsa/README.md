@@ -59,15 +59,15 @@ It means that adding such numbers will only upset lower half of the bits of `p` 
 This gives us an interesting property - since high bits are preserved, from high bits point of view we actually have the case `N = p*19*p`!
 
 We can do `p_approx = gmpy2.iroot(N/19)` to obtain an approximation of `p` where high bits are correct. 
-With this setup `q_approx = p_approx * 19 + 2**512`.
+With this setup `q_approx = p_approx * 19 + 2**512` and this is basically the upper bound for `q` (lower bound would be just `q_approx * 19`)
 
 From our local tests we can get about 515-520 bits intact this way.
 
 So we have more than N/4 of the most significant bits of one of the primes, is this enough to recover the whole prime?
 
-Let's look at this from the other side, we have value `q_approx` and we want to recover value `delta` such that `q = q_approx + delta`.
+Let's look at this from the other side, we have value `q_approx` and we want to recover value `delta` such that `q = q_approx - delta` (or `+ delta` if we used the lower bound instead of upper bound)
 
-If we make univariate polynomial in ring modulo N such that `F(x) = q_approx + x` then it's clear that the `delta` we're looking for is root of this polynomial, since `q` is a factor of `N` and thus `q mod N == 0`.
+If we make univariate polynomial in ring modulo `N` such that `F(x) = q_approx - x` then it's clear that the `delta` we're looking for is root of this polynomial, since `q` is a factor of `N` and thus `q mod N == 0`.
 
 And the root we need is also not that big, we know it's actually the low bits of `q` we're missing, so at most `2**512`, which is less than `N/4`.
 We know from Coppersmith theorem that we can efficiently find small roots of such polynomial, so we proceed with sage code:
