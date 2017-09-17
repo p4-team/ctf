@@ -1,4 +1,4 @@
-# Malbolge (Web, 238p, 153 solved)
+# Malbolge (Misc, 238p, 153 solved)
 
 We can connect to a service which asks us for a Malbolge code which will print `Welcome to EKOPARTY!`:
 
