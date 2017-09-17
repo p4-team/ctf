@@ -1,7 +1,10 @@
 # OldPC (misc, 478 points, 14 solves)
 
+In the task we get [machine code dump](oldpc.hex).
+A bit of googling for byte sequencec got us to http://www.xgc-tek.com/manuals/erc32-ada-gs/x286.html where we could see assembly listing with similar machine code to what we had (at least the stack frame creation and ret/leave).
+Now we just had to check what is this ERC32 and/or what assembly was in the listing.
 
-The main difficulty of this challenge was noticing that the given binary file contained sparc assembly.
+In th end the main difficulty of this challenge was noticing that the given binary file contained sparc assembly.
 
 After getting through that difficulty all we need to do is load the file in a disassembler and select `sparc big endian`:
 
