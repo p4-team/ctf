@@ -16,3 +16,4 @@ Team: c7f.m0d3, shalom, nazywam, cr019283
 * [Special (misc)](special_misc)
 * [COBOL (re)](cobol_re)
 * [Spies (dns)](spies_dns)
+* [EKOVM] (vm)](ekovm)
