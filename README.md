@@ -1,6 +1,8 @@
 # CTF writeups from P4 Team
 
 
+* [2017.10.06 **KasperskyLab Industrial CTF Quals 2017** (4th place / 227 teams)](2017-10-06-klctf)
+* 2017.10.01 **DefCamp D-CTF 2017 Quals** (5th place / 471 teams)
 * [2017.09.17 **EKO Party 2017** (5th place / 184 teams)](2017-09-17-ekoparty)
 * [2017.09.02 **Tokyo Westerns CTF 2017** (12th place / 901 teams)](2017-09-02-tokyo)
 * [2017.08.25 **HackIT 2017** (4th place / 338 teams)](2017-08-25-hackit)
