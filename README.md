@@ -1,6 +1,7 @@
 # CTF writeups from P4 Team
 
 
+* [2017.11.04 **HITCON 2017 Quals** (24th place / 1075 teams)](2017-11-04-hitcon)
 * [2017.10.06 **KasperskyLab Industrial CTF Quals 2017** (4th place / 227 teams)](2017-10-06-klctf)
 * 2017.10.01 **DefCamp D-CTF 2017 Quals** (5th place / 471 teams)
 * [2017.09.17 **EKO Party 2017** (5th place / 184 teams)](2017-09-17-ekoparty)
