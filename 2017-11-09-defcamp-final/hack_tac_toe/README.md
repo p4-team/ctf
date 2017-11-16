@@ -33,7 +33,7 @@ Fortunately we looked at the recovered keystream:
 `400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8400ea7a5`
 
 And we noticed that it repeats itself!
-The unique part is just 32 bytes: `400ea7a58971b0f78fa9c6ed298764a8400ea7a58971b0f78fa9c6ed298764a8`
+The unique part is just 16 bytes: `400ea7a58971b0f78fa9c6ed298764a8`
 
 It means we can simply decrypt the whole payload by XORing the cookie with repeated key:
 
