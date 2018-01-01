@@ -6,3 +6,4 @@ Team: Eternal, rev, msm, nazywam, psrok1, c7f.m0d3, akrasuski1, shalom
 
 * [Software update (crypto)](crypto_software_update)
 * [lol (crypto)](crypto_lol)
+* [blinkenlights (re)](blinkenlights)
