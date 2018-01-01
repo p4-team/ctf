@@ -1,6 +1,7 @@
 # Blinkenlights (rev, 242p, 15 solves)
 
 > I built something that prints the flag. But I lost the flag :(
+>
 > Difficulty: medium
 
 In this task we got a binary firmware for ARM architecture, and a 400MB CSV containing oscilloscope traces
