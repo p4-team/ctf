@@ -18,3 +18,5 @@ time between pulses.
 After excluding several very long (~100 times longer than average) times - they seem to be some kind of synchronization,
 not needed for us - I've multiplied every sample by ten and stored as greyscale imaage, hoping to notice some pattern.
 It turned out that setting width to 6144 (guessed) we can notice some barely readable text - a flag!
+
+![img](L6144.png)
