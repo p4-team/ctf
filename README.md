@@ -1,6 +1,7 @@
 # CTF writeups from P4 Team
 
 
+* [2017.12.09 **34C3 CTF** (14th place / 187 teams)](2017-12-29-34c3)
 * [2017.12.09 **SECCON 2017 Quals** (7th place / 1028 teams)](2017-12-09-seccon-quals)
 * [2017.11.09 **Defcamp D-CTF 2016 Finals** (2nd place / 11 teams) on site](2017-11-09-defcamp-final)
 * [2017.11.04 **HITCON 2017 Quals** (24th place / 1075 teams)](2017-11-04-hitcon)
