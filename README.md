@@ -1,7 +1,10 @@
 # CTF writeups from P4 Team
 
+## 2018
 
 * [2018.01.20 **InsomniHack Teaser 2018** (4th place / 433 teams)](2018-01-20-insomnihack)
+
+## 2017
 
 * [2017.12.09 **34C3 CTF** (14th place / 187 teams)](2017-12-29-34c3)
 * [2017.12.09 **SECCON 2017 Quals** (7th place / 1028 teams)](2017-12-09-seccon-quals)
@@ -26,6 +29,8 @@
 * [2017.02.04 **BITSCTF 2017** (4th place / 275 teams)](2017-02-04-bitsctf)
 * [2017.02.03 **AlexCTF 2017** (1st place / 977 teams)](2017-02-03-alexctf)
 * [2017.01.21 **InsomniHack Teaser CTF 2017** (4th place / 339 teams)](2017-01-21-insomnihack)
+
+## 2016
 
 * [2016.12.27 **33C3 CTF 2016** (15th place / 278 teams)](2016-12-27-33c3)
 * [2016.12.17 **3DSCTF 2016** (8th place / 536 teams)](2016-12-17-3dsctf)
@@ -65,6 +70,8 @@
 * [2016.01.29 **HackIM (Nullcon) CTF 2016** (18th place / 535 teams)](2016-01-29-nullcon)
 * 2016.01.23 **Break In 2016** (2nd place / 152 teams)
 * [2016.01.16 **InsomniHack Teaser CTF 2016** (9th place / 245 teams)](2016-01-16-insomnihack)
+
+## 2015
 
 * [2015.12.27 **32c3 CTF 2015** (46th place / 389 teams)](2015-12-27-32c3)
 * [2015.12.05 **SECCON CTF 2015** (12th place / 872 teams)](2015-12-05-seccon)
