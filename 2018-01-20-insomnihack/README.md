@@ -1,4 +1,4 @@
-# InsomniHack Teaser CTF 2017
+# InsomniHack Teaser CTF 2018
 
 Team: c7f.m0d3, sasza, nazywam, akrasuski1, ppr, rodbert, hubert, borysp, rev, cr019283, psrok1, shalom
 
