@@ -9,7 +9,7 @@ However it seems we can provide only a link to this storage service, and the CSP
 This means we can't execute any JS, styles can be loaded only from the same domain and pictures can be loaded from data or from external server.
 
 We can use this service to store files, however `php, php3...` etc. extensions are blacklisted.
-The service claims that we can upload only pictures, but in reality the checks are not very strict, so for example prefix `GIF` can fool it, same as appending PNG header.
+The service claims that we can upload only pictures, but in reality the checks are not very strict, so for example prefix `GIF` can fool it, same as prepending PNG header.
 
 Once the file is uploaded we can view it, but it's loaded as `data` in base64 form.
 We can trigger an error by trying to view non-existing file, and this will tell us that our sandbox is at `/uploads/sha256(our_login)`, but when we try to access the file directly via `http://css.teaser.insomnihack.ch/uploads/...` we get `Direct access to uploaded files is only allowed from localhost`.
@@ -109,18 +109,29 @@ function gen_src()
 </head>
 <body onload="gen_src()">
 <iframe id="ramek"></iframe>
+<form action="http://css.teaser.insomnihack.ch/?page=profile" method="POST" id="form">
+            <input type="text" name="name" value="p4"/>
+            <input type="text" name="age" value="31337"/>
+            <input type="text" name="country" value="p4"/>
+            <input type="text" name="email" value="EMAIL_WE_CONTROL"/>
+            <input type="hidden" name="csrf" value="" id="csrf"/>
+            <input type="hidden" name="change" value="Modify profile"/>
+        </tr>
+    </form>
+</body>
+</html>
 ```
 
 The best place to use the POST ability was the user profile page, because we can modify the user email there.
 It's useful, because there was `forgot password` option in the application, and it would send password reset link to email in the profile.
 
-This way we we managed to reset admin password and login to the application as admin.
-There is a single new options which is now available for us - fetch:
+This way we managed to reset admin password and login to the application as admin.
+There is a single new option which is now available for us - fetch:
 
 ![](newoptions.png)
 
 We can now provide URL and it seems the system downloads the designated image, so we have some kind of potential SSRF.
-There is some protection agains using localhost, 127.0.0.1 or internal relative path, but it can be bypassed using php wrappers or `localtest.me` domain, so we can "download" local files and also files in `uploads/`.
+There is some protection against using localhost, 127.0.0.1 or internal relative path, but it can be bypassed using php wrappers or `localtest.me` domain, so we can "download" local files and also files in `uploads/`.
 
 The intended way to solve the task was to upload `.pht` file with PHP shell and some `GIF` prefix to fool the parser into thinking it's a picture, and then execute this file using the `fetch` function.
 Unfortunately we missed the `.pht` extension trick (although we tried almost all others), and our solution was a bit different.
