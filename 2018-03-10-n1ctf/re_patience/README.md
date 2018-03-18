@@ -24,7 +24,7 @@ def integers(n):
     return [n] + integers(n + 1)
 ```
 
-Do you see anything wrong with this code? Exactly, this is not a terribly useful function - it'll recurse forever, or rather eat all your available stack space and explode. Not in Haskell though - you can take first 100 elements of that list, and everything will work, because haskell is *lazy* - only necessary elements will be evaulated.
+Do you see anything wrong with this code? Exactly, this is not a terribly useful function - it'll recurse forever, or rather eat all your available stack space and explode. Not in Haskell though - you can call this function, take first 100 elements of the result, and get perfectly useful result - haskell is *lazy*, so only necessary elements will be evaulated.
 
 But this still doesn't explain just how lazy Haskell is. Consider this:
 
