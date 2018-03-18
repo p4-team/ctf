@@ -83,9 +83,7 @@ Beautiful, isn't it? What's going on here? Nothing, actually. All this code does
 runMainIO (main_closure)
 ```
 
-where `main_closure` is well, closure from main (bound function, a common occurence in functional programming).
-
-Let's dig deeper - what's inside this `main_closure`?
+where `main_closure` is well, closure from main. Let's dig deeper - what's inside this `main_closure`?
 
 ```haskell
 Main.main_entry() //  [R1]
