@@ -3,9 +3,9 @@
 This was a haskell reversing challenge. If this doesn't fill you with dread, this means that probably either:
 
 - you are most 1338 pr0 xakep r3v3rse engineer ever living
-- you don't know what you're going to see.
+- you don't comprehend the amount of horror that you're going to witness.
 
-Either way, you're going to have some serious fun. In fact, I've never seen anyone actually reverse engineer (non-trivial) haskell binary before - most challenges are actually cracked with black-box solutions or other side channels. This task is no different - we are given .cmm file along with compiled binary.
+Either way, you're in for some serious fun. In fact, I've never seen anyone actually reverse engineer (non-trivial) haskell binary before - most challenges are actually solved with black-box workarounds or other side channels. This task is no different - we are given .cmm file along with compiled binary.
 
 CMM files are dump of late-stage intermediate language from GHC. This is going to make our life way easier - we don't have to reverse haskell thunks, we have everything in plain text... well, sort of.
 
