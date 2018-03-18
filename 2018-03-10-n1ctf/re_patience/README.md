@@ -184,7 +184,7 @@ map (idx_closure) (flags_closure)
 
 So again, single function invocation, with closure parameters, and a lot of junk.
 
-I'll spare you the details - when you know what to expect (i.e. a LOT of thunks), reversing is quite straightforward (except you need a LOT of, well, patience).
+I'll spare you the details - when you know what to expect (i.e. a LOT of thunks), reversing is quite straightforward (except you need a LOT of, well, *patience*).
 
 This is the reversed code, which should be **very** similar to the original:
 
@@ -303,3 +303,5 @@ And that's basically it - after running reversed version, correct flag is produc
 ```
 N1CTF{did_cmm_helped?1109ef6af4b2c6fc274ddc16ff8365d1}
 ```
+
+PS. Yes, it did.
