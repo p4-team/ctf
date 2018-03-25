@@ -1,0 +1,71 @@
+Hello Every one,
+We didn't know what to do, so we are asking for your help.
+
+A friend of us sent us the following text:
+
+I used an elliptic curve encrytion for the first time.
+The only thing that i kown about elliptic curve is that a number K must always be hidden.
+so i made multiple encryption to send some information.
+
+Here is all the informations about the elliptic curve that i used excep the K number.
+
+The elliptic curve is : 
+y^2 = x^3 + A*x + B
+A = 658974
+Sorry i forget the B :/ , I just remember that it's most significant number is  6
+
+As an order of a finite field must be a prime power, i used p = 962280654317 (FiniteField(p)).
+as a starter point, i used the generator G for this elliptic curve: (518459267012 : 339109212996 : 1)
+and each time i reuse it to encrypt again
+
+let my secret message be K .
+for exemple I divided my K to 2 elements k1 and k2
+then Q1 is k1*G
+and Q2 is k2*G
+
+here are the Qi that i got:
+
+[(656055339629 : 670956206845 : 1), 
+(714432985374 : 30697818482 : 1), 
+(519532969453 : 833497145865 : 1), 
+(606806384185 : 353033449641 : 1), 
+(370553209582 : 211121736115 : 1), 
+(95617246846 : 666814491609 : 1), 
+(474872055371 : 795112698430 : 1), 
+(249845085299 : 222352033875 : 1), 
+(850954431245 : 810446463695 : 1), 
+(188731559428 : 877002121896 : 1), 
+(168665615402 : 464872506873 : 1), 
+(26722558561 : 269217869309 : 1), 
+(16403346294 : 478534963882 : 1), 
+(539749282946 : 332444159141 : 1), 
+(932295517649 : 23439478940 : 1), 
+(765194933041 : 920187938377 : 1), 
+(853124087439 : 845601917928 : 1), 
+(246454416048 : 212483699689 : 1), 
+(312547608490 : 688107262695 : 1), 
+(43261158649 : 439444472742 : 1), 
+(320785434805 : 477080449838 : 1), 
+(741706320740 : 672809544395 : 1), 
+(361762297756 : 858805805323 : 1), 
+(782235980044 : 600673464737 : 1), 
+(69196762074 : 327427680437 : 1), 
+(876001563166 : 573218279075 : 1), 
+(117946101727 : 954797129239 : 1), 
+(771781111553 : 314018907599 : 1), 
+(579549799021 : 322325160055 : 1), 
+(857081196493 : 464260539273 : 1), 
+(852938568103 : 429083796488 : 1), 
+(850954431245 : 810446463695 : 1), 
+(55203632714 : 255470537391 : 1), 
+(600464434215 : 605840305721 : 1), 
+(620532163623 : 575613893944 : 1), 
+(215810002861 : 481354983411 : 1), 
+(538481263994 : 666638294130 : 1), 
+(528666082457 : 895034116069 : 1), 
+(296218553972 : 899557390183 : 1), 
+(428618251485 : 445768511836 : 1), 
+(632412058600 : 685699421425 : 1), 
+(634041855232 : 495546745721 : 1), 
+(570481762204 : 252944477333 : 1), 
+(760959783781 : 435626456209 : 1)]
