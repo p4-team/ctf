@@ -12,3 +12,4 @@ Team: shalom, akrasuski1, psrok1, nazywam, sasza
 * [Special (pwn)](pwn_special)
 * [Tic Tac Toe (web/misc)](web_tictactoe)
 * [No mercy (pwn)](pwn_no_mercy)
+* [Lone author (forenics)](for_lone)
