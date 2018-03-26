@@ -38,9 +38,9 @@ P = E([x,y]) # generator point
 solutions = []
 for px,py in data:
     Q = E([px,py])
-	solution = P.discrete_log(Q)
-	print(px,py, solution)
-solutions.append(solution)
+    solution = P.discrete_log(Q)
+    print(px,py, solution)
+    solutions.append(solution)
 print(solutions)
 ```
 
