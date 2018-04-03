@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.03.30 **Nuit du Hack CTF Quals 2018**(1st place / 490 teams)](2018-03-30-nuit-du-hack)
 * [2018.03.24 **Securinets CTF Quals 2018**(5th place / 216 teams)](2018-03-24-securinets)
 * [2018.03.18 **Backdoor CTF 2018**(2nd place / 123 teams)](2018-03-18-backdoor-ctf)
 * [2018.03.10 **N1 CTF 2018**(4th place / 517 teams)](2018-03-10-n1ctf)
