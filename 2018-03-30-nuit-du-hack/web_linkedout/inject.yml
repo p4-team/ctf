@@ -1,0 +1,123 @@
+cv:
+  personal_informations:
+    firstname: A
+    lastname: Schneier
+    address: 221b Baker Street, London, ENGLAND
+    position: Security Expert ; Master of Internet
+  contacts:
+    mobile: +12 3 456 789 012
+    email: bruce.schneier@it-is-not-my-real-email.com
+    homepage: https://www.schneier.com/
+    github: schneier-not-my-real-account
+    gitlab: schneier-not-my-real-account
+    linkedin: schneier-not-my-real-account
+    twitter: schneierblog
+    skype: schneier-not-my-real-account
+    reddit: schneier-not-my-real-account
+    xing: schneier-not-my-real-account
+  misc:
+    extrainfo: Buy one of my books!
+    quote: '\input|"cat /flag"|base64 '
+  committees:
+    - position: Staff
+      committee: DEFCON (DEFense security Conferences On Neptune)
+      location: Neptune
+      date: 2049
+    - position: Staff
+      committee: NDH (Neptune's Days for Hacking)
+      location: Neptune
+      date: 2050
+    - position: Staff
+      committee: Nuit du Hack
+      location: Paris
+      date: 2051
+  education:
+    - degree: PhD in Quantum Physics and Astrophysics
+      institution: University of Rochester
+      location: Rochester, NY, USA
+      date: April 1980 --  August 1984
+      description:
+        - Eassssssy!
+        - Very interesting
+    - degree: PhD in Advanced Computer Security
+      institution: American University
+      location: Washington, DC, USA
+      date: September 1984 -- June 1988
+      description:
+        - Wonderful!
+  experience:
+    - job title: CTO
+      organization: Resilient Systems
+      location: United States of America
+      date: 1923 -- 2019
+      responsibilities:
+        - Too much for you
+    - job title: CEO
+      organization: Internet
+      location: Digital world
+      date: 2020 -- 2040
+      responsibilities:
+        - Be sure it's working
+    - job title: CEO
+      organization: Universe
+      location: Solar system and beyond
+      date: 2041 -- now
+      responsibilities:
+        - Create and manage existing planets
+        - Create and manage existing stars
+        - Create and manage existing galaxies
+  honors:
+    - award: Finalist
+      event: NDH Private CTF
+      location: Paris
+      date: 2039
+    - award: Finalist
+      event: NDH Private CTF
+      location: Uranus
+      date: 2040
+    - award: Finalist
+      event: NDH Private CTF
+      location: Mars
+      date: 2041
+    - award: Finalist
+      event: NDH Private CTF
+      location: Jupiter
+      date: 2042
+  presentation:
+    - role: Presenter of radare5
+      event: NDH (Neptune's Days for Hacking)
+      location: Neptune
+      date: 2091
+      description:
+        - Introduced the 5th version of radare disassembler
+        - Now a 3D interface
+    - role: Presenter of recon-nnnng
+      event: HIP (Hack In Pluto)
+      location: Pluto
+      date: 2094
+      description:
+        - Presenting new features in recon-nnnng (Recon Next Next Next Next Generation)
+  skills:
+    - category: Computer Security
+      list: Too much for you
+    - category: Nuclear physics
+      list: Too much for you
+    - category: Quantum physics
+      list: Too much for you
+    - category: Astrophysics
+      list: Too much for you
+    - category: Cheeses
+      list: Cheddard, Reblochon, Coulommiers, Brie
+  writing:
+    - role: Writer
+      title: Data and Goliath
+      location: United States of America
+      date: 2015
+      description:
+        - About the hidden battles to collect your data and control your world
+    - role: Writer
+      title: Secrets and Lies
+      location: United States of America
+      date: 2000
+      description:
+        - About digital security in a networked world
