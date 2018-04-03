@@ -11,4 +11,4 @@ Team: shalom, akrasuski1, chivay, nazywam, Eternal, rev, c7f.m0d3
 * [LinkedOut (web)](web_linkedout)
 * [PixEditor (web)](web_pixeditor)
 * [Where is my purse (for)](for_purse)
-* [Cryptolol (crypto/web)](cryptolol)
+* [Cryptolol (crypto/web)](Cryptolol)
