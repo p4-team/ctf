@@ -1,4 +1,4 @@
-##Fridginator (Crypto/Web, 200p)
+## Fridginator (Crypto/Web, 200p)
 
 > My brother John just bought this high-tech fridge which is all flashy and stuff,
 > but has also added some kind of security mechanism which means I can't steal his
@@ -6,7 +6,7 @@
 > Can you find a way to steal them for me?
 > http://fridge.insomnihack.ch/
 
-###PL
+### PL
 [ENG](#eng-version)
 
 Łączymy się ze wskazanym adresem. Trzeba zarejestrować swojego użytkownika.
@@ -195,7 +195,7 @@ Wystarczyło w tym momencie zalogowąć się na użytkownika John i "wyciągną�
 
     Hello Johnny, have your food and a flag, because why not? INS{I_do_encryption_so_no_SQL_injection}
 
-###ENG version
+### ENG version
 
 We connect to address specified in task description. 
 
