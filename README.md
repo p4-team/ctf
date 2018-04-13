@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.04.11 **HITB-XCTF GSEC CTF 2018 Quals**(40th place / 344 teams)](2018-04-11-hitb-quals)
 * [2018.03.30 **Nuit du Hack CTF Quals 2018**(1st place / 490 teams)](2018-03-30-nuit-du-hack)
 * [2018.03.24 **Securinets CTF Quals 2018**(5th place / 216 teams)](2018-03-24-securinets)
 * [2018.03.18 **Backdoor CTF 2018**(2nd place / 123 teams)](2018-03-18-backdoor-ctf)
