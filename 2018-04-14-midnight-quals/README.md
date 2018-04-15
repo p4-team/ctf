@@ -12,3 +12,4 @@ Team: akrasuski1, sasza, chivay, borysp, nazywam, shalom
 * [gibson (pwn)](gibson)
 * [hashcash (pwn)](hashcash)
 * [pwndoor (re)](pwndoor)
+* [randumb (pwn)](randumb)
