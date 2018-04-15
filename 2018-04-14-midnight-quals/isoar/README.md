@@ -44,7 +44,7 @@ We can throw against it a lot of random passwords and build the admins password 
 
 Putting all of this together, we get:
 
-A bottleneck with required primitives:
+A boilerplate with required primitives:
 
 ``` python
 import requests
