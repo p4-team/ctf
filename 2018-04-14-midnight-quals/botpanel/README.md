@@ -32,4 +32,5 @@ We did it in the same way, via leaking return address during login procedure: `%
 
 The binary was rather small, so there was not enough gadgets to easily make a reliable exploit - our solution
 increments (bytewise) `puts` function GOT entry so that it points to `system`. Because it is bytewise incrementation,
-the possible carry is ignored, so the result may be wrong. The whole exploit code is available in `doit.py`.
+the possible carry is ignored, so the result may be wrong. Still, the exploit works about half the time.
+The whole code is available in `doit.py`.
