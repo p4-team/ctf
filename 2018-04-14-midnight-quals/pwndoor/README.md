@@ -10,7 +10,7 @@ packet matching the filter to arrive. Then it sends the flag to the sender ip, o
 
 The only difficult thing there is to analyze the BPF filter. The tooling surrounding it is in pretty bad condition -
 we were not able to find a disassembler that would work correctly. In the end, we used the same approach as in
-http://www.gnoobz.com/, that is using `/proc/sys/net/core/bpf_jit_enable`, which would translate the BPF to
+http://www.gnoobz.com/hitb-ctf-2016-binary-300.html, that is using `/proc/sys/net/core/bpf_jit_enable`, which would translate the BPF to
 x64 code and dump it in `dmesg` output.
 
 Reverse engineering that wasn't too different from any other RE challenge. There were a couple of arithmetic
