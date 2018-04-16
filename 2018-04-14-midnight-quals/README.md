@@ -1,6 +1,6 @@
 # Midnight Sun CTF Quals
 
-Team: akrasuski1, sasza, chivay, borysp, nazywam, shalom
+Team: akrasuski1, sasza, chivay, borysp, nazywam, shalom, ziolek
 
 ### Table of contents
 
