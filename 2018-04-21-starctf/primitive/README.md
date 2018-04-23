@@ -13,7 +13,7 @@ All of these were modulo 256.
 
 For example, let's say the the permutation was `(1, 2, 0, 3)` (for simplicity of the example, we use 2-bit numbers).
 Then one of the solutions would be: `ADD 3, ROL 1, XOR 2`, since number 0 after these operations would give 1,
-1 - 2, 2 - 0, and 3 would stay 3.
+1 maps to 2, 2 to 0, and 3 stays 3.
 
 It is hard to instantly think of a general algorithm to generate the needed sequence, so we had to split the
 task into simpler ones. The first thing we can do is rewriting the permutation as product of transpositions.
