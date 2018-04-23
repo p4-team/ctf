@@ -1,7 +1,7 @@
 # primitive, crypto
 
 
-This was quite an intereseting challenge. We were given a Python code of a server running on their host.
+This was quite an interesting challenge. We were given a Python code of a server running on their host.
 It generated and sent a random permutation of 256 bytes and treated it as substitution cipher. Our task was to supply
 a sequence of operations, that when applied to any byte `c`, would give `perm[c]`. The allowed operations
 were:
