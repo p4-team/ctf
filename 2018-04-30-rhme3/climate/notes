@@ -1,0 +1,138 @@
+Flash:
+027E - sha256_constants (0x20 bytes)
+029E - sha256 constants 2 (256 bytes)
+
+RAM:
+
+20F0 - is response correct
+20F1 - is rand generated
+
+211F - USART thingy
+
+CAN1 *21BF == 2137
+CAN2 *2249 == 21c1
+
+225F - __malloc_heap_end
+2261 - __malloc_heap_start
+2263 - __malloc_margin
+
+22DB - Riscure certificate (hardcoded)
+
+25BC:25C3 - challenge
+
+25C4 - number response retries
+25C5 - to_send message queue
+2A11 - recvd message queue (won't save if cntsecond == 99)
+
+2E5D - cnt_to_send
+2E5E - cnt_recvd
+
+2E61 - loaded correct cert from eeprom? (0xb if yes)
+
+2EED - is tinymt initialized
+
+2EF0 - flagmask, 0 if cert is not riscure's, but gibflag sets to 0xff anyway
+
+3061 - tinymt
+
+307D - __brkval
+307F - __flp
+
+
+struct message: (size = 0xb)
+  00..
+  08 sid
+  0a len
+
+
+struct subcan: (size = 0xe)
+  00 ctrl
+  01 sidh
+  02 sidl
+  03 eid8
+  04 eid0
+  05 dlc
+  06 buf[8]
+  
+
+struct can: (size = 0x8a or 0x88)
+  00... unk
+  12 arr of 8 subcan
+  82 (aka -0x7e) subcan_wr_num
+  83 (aka -0x7d) subcan_rd_num
+  84 (aka -0x7c) spi (CAN1: 0x9c0 (SPID); CAN2: 0x8c0 (SPIC))
+  86 (aka -0x7a) port (CAN1: 0x660 (PORTD); CAN2: 0x640 (PORTC))
+
+struct weird: (size = 19) - five bignums, with heap buffers
+  00: len1
+  02: frac1
+  03: heap1
+  05: len2
+  07: frac2
+  08: heap2
+  0a: len3
+  0c: frac3
+  0d: heap3
+  0f: len4
+  11: frac4
+  12: heap4
+  14: len5
+  16: fra5
+  17: heap5
+
+struct bignum:
+  00: len (in bytes, rounded up)
+  02: fractional_bytes (bits % 8)
+  03: buf
+
+store_metaflag function: (maybe count significant bits in bignum_
+  decrease len to last nonzero byte of buf
+  store 7 - ltz buf[len-1] in flag
+
+Initial eeprom:
+
+01: 8 bytes from 237A (magic)
+0A: 0x18 bytes from 2382 (some number for diffie hellman)
+28: 0x10 bytes from 239A (session key)
+40: 0x78 bytes from 22DB (asn1 cert)
+
+Code:
+
+1. On CAN interrupt, read message to can->subcan ringbuffer.
+2. BUG! in function 0x25A0, dlc byte is calculated modulo 15, not 16!
+   Does not seem exploitable though...
+   BUT, random data from stack saved as message if len > 8. Fake
+   length and stuff...
+3. Messages can be split into parts. Protocol:
+   [AHN | ALN] [B] [ rest... ]
+   if AHN is 0, it is a single part message, with length equal to len in struct (< 9)
+   elif 1, multi-part, length = ALN * 256 + B, following messages have 7 bytes.
+   else length is considered 0, but if ANH is 3, packets are skipped in reassembly
+4. In function 0x2720, there may be a bug with a couple bytes of overflow on stack,
+   (e.g. first packet says message is 7 bytes long, so 7 bytes alloca'd, then when
+   reassembling, we get 6 bytes of this packet, and say 7 bytes of another. 6B overflow)
+   This is just enough to overwrite stackbuf len, but ffs, not exploitable.
+5. Another bug: sending 0x30 byte as first one may in some cases underflow recvd_cnt to
+   255. This makes recv_queue saving out of bounds. Possibly WWW?
+6. Normal 665 commands:
+   arbitrary write eeprom: (can only do after authenticated via response)
+     [3D][22][addr_addr][len_len][whatever...]
+     (we can only write to buffers at addresses >= 0x69...)
+     (will even send confirmation - [7D][22][addr_addr][len_len])
+   clear eeprom 0x28:0x38 (authenticated only)
+     [31][01][43][01]
+     (confirm - [71][01][43][01][01])
+   generate random: (challenge?)
+     [27][01]
+     (confirm - [67][01][generated random, 8 bytes]
+   response: (can only do after 20F1, i.e. after generate)
+     [27][00][8 bytes]
+     (confirm - [67][00])
+     (response should contain X, such that X**31337 mod 0xa59068ff == challenge)
+7. Possible pwn chain:
+   Authenticate and set eeprom to:
+   01 - magic
+   28 - FF's
+   40 - exploit
+   Reset.
+   Overflow in C52E.

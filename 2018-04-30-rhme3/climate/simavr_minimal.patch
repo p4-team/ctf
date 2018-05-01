@@ -1,0 +1,223 @@
+diff --git a/simavr/Makefile b/simavr/Makefile
+index f7eccca..10c309f 100644
+--- a/simavr/Makefile
++++ b/simavr/Makefile
+@@ -27,7 +27,7 @@ target	= run_avr
+ CFLAGS	+= -Werror
+ # tracing is useful especialy if you develop simavr core.
+ # it otherwise eat quite a bit of few cycles, even disabled
+-#CFLAGS	+= -DCONFIG_SIMAVR_TRACE=1
++CFLAGS	+= -DCONFIG_SIMAVR_TRACE=1
+ 
+ all:
+ 	$(MAKE) obj config
+diff --git a/simavr/cores/sim_core_declare.h b/simavr/cores/sim_core_declare.h
+index 7d6dac7..dd608fd 100644
+--- a/simavr/cores/sim_core_declare.h
++++ b/simavr/cores/sim_core_declare.h
+@@ -80,7 +80,7 @@
+ #ifdef SIGNATURE_0
+ #define DEFAULT_CORE(_vector_size) \
+ 	.ioend  = RAMSTART - 1, \
+-	.ramend = RAMEND, \
++	.ramend = RAMEND + 0x2000, \
+ 	.flashend = FLASHEND, \
+ 	.e2end = E2END, \
+ 	.vector_size = _vector_size, \
+@@ -97,7 +97,7 @@
+ // Disable signature when using an old avr toolchain
+ #define DEFAULT_CORE(_vector_size) \
+ 	.ioend  = RAMSTART - 1, \
+-	.ramend = RAMEND, \
++	.ramend = RAMEND + 0x2000, \
+ 	.flashend = FLASHEND, \
+ 	.e2end = E2END, \
+ 	.vector_size = _vector_size
+diff --git a/simavr/sim/sim_core.c b/simavr/sim/sim_core.c
+index 7be739b..f59228e 100644
+--- a/simavr/sim/sim_core.c
++++ b/simavr/sim/sim_core.c
+@@ -23,6 +23,8 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <ctype.h>
++#include <sys/types.h>
++#include <sys/socket.h>
+ #include "sim_avr.h"
+ #include "sim_core.h"
+ #include "sim_gdb.h"
+@@ -123,6 +125,12 @@ _avr_flash_read16le(
+ 
+ void avr_core_watch_write(avr_t *avr, uint16_t addr, uint8_t v)
+ {
++	// USARTC0_DATA
++	if (addr == 0x08A0) {
++		putchar(v);
++		fflush(stdout);
++		return;
++	}
+ 	if (addr > avr->ramend) {
+ 		AVR_LOG(avr, LOG_ERROR, FONT_RED
+ 				"CORE: *** Invalid write address "
+@@ -160,7 +168,20 @@ void avr_core_watch_write(avr_t *avr, uint16_t addr, uint8_t v)
+ 
+ uint8_t avr_core_watch_read(avr_t *avr, uint16_t addr)
+ {
++	// OSC_STATUS
++	if (addr == 0x0051) {
++		return 0x02;
++	}
++	// USARTC0_DATA
++	if (addr == 0x08A0) {
++		return getchar();
++	}
++	// USARTC0_STATUS
++	if (addr == 0x08A1) {
++		return 0xA0;
++	}
+ 	if (addr > avr->ramend) {
++		return 0;
+ 		AVR_LOG(avr, LOG_ERROR, FONT_RED
+ 				"CORE: *** Invalid read address "
+ 				"PC=%04x SP=%04x O=%04x Address %04x out of ram (%04x)\n"
+@@ -617,6 +638,46 @@ static inline int _avr_is_instruction_32_bits(avr_t * avr, avr_flashaddr_t pc)
+  * The number of cycles taken by instruction has been added, but might not be
+  * entirely accurate.
+  */
++
++//#define P4_DEBUG
++#define P4(...) do { \
++	printf("[P4]" __VA_ARGS__); \
++	fflush(stdout); \
++} while(0)
++
++static void hexdump(avr_t * avr, uint16_t addr, uint16_t count, uint16_t line_size) {
++	for (uint16_t i = 0; i != count; ++ i) {
++		if ((i % line_size) == 0) {
++			if (i != 0) {
++				printf("\n");
++			}
++			printf("%04x:", addr + i);
++		}
++		printf(" %02x", avr->data[addr + i]);
++	}
++	printf("\n");
++}
++
++typedef struct subcan {
++	uint8_t ctrl;
++	uint16_t sid;
++	uint8_t eid, dlc;
++	char buf[8];
++} __attribute__((packed)) subcan;
++
++void push_subcan(avr_t* avr, subcan* sc) {
++	avr->data[0x2137 + 0x82]++;
++	avr->data[0x2137 + 0x82] &= 7;
++	int id = avr->data[0x2137 + 0x82];
++	uint8_t* pos = avr->data + 0x2137 + 0x12 + id * 0xe;
++	pos[0] = sc->ctrl;
++	pos[1] = sc->sid >> 3;
++	pos[2] = (sc->sid & 7) << 5;
++	pos[5] = sc->dlc;
++	for (int i = 0; i < 8; i++)
++		pos[6 + i] = sc->buf[i];
++}
++
+ avr_flashaddr_t avr_run_one(avr_t * avr)
+ {
+ run_one_again:
+@@ -645,6 +706,84 @@ run_one_again:
+ 	avr_flashaddr_t	new_pc = avr->pc + 2;	// future "default" pc
+ 	int 			cycle = 1;
+ 
++	// initialize eeprom for final exploit.
++#if 1
++	if (avr->pc == 0) {
++		P4("\n\ninit  ee\n\n");
++		for (int i = 0x1000; i < 0x2000; i++) {
++			avr->data[i] = 0xff;
++		}
++		memcpy(&avr->data[0x1000 + 1], "\xab\xba\x42\xc0\xff\xee\x13\x37", 8);
++		char cert[] = "0v\x80\tRiscar CA\x81\nNIST P-192\x82\x08\xab\xba"
++			"B\xc0\xff\xee\x13""7\x83""1\x04\x8d\xab\x11\xe2\xd3\xa7"
++			"7\xe2\xd9WW\x9f\xb8\xab\xdd\x03\xc8O\x9b\xba\xa8\x9d\xc6"
++			"3T\x03TqZ\x80\xa8\xd0)\xb6\xb3\x87\xf2\xac/\xdb\x00\xec"
++			"\xa3\xce\r\xb7&~\x84 \xd9\x00<\xac\xaf[\x93_\x9f\xcb\x0f"
++			"\x17""e\xb0\xcf\x9b\xd7\xa2\xa2""5\xcc\x03\xa6\xfa\xd6\x8d\xa8"
++			"4\xfc\x8e!\x02";
++		memcpy(&avr->data[0x1000 + 0x40], cert, sizeof(cert));
++	}
++#endif
++
++#ifdef P4_DEBUG
++	// random_bs
++	if (avr->pc == 0xd3ca) opcode = 0x9508; // RET
++	if (avr->pc == 0x6f9a * 2) opcode = 0x9508; // RET
++	// random_bs check
++	if (avr->pc == 0xa0e8) avr->data[24] = 0xf;
++#else
++	if (avr->pc == 0xd3ca) { printf("HAVE RAND\n"); }
++#endif
++
++	// maybe_slow
++	if (avr->pc == 0xcee2) opcode = 0x9508; // RET
++
++	// reinit_eeprom_to_factory
++	//if (avr->pc == 0x9f22) opcode = 0x9508; // RET
++
++	// spi_send_msg
++	if (avr->pc == 0xf9d8) opcode = 0x9508; // RET
++
++	// can_init
++	if (avr->pc == 0xce3c) opcode = 0x9508; // RET
++
++	if (avr->pc == 0x5934) {
++                printf("MAIN_LOOP\n");
++		hexdump(avr, 0x2000, 0x2000, 0x10);
++
++		static int p4_can_fd = -1;
++		if (p4_can_fd == -1) {
++			p4_can_fd = atoi(getenv("P4_CAN_FD"));
++			printf("p4_can_fd = %d\n", p4_can_fd);
++		}
++
++		uint8_t p4_cmd;
++		do {
++			if (recv(p4_can_fd, &p4_cmd, sizeof(p4_cmd), MSG_WAITALL) != sizeof(p4_cmd)) {
++				printf("Failed to recv p4_cmd\n");
++				exit(1);
++			}
++			printf("p4_cmd = %d\n", p4_cmd);
++			if (p4_cmd == 1) {
++				subcan p4_frame;
++				if (recv(p4_can_fd, &p4_frame, sizeof(p4_frame), MSG_WAITALL) != sizeof(p4_frame)) {
++					printf("Failed to recv p4_frame\n");
++					exit(1);
++				}
++				push_subcan(avr, &p4_frame);
++			}
++		} while (p4_cmd != 0);
++	}
++#ifdef P4_DEBUG
++	if (avr->pc == 0x8fc8 * 2) {
++		static int memcpy_seq = 0;
++		++ memcpy_seq;
++		if (memcpy_seq == 447) {
++			avr->trace = 1;
++		}
++	}
++#endif
++
+ 	switch (opcode & 0xf000) {
+ 		case 0x0000: {
+ 			switch (opcode) {
+@@ -1430,7 +1569,7 @@ run_one_again:
+ 	avr->cycle += cycle;
+ 
+ 	if ((avr->state == cpu_Running) &&
+-		(avr->run_cycle_count > cycle) &&
++		((long)avr->run_cycle_count > cycle) &&
+ 		(avr->interrupt_state == 0))
+ 	{
+ 		avr->run_cycle_count -= cycle;
