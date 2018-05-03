@@ -5,13 +5,15 @@
 
 Notes:
 
-> structure at 0x3001
-> sha256(password) - 0x20 bytes
-> address(username) - 2 bytes
-> size(username) + 1 - 2 bytes
-> username
+```
+structure at 0x3001
+sha256(password) - 0x20 bytes
+address(username) - 2 bytes
+size(username) + 1 - 2 bytes
+username
+```
 
-> We can overwrite it, because of unchecked `alloca`.
+We can overwrite it, because of unchecked `alloca`.
 
 Final code:
 
