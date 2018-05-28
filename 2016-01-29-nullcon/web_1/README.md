@@ -1,10 +1,10 @@
-﻿##Sign server (Web, 100p)
+﻿## Sign server (Web, 100p)
 
 	Document signature is so hot right now! 
 	SignServer provides you with the most advanced solution to sign and verify your documents. 
 	We support any document types and provide you with a unique, ultra-secure signature.
 
-###PL
+### PL
 [ENG](#eng-version)
 
 W zadaniu dostępna jest strona, która generuje podpis dla wybranego przez nas pliku, oraz pozwala na weryfikacje takiego podpisu.
@@ -132,7 +132,7 @@ Mając takie możliwości przygotowaliśmy exploita który pozwalał nam na wyko
 
 Dzięki temu mogliśmy użyć komendy `find` aby znaleźć plik `flag` a potem wypisać go przez `cat` i uzyskać `flag{ser1l1azati0n_in_CTF_is_fUN}`
 
-###ENG version
+### ENG version
 
 In the task there is a webpage which generates a signature for a selected file, and lets us verify the signature.
 It is important to notice that signature files are:
