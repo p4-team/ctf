@@ -6,7 +6,9 @@ In this task we got an ESP32 binary. It was actually an ELF with some symbols le
 Nonetheless, being xtensa architecture, there is next to no good tooling for analyzing it. We compiled an official
 toolchain from Espressif website, allowing us to use objdump and similar commands. Even then, analysis was hard, mostly
 due to very frequent indirection. In fact, we wrote a simple script parsing objdump output, that would append
-dereferenced address (sometimes twice...) to opcode's line. Before:
+dereferenced address (sometimes twice...) to opcode's line. 
+
+Before:
 ```
 400d18db:       f9ecb1          l32r    a11, 400d008c <_flash_cache_start+0x74>
 ```
