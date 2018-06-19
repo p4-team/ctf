@@ -2,10 +2,11 @@
 
 ## 2018
 
-* [2018.05.31 **Security Fest CTF 2018**(2th place / 546 teams)](2018-05-31-securityfest)
+* [2018.06.16 **Midnight Sun CTF Finals 2018**(4th place / 14 teams) on site](2018-06-16-midnightsun-finals)
+* [2018.05.31 **Security Fest CTF 2018**(2nd place / 546 teams)](2018-05-31-securityfest)
 * [2018.04.21 **Star CTF 2018**(5th place / 146 teams)](2018-04-21-starctf)
 * [2018.04.15 **BSidesSF CTF 2018**(9th place / 140 teams)](2018-04-15-bsidessf)
-* [2018.04.14 **Midnight Sun CTF Quals**(3rd place / 438 teams)](2018-04-14-midnight-quals)
+* [2018.04.14 **Midnight Sun CTF Quals 2018**(3rd place / 438 teams)](2018-04-14-midnight-quals)
 * [2018.04.11 **HITB-XCTF GSEC CTF 2018 Quals**(40th place / 344 teams)](2018-04-11-hitb-quals)
 * [2018.03.30 **Nuit du Hack CTF Quals 2018**(1st place / 490 teams)](2018-03-30-nuit-du-hack)
 * [2018.03.24 **Securinets CTF Quals 2018**(5th place / 216 teams)](2018-03-24-securinets)
