@@ -64,11 +64,11 @@ What we get to work with is a special page which can echo our inputs, but with a
 ```
 
 To overcome the first protection, we simply have to use the same page as the javascript source to load.
-As our input we provide `<script src="/xss?xss=SOME_OTHER_INPUT&mimis=SOME_MIMETYPE"/>
+As our input we provide `<script src="/xss?xss=SOME_OTHER_INPUT&mimis=SOME_MIMETYPE"/>`
 
 To tackle the second protection we need to provide the right mime type for this script.
 They were appending `text/` to whatever we provide, and `javascript` didn't work, but we checked other options is `jscript` worked fine.
-So we can inject: `<script src="/xss?xss=SOME_OTHER_INPUT&mimis=jscript"/>
+So we can inject: `<script src="/xss?xss=SOME_OTHER_INPUT&mimis=jscript"/>`
 
 The last part requires that this ascii-art with our payload is correctly loaded as javascript source code.
 First issue is the `WELCOME, ` part which comes before our payload.
