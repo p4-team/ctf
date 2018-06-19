@@ -1,4 +1,4 @@
-#Encrypted espionage equipment, re, 468p
+# Encrypted espionage equipment, re, 468p
 
 > Our agents have discovered this gadget in one of the conference rooms. It is now located at the organizers table. We managed to extract the firmware. Can you make sense of it?
 
