@@ -6,3 +6,6 @@ Organizers supplied us with a circuit board. It had 16 DIP switches, some discre
 LEDs. Apparently after finding right combination, the light would switch on. We took a photo of both sides of
 the board, aligned them in GIMP, then manually traced and named each signal.
 
+![](IMG_20180616_155539.jpg)
+![](IMG_20180616_155556.jpg)
+![](circuit.jpg)
