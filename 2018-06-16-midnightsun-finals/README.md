@@ -8,4 +8,5 @@ Team: c7f.m0d3, shalom, msm, chivay, akrasuski1
 * [Pagerank (web)](pagerank_web)
 * [Badchair (crypto)](badchair_crypto)
 * [Crawling Code Creature (re/for)](crawling_for)
-
+* [Encrypted espionage equipment (re)](encrypted_espionage_equipment)
+* [Crazy Circuit Conundrum (re)](crazy_circuit_conundrum)
