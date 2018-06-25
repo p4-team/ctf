@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.06.23 **Google CTF 2018 Quals**(6th place / 220 teams)](2018-06-23-google-ctf)
 * [2018.06.16 **Midnight Sun CTF Finals 2018**(4th place / 14 teams) on site](2018-06-16-midnightsun-finals)
 * [2018.05.31 **Security Fest CTF 2018**(2nd place / 546 teams)](2018-05-31-securityfest)
 * [2018.04.21 **Star CTF 2018**(5th place / 146 teams)](2018-04-21-starctf)
