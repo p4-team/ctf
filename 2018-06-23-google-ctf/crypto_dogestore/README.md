@@ -8,7 +8,7 @@ What the code does is pretty simple, even if you don't know Rust:
 3. Deserialize the data by matching neighbouring bytes together in pairs, so for example [1,2,3,4,5,6] becomes [(1,2),(3,4),(5,6)].
 4. Decode the data by treating the first byte in the pair as letter and second byte as number of repetitions of this letter to which 1 is added, thus for example pair ('A',3) becomes 'AAAA', then all those bytes are connected into a single vector.
 5. Calculate sha3_256 hash over the resulting bytes.
-6. Send calcualted hash value to the user.
+6. Send calculated hash value to the user.
 
 The main vulnerability here is quite obvious and simple to notice:
 ```
@@ -36,7 +36,7 @@ Let's imagine we set all payload bytes to 0 and focus only on the first 4 bytes 
 By setting those 4 bytes to random values we get some data `AxBy` where `A` and `B` are `letters` and `x` and `y` are counters by which those letters will be multiplied during `decode` step.
 We can calculate hash of this input and save it as reference.
 
-Now if we bitflip the counters, there is a chance that we get two new counters `v` and `z` such that `x+y == v+z`..
+Now if we bitflip the counters, there is a chance that we get two new counters `v` and `z` such that `x+y == v+z`.
 If we were lucky and we initially got `A == B` then such scenario will give a collision of the hashes, because the hashed string will have the same prefix `lettter * (x+y+1)` in both cases.
 
 If we were not so lucky, we create new `AxBy` payload and try again.
@@ -45,11 +45,11 @@ It takes a while, but we can generate collisions such way.
 If this collision happens then we know the decrypted `A` and `B` were identical characters, so `payload[0]^KEY[0] == payload[2]^KEY[2]`.
 And we know `payload` bytes we sent, so we can transform this to `KEY[0]^KEY[2] == payload[0]^payload[2]`.
 
-We can then shift right by 2 bytes, and calcualte collision for `KEY[2]^KEY[4]` and so on.
+We can then shift right by 2 bytes, and calculate collision for `KEY[2]^KEY[4]` and so on.
 
 If we can now guess the first KEY byte, we can recover all even KEY bytes.
 
-The described algorith is:
+The described algorithm is:
 
 ```python
 def find(key_byte_number, get_result_fun=get_result):
@@ -168,7 +168,7 @@ The idea here is pretty simple:
 1. Let's pre-calculate sha3_256 hashes for strings `A`, `AA`, `AAA`,... and so on, for very large lengths, specifically for 55*256, because this is the longest string we can get in the task to hash, because counter 256 for each letter. We store those hashes in a list in order.
 2. Let's set all letters to the same one, for example 'A'. We can do that since we already know the keystream for all of them, and we can  simply set value `'A'^KEY[i]` for `i-th` byte and once it's xored with `KEY[i]` during decryption it will become `A`.
 3. Let's calculate reference hash for the letters `A` and original counters. We can now check where on the hash list this value is, and therefore how many `A` it has.
-4. Now let's XOR the first counter with `1<<1`, basically flipping the lowest bit, and calculate new hash. We can now look for index of this hash in our list, and this will tell us how many `A` it has. If it's less then initially, then we flipped the bit from 1 to 0, and if it's more then we flipped from 0 to 1, either way we know the original bit value. We can now do the same for `1<<2` and other bits, to recover the whole counter value.
+4. Now let's XOR the first counter with `1<<1`, basically flipping the lowest bit, and calculate new hash. We can now look for index of this hash in our list, and this will tell us how many `A` it has. If it's less then initially, then we flipped the bit from 1 to 0, and if it's more, then we flipped from 0 to 1, either way we know the original bit value. We can now do the same for `1<<2` and other bits, to recover the whole counter value.
 5. We proceed like this for next counters, until we recover all of them.
 
 In code it looks like this:
@@ -193,7 +193,7 @@ def recover_counters(keybytes, get_result_fun=get_result):
             new_payload[counter] ^= 1 << bit
             new_hash = get_result_fun(new_payload)
             new_A_number = hashes.index(new_hash)
-            if new_A_number > reference_number_of_A:  # we lighted a bit so it was 0
+            if new_A_number > reference_number_of_A:  # we set a bit so it was 0
                 bits.append('0')
             else:
                 bits.append('1')
