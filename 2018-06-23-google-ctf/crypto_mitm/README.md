@@ -80,7 +80,7 @@ def zeroSecret():
 ```
 
 Prints out identical shared secret value - `66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925`
-If we know read a bit about curve25519 we can find https://cr.yp.to/ecdh.html and there:
+If we read a bit about curve25519 we can find https://cr.yp.to/ecdh.html and there:
 
 ```
 There are some unusual non-Diffie-Hellman elliptic-curve protocols that need to ensure ``contributory'' behavior. In those protocols, you should reject the 32-byte strings that, in little-endian form, represent 0, 1, 325606250916557431795983626356110631294008115727848805560023387167927233504 (which has order 8), 39382357235489614581723060781553021112529911719440698176882885853963445705823 (which also has order 8), 2^255 - 19 - 1, 2^255 - 19, 2^255 - 19 + 1, 2^255 - 19 + 325606250916557431795983626356110631294008115727848805560023387167927233504, 2^255 - 19 + 39382357235489614581723060781553021112529911719440698176882885853963445705823, 2(2^255 - 19) - 1, 2(2^255 - 19), and 2(2^255 - 19) + 1
@@ -89,7 +89,7 @@ There are some unusual non-Diffie-Hellman elliptic-curve protocols that need to 
 If we now test other values presented here, for example `long_to_bytes(39382357235489614581723060781553021112529911719440698176882885853963445705823)[::-1]` we get the same shared secret value!
 
 This means we can send this public key point to both client and server, and shared secret for both channels will be the same.
-We can therefore simple forward nonces and proofs between them, and authenticate.
+We can therefore simply forward nonces and proofs between them, and authenticate.
 
 The modified handshake for us is:
 ```python
