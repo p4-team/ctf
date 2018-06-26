@@ -8,7 +8,7 @@ What the code does is pretty simple, even if you don't know Rust:
 3. Deserialize the data by matching neighbouring bytes together in pairs, so for example [1,2,3,4,5,6] becomes [(1,2),(3,4),(5,6)].
 4. Decode the data by treating the first byte in the pair as letter and second byte as number of repetitions of this letter to which 1 is added, thus for example pair ('A',3) becomes 'AAAA', then all those bytes are connected into a single vector.
 5. Calculate sha3_256 hash over the resulting bytes.
-6. Send calcualted hash value to the user.
+6. Send calculated hash value to the user.
 
 The main vulnerability here is quite obvious and simple to notice:
 ```
@@ -50,7 +50,7 @@ And we know `payload` bytes we sent, so we can transform this to:
 
 `KEY[0]^KEY[2] == payload[0]^payload[2]`.
 
-We can then shift right by 2 bytes, and calcualte collision for `KEY[2]^KEY[4]` and so on.
+We can then shift right by 2 bytes, and calculate collision for `KEY[2]^KEY[4]` and so on.
 
 If we can now guess the first KEY byte, we can recover all even KEY bytes.
 
@@ -197,7 +197,7 @@ def recover_counters(keybytes, get_result_fun=get_result):
             new_payload[counter] ^= 1 << bit
             new_hash = get_result_fun(new_payload)
             new_A_number = hashes.index(new_hash)
-            if new_A_number > reference_number_of_A:  # we lighted a bit so it was 0
+            if new_A_number > reference_number_of_A:  # we set a bit to 1 so it was 0
                 bits.append('0')
             else:
                 bits.append('1')
