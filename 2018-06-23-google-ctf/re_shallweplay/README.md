@@ -165,14 +165,14 @@ For example:
 ```
 .method n()V
     .locals 10
-	
-	iget v5, p0, Lcom/google/ctf/shallweplayagame/GameActivity;->o:I
+    
+    iget v5, p0, Lcom/google/ctf/shallweplayagame/GameActivity;->o:I
 
     invoke-static {v5}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v1
-	
-	const-string v5, "wins"
+    
+    const-string v5, "wins"
 
     invoke-static {v5, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 ```
