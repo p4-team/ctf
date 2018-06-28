@@ -11,7 +11,6 @@ At a first glance the binary looks quite normal but after some investigation, th
 
 ![function.png](function.png)
 
-
 The trick here is quite easy though:
 
 * `call    $+5` pushes the next instructions address onto stack
@@ -28,14 +27,13 @@ Next problem we're gonna tackle is string and api function encryption:
 
 ![encrypted_sleep.png](encrypted_sleep.png)
 
-It might look intimidating at first but if we break it down, we just end up with a bunch of mathematical operations.
+It might look intimidating at first but if we break it down, we end up with just a bunch of mathematical operations.
 
 Of course we could try [implementing the decryption](https://pastebin.com/raw/2uX6vwSf) in python but this is a CTF and every last minute counts!
 
 So instead of that we're goonna use a smart little IDA emulator called [uEmu](https://github.com/alexhude/uEmu) 
 
 All we have to do now is:
-
 
 Find the beginning of the encryption:
 
@@ -47,11 +45,11 @@ Set a breakpoint at the end and let the emulator do its thing:
 
 Success, we (probably) got the cnc address!
 
-If we now apply those deobfuscation methods to the whole binary we should get a set of not-so-ugly functions.
+If we now apply these deobfuscation methods to the whole binary we should get a good set of not-so-ugly functions.
 
 Becase the challanges description talked about network traffic this is what we're gonna focus on.
 
-Now that we have the cnc address we're also going to need the port, we could try recersing it just like we did with the host. But let's be honest, running a nmap scan in the background while we work on other stuff will be much quicker:
+Now that we have the cnc address we're also going to need the port, we could try reversing it just like we did with the host. But let's be honest, running a nmap scan in the background while we work on other stuff will be much quicker:
 
 ```
 michal@vps266773:~$ nmap -Pn mlwr-part1.ctfcompetition.com
@@ -69,7 +67,7 @@ PORT     STATE SERVICE
 ```
 Looks good!
 
-The data is exchanged using a chunk structure:
+Data is exchanged using chunks that can be represented as a following c structure:
 
 ``` c
 struct {
@@ -84,7 +82,7 @@ There are 2 functions where the chunk packing method is used.
 
 One looks like a back-connecting shell that accepts commands and returns the output.
 
-The second one is a lot smaller with a `part1 flag` string passed to our chunk function at the beginning, let's try that maybe?
+The second one is a lot smaller with a `part1 flag` string passed to our chunk packing function at the beginning, let's try that maybe?
 
 We're gonna implement our chunk communication using python with pwntools:
 
