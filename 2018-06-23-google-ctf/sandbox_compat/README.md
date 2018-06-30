@@ -241,7 +241,7 @@ fffff000-100001000 r-xp 00000000 00:00 0
 
 The important observation here is that `instruction_pointer` reliably prevents any syscalls from code executing in low 4 GBytes.
 
-## Starting User Code
+### Starting User Code
 
 The subroutine `go` reads up to 4 KBytes of input into temporary buffer.
 
