@@ -6,7 +6,7 @@ Team: akrasuski1, cr019283, c7f.m0d3, mnmd21891, other019, rev, msm, shalom, naz
 * [equation (crypto)](equation)
 * [People's Square (crypto/re)](peoples_square)
 * [RSA? (crypto)](rsa)
-* sandbox (pwn)
+* [sandbox (pwn)](sandbox)
 * [warmup (pwn)](warmup)
 * [opm (misc)](opm)
 * [xorpainter (misc)](xorpainter)
