@@ -1,6 +1,6 @@
 # ESOR (crypto, 130 solved, 100p)
 
-In the challenge we get the [source code])(testpoodle.py) and socket address of the server.
+In the challenge we get the [source code](testpoodle.py) and socket address of the server.
 Judging by the challenge name, it was supposed to be some kind of POODLE attack scenario, but it was actually broken.
 
 In this challenge we could connect to the server and get flag AES-CBC-encrypted with prefix and suffix selected by us.
