@@ -80,7 +80,7 @@ More importantly, we can control the filename this way.
 
 We can automate sending payloads by:
 
-``python
+```python
 def send_alien(content, path):
     r = requests.post('http://138.68.228.12/alien_sector.php', data={'message': content, 'type': path},
                       headers={'Cookie': 'PHPSESSID=a3bdqr9r40csph3el906dphtc0'})
