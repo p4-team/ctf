@@ -77,6 +77,17 @@ We can change it to `php` if we want.
 In fact we can go even further, because we can set it to `'/../../alien_message/somefunnyname.php'`, and save file from `human` part in `alien` part if we want to.
 More importantly, we can control the filename this way.
 
+
+We can automate sending payloads by:
+
+``python
+def send_alien(content, path):
+    r = requests.post('http://138.68.228.12/alien_sector.php', data={'message': content, 'type': path},
+                      headers={'Cookie': 'PHPSESSID=a3bdqr9r40csph3el906dphtc0'})
+    print(r.text)
+```
+
+
 Now the last part is to actually gain RCE and execute some code, because we need to gain access to `secret.php` file.
 The difficulty is that the charsets are restricted.
 We run a simple charset checker script and it showed us that basically human can use only letters, digits and whitespaces, and alien can use symbols and punctation.
@@ -92,6 +103,6 @@ We decided to run: `/???/??? ../??????.??? > ===`.
 
 For those unfamiliar with bash path wildcards, `/???/???` matches `/bin/cat`, `../??????.???` matched `secret.php` and `===` is actually a proper filename.
 So we're actually running `/bin/cat ../secret.php > ===`, efectively copying the secret file contents.
-This is of course a bit random, because matching is alphabetical and some other 3-letter binary could be there before `cat`, but we were lucky.
+This is of course a bit random, because matching is alphabetical and some other 3-letter binary will also match, but we don't care.
 
 After that we can simply read contents of `alien_message/===` to get the flag: `MeePwnCTF{__133-221-333-123-111___}`
