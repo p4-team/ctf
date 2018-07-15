@@ -24,6 +24,9 @@ We figured that the easiest way to solve this, will be simply brute-forcing the 
 First step was to recover the initial key length:
 
 ```python
+with codecs.open("MeePwn.ascii.bak", "r") as flag_file:
+    reference_data = flag_file.read()
+        
 def recover_key_len(reference_data):
     key = "MeePwn"
     while True:
@@ -55,6 +58,9 @@ If so, we got the right char and we can proceed to set another one.
 It's important to check not only a single character, but characters from next "key expansions", due to conflicts.
 
 ```python
+with codecs.open("MeePwn.ascii.bak", "r") as flag_file:
+    reference_data = flag_file.read()
+
 def verify(expansion, data, reference_data, real_len, char_index):
     return data[expansion * real_len:expansion * real_len + char_index + 1] == reference_data[expansion * real_len:expansion * real_len + char_index + 1]
 
