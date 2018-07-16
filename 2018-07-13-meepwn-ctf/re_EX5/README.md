@@ -26,15 +26,16 @@ I've loaded the compiled script by clicking 2 times on it (placed on Desktop).
 Then, I've run this script in MetaTrader5 (Clicked on it).
 
 Then I launched process hacker. There was a process called `terminal64.exe`.
-I've filtered the memory for string "flag:  
-- I've clicked on it and went to tab "memory". Button "strings" -> check mapped, image, private -> ok -> filter -> contains -> "flag".  
+I've filtered the memory for string "flag". I did this in the following way: 
+I've clicked on the process and went to tab "memory". Button "strings" -> check mapped, image, private -> ok -> filter -> contains -> "flag".  
+
 One of these was very promising - `0x2d50b56: your flag: %s`. 
 I followed this string and ended up in a memory region with other interesting strings:
 
 - `Hello hacker!`
 - `Try again!`
 
-They all are encoded in UTF16 format. It is placed length before every string encoded in 4 bytes (little-endian)
+They all are encoded in UTF16 format. There is the length before every string(4 bytes; little-endian).
 
 One of these strings was very interesting:
 
