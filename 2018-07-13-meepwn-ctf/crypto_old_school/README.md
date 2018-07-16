@@ -19,7 +19,19 @@ n = p * q
 So we can see that high bits of both primes are the same, the difference is potentially at low 512 bits.
 This means that if we calculate `isqrt(N)` then the high bits should correspond to high bits of `p` and `q`.
 
-We can, therefore, approximate `p` or `q` by calculating 
+We can approximate `p` or `q` use Coppersmith method to calculate the real value.
+The approximation of `q` we can get simply from `isqrt` of N, divided by the multiplier of `p` and then we can subtract `2**512` to get close to initial `tmp` value:
+
+```python
+tmp = isqrt((N)/(1337*7331))
+q_approx = 7331*tmp - 2**512
+```
+
+Now we can create a polynomial `P(x) = x - q_approx mod N` and the root `x0` of this polynomial would be a value such that `q_approx - x0 mod N == 0` which means `q_approx - x0` must be a factor of `N` (we omit the obvious degenerated case where `q_approx - x0 == 0`).
+Since `N` has only two factors `p` and `q`, then it has to be one of them.
+
+Using Coppersmith method we can find such roots, as long as they are relatively small.
+In our case we know that `q_approx` can't be very far from the real `q` and thus the root `x0` has to be small.
 
 ```python
 N = 139713689065649193238602077859960857468098993135221000039102730899547298927683962573562384690733560045229965690142223836971463635696618075169874035306125645096696682021038045841133380609849851790395591047968701652975799368468556274243238594974251982826875184190103880810901174411829635180158201629467635591810569775155092318675639049754541256014635438864801255760305914815607547032463796789980267388517787537827413511219215383011915710116907720461035152786018808394261912036183662986050428253151429051345333273081222126466016921456969903177087878715836995228953335073770833282613911892360743789453583070756075529298371748549
