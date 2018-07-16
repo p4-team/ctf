@@ -12,3 +12,4 @@ Team: shalom, eternal, rev, nazywam, c7f.m0d3, rodbert, msm
 * [Esor (crypto)](crypto_esor)
 * [Ezchallz (web/crypto)](crypto_ezchallz)
 * [0xBAD Minton (web/pwn)](pwn_badminton)
+* [EX5 (re)](re_EX5)
