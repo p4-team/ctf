@@ -16,7 +16,7 @@ I googled this magic and I've found that this extension is supported by program 
 MetaTrader 5 is a free application for traders allowing to perform technical analysis and trading operations in the Forex and exchange markets.
 ```
 
-EX5 is a compiled script written in MQL5 language which is language for automated strategies.
+EX5 is a compiled script written in MQL5 language which is a language for automated strategies.
 
 I installed MetaTrader5 and I've run this script (dragged and dropped the file).
 
@@ -26,7 +26,8 @@ I've loaded the compiled script by clicking 2 times on it (placed on Desktop).
 Then, I've run this script in MetaTrader5 (Clicked on it).
 
 Then I launched process hacker. There was a process called `terminal64.exe`.
-I've clicked on it and went to tab "memory". Button "strings" -> check mapped, image, private -> ok -> filter -> contains -> "flag".
+I've filtered the memory for string "flag:  
+- I've clicked on it and went to tab "memory". Button "strings" -> check mapped, image, private -> ok -> filter -> contains -> "flag".  
 One of these was very promising - `0x2d50b56: your flag: %s`. 
 I followed this string and ended up in a memory region with other interesting strings:
 
@@ -55,3 +56,5 @@ I've concluded that the key is 0,1,2,3,4...... and so on:
 'MeepwnCTF{W3llc0m3_2_Th3_Bl4ck_P4r4d3}kCOZY@i~`]m\t'
 >>> 
 ```
+
+That was the flag.
