@@ -103,7 +103,7 @@ So:
 * The input is xored with a hard-coded key
 * It's encrypted 9 times with a single round of aes with a hard-coded key
 * `aesenclast` is the last round of aes
-* The outcome buffer is compared with a hardcoded string
+* The outcome buffer is compared with a hard-coded string
 * The result is printed
 
 So all we have to do is reverse the operations and we'll get the flag.
