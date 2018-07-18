@@ -151,7 +151,7 @@ for i in itertools.permutations(possible_rounds):
   try_ct = A.sr_decryptlast(ct, last)
   for r in rounds:
     try_ct = A.sr_decrypt(try_ct, r)
-    print(xor_string(try_ct, xorkey))
+  print(xor_string(try_ct, xorkey))
 ```
 
 And get the most printable key: `5B4D656550776E5D` \o/
