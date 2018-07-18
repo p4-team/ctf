@@ -112,7 +112,7 @@ int read_flag()
 }
 ```
 
-Unfortunately there are no pointers on stack that are printed further in the execution so we'll have to come up with something else.
+Unfortunately we cannot just write the flag's pointer onto stack and then read read the outcome so we'll have to come up with something else.
 
 ![checksec.png](checksec.png)
 
