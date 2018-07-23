@@ -1,4 +1,4 @@
-# MeePwn CTF 2018 Quals
+# CTFZone 2018 Quals
 
 Team: shalom, msm, rev, chivay, rodbert, akrasuski1, sasza, nazywam, c7f.m0d3
 
