@@ -1,6 +1,6 @@
 # Ghost in the flash (forensics/stegano, 4 solved, 416p)
 
-````
+```
 Alice sent Bob a package with a flash drive. 
 Bob thinks there is a message hidden on it but he couldn't find it. 
 The only clue is the mysterious inscription on the envelope: 
