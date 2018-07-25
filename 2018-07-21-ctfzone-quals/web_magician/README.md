@@ -1,5 +1,5 @@
 # MMORPG 3000 (web)
-
+[PL](#pl)
 ## Analysis
 In this challenge we can see a simple website imitating a web store with stuff for magicians:
 ![](image6.png)
@@ -31,6 +31,7 @@ the name attribute of window object is not changed while redirecting to differen
 ```html
 ?uuid="><iframe onload=srcdoc=window.name>
 ```
+iframe with content loaded with srcdoc parameter will be treated as same-origin
 It’s worth to mention that we don’t care about X-XSS-Protection header that is simply ignored by Firefox.
 
 ```html
@@ -85,7 +86,7 @@ After refreshing our profile we can find a flag inside (unfortunately, while wri
 ctfzone{0190af5705a38115cd6dee6e7d79e317}
 ```
 
-
+#PL
 
 ## Rozpoznanie
 W zadaniu dostajemy prostą stronę udającą sklep z artykułami dla iluzjonistów:
@@ -119,6 +120,7 @@ Niestety, maksymalna długość naszego payloadu nie może przekraczać 36 znak�
 ```html
 ?uuid="><iframe onload=srcdoc=window.name>
 ```
+Ramka z zawartością załadowaną przez srcdoc będzie miała ten sam origin, co strona rodzica
 Warto wspomnieć, że nie przeszkadza nam tutaj nagłówek X-XSS-Protection, który Firefox zwyczajnie ignoruje.
 
 ```html
