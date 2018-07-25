@@ -1,5 +1,5 @@
-# MMORPG 3000 (web)
-[PL](#PL)
+# Magician (web)
+[PL](#rozpoznanie)
 ## Analysis
 In this challenge we can see a simple website imitating a web store with stuff for magicians:
 ![](image6.png)
@@ -85,8 +85,6 @@ After refreshing our profile we can find a flag inside (unfortunately, while wri
 ```
 ctfzone{0190af5705a38115cd6dee6e7d79e317}
 ```
-
-#PL
 
 ## Rozpoznanie
 W zadaniu dostajemy prostą stronę udającą sklep z artykułami dla iluzjonistów:
