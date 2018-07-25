@@ -24,6 +24,7 @@ Upon further inspection we found out that there are 2 audio tracks in the video.
 First one is the original one, as far as we could tell, but the other one was over 1h long beeps.
 
 We had to extract the sound file for further analysis. Doing this requires two steps:
+
 First, we had to find track numbers in the MKV file:
 ```
 $ mkvinfo /media/GHOST_FLASH/Ghost_In_The_Shell_-_ Identity_in_Space.mkv
