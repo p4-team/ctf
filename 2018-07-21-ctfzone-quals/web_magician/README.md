@@ -1,5 +1,5 @@
 # MMORPG 3000 (web)
-[PL](#pl)
+[PL](#PL)
 ## Analysis
 In this challenge we can see a simple website imitating a web store with stuff for magicians:
 ![](image6.png)
