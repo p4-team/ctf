@@ -3,7 +3,7 @@
 ## Analysis
 In this challenge we can see a simple website imitating a web store with stuff for magicians:
 ![](image1.png)
-The registration form contains standar login and password fields and “name” field that fill be visible in our profile:
+The registration form contains standard login and password fields and “name” field that fill be visible in our profile:
 ![](image2.png)
 ![](image3.png)
 
@@ -16,9 +16,11 @@ The hardcoded URL of our profile suggests injecting into “name” field in our
 Now we gain very useful information: the operator is using Firefox 6.1
 
 A quick glance at response headers:
+```
 Content-Security-Policy: style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
 X-Frame-Options: ALLOW-FROM http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one
 X-XSS-Protection: 1; mode=block
+```
 
 ## XSS
 We can find a real XSS in uid parameter of profile.php script:
@@ -79,7 +81,7 @@ window.location = 'http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one/profile.php?uuid
 ```
 
 After refreshing our profile we can find a flag inside (unfortunately, while writing this writeup, that bot visiting website seems to be dead, so there won’t be a screenshot :( )
-ctfzone{0190af5705a38115cd6dee6e7d79e317}
+`ctfzone{0190af5705a38115cd6dee6e7d79e317}`
 
 
 
@@ -100,9 +102,11 @@ Ustawiony na sztywno adres do naszego profilu sugeruje konieczność wstrzyknię
 Zyskujemy w ten sposób ważną informację: operator korzysta z przeglądarki Firefox 6.1.
 
 Szybki rzut oka na nagłówki odsyłane przez serwer:
+```
 Content-Security-Policy: style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/;
 X-Frame-Options: ALLOW-FROM http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one
 X-XSS-Protection: 1; mode=block
+```
 
 
 ## XSS
@@ -163,7 +167,7 @@ window.location = 'http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one/profile.php?uuid
 ```
 
 Po czym odświeżamy nasz profil i znajdujemy w nim flagę (niestety, na moment pisanie writeupa bot odwiedzający stronę nie działa, więc nie będzie screenshota :( ):
-ctfzone{0190af5705a38115cd6dee6e7d79e317}
+`ctfzone{0190af5705a38115cd6dee6e7d79e317}`
 
 
 
