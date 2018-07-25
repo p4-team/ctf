@@ -81,7 +81,9 @@ window.location = 'http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one/profile.php?uuid
 ```
 
 After refreshing our profile we can find a flag inside (unfortunately, while writing this writeup, that bot visiting website seems to be dead, so there won’t be a screenshot :( )
-`ctfzone{0190af5705a38115cd6dee6e7d79e317}`
+```
+ctfzone{0190af5705a38115cd6dee6e7d79e317}
+```
 
 
 
@@ -167,7 +169,9 @@ window.location = 'http://web-04.v7frkwrfyhsjtbpfcppnu.ctfz.one/profile.php?uuid
 ```
 
 Po czym odświeżamy nasz profil i znajdujemy w nim flagę (niestety, na moment pisanie writeupa bot odwiedzający stronę nie działa, więc nie będzie screenshota :( ):
-`ctfzone{0190af5705a38115cd6dee6e7d79e317}`
+```
+ctfzone{0190af5705a38115cd6dee6e7d79e317}
+```
 
 
 
