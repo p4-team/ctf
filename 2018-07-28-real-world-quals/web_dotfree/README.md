@@ -1,4 +1,4 @@
-# Dotfree (web, 19 solved, 208p)
+# Dotfree (web, 48 solved, 105p)
 
 ```
 All the IP addresses and domain names have dots, but can you hack without dot?
@@ -6,6 +6,7 @@ All the IP addresses and domain names have dots, but can you hack without dot?
 http://13.57.104.34/
 
 ```
+[PL](#PL)
 
 In this simple challenge we can see a form with one field for URL, suggesting the XSS attack. A quick glance at the source code:
 ```javascript
