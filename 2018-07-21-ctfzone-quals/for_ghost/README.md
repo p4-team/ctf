@@ -1,10 +1,10 @@
 # Ghost in the flash (forensics/stegano, 4 solved, 416p)
 
 ```
-Alice sent Bob a package with a flash drive. 
-Bob thinks there is a message hidden on it but he couldn't find it. 
-The only clue is the mysterious inscription on the envelope: 
-"Hear the voice of the future and remember: there are shadows because there are hills." 
+Alice sent Bob a package with a flash drive.
+Bob thinks there is a message hidden on it but he couldn't find it.
+The only clue is the mysterious inscription on the envelope:
+"Hear the voice of the future and remember: there are shadows because there are hills."
 Help Bob read the message!
 ```
 
@@ -23,7 +23,32 @@ The interesting thing about the video was the fact that the length was over 1h, 
 Upon further inspection we found out that there are 2 audio tracks in the video.
 First one is the original one, as far as we could tell, but the other one was over 1h long beeps.
 
-We extracted the [second track](track_2.wav) and once you look into this with Audacity you can see an interesting regularity in the wave shape:
+We had to extract the sound file for further analysis. Doing this requires two steps:
+
+First, we had to find track numbers in the MKV file:
+```
+$ mkvinfo /media/GHOST_FLASH/Ghost_In_The_Shell_-_ Identity_in_Space.mkv
+[...]
+| + Track
+|  + Track number: 3 (track ID for mkvmerge & mkvextract: 2)
+|  + Track UID: 3
+|  + Lacing flag: 0
+|  + Language: und
+|  + Default track flag: 0
+|  + Codec ID: A_PCM/INT/LIT
+|  + Track type: audio
+|  + Audio track
+|   + Channels: 1
+|   + Sampling frequency: 2000
+|   + Bit depth: 16
+[...]
+```
+And then use the `mkvextract` to export the track:
+```
+$ mkvextract /media/GHOST_FLASH/Ghost_In_The_Shell_-_\ Identity_in_Space.mkv tracks 2:./track_2.wav
+```
+
+Once you look into [second track](track_2.wav) with Audacity you can see an interesting regularity in the wave shape:
 
 ![](shape.png)
 

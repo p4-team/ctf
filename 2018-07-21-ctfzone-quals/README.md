@@ -10,3 +10,4 @@ Team: shalom, msm, rev, chivay, rodbert, akrasuski1, sasza, nazywam, c7f.m0d3
 * [MMORPG 3000 (web)](web_mmorpg)
 * [Ghost in the flash (forensics/stegano)](for_ghost)
 * [Help Mars (ppc)](ppc_help_mars)
+* [Magician (web)](web_magician)
