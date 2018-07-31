@@ -1,0 +1,23 @@
+[
+uuid(df2e055e-d444-4ce9-906e-cbcdc412ea01),
+version(1.0),
+implicit_handle (handle_t zygote_binding)
+]
+interface DefaultIfName
+{
+typedef [context_handle] void * PCONTEXT_HANDLE_TYPE;
+
+void RemoteOpen(
+	[out] PCONTEXT_HANDLE_TYPE * context_handle);
+
+void RemoteClose(
+	[in][out] PCONTEXT_HANDLE_TYPE * context_handle);
+
+long Spawn(
+	[in] PCONTEXT_HANDLE_TYPE context_handle,
+	[out]hyper *send_handle,
+	[out]hyper *recv_handle);
+
+void Kill(
+	[in] PCONTEXT_HANDLE_TYPE context_handle);
+}
