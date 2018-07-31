@@ -18,7 +18,7 @@ def encrypt(pubkey, m):
 Which is almost textbook ElGamal cryptosystem.
 The twist and vulnerability comes from the `rand` function.
 Normally the value of `r` should be random, and unpredictable.
-This is because otherwise we could easily recover the `shared secret` value which is `h^r mod p`, and with the shared secret we can decrypt the ciphertext simply by multiplying `c2` by `modinv(shared_secret, p`.
+This is because otherwise we could easily recover the `shared secret` value which is `h^r mod p`, and with the shared secret we can decrypt the ciphertext simply by multiplying `c2` by `modinv(shared_secret, p)`.
 
 If we look at how `rand` function works we can see:
 
@@ -56,7 +56,7 @@ Let's re-write the last equation as:
 (m * pow(h, ((A * r + B) mod q), p)) % p = m * h^(A*r+B mod q) mod p = m * h^(A*r mod q) * h^(B mod q) mod p
 ```
 
-First we want to get rid of the `* h^(B mod q) mod p` part, but since we know all the variables, we can just multiply this by `modinv(h^B mod p)`.
+First we want to get rid of the `* h^(B mod q) mod p` part, and since we know all the variables, we can just multiply this by `modinv(h^B mod p)`.
 We're left with:
 
 ```
@@ -80,7 +80,7 @@ However, in our case the modulus is prime, and `phi` for a prime is simply `p-1`
 In our case we simply do:
 
 ```
-h^((A-1)*r) mod p * modinv(A-1, phi(p)) = h^((A-1)*r) mod p * modinv(A-1, p-1) = h^r mod p = shared_secret`
+h^((A-1)*r) mod p * modinv(A-1, phi(p)) = h^((A-1)*r) mod p * modinv(A-1, p-1) = h^r mod p = shared_secret
 ```
 
 Once we have the `shared secret` value we can simply decrypt the `c2` message by multiplying it by `modinv(shared_secret, p)`
