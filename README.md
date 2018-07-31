@@ -3,6 +3,7 @@
 ## 2018
 
 * [2018.07.28 **Real World CTF 2018 Quals**(6th place / 109 teams)](2018-07-28-real-world-quals)
+* [2018.07.28 **CODE BLUE CTF 2018 Quals**(17th place / 542 teams)](2018-07-28-code-blue-quals)
 * [2018.07.21 **CTFZone 2018 Quals**(3rd place / 637 teams)](2018-07-21-ctfzone-quals)
 * [2018.07.13 **Meepwn CTF Quals 2018**(2nd place / 753 teams)](2018-07-13-meepwn-ctf)
 * [2018.06.23 **Google CTF 2018 Quals**(6th place / 220 teams)](2018-06-23-google-ctf)
