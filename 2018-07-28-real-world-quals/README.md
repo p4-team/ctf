@@ -8,3 +8,4 @@ Team: c7f.m0d3, shalom, chivay, sasza, eternal, nazywam
 * [CCLS-Fringe (forensics)](for_ccls)
 * [Bookhub (web)](web_bookhub)
 * [Dotfree (web)](web_dotfree)
+* [kid vm (pwn)](kid_vm)
