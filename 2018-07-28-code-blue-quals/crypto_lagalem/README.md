@@ -55,6 +55,7 @@ Let's re-write the last equation as:
 ```
 (m * pow(h, ((A * r + B) mod q), p)) % p = m * h^(A*r+B mod q) mod p = m * h^(A*r mod q) * h^(B mod q) mod p
 ```
+This is not entirely correct mathematically, since `A*r + B mod q` might not be equal to `A*r mod q + B mod q`, but for lack of better ideas I assumed that maybe the values are selected to make this equation valid, and thus the challenge solvable.
 
 First we want to get rid of the `* h^(B mod q) mod p` part, and since we know all the variables, we can just multiply this by `modinv(h^B mod p)`.
 We're left with:
@@ -73,7 +74,7 @@ We can multiply the equation we have by `modinv(c2,p)` which will give us:
 We want to recover the `shared secret` which is `h^r mod p`, and therefore we need to get rid of this `A-1` power.
 We can use here the Euler Theorem, which is the same technique used in RSA decryption process.
 
-In short, if we have `a^k mod n` then multiplying this by `modinv(k, phi(n))` will effectively cancel out the `k` leaving only `a mod n`.
+In short, if we have `a^k mod n` then raising this to the power of `modinv(k, phi(n))` will effectively cancel out the `k` leaving only `a mod n`.
 In RSA the hard part is that we don't know `phi(n)` because `n` is composite number, and in order to calculate `phi` we need all prime factors of this number.
 However, in our case the modulus is prime, and `phi` for a prime is simply `p-1`.
 
