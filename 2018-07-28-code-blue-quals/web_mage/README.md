@@ -42,6 +42,8 @@ public function query($sql, $param = array())
 
 Precisely, if we have 2 different paremetrs and we set the first one's value to the name of the second one, things will **break**
 
+More precisely, `str_rplace` will replace the first parameter name twice, both times adding `''` around it.
+
 This is the part we'll be exploiting:
 
 ```php
@@ -53,10 +55,9 @@ $app->db->query(
 );
 ```
 
-This is a good query because we control pretty easily both arguments that get passed to the function.
+This is a good query because we can pretty easily control both arguments that get passed to the insert.
 
-If we know set our user id to `ABC:notesDEF`, the final query will look like:
-
+If we now set our user id to `ABC:notesDEF`, the final query will look like:
 
 ```sql
 INSERT INTO account (user_id, debit, credit, notes) VALUES ('ABC'ABC:notesDEF remitted'DEF', 0, ${amount}, 'ABC:notesDEF remitted')
