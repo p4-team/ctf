@@ -40,7 +40,7 @@ public function query($sql, $param = array())
     ...
 ```
 
-Precisely, if we have 2 different paremetrs and we name set the first one's value to the name of the second one, things will **break**
+Precisely, if we have 2 different paremetrs and we set the first one's value to the name of the second one, things will **break**
 
 This is the part we'll be exploiting:
 
