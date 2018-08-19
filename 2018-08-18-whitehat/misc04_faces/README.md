@@ -165,7 +165,7 @@ This would mean, that we could simplify our `b` to `b mod phi(n)`.
 For example we want to calculate `7**222 mod 10`:
 
 1. `phi(10) = (2-1)*(5-1) = 4`
-2. `7**222 mod 10 = 7**(4*55) * 7**2 mod 10 = (7**4 mod 10)**55 * 7**2 mod 10` = 1**55 * 7**2 mod 10 = 7**2 mod 10`
+2. `7**222 mod 10 = 7**(4*55) * 7**2 mod 10 = (7**4 mod 10)**55 * 7**2 mod 10 = 1**55 * 7**2 mod 10 = 7**2 mod 10`
 3. We could also simply notice that `222 mod 4 = 2` and thus `7**222 mod 10 = 7**2 mod 10`
 
 We can apply the same logic here, and re-write the equation:
