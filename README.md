@@ -2,6 +2,8 @@
 
 ## 2018
 
+* [2018.08.18 **WhiteHat GrandPrix 2018 Quals**(11th place / 361 teams)](2018-08-18-whitehat)
+* [2018.08.16 **Hackon 2018**(1st place / 461 teams)](2018-08-16-hackon)
 * [2018.07.28 **Real World CTF 2018 Quals**(6th place / 109 teams)](2018-07-28-real-world-quals)
 * [2018.07.28 **CODE BLUE CTF 2018 Quals**(17th place / 542 teams)](2018-07-28-code-blue-quals)
 * [2018.07.21 **CTFZone 2018 Quals**(3rd place / 637 teams)](2018-07-21-ctfzone-quals)
