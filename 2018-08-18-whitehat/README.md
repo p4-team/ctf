@@ -4,4 +4,6 @@ Team: Eternal, pwn.m0d3, nazywam, chivay, rodbert, shalom
 
 ### Table of contents
 
-
+* [Web 01 - file upload+ssh](web01)
+* [Crypto 011 - A5/1](crypto_a51)
+* [Misc 04 - faces](misc04_faces)
