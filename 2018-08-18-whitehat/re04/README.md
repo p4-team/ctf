@@ -17,7 +17,7 @@ Okay, something is definietly off here...
 
 # Repairing the binary
 
-Throughout this wirteup we'll use the [kaitai parser](https://ide.kaitai.io/]), it's been a massive help in this challange.
+Throughout this wirteup we'll use the [kaitai parser](https://ide.kaitai.io/), it's been a massive help in this challange.
 
 ![upx](upx.png)
 
@@ -28,8 +28,11 @@ Let's take a look at the booched entry point:
 ![weird](weird.png)
 
 So the address of EntryPoint is set to 0, that's kinda odd.
+
 What's weirder, the imageBase is set to 0x400000001E300, that value actually looks like 2 32-bit addresses concatenated.
+
 Could the binary be in fact 32-bit? Let's find out!
+
 All we have to do is move a one bit to the right:
 
 ![move_bit](move_bit.png)
@@ -63,7 +66,7 @@ upx: WH2018_32: CantUnpackException: file is modified/hacked/protected; take car
 Unpacked 0 files.
 ```
 
-Well, it turns out the section names have correct as well:
+Well, it turns out the section names have to be correct as well:
 
 ![section_names](section_names.png)
 
@@ -93,7 +96,7 @@ There are 2 functions for handling 2 different button presses.
 
 ## First function
 
-The first thing it check is that wheter it was run with 5 argv parameters:
+The first thing it checks is wheter the program was run with 5 argv parameters:
 ```c++
   v9 = CommandLineToArgvW(v8, &pNumArgs);
   if ( pNumArgs != 5 )
@@ -110,7 +113,7 @@ LABEL_9:
   }
 ```
 
-It checks if the third's argument length is equal to 35:
+Then it checks if the third's argument length is equal to 35:
 ```c++
   v15 = v12[2];
   v16 = (int)(v15 + 1);
@@ -145,7 +148,7 @@ Xors it with 0x66:
   }
 ```
 
-Does a bunch of static comparasions:
+And does a bunch of static comparasions:
 
 ```
 if ( v45 != '_' )
@@ -187,7 +190,7 @@ From which we get, the value '9B819SC15B4EB8A1C5CA2390AE14E28987A', so from now 
 
 ### First check:
 
-The string is grabbed, md5-ed using the imported functions and then compared to a static value:
+The string is grabbed, md5-ed using the imported functions and then compared to a static array of values:
 
 ```c++
 BOOL __stdcall sub_407040(int a1)
@@ -271,8 +274,9 @@ Looking up the hardcoded md5 hash we get `whitehat`
 
 ### Second check
 
-The second checks actually consists of 3 checks, with each one checking 24 bytes of the input.
-The first and third one are based on finding a set of integers that match a certain set of formulas:
+The second checks actually consists of 3 checks, with each one checking 24 different bytes of the input.
+
+The first and third ones are based on finding a set of integers that fulfils a certain set of formulas:
 
 ```c++
 signed int __stdcall sub_4013B0(const void *a1)
