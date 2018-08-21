@@ -1,6 +1,6 @@
 # pwn01 (pwn, 34 solved, 160p) 
 
-## Introduction.
+## Introduction
 
 In this task we have a binary to pwn but this task differs slightly from other
 pwns i a way that it runs under sandbox. 
@@ -71,7 +71,7 @@ We have following set of gadgets:
 
 This set of gadgets allows us to write ROP without any effort.
 
-## Sandbox
+## Sandbox bypass
 
 This sandbox i based on ptrace linux's API. It "hooks" syscalls and checks if its blaclisted.
 We can get acquainted with the list of syscalls not permitted by reading a file named `blacklist.conf`
