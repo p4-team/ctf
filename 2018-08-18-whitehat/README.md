@@ -9,4 +9,4 @@ Team: Eternal, pwn.m0d3, nazywam, chivay, rodbert, shalom
 * [Misc 04 - faces](misc04_faces)
 * [Re 04](re04)
 * [Re 05](re05)
-* [Re 06)(re06)
+* [Re 06](re06)
