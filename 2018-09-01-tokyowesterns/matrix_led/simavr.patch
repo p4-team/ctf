@@ -1,0 +1,91 @@
+diff --git a/simavr/sim/sim_core.c b/simavr/sim/sim_core.c
+index 8ba14a8..b0c9b26 100644
+--- a/simavr/sim/sim_core.c
++++ b/simavr/sim/sim_core.c
+@@ -616,13 +616,62 @@ static inline int _avr_is_instruction_32_bits(avr_t * avr, avr_flashaddr_t pc)
+  * The number of cycles taken by instruction has been added, but might not be
+  * entirely accurate.
+  */
++int retlvl, start;
+ avr_flashaddr_t avr_run_one(avr_t * avr)
+ {
++
++	if (avr->pc == 0x10ab * 2) {
++startx:
++		printf("MAIN\n");
++		retlvl = 0;
++		start = 1;
++		// Set initial state.
++		/*
++		avr->pc = 0x342 * 2;
++		int x, y;
++		scanf("%d %d", &x, &y);
++		_avr_set_r(avr, 24, x);
++		_avr_set_r(avr, 22, y);
++		*/
++		avr->pc = 0x619 * 2;
++		_avr_set_r(avr, 24, 0xa8);
++		_avr_set_r(avr, 25, 0x05);
++
++		_avr_set_r(avr, 22, 0);
++		_avr_set_r(avr, 23, 8);
++
++		_avr_set_r(avr, 20, 0);
++		_avr_set_r(avr, 21, 9);
++
++		for (int i = 0; i < 16; i++) {
++			int buf;
++			if (EOF == scanf("%d", &buf)) exit(0);
++			if (buf == -1) {
++				exit(0);
++			}
++			_avr_set_ram(avr, 0x800 + i, buf);
++		}
++	}
++	if (start && avr->pc == 0x6aa * 2) {
++		printf("Returned\n");
++		printf("Res: ");
++		for (int i = 0; i < 16; i++) {
++			printf("%02x", _avr_get_ram(avr, 0x900 + i));
++		}
++		printf("\n");
++		fflush(stdout);
++		goto startx;
++	}
++	for(int i=0;i<-retlvl;i++)printf(" ");
++	if (start) {
++		printf("%04x (IDA: %04x)\n", avr->pc, avr->pc / 2);
++	}
+ run_one_again:
+ #if CONFIG_SIMAVR_TRACE
+ 	/*
+ 	 * this traces spurious reset or bad jumps
+ 	 */
++
+ 	if ((avr->pc == 0 && avr->cycle > 0) || avr->pc >= avr->codeend || _avr_sp_get(avr) > avr->ramend) {
+ //		avr->trace = 1;
+ 		STATE("RESET\n");
+@@ -977,6 +1026,7 @@ run_one_again:
+ 					avr_interrupt_reti(avr);
+ 					FALLTHROUGH
+ 				case 0x9508: {	// RET -- Return -- 1001 0101 0000 1000
++					retlvl++;
+ 					new_pc = _avr_pop_addr(avr);
+ 					cycle += 1 + avr->address_size;
+ 					STATE("ret%s\n", opcode & 0x10 ? "i" : "");
+@@ -1224,6 +1274,7 @@ run_one_again:
+ 						}	break;
+ 						case 0x940e:
+ 						case 0x940f: {	// CALL -- Long Call to sub, 32 bits -- 1001 010a aaaa 111a
++							retlvl--;
+ 							avr_flashaddr_t a = ((opcode & 0x01f0) >> 3) | (opcode & 1);
+ 							uint16_t x = _avr_flash_read16le(avr, new_pc);
+ 							a = (a << 16) | x;
+@@ -1343,6 +1394,7 @@ run_one_again:
+ 		}	break;
+ 
+ 		case 0xd000: {	// RCALL -- 1101 kkkk kkkk kkkk
++			retlvl--;
+ 			get_o12(opcode);
+ 			STATE("rcall .%d [%04x]\n", o >> 1, new_pc + o);
+ 			cycle += _avr_push_addr(avr, new_pc);
