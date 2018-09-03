@@ -32,7 +32,7 @@ So we need to recover `n` first.
 
 If we ask the server for encrypted value of `2` we get back a number `c1` such that `c1 = 2^e mod n`.
 This means that `2^e - c1 = k1*n` for some value `k1`.
-We can get another value `c2` from the server, this time for example for `3`, and this way we can get `2^e - c2 = k2*n` for some other `k2`.
+We can get another value `c2` from the server, this time for example for `3`, and this way we can get `3^e - c2 = k2*n` for some other `k2`.
 
 Now if we calculate GCD of those 2 numbers we will most likely get back `n`, maybe multiplied by some small factor.
 We can provide more inputs and calculate gcd on more values, or we can try to factor the result, to get rid of small factors.
