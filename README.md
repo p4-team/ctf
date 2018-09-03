@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.09.01 **Tokyo Westerns CTF 2018**(6th place / 810 teams)](2018-09-01-tokyowesterns)
 * [2018.08.18 **WhiteHat GrandPrix 2018 Quals**(11th place / 361 teams)](2018-08-18-whitehat)
 * [2018.08.16 **Hackon 2018**(1st place / 461 teams)](2018-08-16-hackon)
 * [2018.07.28 **Real World CTF 2018 Quals**(6th place / 109 teams)](2018-07-28-real-world-quals)
