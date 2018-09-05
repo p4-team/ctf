@@ -6,7 +6,7 @@ create your own emoji for Slack at http://emoji.chal.ctf.westerns.tokyo
 
 This task is a perfect example of CTF challenge naming conventions - because the challenge has absolutely zero relation to slack, emojis, and conversions.
 
-We are expected to exploit website http://emoji.chal.ctf.westerns.tokyo/.
+We are expected to exploit the website http://emoji.chal.ctf.westerns.tokyo/.
 
 The first challenge was to figure out how to drag&drop files from my heavily modified linux installation with i3wm and progressively more completely corrupted APT database. To be hones, I just took the easy way out and used Windows VM.
 
