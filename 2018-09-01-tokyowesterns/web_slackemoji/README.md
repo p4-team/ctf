@@ -8,7 +8,7 @@ This task is a perfect example of CTF challenge naming conventions - because the
 
 We are expected to exploit the website http://emoji.chal.ctf.westerns.tokyo/.
 
-The first challenge was to figure out how to drag&drop files from my heavily modified linux installation with i3wm and progressively more completely corrupted APT database. To be hones, I just took the easy way out and used Windows VM.
+The first challenge was to figure out how to drag&drop files from my heavily modified linux installation with i3wm and progressively more completely corrupted APT database. To be honest, I just took the easy way out and used Windows VM.
 
 Anyway the real challenge was to read the source code and find vulnerability:
 
