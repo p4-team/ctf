@@ -9,3 +9,5 @@ Team: robert, shalom, nazywam, pwn.m0d3, des, akrasuski1, msm, sasza
 * [Revolutional Secure Angou (crypto)](crypto_rsa)
 * [Mixed cipher(crypto)](crypto_mixed)
 * [PySandbox 1&2 (misc)](misc_pysandbox)
+* [Shrine (web)](web_shrine)
+* [Slack Emoji (web)](web_slackemoji)
