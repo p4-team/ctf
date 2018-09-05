@@ -8,7 +8,7 @@ This task is a perfect example of CTF challenge naming conventions - because the
 
 We are expected to exploit the website http://emoji.chal.ctf.westerns.tokyo/.
 
-The first challenge was to figure out how to drag&drop files from my heavily modified linux installation with i3wm and progressively more completely corrupted APT database. To be honest, I just took the easy way out and used Windows VM.
+The first challenge was to figure out how to drag&drop files from my heavily modified linux installation with i3wm and progressively more completely corrupted APT database. To be honest, I just took the easy way out and used a Windows VM.
 
 Anyway the real challenge was to read the source code and find vulnerability:
 
@@ -57,10 +57,10 @@ def conv():
     return response
 ```
 
-See it yet? No? Probably because there's none. This means that there is 90% chance that ghostscript guys screwed up something again and whole internet is on fire.
-So we quickly googled something equivalent to `how do I pwn ghostscript in 2018` and found [this gem](http://openwall.com/lists/oss-security/2018/08/21/2): http://openwall.com/lists/oss-security/2018/08/21/2. This looked really interesting (announcement was from only few days ago!), so I decided to give it a try.
+See it yet? No? Probably because there's none. This means that there is 90% chance that ghostscript guys screwed up something again and whole internet is on fire (for example, just using PIL makes you vulnerable).
+So I quickly googled something equivalent to `how do I pwn ghostscript in 2018` and found [this gem](http://openwall.com/lists/oss-security/2018/08/21/2): http://openwall.com/lists/oss-security/2018/08/21/2. This looked really interesting (announcement was from only few days ago!) - I decided to give it a try.
 
-Of course not a single exploit worked on my broken good-for-nothing machine, so I almost lost hope at that moment. We almost spent 3 more hours searching for a different solution. Fortunately, I decided to craft one more exploit and send it to remote server as a last resort (via my Windows VM, of course). And you guessed it, it worked. Interesting fragment:
+Of course not a single exploit worked on my broken good-for-nothing machine, so I almost lost hope at that moment. We almost spent 3 more hours searching for a different solution. Fortunately, I decided to craft one more exploit and send it to remote server as a last resort (via my Windows VM, of course). And you guessed it, it worked. Interesting fragment from the explot:
 
 ```
 a5
