@@ -42,14 +42,14 @@ This looks like an oversight of the author - decrypted password probably shouldn
 
 The tasks became even weirder from now on. The binary asked us a riddle [(terrible translation by Google Translate for curious)](https://translate.google.com/#auto/en/Od%20pi%C3%B3rka%20jestem%20l%C5%BCejszy%2C%20ale%20powstrzyma%C4%87%20na%20d%C5%82ugo%20nie%20zdo%C5%82a%20mnie%20najsilniejszy.%20Czym%20jestem%3F). We could just guess the solution or find it on the Internet, but reversing the binary turned out to be even easier.
 
-All the answers are in the binary in plain text, and are compared with input using standard string comparsion. There are two problems though:
+All the answers are in the binary in plain text and are compared with input using standard string comparison. There are two problems though:
 
 - Strings are obfuscated. Not intentionally - but Polish characters confuse IDA and GNU strings and not all the answers were immediately visible.
 - The binary is written in C++ and compiled without optimization.
 
 ![](comparsion.png)
 
-But it's nothing that we can't deal with in a few minutes. Strings are initialized globaly, so first we had to find the static initialization routine in the codebase (easy with find-xref function in IDA. One could also search for the name  `__static_initialization_and_destruction`, because symbols were not stripped).
+But it's nothing that we can't deal with in a few minutes. Strings are initialized globally, so first, we had to find the static initialization routine in the codebase (easy with find-xref function in IDA. One could also search for the name  `__static_initialization_and_destruction`, because symbols were not stripped).
 
 All the answers can be easily found by looking at that function in disassembly:
 

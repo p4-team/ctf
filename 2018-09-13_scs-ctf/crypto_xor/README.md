@@ -8,9 +8,9 @@ UxYSRSg6YzQ8KkNGUDQKdl8fRQNMAxhVcRNdRBgLEx8MHRI2XFcRTBMEClIWAhA1PTcucyNWVUEy
 DCURDlkVV1E+SSMDTRddGwIXQxAPLFFfR10JBE4PUzMKJTExI3MTUkNUMBZ2fBVDBkoC
 ```
 
-I dislike ciphertext-only challenges, because to solve them you need to guess the algorithm, and it's neither practical nor fun. Not to mention that basing the difficulty of your cipher on secretness of your algorithm is a [well-known antipattern in cryptography](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle).
+I dislike ciphertext-only challenges because to solve them you need to guess the algorithm, and it's neither practical nor fun. Not to mention that basing the difficulty of your cipher on secretness of your algorithm is a [well-known antipattern in cryptography](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle).
 
-After wasting way too much time on guessing, we discoverd the encryption algorithm. We know the beginning of the flag (flag format is `scsctf_2018{.......}`), and xoring it with the ciphertext:
+After wasting way too much time on guessing, we have discovered the encryption algorithm. We know the beginning of the flag (flag format is `scsctf_2018{.......}`), and xoring it with the ciphertext:
 
 ```python
 import string
@@ -25,7 +25,7 @@ print xor(data, 'scsctf_2018{')
 
 Yields `To demonstra` which looks like a beginning of an English sentence.
 
-If the data was xored with completely random sequence of bytes, the scheme would be [provably secure](https://en.wikipedia.org/wiki/One-time_pad). But we expect the flag to be shorter than the whole ciphertext, so this turns into a [repeated key xor](https://en.wikipedia.org/wiki/XOR_cipher), a well-known weak cipher.
+If the data was xored with a completely random sequence of bytes, the scheme would be [provably secure](https://en.wikipedia.org/wiki/One-time_pad). But we expect the flag to be shorter than the whole ciphertext, so this turns into a [repeated key xor](https://en.wikipedia.org/wiki/XOR_cipher), a well-known weak cipher.
 
 We brute-forced few key lengths to discover the proper one, and found it:
 

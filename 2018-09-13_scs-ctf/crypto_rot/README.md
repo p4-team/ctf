@@ -8,7 +8,7 @@ Another ciphertext-only challenge. This time, ciphertext is even shorter:
 
 We immediately can infer *something* about the encryption, because we know that `scsctf_2017{` encrypts to ```5?5?6B0a_`gL```. The same input characters encode to the same output characters, so this is a substitution cipher.
 
-The chalenge title and description suggested `rot` operation. Alas, there are no obvious patterns in:
+The challenge title and description suggested `rot` operation. Alas, there are no obvious patterns in:
 
 ```python
 mapping = {
@@ -52,8 +52,8 @@ c 36
 Now, as I've said, we hate guessing. So we decided to approach this problem
 methodically, instead of getting into the task author's head.
 
-One of my teammates noticed that there are only few possible differences for
-ascii values. So he tried subtracting `[36, 47, -47, 62]` from every ciphertext
+One of my teammates noticed that there are only a few possible differences for
+ASCII values. So he tried subtracting `[36, 47, -47, 62]` from every ciphertext
 character, and written down all printable results at every position:
 
 ```

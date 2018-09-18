@@ -1,6 +1,6 @@
 # Serialize (Web)
 
-This challenge deserves highlighting, because it required absolutely no guessing.
+This challenge deserves highlighting because it required absolutely no guessing.
 
 We have to deal with the following PHP code:
 
@@ -68,12 +68,12 @@ class MagicCode {
 }
 ```
 
-In the last line of code (that I somehow didn't copy), the POST data sent by user is base64 decoded and unserialized.
+In the last line of code (that I somehow didn't copy), the POST data sent by the user is base64 decoded and unserialized.
 
 It's obvious what to do here: we need to craft a MagicCode object.
 The __destruct() method will be called by the runtime, and we will get a limited RCE on the server. In fact, it's enough to change `command` variable to `showFlag` to get "password" and `showSource` to get the flag.
 
-Crafting PHP serialized payloads is relatively easy, because the serialization format is human readable and not very complicated. I crafted the following by hand (although in retrospect, I should've just used the code provided and serialize() function):
+Crafting PHP serialized payloads is relatively easy because the serialization format is human readable and not very complicated. I crafted the following by hand (although in retrospect, I should've just used the code provided and serialize() function):
 
 ```python
 import requests
