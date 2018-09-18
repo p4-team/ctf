@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.09.15 **Trend Micro CTF 2018 Quals**(4th place / 165 teams)](2018-09-15-trendmicro)
 * [2018.09.13 **SCS CTF 2018**(2nd place / 10 teams)](2018-09-13_scs-ctf)
 * [2018.09.01 **Tokyo Westerns CTF 2018**(6th place / 810 teams)](2018-09-01-tokyowesterns)
 * [2018.08.18 **WhiteHat GrandPrix 2018 Quals**(11th place / 361 teams)](2018-08-18-whitehat)
