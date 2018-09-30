@@ -42,5 +42,13 @@ During reversing I even made a simple chart to help me track of everything:
 
 ![chart](paper.jpg)
 
-What remained was to brute force the bytes before being hashed by "hasher", invert "reducer" and "HSM"
+What remained was to brute force the "hasher" preimages, invert "reducer" and "HSM"
 operations and print the resulting flag. See `enc.py` and `solve.py` for details.
+
+Check out [author's website](https://gynvael.coldwind.pl/?id=688) too, he posted challenge sources with
+some comments on architecture. Seems the chunks were not supposed to mimic database and servers, but FPGA
+with RAM modules - the general idea remained the same though. The expected solution was somewhat simpler,
+as it involved dumping chunks using original binary and snapshotting memory or recording traffic. This
+would work, and definitely save time I spent on writing emulator, but you would still have to sieve
+through all the mmapped regions of memory and ignore the anti-debug/dummy ones, which is non-trivial
+amount of work.
