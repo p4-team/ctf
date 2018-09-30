@@ -38,7 +38,7 @@ contents
 
 By "encrypt" here I mean very simple reversible arithmetic, like xoring with constant.
 The exact order of servers seemed to vary between runs, but that's the basic idea. 
-During reversing I even made a simple chart to help me track of everything:
+During reversing I even made a simple chart to help me keep track of everything:
 
 ![chart](paper.jpg)
 
