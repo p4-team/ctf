@@ -5,8 +5,8 @@ Team: nazywam, pwn.m0d3, shalom, msm, chivay, sasza, rev
 ### Table of contents
 
 * [Hummel (misc)](misc_hummel)
-* [Cyberware (web)](web_cyberware)
 * [Holy graal (pwn)](pwn_graal)
+* [Cyberware (web)](web_cyberware)
 * [Ez web (web)](web_ez)
 * [I love hedda (web)](web_hedda)
 * [Who knows (web)](web_whoknows)
