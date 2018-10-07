@@ -1,4 +1,4 @@
-# Ez web (web, 100p, 97 solved)
+# i-love-headdah (web, 100p, 97 solved)
 
 A second trivial web task.
 As previously we check for `robots.txt` and again there is:
