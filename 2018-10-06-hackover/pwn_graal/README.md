@@ -1,4 +1,4 @@
-# Pwn (reverse, 477p, 13 solved)
+# Graal (pwn, 477p, 13 solved)
 
 A high level pwnable challenge for which we get [source code](main.clj) in Clojure/LISP.
 
