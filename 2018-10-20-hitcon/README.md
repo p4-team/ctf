@@ -6,3 +6,4 @@ Team: robert, pwn.m0d3, shalom, msm, sasza, nazywam, akrasuski1, Eternal, xis
 
 * [Lost modulus (crypto)](crypto_paillier)
 * [Lost key (crypto)](crypto_rsa)
+* [Baldi's RE Basics](re_baldi)
