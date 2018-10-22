@@ -17,7 +17,7 @@ If we knew `e` we could ask server to encrypt for us `2` and `3` to get back `2*
 The trick here is that if we substract `x**e - (x**e mod n)` we get a number which is a multiply of `n`, and thus `gcd(k1*n, k2*n)` most likely will give back `n` or `n` multiplied by some small factor `k`.
 
 Here we don't know `e`, so this won't work, but we figured a very similar construction.
-We can ask server to encrypt `2` and 2**2`, and also `3` and `3**2`.
+We can ask server to encrypt `2` and `2**2`, and also `3` and `3**2`.
 Now we can square encrypted `2` to get `(2**e mod n)**2` and subtract `(2**e mod n)**2 - (2**2**e mod n)`.
 This operation similarly as above, gives us some multiply of `n`.
 We do the same for `3` and calculate `gcd` of those two numbers, which should result in `n` possibly multiplied by some small factor:
