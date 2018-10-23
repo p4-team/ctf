@@ -1,0 +1,501 @@
+.data.rel.ro:0000000000210560 _data_rel_ro    segment para public 'DATA' use64
+.data.rel.ro:0000000000210560                 assume cs:_data_rel_ro
+.data.rel.ro:0000000000210560                 ;org 210560h
+.data.rel.ro:0000000000210560 ; `vtable for'a8df4904d7
+.data.rel.ro:0000000000210560 _ZTV10a8df4904d7 dq 0                   ; offset to this
+.data.rel.ro:0000000000210568                 dq offset _ZTI10a8df4904d7 ; `typeinfo for'a8df4904d7
+.data.rel.ro:0000000000210570 off_210570      dq offset sub_AC4A      ; DATA XREF: sub_BFF4+18↑o
+.data.rel.ro:0000000000210578 ; `vtable for'fb2dd9acab
+.data.rel.ro:0000000000210578 _ZTV10fb2dd9acab dq 0                   ; offset to this
+.data.rel.ro:0000000000210580                 dq offset _ZTI10fb2dd9acab ; `typeinfo for'fb2dd9acab
+.data.rel.ro:0000000000210588 off_210588      dq offset sub_AB86      ; DATA XREF: sub_C01E+18↑o
+.data.rel.ro:0000000000210590 ; `vtable for'bcd25899f5
+.data.rel.ro:0000000000210590 _ZTV10bcd25899f5 dq 0                   ; offset to this
+.data.rel.ro:0000000000210598                 dq offset _ZTI10bcd25899f5 ; `typeinfo for'bcd25899f5
+.data.rel.ro:00000000002105A0 off_2105A0      dq offset sub_AAFE      ; DATA XREF: sub_B54A+18↑o
+.data.rel.ro:00000000002105A8 ; `vtable for'f3b67c12d1
+.data.rel.ro:00000000002105A8 _ZTV10f3b67c12d1 dq 0                   ; offset to this
+.data.rel.ro:00000000002105B0                 dq offset _ZTI10f3b67c12d1 ; `typeinfo for'f3b67c12d1
+.data.rel.ro:00000000002105B8 off_2105B8      dq offset sub_AA6C      ; DATA XREF: sub_B646+18↑o
+.data.rel.ro:00000000002105C0 ; `vtable for'd6eca1a84e
+.data.rel.ro:00000000002105C0 _ZTV10d6eca1a84e dq 0                   ; offset to this
+.data.rel.ro:00000000002105C8                 dq offset _ZTI10d6eca1a84e ; `typeinfo for'd6eca1a84e
+.data.rel.ro:00000000002105D0 off_2105D0      dq offset sub_A9E4      ; DATA XREF: sub_B868+18↑o
+.data.rel.ro:00000000002105D8 ; `vtable for'f016248e12
+.data.rel.ro:00000000002105D8 _ZTV10f016248e12 dq 0                   ; offset to this
+.data.rel.ro:00000000002105E0                 dq offset _ZTI10f016248e12 ; `typeinfo for'f016248e12
+.data.rel.ro:00000000002105E8 off_2105E8      dq offset sub_A95C      ; DATA XREF: sub_AD40+18↑o
+.data.rel.ro:00000000002105F0 ; `vtable for'fc0d7d6806
+.data.rel.ro:00000000002105F0 _ZTV10fc0d7d6806 dq 0                   ; offset to this
+.data.rel.ro:00000000002105F8                 dq offset _ZTI10fc0d7d6806 ; `typeinfo for'fc0d7d6806
+.data.rel.ro:0000000000210600 off_210600      dq offset sub_A860      ; DATA XREF: sub_B3A6+18↑o
+.data.rel.ro:0000000000210608 ; `vtable for'ba6f7b0c35
+.data.rel.ro:0000000000210608 _ZTV10ba6f7b0c35 dq 0                   ; offset to this
+.data.rel.ro:0000000000210610                 dq offset _ZTI10ba6f7b0c35 ; `typeinfo for'ba6f7b0c35
+.data.rel.ro:0000000000210618 off_210618      dq offset sub_A7CE      ; DATA XREF: sub_BCAC+18↑o
+.data.rel.ro:0000000000210620 ; `vtable for'e18e0f74a5
+.data.rel.ro:0000000000210620 _ZTV10e18e0f74a5 dq 0                   ; offset to this
+.data.rel.ro:0000000000210628                 dq offset _ZTI10e18e0f74a5 ; `typeinfo for'e18e0f74a5
+.data.rel.ro:0000000000210630 off_210630      dq offset sub_A72C      ; DATA XREF: sub_B4F6+18↑o
+.data.rel.ro:0000000000210638 ; `vtable for'ae7c01eec0
+.data.rel.ro:0000000000210638 _ZTV10ae7c01eec0 dq 0                   ; offset to this
+.data.rel.ro:0000000000210640                 dq offset _ZTI10ae7c01eec0 ; `typeinfo for'ae7c01eec0
+.data.rel.ro:0000000000210648 off_210648      dq offset sub_A630      ; DATA XREF: sub_BE50+18↑o
+.data.rel.ro:0000000000210650 ; `vtable for'f57fa53136
+.data.rel.ro:0000000000210650 _ZTV10f57fa53136 dq 0                   ; offset to this
+.data.rel.ro:0000000000210658                 dq offset _ZTI10f57fa53136 ; `typeinfo for'f57fa53136
+.data.rel.ro:0000000000210660 off_210660      dq offset sub_A534      ; DATA XREF: sub_B44E+18↑o
+.data.rel.ro:0000000000210668 ; `vtable for'ee3cf6fb58
+.data.rel.ro:0000000000210668 _ZTV10ee3cf6fb58 dq 0                   ; offset to this
+.data.rel.ro:0000000000210670                 dq offset _ZTI10ee3cf6fb58 ; `typeinfo for'ee3cf6fb58
+.data.rel.ro:0000000000210678 off_210678      dq offset sub_A438      ; DATA XREF: sub_B83E+18↑o
+.data.rel.ro:0000000000210680 ; `vtable for'fb4b562272
+.data.rel.ro:0000000000210680 _ZTV10fb4b562272 dq 0                   ; offset to this
+.data.rel.ro:0000000000210688                 dq offset _ZTI10fb4b562272 ; `typeinfo for'fb4b562272
+.data.rel.ro:0000000000210690 off_210690      dq offset sub_A33C      ; DATA XREF: sub_C09C+18↑o
+.data.rel.ro:0000000000210698 ; `vtable for'aa4bfe56f9
+.data.rel.ro:0000000000210698 _ZTV10aa4bfe56f9 dq 0                   ; offset to this
+.data.rel.ro:00000000002106A0                 dq offset _ZTI10aa4bfe56f9 ; `typeinfo for'aa4bfe56f9
+.data.rel.ro:00000000002106A8 off_2106A8      dq offset sub_A296      ; DATA XREF: sub_B4A2+18↑o
+.data.rel.ro:00000000002106B0 ; `vtable for'd1807c1edf
+.data.rel.ro:00000000002106B0 _ZTV10d1807c1edf dq 0                   ; offset to this
+.data.rel.ro:00000000002106B8                 dq offset _ZTI10d1807c1edf ; `typeinfo for'd1807c1edf
+.data.rel.ro:00000000002106C0 off_2106C0      dq offset sub_A19A      ; DATA XREF: sub_B796+18↑o
+.data.rel.ro:00000000002106C8 ; `vtable for'c67086f447
+.data.rel.ro:00000000002106C8 _ZTV10c67086f447 dq 0                   ; offset to this
+.data.rel.ro:00000000002106D0                 dq offset _ZTI10c67086f447 ; `typeinfo for'c67086f447
+.data.rel.ro:00000000002106D8 off_2106D8      dq offset sub_A09E      ; DATA XREF: sub_B910+18↑o
+.data.rel.ro:00000000002106E0 ; `vtable for'e211268055
+.data.rel.ro:00000000002106E0 _ZTV10e211268055 dq 0                   ; offset to this
+.data.rel.ro:00000000002106E8                 dq offset _ZTI10e211268055 ; `typeinfo for'e211268055
+.data.rel.ro:00000000002106F0 off_2106F0      dq offset sub_9FA2      ; DATA XREF: sub_BD00+18↑o
+.data.rel.ro:00000000002106F8 ; `vtable for'f11d4f624e
+.data.rel.ro:00000000002106F8 _ZTV10f11d4f624e dq 0                   ; offset to this
+.data.rel.ro:0000000000210700                 dq offset _ZTI10f11d4f624e ; `typeinfo for'f11d4f624e
+.data.rel.ro:0000000000210708 off_210708      dq offset sub_9EFA      ; DATA XREF: sub_BB08+18↑o
+.data.rel.ro:0000000000210710 ; `vtable for'dde45d3486
+.data.rel.ro:0000000000210710 _ZTV10dde45d3486 dq 0                   ; offset to this
+.data.rel.ro:0000000000210718                 dq offset _ZTI10dde45d3486 ; `typeinfo for'dde45d3486
+.data.rel.ro:0000000000210720 off_210720      dq offset sub_9E36      ; DATA XREF: sub_B742+18↑o
+.data.rel.ro:0000000000210728 ; `vtable for'ab73d3dc19
+.data.rel.ro:0000000000210728 _ZTV10ab73d3dc19 dq 0                   ; offset to this
+.data.rel.ro:0000000000210730                 dq offset _ZTI10ab73d3dc19 ; `typeinfo for'ab73d3dc19
+.data.rel.ro:0000000000210738 off_210738      dq offset sub_9D90      ; DATA XREF: sub_B814+18↑o
+.data.rel.ro:0000000000210740 ; `vtable for'cb5b122a79
+.data.rel.ro:0000000000210740 _ZTV10cb5b122a79 dq 0                   ; offset to this
+.data.rel.ro:0000000000210748                 dq offset _ZTI10cb5b122a79 ; `typeinfo for'cb5b122a79
+.data.rel.ro:0000000000210750 off_210750      dq offset sub_9CE8      ; DATA XREF: sub_BD54+18↑o
+.data.rel.ro:0000000000210758 ; `vtable for'aa9d9918bd
+.data.rel.ro:0000000000210758 _ZTV10aa9d9918bd dq 0                   ; offset to this
+.data.rel.ro:0000000000210760                 dq offset _ZTI10aa9d9918bd ; `typeinfo for'aa9d9918bd
+.data.rel.ro:0000000000210768 off_210768      dq offset sub_9C40      ; DATA XREF: sub_AF62+18↑o
+.data.rel.ro:0000000000210770 ; `vtable for'db40f6965d
+.data.rel.ro:0000000000210770 _ZTV10db40f6965d dq 0                   ; offset to this
+.data.rel.ro:0000000000210778                 dq offset _ZTI10db40f6965d ; `typeinfo for'db40f6965d
+.data.rel.ro:0000000000210780 off_210780      dq offset sub_9B9E      ; DATA XREF: sub_AE66+18↑o
+.data.rel.ro:0000000000210788 ; `vtable for'fd284c5078
+.data.rel.ro:0000000000210788 _ZTV10fd284c5078 dq 0                   ; offset to this
+.data.rel.ro:0000000000210790                 dq offset _ZTI10fd284c5078 ; `typeinfo for'fd284c5078
+.data.rel.ro:0000000000210798 off_210798      dq offset sub_9B16      ; DATA XREF: sub_B6C4+18↑o
+.data.rel.ro:00000000002107A0 ; `vtable for'eda0aef29d
+.data.rel.ro:00000000002107A0 _ZTV10eda0aef29d dq 0                   ; offset to this
+.data.rel.ro:00000000002107A8                 dq offset _ZTI10eda0aef29d ; `typeinfo for'eda0aef29d
+.data.rel.ro:00000000002107B0 off_2107B0      dq offset sub_9A1A      ; DATA XREF: sub_BE7A+18↑o
+.data.rel.ro:00000000002107B8 ; `vtable for'f75dd51d7c
+.data.rel.ro:00000000002107B8 _ZTV10f75dd51d7c dq 0                   ; offset to this
+.data.rel.ro:00000000002107C0                 dq offset _ZTI10f75dd51d7c ; `typeinfo for'f75dd51d7c
+.data.rel.ro:00000000002107C8 off_2107C8      dq offset sub_9994      ; DATA XREF: sub_BDD2+18↑o
+.data.rel.ro:00000000002107D0 ; `vtable for'dc708fc089
+.data.rel.ro:00000000002107D0 _ZTV10dc708fc089 dq 0                   ; offset to this
+.data.rel.ro:00000000002107D8                 dq offset _ZTI10dc708fc089 ; `typeinfo for'dc708fc089
+.data.rel.ro:00000000002107E0 off_2107E0      dq offset sub_9898      ; DATA XREF: sub_B478+18↑o
+.data.rel.ro:00000000002107E8 ; `vtable for'bdb8dcdeaa
+.data.rel.ro:00000000002107E8 _ZTV10bdb8dcdeaa dq 0                   ; offset to this
+.data.rel.ro:00000000002107F0                 dq offset _ZTI10bdb8dcdeaa ; `typeinfo for'bdb8dcdeaa
+.data.rel.ro:00000000002107F8 off_2107F8      dq offset sub_9810      ; DATA XREF: sub_B8E6+18↑o
+.data.rel.ro:0000000000210800 ; `vtable for'e94a08ecc3
+.data.rel.ro:0000000000210800 _ZTV10e94a08ecc3 dq 0                   ; offset to this
+.data.rel.ro:0000000000210808                 dq offset _ZTI10e94a08ecc3 ; `typeinfo for'e94a08ecc3
+.data.rel.ro:0000000000210810 off_210810      dq offset sub_9788      ; DATA XREF: sub_C0C6+18↑o
+.data.rel.ro:0000000000210818 ; `vtable for'a755f331eb
+.data.rel.ro:0000000000210818 _ZTV10a755f331eb dq 0                   ; offset to this
+.data.rel.ro:0000000000210820                 dq offset _ZTI10a755f331eb ; `typeinfo for'a755f331eb
+.data.rel.ro:0000000000210828 off_210828      dq offset sub_96E2      ; DATA XREF: sub_C0F0+18↑o
+.data.rel.ro:0000000000210830 ; `vtable for'ba2fd10f19
+.data.rel.ro:0000000000210830 _ZTV10ba2fd10f19 dq 0                   ; offset to this
+.data.rel.ro:0000000000210838                 dq offset _ZTI10ba2fd10f19 ; `typeinfo for'ba2fd10f19
+.data.rel.ro:0000000000210840 off_210840      dq offset sub_9640      ; DATA XREF: sub_AE12+18↑o
+.data.rel.ro:0000000000210848 ; `vtable for'cf7cffd510
+.data.rel.ro:0000000000210848 _ZTV10cf7cffd510 dq 0                   ; offset to this
+.data.rel.ro:0000000000210850                 dq offset _ZTI10cf7cffd510 ; `typeinfo for'cf7cffd510
+.data.rel.ro:0000000000210858 off_210858      dq offset sub_95B8      ; DATA XREF: sub_B7EA+18↑o
+.data.rel.ro:0000000000210860 ; `vtable for'e94ea45105
+.data.rel.ro:0000000000210860 _ZTV10e94ea45105 dq 0                   ; offset to this
+.data.rel.ro:0000000000210868                 dq offset _ZTI10e94ea45105 ; `typeinfo for'e94ea45105
+.data.rel.ro:0000000000210870 off_210870      dq offset sub_952E      ; DATA XREF: sub_BFA0+18↑o
+.data.rel.ro:0000000000210878 ; `vtable for'ae230af301
+.data.rel.ro:0000000000210878 _ZTV10ae230af301 dq 0                   ; offset to this
+.data.rel.ro:0000000000210880                 dq offset _ZTI10ae230af301 ; `typeinfo for'ae230af301
+.data.rel.ro:0000000000210888 off_210888      dq offset sub_9488      ; DATA XREF: sub_BB86+18↑o
+.data.rel.ro:0000000000210890 ; `vtable for'd6b6d6355d
+.data.rel.ro:0000000000210890 _ZTV10d6b6d6355d dq 0                   ; offset to this
+.data.rel.ro:0000000000210898                 dq offset _ZTI10d6b6d6355d ; `typeinfo for'd6b6d6355d
+.data.rel.ro:00000000002108A0 off_2108A0      dq offset sub_9400      ; DATA XREF: sub_B088+18↑o
+.data.rel.ro:00000000002108A8 ; `vtable for'c2c419ce60
+.data.rel.ro:00000000002108A8 _ZTV10c2c419ce60 dq 0                   ; offset to this
+.data.rel.ro:00000000002108B0                 dq offset _ZTI10c2c419ce60 ; `typeinfo for'c2c419ce60
+.data.rel.ro:00000000002108B8 off_2108B8      dq offset sub_9378      ; DATA XREF: sub_AEE4+18↑o
+.data.rel.ro:00000000002108C0 ; `vtable for'd69135566b
+.data.rel.ro:00000000002108C0 _ZTV10d69135566b dq 0                   ; offset to this
+.data.rel.ro:00000000002108C8                 dq offset _ZTI10d69135566b ; `typeinfo for'd69135566b
+.data.rel.ro:00000000002108D0 off_2108D0      dq offset sub_92EE      ; DATA XREF: sub_AE90+18↑o
+.data.rel.ro:00000000002108D8 ; `vtable for'b6cb6b0abc
+.data.rel.ro:00000000002108D8 _ZTV10b6cb6b0abc dq 0                   ; offset to this
+.data.rel.ro:00000000002108E0                 dq offset _ZTI10b6cb6b0abc ; `typeinfo for'b6cb6b0abc
+.data.rel.ro:00000000002108E8 off_2108E8      dq offset sub_925C      ; DATA XREF: sub_AF0E+18↑o
+.data.rel.ro:00000000002108F0 ; `vtable for'd586107458
+.data.rel.ro:00000000002108F0 _ZTV10d586107458 dq 0                   ; offset to this
+.data.rel.ro:00000000002108F8                 dq offset _ZTI10d586107458 ; `typeinfo for'd586107458
+.data.rel.ro:0000000000210900 off_210900      dq offset sub_91D4      ; DATA XREF: sub_B69A+18↑o
+.data.rel.ro:0000000000210908 ; `vtable for'bcbd8c174c
+.data.rel.ro:0000000000210908 _ZTV10bcbd8c174c dq 0                   ; offset to this
+.data.rel.ro:0000000000210910                 dq offset _ZTI10bcbd8c174c ; `typeinfo for'bcbd8c174c
+.data.rel.ro:0000000000210918 off_210918      dq offset sub_915A      ; DATA XREF: sub_BF22+18↑o
+.data.rel.ro:0000000000210920 ; `vtable for'ea81d7b4d8
+.data.rel.ro:0000000000210920 _ZTV10ea81d7b4d8 dq 0                   ; offset to this
+.data.rel.ro:0000000000210928                 dq offset _ZTI10ea81d7b4d8 ; `typeinfo for'ea81d7b4d8
+.data.rel.ro:0000000000210930 off_210930      dq offset sub_90D2      ; DATA XREF: sub_BBB0+18↑o
+.data.rel.ro:0000000000210938 ; `vtable for'a1247b6fb3
+.data.rel.ro:0000000000210938 _ZTV10a1247b6fb3 dq 0                   ; offset to this
+.data.rel.ro:0000000000210940                 dq offset _ZTI10a1247b6fb3 ; `typeinfo for'a1247b6fb3
+.data.rel.ro:0000000000210948 off_210948      dq offset sub_8FD6      ; DATA XREF: sub_BD7E+18↑o
+.data.rel.ro:0000000000210950 ; `vtable for'cd5ce1c50c
+.data.rel.ro:0000000000210950 _ZTV10cd5ce1c50c dq 0                   ; offset to this
+.data.rel.ro:0000000000210958                 dq offset _ZTI10cd5ce1c50c ; `typeinfo for'cd5ce1c50c
+.data.rel.ro:0000000000210960 off_210960      dq offset sub_8F30      ; DATA XREF: sub_B2AA+18↑o
+.data.rel.ro:0000000000210968 ; `vtable for'e7583374be
+.data.rel.ro:0000000000210968 _ZTV10e7583374be dq 0                   ; offset to this
+.data.rel.ro:0000000000210970                 dq offset _ZTI10e7583374be ; `typeinfo for'e7583374be
+.data.rel.ro:0000000000210978 off_210978      dq offset sub_8E8E      ; DATA XREF: sub_B22C+18↑o
+.data.rel.ro:0000000000210980 ; `vtable for'ba36ea21d3
+.data.rel.ro:0000000000210980 _ZTV10ba36ea21d3 dq 0                   ; offset to this
+.data.rel.ro:0000000000210988                 dq offset _ZTI10ba36ea21d3 ; `typeinfo for'ba36ea21d3
+.data.rel.ro:0000000000210990 off_210990      dq offset sub_8DFC      ; DATA XREF: sub_AFE0+18↑o
+.data.rel.ro:0000000000210998 ; `vtable for'd40a8c62b9
+.data.rel.ro:0000000000210998 _ZTV10d40a8c62b9 dq 0                   ; offset to this
+.data.rel.ro:00000000002109A0                 dq offset _ZTI10d40a8c62b9 ; `typeinfo for'd40a8c62b9
+.data.rel.ro:00000000002109A8 off_2109A8      dq offset sub_8D5A      ; DATA XREF: sub_B93A+18↑o
+.data.rel.ro:00000000002109B0 ; `vtable for'cada4a93d5
+.data.rel.ro:00000000002109B0 _ZTV10cada4a93d5 dq 0                   ; offset to this
+.data.rel.ro:00000000002109B8                 dq offset _ZTI10cada4a93d5 ; `typeinfo for'cada4a93d5
+.data.rel.ro:00000000002109C0 off_2109C0      dq offset sub_8C5E      ; DATA XREF: sub_BE26+18↑o
+.data.rel.ro:00000000002109C8 ; `vtable for'b8f3add252
+.data.rel.ro:00000000002109C8 _ZTV10b8f3add252 dq 0                   ; offset to this
+.data.rel.ro:00000000002109D0                 dq offset _ZTI10b8f3add252 ; `typeinfo for'b8f3add252
+.data.rel.ro:00000000002109D8 off_2109D8      dq offset sub_8BBC      ; DATA XREF: sub_BB32+18↑o
+.data.rel.ro:00000000002109E0 ; `vtable for'e7e5ae371f
+.data.rel.ro:00000000002109E0 _ZTV10e7e5ae371f dq 0                   ; offset to this
+.data.rel.ro:00000000002109E8                 dq offset _ZTI10e7e5ae371f ; `typeinfo for'e7e5ae371f
+.data.rel.ro:00000000002109F0 off_2109F0      dq offset sub_8AFA      ; DATA XREF: sub_B37C+18↑o
+.data.rel.ro:00000000002109F8 ; `vtable for'ce285798a2
+.data.rel.ro:00000000002109F8 _ZTV10ce285798a2 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A00                 dq offset _ZTI10ce285798a2 ; `typeinfo for'ce285798a2
+.data.rel.ro:0000000000210A08 off_210A08      dq offset sub_8A54      ; DATA XREF: sub_AF38+18↑o
+.data.rel.ro:0000000000210A10 ; `vtable for'd9c6bac936
+.data.rel.ro:0000000000210A10 _ZTV10d9c6bac936 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A18                 dq offset _ZTI10d9c6bac936 ; `typeinfo for'd9c6bac936
+.data.rel.ro:0000000000210A20 off_210A20      dq offset sub_8958      ; DATA XREF: sub_BA8A+18↑o
+.data.rel.ro:0000000000210A28 ; `vtable for'b52528fc44
+.data.rel.ro:0000000000210A28 _ZTV10b52528fc44 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A30                 dq offset _ZTI10b52528fc44 ; `typeinfo for'b52528fc44
+.data.rel.ro:0000000000210A38 off_210A38      dq offset sub_88CE      ; DATA XREF: sub_BA60+18↑o
+.data.rel.ro:0000000000210A40 ; `vtable for'b24bf83dff
+.data.rel.ro:0000000000210A40 _ZTV10b24bf83dff dq 0                   ; offset to this
+.data.rel.ro:0000000000210A48                 dq offset _ZTI10b24bf83dff ; `typeinfo for'b24bf83dff
+.data.rel.ro:0000000000210A50 off_210A50      dq offset sub_87D2      ; DATA XREF: sub_B892+18↑o
+.data.rel.ro:0000000000210A58 ; `vtable for'ce394c7ed6
+.data.rel.ro:0000000000210A58 _ZTV10ce394c7ed6 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A60                 dq offset _ZTI10ce394c7ed6 ; `typeinfo for'ce394c7ed6
+.data.rel.ro:0000000000210A68 off_210A68      dq offset sub_8730      ; DATA XREF: sub_B3FA+18↑o
+.data.rel.ro:0000000000210A70 ; `vtable for'af5e0ea722
+.data.rel.ro:0000000000210A70 _ZTV10af5e0ea722 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A78                 dq offset _ZTI10af5e0ea722 ; `typeinfo for'af5e0ea722
+.data.rel.ro:0000000000210A80 off_210A80      dq offset sub_86A8      ; DATA XREF: sub_B9B8+18↑o
+.data.rel.ro:0000000000210A88 ; `vtable for'e42cc742b9
+.data.rel.ro:0000000000210A88 _ZTV10e42cc742b9 dq 0                   ; offset to this
+.data.rel.ro:0000000000210A90                 dq offset _ZTI10e42cc742b9 ; `typeinfo for'e42cc742b9
+.data.rel.ro:0000000000210A98 off_210A98      dq offset sub_861E      ; DATA XREF: sub_B4CC+18↑o
+.data.rel.ro:0000000000210AA0 ; `vtable for'e00b183737
+.data.rel.ro:0000000000210AA0 _ZTV10e00b183737 dq 0                   ; offset to this
+.data.rel.ro:0000000000210AA8                 dq offset _ZTI10e00b183737 ; `typeinfo for'e00b183737
+.data.rel.ro:0000000000210AB0 off_210AB0      dq offset sub_8578      ; DATA XREF: sub_BADE+18↑o
+.data.rel.ro:0000000000210AB8 ; `vtable for'b1576317d7
+.data.rel.ro:0000000000210AB8 _ZTV10b1576317d7 dq 0                   ; offset to this
+.data.rel.ro:0000000000210AC0                 dq offset _ZTI10b1576317d7 ; `typeinfo for'b1576317d7
+.data.rel.ro:0000000000210AC8 off_210AC8      dq offset sub_84F2      ; DATA XREF: sub_B5C8+18↑o
+.data.rel.ro:0000000000210AD0 ; `vtable for'af51eeb9d4
+.data.rel.ro:0000000000210AD0 _ZTV10af51eeb9d4 dq 0                   ; offset to this
+.data.rel.ro:0000000000210AD8                 dq offset _ZTI10af51eeb9d4 ; `typeinfo for'af51eeb9d4
+.data.rel.ro:0000000000210AE0 off_210AE0      dq offset sub_844C      ; DATA XREF: sub_B718+18↑o
+.data.rel.ro:0000000000210AE8 ; `vtable for'b65bad9914
+.data.rel.ro:0000000000210AE8 _ZTV10b65bad9914 dq 0                   ; offset to this
+.data.rel.ro:0000000000210AF0                 dq offset _ZTI10b65bad9914 ; `typeinfo for'b65bad9914
+.data.rel.ro:0000000000210AF8 off_210AF8      dq offset sub_83C4      ; DATA XREF: sub_AE3C+18↑o
+.data.rel.ro:0000000000210B00 ; `vtable for'cca1429ab0
+.data.rel.ro:0000000000210B00 _ZTV10cca1429ab0 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B08                 dq offset _ZTI10cca1429ab0 ; `typeinfo for'cca1429ab0
+.data.rel.ro:0000000000210B10 off_210B10      dq offset sub_833C      ; DATA XREF: sub_BC2E+18↑o
+.data.rel.ro:0000000000210B18 ; `vtable for'e54921da72
+.data.rel.ro:0000000000210B18 _ZTV10e54921da72 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B20                 dq offset _ZTI10e54921da72 ; `typeinfo for'e54921da72
+.data.rel.ro:0000000000210B28 off_210B28      dq offset loc_8240      ; DATA XREF: sub_B7C0+18↑o
+.data.rel.ro:0000000000210B30 ; `vtable for'c1c41aa721
+.data.rel.ro:0000000000210B30 _ZTV10c1c41aa721 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B38                 dq offset _ZTI10c1c41aa721 ; `typeinfo for'c1c41aa721
+.data.rel.ro:0000000000210B40 off_210B40      dq offset sub_819A      ; DATA XREF: sub_B00A+18↑o
+.data.rel.ro:0000000000210B48 ; `vtable for'b53284d1a1
+.data.rel.ro:0000000000210B48 _ZTV10b53284d1a1 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B50                 dq offset _ZTI10b53284d1a1 ; `typeinfo for'b53284d1a1
+.data.rel.ro:0000000000210B58 off_210B58      dq offset sub_80F8      ; DATA XREF: sub_B15A+18↑o
+.data.rel.ro:0000000000210B60 ; `vtable for'a995f46129
+.data.rel.ro:0000000000210B60 _ZTV10a995f46129 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B68                 dq offset _ZTI10a995f46129 ; `typeinfo for'a995f46129
+.data.rel.ro:0000000000210B70 off_210B70      dq offset sub_8070      ; DATA XREF: sub_B202+18↑o
+.data.rel.ro:0000000000210B78 ; `vtable for'd4bdf3675d
+.data.rel.ro:0000000000210B78 _ZTV10d4bdf3675d dq 0                   ; offset to this
+.data.rel.ro:0000000000210B80                 dq offset _ZTI10d4bdf3675d ; `typeinfo for'd4bdf3675d
+.data.rel.ro:0000000000210B88 off_210B88      dq offset sub_7FCA      ; DATA XREF: sub_B352+18↑o
+.data.rel.ro:0000000000210B90 ; `vtable for'f123569c41
+.data.rel.ro:0000000000210B90 _ZTV10f123569c41 dq 0                   ; offset to this
+.data.rel.ro:0000000000210B98                 dq offset _ZTI10f123569c41 ; `typeinfo for'f123569c41
+.data.rel.ro:0000000000210BA0 off_210BA0      dq offset sub_7ECE      ; DATA XREF: sub_B5F2+18↑o
+.data.rel.ro:0000000000210BA8 ; `vtable for'a3a61b09a1
+.data.rel.ro:0000000000210BA8 _ZTV10a3a61b09a1 dq 0                   ; offset to this
+.data.rel.ro:0000000000210BB0                 dq offset _ZTI10a3a61b09a1 ; `typeinfo for'a3a61b09a1
+.data.rel.ro:0000000000210BB8 off_210BB8      dq offset sub_7E28      ; DATA XREF: sub_AD94+18↑o
+.data.rel.ro:0000000000210BC0 ; `vtable for'f840783c21
+.data.rel.ro:0000000000210BC0 _ZTV10f840783c21 dq 0                   ; offset to this
+.data.rel.ro:0000000000210BC8                 dq offset _ZTI10f840783c21 ; `typeinfo for'f840783c21
+.data.rel.ro:0000000000210BD0 off_210BD0      dq offset sub_7D2C      ; DATA XREF: sub_B6EE+18↑o
+.data.rel.ro:0000000000210BD8 ; `vtable for'ec41b54250
+.data.rel.ro:0000000000210BD8 _ZTV10ec41b54250 dq 0                   ; offset to this
+.data.rel.ro:0000000000210BE0                 dq offset _ZTI10ec41b54250 ; `typeinfo for'ec41b54250
+.data.rel.ro:0000000000210BE8 off_210BE8      dq offset sub_7CA4      ; DATA XREF: sub_BECE+18↑o
+.data.rel.ro:0000000000210BF0 ; `vtable for'a509530c9a
+.data.rel.ro:0000000000210BF0 _ZTV10a509530c9a dq 0                   ; offset to this
+.data.rel.ro:0000000000210BF8                 dq offset _ZTI10a509530c9a ; `typeinfo for'a509530c9a
+.data.rel.ro:0000000000210C00 off_210C00      dq offset sub_7BA8      ; DATA XREF: sub_B670+18↑o
+.data.rel.ro:0000000000210C08 ; `vtable for'ae4f05a75a
+.data.rel.ro:0000000000210C08 _ZTV10ae4f05a75a dq 0                   ; offset to this
+.data.rel.ro:0000000000210C10                 dq offset _ZTI10ae4f05a75a ; `typeinfo for'ae4f05a75a
+.data.rel.ro:0000000000210C18 off_210C18      dq offset sub_7B1E      ; DATA XREF: sub_B1AE+18↑o
+.data.rel.ro:0000000000210C20 ; `vtable for'c4f0fbe513
+.data.rel.ro:0000000000210C20 _ZTV10c4f0fbe513 dq 0                   ; offset to this
+.data.rel.ro:0000000000210C28                 dq offset _ZTI10c4f0fbe513 ; `typeinfo for'c4f0fbe513
+.data.rel.ro:0000000000210C30 off_210C30      dq offset sub_7A98      ; DATA XREF: sub_AEBA+18↑o
+.data.rel.ro:0000000000210C38 ; `vtable for'fb748b44df
+.data.rel.ro:0000000000210C38 _ZTV10fb748b44df dq 0                   ; offset to this
+.data.rel.ro:0000000000210C40                 dq offset _ZTI10fb748b44df ; `typeinfo for'fb748b44df
+.data.rel.ro:0000000000210C48 off_210C48      dq offset sub_7A12      ; DATA XREF: sub_BEA4+18↑o
+.data.rel.ro:0000000000210C50 ; `vtable for'b805ccc7cb
+.data.rel.ro:0000000000210C50 _ZTV10b805ccc7cb dq 0                   ; offset to this
+.data.rel.ro:0000000000210C58                 dq offset _ZTI10b805ccc7cb ; `typeinfo for'b805ccc7cb
+.data.rel.ro:0000000000210C60 off_210C60      dq offset sub_7970      ; DATA XREF: sub_BA0C+18↑o
+.data.rel.ro:0000000000210C68 ; `vtable for'da8109d3bf
+.data.rel.ro:0000000000210C68 _ZTV10da8109d3bf dq 0                   ; offset to this
+.data.rel.ro:0000000000210C70                 dq offset _ZTI10da8109d3bf ; `typeinfo for'da8109d3bf
+.data.rel.ro:0000000000210C78 off_210C78      dq offset sub_78F6      ; DATA XREF: sub_BDFC+18↑o
+.data.rel.ro:0000000000210C80 ; `vtable for'f1fe88c672
+.data.rel.ro:0000000000210C80 _ZTV10f1fe88c672 dq 0                   ; offset to this
+.data.rel.ro:0000000000210C88                 dq offset _ZTI10f1fe88c672 ; `typeinfo for'f1fe88c672
+.data.rel.ro:0000000000210C90 off_210C90      dq offset sub_786C      ; DATA XREF: sub_B9E2+18↑o
+.data.rel.ro:0000000000210C98 ; `vtable for'a4e9c4247a
+.data.rel.ro:0000000000210C98 _ZTV10a4e9c4247a dq 0                   ; offset to this
+.data.rel.ro:0000000000210CA0                 dq offset _ZTI10a4e9c4247a ; `typeinfo for'a4e9c4247a
+.data.rel.ro:0000000000210CA8 off_210CA8      dq offset sub_77C6      ; DATA XREF: sub_ADBE+18↑o
+.data.rel.ro:0000000000210CB0 ; `vtable for'c921914837
+.data.rel.ro:0000000000210CB0 _ZTV10c921914837 dq 0                   ; offset to this
+.data.rel.ro:0000000000210CB8                 dq offset _ZTI10c921914837 ; `typeinfo for'c921914837
+.data.rel.ro:0000000000210CC0 off_210CC0      dq offset sub_773C      ; DATA XREF: sub_B1D8+18↑o
+.data.rel.ro:0000000000210CC8 ; `vtable for'cd740a58c2
+.data.rel.ro:0000000000210CC8 _ZTV10cd740a58c2 dq 0                   ; offset to this
+.data.rel.ro:0000000000210CD0                 dq offset _ZTI10cd740a58c2 ; `typeinfo for'cd740a58c2
+.data.rel.ro:0000000000210CD8 off_210CD8      dq offset sub_76B4      ; DATA XREF: sub_BCD6+18↑o
+.data.rel.ro:0000000000210CE0 ; `vtable for'abeb4d0f17
+.data.rel.ro:0000000000210CE0 _ZTV10abeb4d0f17 dq 0                   ; offset to this
+.data.rel.ro:0000000000210CE8                 dq offset _ZTI10abeb4d0f17 ; `typeinfo for'abeb4d0f17
+.data.rel.ro:0000000000210CF0 off_210CF0      dq offset sub_75B8      ; DATA XREF: sub_AF8C+18↑o
+.data.rel.ro:0000000000210CF8 ; `vtable for'c4901d45e8
+.data.rel.ro:0000000000210CF8 _ZTV10c4901d45e8 dq 0                   ; offset to this
+.data.rel.ro:0000000000210D00                 dq offset _ZTI10c4901d45e8 ; `typeinfo for'c4901d45e8
+.data.rel.ro:0000000000210D08 off_210D08      dq offset sub_74BC      ; DATA XREF: sub_AFB6+18↑o
+.data.rel.ro:0000000000210D10 ; `vtable for'c96e9adfa1
+.data.rel.ro:0000000000210D10 _ZTV10c96e9adfa1 dq 0                   ; offset to this
+.data.rel.ro:0000000000210D18                 dq offset _ZTI10c96e9adfa1 ; `typeinfo for'c96e9adfa1
+.data.rel.ro:0000000000210D20 off_210D20      dq offset sub_7432      ; DATA XREF: sub_BBDA+18↑o
+.data.rel.ro:0000000000210D28 ; `vtable for'b5256f68f7
+.data.rel.ro:0000000000210D28 _ZTV10b5256f68f7 dq 0                   ; offset to this
+.data.rel.ro:0000000000210D30                 dq offset _ZTI10b5256f68f7 ; `typeinfo for'b5256f68f7
+.data.rel.ro:0000000000210D38 off_210D38      dq offset sub_73A8      ; DATA XREF: sub_B328+18↑o
+.data.rel.ro:0000000000210D40 ; `vtable for'eb10713d1a
+.data.rel.ro:0000000000210D40 _ZTV10eb10713d1a dq 0                   ; offset to this
+.data.rel.ro:0000000000210D48                 dq offset _ZTI10eb10713d1a ; `typeinfo for'eb10713d1a
+.data.rel.ro:0000000000210D50 off_210D50      dq offset sub_72AC      ; DATA XREF: sub_B76C+18↑o
+.data.rel.ro:0000000000210D58 ; `vtable for'ae20ed2f3f
+.data.rel.ro:0000000000210D58 _ZTV10ae20ed2f3f dq 0                   ; offset to this
+.data.rel.ro:0000000000210D60                 dq offset _ZTI10ae20ed2f3f ; `typeinfo for'ae20ed2f3f
+.data.rel.ro:0000000000210D68 off_210D68      dq offset sub_71B0      ; DATA XREF: sub_B280+18↑o
+.data.rel.ro:0000000000210D70 ; `vtable for'ea69470c79
+.data.rel.ro:0000000000210D70 _ZTV10ea69470c79 dq 0                   ; offset to this
+.data.rel.ro:0000000000210D78                 dq offset _ZTI10ea69470c79 ; `typeinfo for'ea69470c79
+.data.rel.ro:0000000000210D80 off_210D80      dq offset sub_70B4      ; DATA XREF: sub_B106+18↑o
+.data.rel.ro:0000000000210D88 ; `vtable for'e82e5ac4a8
+.data.rel.ro:0000000000210D88 _ZTV10e82e5ac4a8 dq 0                   ; offset to this
+.data.rel.ro:0000000000210D90                 dq offset _ZTI10e82e5ac4a8 ; `typeinfo for'e82e5ac4a8
+.data.rel.ro:0000000000210D98 off_210D98      dq offset sub_702C      ; DATA XREF: sub_B034+18↑o
+.data.rel.ro:0000000000210DA0 ; `vtable for'ac0ca298cf
+.data.rel.ro:0000000000210DA0 _ZTV10ac0ca298cf dq 0                   ; offset to this
+.data.rel.ro:0000000000210DA8                 dq offset _ZTI10ac0ca298cf ; `typeinfo for'ac0ca298cf
+.data.rel.ro:0000000000210DB0 off_210DB0      dq offset sub_6F30      ; DATA XREF: sub_B424+18↑o
+.data.rel.ro:0000000000210DB8 ; `vtable for'acfe35eef5
+.data.rel.ro:0000000000210DB8 _ZTV10acfe35eef5 dq 0                   ; offset to this
+.data.rel.ro:0000000000210DC0                 dq offset _ZTI10acfe35eef5 ; `typeinfo for'acfe35eef5
+.data.rel.ro:0000000000210DC8 off_210DC8      dq offset sub_6E34      ; DATA XREF: sub_BC58+18↑o
+.data.rel.ro:0000000000210DD0 ; `vtable for'b3363bb9cf
+.data.rel.ro:0000000000210DD0 _ZTV10b3363bb9cf dq 0                   ; offset to this
+.data.rel.ro:0000000000210DD8                 dq offset _ZTI10b3363bb9cf ; `typeinfo for'b3363bb9cf
+.data.rel.ro:0000000000210DE0 off_210DE0      dq offset sub_6D92      ; DATA XREF: sub_BB5C+18↑o
+.data.rel.ro:0000000000210DE8 ; `vtable for'b47b9b2e82
+.data.rel.ro:0000000000210DE8 _ZTV10b47b9b2e82 dq 0                   ; offset to this
+.data.rel.ro:0000000000210DF0                 dq offset _ZTI10b47b9b2e82 ; `typeinfo for'b47b9b2e82
+.data.rel.ro:0000000000210DF8 off_210DF8      dq offset sub_6D0A      ; DATA XREF: sub_BAB4+18↑o
+.data.rel.ro:0000000000210E00 ; `vtable for'c7ace8976f
+.data.rel.ro:0000000000210E00 _ZTV10c7ace8976f dq 0                   ; offset to this
+.data.rel.ro:0000000000210E08                 dq offset _ZTI10c7ace8976f ; `typeinfo for'c7ace8976f
+.data.rel.ro:0000000000210E10 off_210E10      dq offset sub_6C82      ; DATA XREF: sub_B520+18↑o
+.data.rel.ro:0000000000210E18 ; `vtable for'aca82d376e
+.data.rel.ro:0000000000210E18 _ZTV10aca82d376e dq 0                   ; offset to this
+.data.rel.ro:0000000000210E20                 dq offset _ZTI10aca82d376e ; `typeinfo for'aca82d376e
+.data.rel.ro:0000000000210E28 hunky_off_210E28 dq offset sub_6BFA     ; DATA XREF: funky_0+18↑o
+.data.rel.ro:0000000000210E30 ; `vtable for'b04be9dc63
+.data.rel.ro:0000000000210E30 _ZTV10b04be9dc63 dq 0                   ; offset to this
+.data.rel.ro:0000000000210E38                 dq offset _ZTI10b04be9dc63 ; `typeinfo for'b04be9dc63
+.data.rel.ro:0000000000210E40 off_210E40      dq offset sub_6B72      ; DATA XREF: sub_B130+18↑o
+.data.rel.ro:0000000000210E48 ; `vtable for'f1d7f7cee7
+.data.rel.ro:0000000000210E48 _ZTV10f1d7f7cee7 dq 0                   ; offset to this
+.data.rel.ro:0000000000210E50                 dq offset _ZTI10f1d7f7cee7 ; `typeinfo for'f1d7f7cee7
+.data.rel.ro:0000000000210E58 off_210E58      dq offset sub_6AE8      ; DATA XREF: sub_B3D0+18↑o
+.data.rel.ro:0000000000210E60 ; `vtable for'f2a3574a28
+.data.rel.ro:0000000000210E60 _ZTV10f2a3574a28 dq 0                   ; offset to this
+.data.rel.ro:0000000000210E68                 dq offset _ZTI10f2a3574a28 ; `typeinfo for'f2a3574a28
+.data.rel.ro:0000000000210E70 off_210E70      dq offset sub_6A46      ; DATA XREF: sub_AD6A+18↑o
+.data.rel.ro:0000000000210E78 ; `vtable for'e2b5a5b703
+.data.rel.ro:0000000000210E78 _ZTV10e2b5a5b703 dq 0                   ; offset to this
+.data.rel.ro:0000000000210E80                 dq offset _ZTI10e2b5a5b703 ; `typeinfo for'e2b5a5b703
+.data.rel.ro:0000000000210E88 off_210E88      dq offset sub_6982      ; DATA XREF: sub_B256+18↑o
+.data.rel.ro:0000000000210E90 ; `vtable for'fbe108ff45
+.data.rel.ro:0000000000210E90 _ZTV10fbe108ff45 dq 0                   ; offset to this
+.data.rel.ro:0000000000210E98                 dq offset _ZTI10fbe108ff45 ; `typeinfo for'fbe108ff45
+.data.rel.ro:0000000000210EA0 off_210EA0      dq offset sub_68C0      ; DATA XREF: sub_B8BC+18↑o
+.data.rel.ro:0000000000210EA8 ; `vtable for'e5dbab51dd
+.data.rel.ro:0000000000210EA8 _ZTV10e5dbab51dd dq 0                   ; offset to this
+.data.rel.ro:0000000000210EB0                 dq offset _ZTI10e5dbab51dd ; `typeinfo for'e5dbab51dd
+.data.rel.ro:0000000000210EB8 off_210EB8      dq offset sub_6838      ; DATA XREF: sub_B184+18↑o
+.data.rel.ro:0000000000210EC0 ; `vtable for'b5ee20ea44
+.data.rel.ro:0000000000210EC0 _ZTV10b5ee20ea44 dq 0                   ; offset to this
+.data.rel.ro:0000000000210EC8                 dq offset _ZTI10b5ee20ea44 ; `typeinfo for'b5ee20ea44
+.data.rel.ro:0000000000210ED0 off_210ED0      dq offset sub_673C      ; DATA XREF: sub_BF4C+18↑o
+.data.rel.ro:0000000000210ED8 ; `vtable for'dad05c4ac3
+.data.rel.ro:0000000000210ED8 _ZTV10dad05c4ac3 dq 0                   ; offset to this
+.data.rel.ro:0000000000210EE0                 dq offset _ZTI10dad05c4ac3 ; `typeinfo for'dad05c4ac3
+.data.rel.ro:0000000000210EE8 off_210EE8      dq offset sub_66B2      ; DATA XREF: sub_BA36+18↑o
+.data.rel.ro:0000000000210EF0 ; `vtable for'e01961e753
+.data.rel.ro:0000000000210EF0 _ZTV10e01961e753 dq 0                   ; offset to this
+.data.rel.ro:0000000000210EF8                 dq offset _ZTI10e01961e753 ; `typeinfo for'e01961e753
+.data.rel.ro:0000000000210F00 off_210F00      dq offset sub_660A      ; DATA XREF: funky_1+18↑o
+.data.rel.ro:0000000000210F08 ; `vtable for'cb35fe4987
+.data.rel.ro:0000000000210F08 _ZTV10cb35fe4987 dq 0                   ; offset to this
+.data.rel.ro:0000000000210F10                 dq offset _ZTI10cb35fe4987 ; `typeinfo for'cb35fe4987
+.data.rel.ro:0000000000210F18 off_210F18      dq offset sub_650E      ; DATA XREF: sub_BEF8+18↑o
+.data.rel.ro:0000000000210F20 ; `vtable for'b6dc9cc8a6
+.data.rel.ro:0000000000210F20 _ZTV10b6dc9cc8a6 dq 0                   ; offset to this
+.data.rel.ro:0000000000210F28                 dq offset _ZTI10b6dc9cc8a6 ; `typeinfo for'b6dc9cc8a6
+.data.rel.ro:0000000000210F30 off_210F30      dq offset sub_646C      ; DATA XREF: sub_BF76+18↑o
+.data.rel.ro:0000000000210F38 ; `vtable for'bd9366619f
+.data.rel.ro:0000000000210F38 _ZTV10bd9366619f dq 0                   ; offset to this
+.data.rel.ro:0000000000210F40                 dq offset _ZTI10bd9366619f ; `typeinfo for'bd9366619f
+.data.rel.ro:0000000000210F48 off_210F48      dq offset sub_63E4      ; DATA XREF: sub_BDA8+18↑o
+.data.rel.ro:0000000000210F50 ; `vtable for'f3fcfcd62f
+.data.rel.ro:0000000000210F50 _ZTV10f3fcfcd62f dq 0                   ; offset to this
+.data.rel.ro:0000000000210F58                 dq offset _ZTI10f3fcfcd62f ; `typeinfo for'f3fcfcd62f
+.data.rel.ro:0000000000210F60 off_210F60      dq offset sub_635C      ; DATA XREF: sub_B0DC+18↑o
+.data.rel.ro:0000000000210F68 ; `vtable for'a64b1482e6
+.data.rel.ro:0000000000210F68 _ZTV10a64b1482e6 dq 0                   ; offset to this
+.data.rel.ro:0000000000210F70                 dq offset _ZTI10a64b1482e6 ; `typeinfo for'a64b1482e6
+.data.rel.ro:0000000000210F78 off_210F78      dq offset sub_62D4      ; DATA XREF: sub_B0B2+18↑o
+.data.rel.ro:0000000000210F80 ; `vtable for'da87f08a6c
+.data.rel.ro:0000000000210F80 _ZTV10da87f08a6c dq 0                   ; offset to this
+.data.rel.ro:0000000000210F88                 dq offset _ZTI10da87f08a6c ; `typeinfo for'da87f08a6c
+.data.rel.ro:0000000000210F90 off_210F90      dq offset sub_624A      ; DATA XREF: sub_B61C+18↑o
+.data.rel.ro:0000000000210F98 ; `vtable for'ef6d4a6494
+.data.rel.ro:0000000000210F98 _ZTV10ef6d4a6494 dq 0                   ; offset to this
+.data.rel.ro:0000000000210FA0                 dq offset _ZTI10ef6d4a6494 ; `typeinfo for'ef6d4a6494
+.data.rel.ro:0000000000210FA8 off_210FA8      dq offset sub_614E      ; DATA XREF: sub_BD2A+18↑o
+.data.rel.ro:0000000000210FB0 ; `vtable for'e7d1174beb
+.data.rel.ro:0000000000210FB0 _ZTV10e7d1174beb dq 0                   ; offset to this
+.data.rel.ro:0000000000210FB8                 dq offset _ZTI10e7d1174beb ; `typeinfo for'e7d1174beb
+.data.rel.ro:0000000000210FC0 off_210FC0      dq offset sub_60C6      ; DATA XREF: sub_BFCA+18↑o
+.data.rel.ro:0000000000210FC8 ; `vtable for'a111400219
+.data.rel.ro:0000000000210FC8 _ZTV10a111400219 dq 0                   ; offset to this
+.data.rel.ro:0000000000210FD0                 dq offset _ZTI10a111400219 ; `typeinfo for'a111400219
+.data.rel.ro:0000000000210FD8 off_210FD8      dq offset sub_5FCA      ; DATA XREF: sub_C072+18↑o
+.data.rel.ro:0000000000210FE0 ; `vtable for'e2b5fb8cf2
+.data.rel.ro:0000000000210FE0 _ZTV10e2b5fb8cf2 dq 0                   ; offset to this
+.data.rel.ro:0000000000210FE8                 dq offset _ZTI10e2b5fb8cf2 ; `typeinfo for'e2b5fb8cf2
+.data.rel.ro:0000000000210FF0 off_210FF0      dq offset sub_5F42      ; DATA XREF: sub_B98E+18↑o
+.data.rel.ro:0000000000210FF8 ; `vtable for'b41ba8d6ad
+.data.rel.ro:0000000000210FF8 _ZTV10b41ba8d6ad dq 0                   ; offset to this
+.data.rel.ro:0000000000211000                 dq offset _ZTI10b41ba8d6ad ; `typeinfo for'b41ba8d6ad
+.data.rel.ro:0000000000211008 off_211008      dq offset sub_5E46      ; DATA XREF: sub_B59E+18↑o
+.data.rel.ro:0000000000211010 ; `vtable for'e7c3bfe166
+.data.rel.ro:0000000000211010 _ZTV10e7c3bfe166 dq 0                   ; offset to this
+.data.rel.ro:0000000000211018                 dq offset _ZTI10e7c3bfe166 ; `typeinfo for'e7c3bfe166
+.data.rel.ro:0000000000211020 off_211020      dq offset sub_5DA0      ; DATA XREF: sub_B964+18↑o
+.data.rel.ro:0000000000211028 ; `vtable for'b3c1fa02bf
+.data.rel.ro:0000000000211028 _ZTV10b3c1fa02bf dq 0                   ; offset to this
+.data.rel.ro:0000000000211030                 dq offset _ZTI10b3c1fa02bf ; `typeinfo for'b3c1fa02bf
+.data.rel.ro:0000000000211038 off_211038      dq offset sub_5CFA      ; DATA XREF: sub_ADE8+18↑o
+.data.rel.ro:0000000000211040 ; `vtable for'eb971c1520
+.data.rel.ro:0000000000211040 _ZTV10eb971c1520 dq 0                   ; offset to this
+.data.rel.ro:0000000000211048                 dq offset _ZTI10eb971c1520 ; `typeinfo for'eb971c1520
+.data.rel.ro:0000000000211050 off_211050      dq offset sub_5C54      ; DATA XREF: sub_B2D4+18↑o
+.data.rel.ro:0000000000211058 ; `vtable for'ca9e1feb53
+.data.rel.ro:0000000000211058 _ZTV10ca9e1feb53 dq 0                   ; offset to this
+.data.rel.ro:0000000000211060                 dq offset _ZTI10ca9e1feb53 ; `typeinfo for'ca9e1feb53
+.data.rel.ro:0000000000211068 off_211068      dq offset sub_5B58      ; DATA XREF: sub_B2FE+18↑o
+.data.rel.ro:0000000000211070 ; `vtable for'f7ae5feb62
+.data.rel.ro:0000000000211070 _ZTV10f7ae5feb62 dq 0                   ; offset to this
+.data.rel.ro:0000000000211078                 dq offset _ZTI10f7ae5feb62 ; `typeinfo for'f7ae5feb62
+.data.rel.ro:0000000000211080 off_211080      dq offset sub_5AB2      ; DATA XREF: sub_B574+18↑o
+.data.rel.ro:0000000000211088 ; `vtable for'd588d98ccf
+.data.rel.ro:0000000000211088 _ZTV10d588d98ccf dq 0                   ; offset to this
+.data.rel.ro:0000000000211090                 dq offset _ZTI10d588d98ccf ; `typeinfo for'd588d98ccf
+.data.rel.ro:0000000000211098 off_211098      dq offset sub_5A2A      ; DATA XREF: sub_BC04+18↑o
+.data.rel.ro:00000000002110A0 ; `vtable for'f4f3feafec
+.data.rel.ro:00000000002110A0 _ZTV10f4f3feafec dq 0                   ; offset to this
+.data.rel.ro:00000000002110A8                 dq offset _ZTI10f4f3feafec ; `typeinfo for'f4f3feafec
+.data.rel.ro:00000000002110B0 off_2110B0      dq offset sub_59A2      ; DATA XREF: sub_B05E+18↑o
+.data.rel.ro:00000000002110B8 ; `vtable for'ab4c7fb474
+.data.rel.ro:00000000002110B8 _ZTV10ab4c7fb474 dq 0                   ; offset to this
+.data.rel.ro:00000000002110C0                 dq offset _ZTI10ab4c7fb474 ; `typeinfo for'ab4c7fb474
+.data.rel.ro:00000000002110C8 off_2110C8      dq offset sub_58A6      ; DATA XREF: sub_BC82+18↑o
+.data.rel.ro:00000000002110D0 ; `vtable for'c08383fd52
+.data.rel.ro:00000000002110D0 _ZTV10c08383fd52 dq 0                   ; offset to this
+.data.rel.ro:00000000002110D8                 dq offset _ZTI10c08383fd52 ; `typeinfo for'c08383fd52
+.data.rel.ro:00000000002110E0 off_2110E0      dq offset sub_581E      ; DATA XREF: sub_C048+18↑o
+.data.rel.ro:00000000002110E8 ; `vtable for'Base
+.data.rel.ro:00000000002110E8 _ZTV4Base       dq 0                    ; offset to this
+.data.rel.ro:00000000002110F0                 dq offset _ZTI4Base     ; `typeinfo for'Base
+.data.rel.ro:00000000002110F8 vtable_base_off_2110F8 dq offset sub_5812
+.data.rel.ro:00000000002110F8                                         ; DATA XREF: alloc_base+8↑o
+.data.rel.ro:0000000000211100                 public _ZTIi ; weak
