@@ -32,19 +32,21 @@ int main()
 }
 ```
 
-`user_input` is a function which reads data from user.
+`user_input` is a function which reads data from the user.
 
 Now let's investigate `crypto_function`. 
 I was sure that this isnt any new crypto but just from some library.
-We can see that it calls various methods from vtable.
-After nawigating to the memory of them we can gain more information.
+We can see that it calls various virtual methods from vtable.
+After navigating to the memory of them we can gain more information.
 
-For example above offset `73F500` there is following string:
+For example above offset `73F500` is located the following string:
 
 ```
 .data.rel.ro:000000000073F4F8                 dq offset _ZTIN8CryptoPP14CTR_ModePolicyE ; `typeinfo for'CryptoPP::CTR_ModePolicy
 .data.rel.ro:000000000073F500 unk_73F500      db    0  
 ```
+
+also this one is interesting:
 
 ```
 .data.rel.ro:0000000000741BC8                 dq offset _ZTIN8CryptoPP8Rijndael4BaseE ; `typeinfo for'CryptoPP::Rijndael::Base
@@ -52,14 +54,14 @@ For example above offset `73F500` there is following string:
 ``` 
 
 
-So I just concluded that this is AES-128 in CTR mode.
+So I just concluded that this is AES-128 encryption in CTR mode.
 I've set a breakpoint at this function and printed their arguments:
 
 - 1: random data, different at every time.
 - 2: user input
 - 3: int 16
 - 4: 0x0d00000f0d0a0af7, 0x0d00000f0d0a0a0b
-- 5: where encrypted data is saved
+- 5: where encrypted data will be stored
 
 I came to the conclusion that the first argument is ctr, 4 is the key.
 I checked if my theory about this cipher function is correct - I copied arguments and output abd wrote the following python script:
@@ -98,11 +100,21 @@ print "encrypted user input: "+x.encode("hex")
 print "the output from binary: 9bcefda8b86570db6d8330986472ac5e"
 ```
 
-if we want to pass `if(crypto_function(bytes2, user_input(), 16, some_bytes) == bytes1)` it's obvious, that user input needs to be equal the output of the decryption function AES-128 CTR mode with `bytes1` as data to decrypt 
+output:
+
+```
+a@x:~/Desktop/Authenticator$ python test.py 
+encrypted user input: 9bcefda8b86570db6d8330986472ac5e
+the output from binary: 9bcefda8b86570db6d8330986472ac5e
+```
+
+It proves that my predictions were correct.
+
+if we want to pass `if(crypto_function(bytes2, user_input(), 16, some_bytes) == bytes1)` in `main` function, it's obvious, that user input needs to be equal the output of the decryption function AES-128 CTR mode with `bytes1` as data to decrypt 
  
 
 The key to `crypto_function` was the same at every run when ASLR was switched off.
-When ASLR was switched on, only the first byte of the key was different at every run.
+When ASLR was switched on, the first byte of the key was different at every run.
 I also checked this on different linux systems and it was the same.
 So I wrote the exploit that connects to the server and tries to brute-force all possibilities of the first byte of the key:
 
@@ -194,3 +206,5 @@ and the flag is:
 DCTF{a1fee34f2a3e6e010d786f02865dc39896faa6b589d1f57f565bac9bd1d85cae}
 ```
 
+Summing up, the task was very easy if you reversed the binary properly.
+The task was categoried wrongly and this could mislead people, maybe this is why this task hadn't many solves.
