@@ -170,8 +170,8 @@ def try_key(key):
 	print random1
 	print random2
 
-	random1 = random1.replace(" ","").decode("hex") #to ma wyjsc
-	random2 = random2.replace(" ","").decode("hex") #ctr
+	random1 = random1.replace(" ","").decode("hex")
+	random2 = random2.replace(" ","").decode("hex")
 
 	key = key.decode("hex")
 
