@@ -1,4 +1,4 @@
-# authenticator (pwn, 2 solved) 
+# authenticator (pwn, 2 solves) 
 
 This task was categoried as pwn, but in fact it was RE and simple crypto.
 The hardest part of this task was to reverse engineer the binary.
