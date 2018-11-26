@@ -2,7 +2,8 @@
 
 ## 2018
 
-* [2018.10.20 **Defcamp Finals 2018**(2 place)](2018-11-8-defcamp-finals)
+* [2018.11.24 **ASIS 2018 Finals**(7th place/182 teams)](2018-11-24-asis-finals)
+* [2018.11.08 **Defcamp Finals 2018**(2nd place /17 teams) on site](2018-11-8-defcamp-finals)
 * [2018.10.20 **HITCON CTF 2018**(13th place / 1167 teams)](2018-10-20-hitcon)
 * [2018.10.06 **Hackover CTF 2018**(3rd place / 201 teams)](2018-10-06-hackover)
 * [2018.09.29 **Dragon CTF 2018 Quals**(2nd place / 233 teams)](2018-09-29-dragonctf)
