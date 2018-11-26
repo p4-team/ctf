@@ -52,8 +52,9 @@ So our solution approach is as follows:
 
 We run this in paralell, but immediately get back first result for `C = 17` and `exp = 3`:
 
-![](out17_3.png)
+[result](out17_3.png)
 
+It's a bit broken, but most image viewers can handle it.
 For our defence, nothing really indicated that `exp` would be so tiny!
 
 So the flag is: `ASIS{n3w_g1f7_by_babymade_in_ASIS!!!}`
