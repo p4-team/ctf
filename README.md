@@ -2,6 +2,7 @@
 
 ## 2018
 
+* [2018.12.15 **Trend Micro CTF 2018 Finals**(2nd place/13 teams) on site](2018-12-15-trendmicro)
 * [2018.12.08 **hxp 2018**(2nd place/297 teams)](2018-12-08-hxp)
 * [2018.12.01 **Real World CTF 2018 Finals**(8th place/20 teams) on site](2018-12-01-real-world-finals)
 * [2018.11.24 **ASIS 2018 Finals**(7th place/182 teams)](2018-11-24-asis-finals)

