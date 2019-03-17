@@ -6,7 +6,7 @@ Hi all, thanks for playing CONFidence 2019 CTF! Now the CTF is over, we want to 
 
 ## 1. Challenges
 
-We had 16 challenges, all of which were solved.
+546 teams registered, of which 522 solved at least one challenge. We prepared 16 challenges, all of which were solved.
 
 ![](skoroboro.png)
 
