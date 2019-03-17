@@ -95,9 +95,9 @@ We used Cloudflare to save on traffic and reduce the risk of a DDoS attack. Luck
 
 ![](cloudflare.png)
 
-Countries are not a big surprise too, but it looks like our CTF was really popular in Germany!
+Countries are not a big surprise too:
 
-![](cfcountries.png)
+![](gacountries.png)
 
 
 ## 4. Monitoring
