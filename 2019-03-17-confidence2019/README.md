@@ -12,8 +12,6 @@ Hi all, thanks for playing CONFidence 2019 CTF! Now the CTF is over, we want to 
 
 The hardest challenge (judging by the number of solves) was game_server. The easiest challenge (ignoring the sanity check) was admin_panel, closely followed by elementary and count.
 
-Full 
-
 | challenge_name | count | 
 | ---------------| ------|
 | game server |   7 |
@@ -33,7 +31,7 @@ Full
 | my admin panel |   151 |
 | sanity check |   522 |
 
-In retrospect, we should've added both more hard challenges. We underestimated you and thought that 24hours is not enough time to hack all of our tasks. We were wrong ;). On the other hand, only one team managed to solve all our challenges (congratz, hxp), so it's not too bad.
+In retrospect, we should've added more hard challenges. We underestimated you and thought that 24hours is not enough time to hack all of our tasks. We were wrong ;). On the other hand, only one team managed to solve all our challenges (congratz, hxp), so it's not too bad.
 
 On the other hand, some people complained that even the easiest tasks were challenging, and wished for something more beginner-friendly. We'll work on that next time!
 
@@ -71,7 +69,7 @@ And which challenge was the worst, the most loathed, which challenge was hated w
 
 ![](worstchall.png)
 
-I hope people selected it just because all the other challenges was perfect ;). Although...
+I hope people selected it just because all the other challenges were perfect ;). Although...
 
 ![](irc.png)
 
@@ -97,10 +95,14 @@ We used Cloudflare to save on traffic and reduce the risk of a DDoS attack. Luck
 
 ![](cloudflare.png)
 
-Countries are not a big surprise too, but it looks like our CTF was really popular in Germany!
+Cloudflare analytics also tell us that we had a lot of players from all around the world:
 
 ![](cfcountries.png)
 
+This is similar to the distribution given by Google Analytics:
+
+
+![](world.png)
 
 ## 4. Monitoring
 
@@ -110,7 +112,7 @@ You can't fix your CTF unless you know what's broken. That's why we implemented 
 
 It worked reasonably well, and we had a chance to react quickly - hopefully before players noticed the problem. Fortunately, everything was quite stable and we didn't have a lot of crashes.
 
-Most of our performance problems were due to people drowning lottery and sloik with thousands of request per second. It was unfortunate because both of them could be solved (in an intended way) with less than five requests. We've finally decided to implement POW for sloik because as far as we know it didn't stop any real exploit (both intended solution and a proper version of race condition work with POW - PM me if you don't believe). For the lottery, we decided to just deal with it, because we suspect that the challenge was solved by some teams by just sending a ton of requests per second for hours and having a lot of luck - so adding a POW would be unfair to other teams, and we decided to just deal with it. 
+Most of our performance problems were due to people drowning lottery and sloik with thousands of request per second. It was unfortunate because both of them could be solved (in an intended way) with less than five requests. We've finally decided to implement POW for sloik because as far as we know it didn't stop any real exploit (both intended solution and a proper version of race condition work with POW - PM me if you don't believe). We decided against adding POW to lottery, because we suspect that some teams solved it by just sending a ton of requests per second for hours and having a lot of luck. Adding a POW would be unfair to other teams, and we decided to just deal with it. 
 
 Some pretty graphs from our internal grafana:
 
