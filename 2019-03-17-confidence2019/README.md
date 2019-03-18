@@ -222,7 +222,7 @@ p4{I_really_hope_you_atomaed_this_somehow_otherwise_it_might_be_a_bit_frustratin
 And others didn't even have enough patience:
 
 ```
-p4{I_really_hope_you_automated_this_some}"
+p4{I_really_hope_you_automated_this_some}
 ```
 
 ## 6. Closing thoughts
