@@ -1,6 +1,8 @@
-# CONFidence2019 CTF Post Mortem
+# CONFidence 2019 CTF Teaser Post Mortem
 
-Hi all, thanks for playing CONFidence 2019 CTF! Now the CTF is over, so we'd like to dump some data, share some perspective, and show how things worked from behind the scenes.
+Hi all, thanks for playing CONFidence 2019 CTF Teaser! Now the CTF is over, so we'd like to dump some data, share some perspective, and show how things worked from behind the scenes.
+
+Also, please be aware that it was just a teaser - the real event will happen 3-4 June in Krakow. Top teams will receive free conference passes (wait for an email), but everyone is invited as long as you show up at the conference with a valid ticket.
 
 ## 1. Challenges
 
@@ -81,7 +83,7 @@ We decided to go with a quite unusual approach. We've used a kubernetes cluster 
 
 ![](docluster.png)
 
-I have to say, I'm really satisfied with the results. The whole infrastructure cost literally pennies (ok, $10.18 exactly). We deployed and tested the challenges before the CTF on a small, 2-node cluster, scaled up to 4 nodes just before the CTF, and downscaled to a single node now the CTF is over. I'm also planning to migrate the challenges to my own server soon, so we won't have to pay anymore and everything is still up.
+I have to say, I'm really satisfied with the results. The whole infrastructure cost literally pennies (ok, $10.18 exactly). We deployed and tested the challenges before the CTF on a small, 2-node cluster, scaled up to 4 nodes just before the CTF, and downscaled to a single node now that the CTF is over. I'm also planning to migrate the challenges to my own server soon, so we won't have to pay anymore and everything is still up.
 
 Overall, using kubernetes turned out to be quite nice (though a pain to set up sometimes). For starters, we get this nice dashboard, with restart buttons and service statuses:
 
@@ -109,7 +111,7 @@ You can't fix your CTF unless you know what's broken. That's why we implemented 
 
 It worked reasonably well, and we had a chance to react quickly - hopefully before players noticed the problem. Fortunately, everything was quite stable and we didn't have a lot of crashes.
 
-Most of our performance problems were due to people drowning lottery and sloik with thousands of request per second. It was unfortunate because both of them could be solved (in an intended way) with less than five requests. We eventually decided to implement POW for sloik because as far as we know it didn't stop any real exploit (both intended solution and a proper version of race condition work with POW - email us if you don't believe me). For the lottery, we decided to just deal with it, because we suspect that the challenge was solved by some teams by just sending a ton of requests per second for hours and having a lot of luck. Adding a POW would be unfair to other teams.
+Most of our performance problems were due to people drowning lottery and sloik with thousands of request per second. It was unfortunate because both of them could be solved (in an intended way) with less than five requests. We eventually decided to implement POW for sloik because as far as we know it didn't stop any real exploit (both intended solution and a proper version of race condition work with POW - ping us and we'll show you how). For the lottery, we decided to just deal with it, because we suspect that the challenge was solved by some teams by just sending a ton of requests per second for hours and having a lot of luck. Adding a POW would be unfair to other teams.
 
 Some pretty graphs from our internal Grafana:
 
@@ -228,3 +230,5 @@ p4{I_really_hope_you_automated_this_some}
 ## 6. Closing thoughts
 
 Thanks everyone for playing!
+
+And see you on the finals.
