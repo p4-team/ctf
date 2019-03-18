@@ -147,38 +147,6 @@ And finally, one player thought that it's all a trick and tried to submit their 
 p4{IjJkZjJlNWRmODZhNzY2NmMxOTRhNjFlNGJkNzgxNGY5N2ZlZWVmMjIi.D262gw.eqIm8yyJvL_Gm0daaBDUAynlKjY}
 ```
 
-
-#### "Oldschool" challenge
-
-The proper flag for this challenge was `p4{krule_ctf}`. But for some reason,some teams tried to submit (seemingly) random bytes as a flag.
-
-```
-p4{509763766330b276d5}
-p4{55a0263537693667d3}
-p4{55a0263537693667d3}
-p4{55a0263537693667d3}
-p4{55a0263537693667d3}
-p4{4qibc}
-p4{05CD4A9D4D698699DD03}
-p4{05cd4a9d4d629d89dd00}
-p4{5073a176253d3266d7}
-p4{55a0263537693667d3}
-p4{Ps1jWib6}
-p4{97o49DoB9do4}
-p4{aqibc}
-p4{6152731e9366739476}
-p4{aqi2f}
-p4{qi2fa}
-p4{50b376251669369776}
-p4{50b376251669369776}
-p4{4Sib6}
-p4{4Sib6}
-p4{4sib6}
-p4{4qib6}
-```
-
-This happened all the time, and we still don't understand why. If you know what these are, please PM us - we're dying of curiosity.
-
 #### "neuralflag" challenge
 
 We were really rooting for this team that got close to solving this challenge:
