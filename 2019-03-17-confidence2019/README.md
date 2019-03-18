@@ -97,10 +97,9 @@ We used Cloudflare to save on traffic and reduce the risk of a DDoS attack. Luck
 
 Cloudflare analytics also tell us that we had a lot of players from all around the world:
 
-![](gacountries.png)
+![](cfcountries.png)
 
 This is similar to the distribution given by Google Analytics:
-
 
 ![](world.png)
 
