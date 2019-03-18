@@ -122,6 +122,110 @@ As you can see, there were a few hot moments, but everything calmed down at the 
 
 ## 5. Flags
 
+Finally, few highligts from the flag submission logs.
+
+#### "Sanity check" challenge
+
+The flag was "hidden" in the topic of the IRC channel. But most teams were too
+hasty, and tried to submit flag from the (generic) challenge description. The most popular flag submitted for this challenge was:
+```
+p4{letters_digits_and_special_characters}
+```
+
+Nice try :). Some people even understood it as a regex challenge:
+
+```
+p4{[a-zA-Z][0-9]\" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}
+p4{[a-zA-Z][0-9]!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}
+p4{[a-zA-Z][0-9][!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}
+```
+
+Or tried to submit their csrf_token as a flag:
+
+```
+p4{IjJkZjJlNWRmODZhNzY2NmMxOTRhNjFlNGJkNzgxNGY5N2ZlZWVmMjIi.D262gw.eqIm8yyJvL_Gm0daaBDUAynlKjY}
+```
+
+
+#### "Oldschool" challenge
+
+The proper flag for this challenge was `p4{krule_ctf}`. But for some reason,some teams tried to submit (seemingly) random bytes as a flag.
+
+```
+p4{509763766330b276d5}
+p4{55a0263537693667d3}
+p4{55a0263537693667d3}
+p4{55a0263537693667d3}
+p4{55a0263537693667d3}
+p4{4qibc}
+p4{05CD4A9D4D698699DD03}
+p4{05cd4a9d4d629d89dd00}
+p4{5073a176253d3266d7}
+p4{55a0263537693667d3}
+p4{Ps1jWib6}
+p4{97o49DoB9do4}
+p4{aqibc}
+p4{6152731e9366739476}
+p4{aqi2f}
+p4{qi2fa}
+p4{50b376251669369776}
+p4{50b376251669369776}
+p4{4Sib6}
+p4{4Sib6}
+p4{4sib6}
+p4{4qib6}
+```
+
+This happened all the time, and we still don't understand why. If you know what these are, please PM us - we're dying of curiosity.
+
+#### "neuralflag" challenge
+
+We were really rooting for this team that got close to solving this challenge:
+
+```
+p4{ml_is_ez}
+p4{m1_is_ez}
+p4{m1_i5_ez}
+p4{m1_i5_ez}
+p4{ml_i5_ez}
+p4{ml_i5_ez}
+p4{ml_i5_8z}
+p4{ml_is_ez}
+p4{ml_is_ez}
+p4{m1_i5_8z}
+p4{m1_i5_ez}
+```
+
+The challenge was about recovering an original image from neural network, so they clearly had a rather distorted one. Fortunatelly, they finally managed to solve this task! 
+
+#### "Admin panel" challenge
+
+Some teams tried to submit random strings from source code as a flag:
+
+```
+p4{\hash\: [0-9A-Z\\\]+}
+p4{[0-9A-Z\\\]+}
+p4{[0-9A-Z\\\]+}
+p4{da714db9f020aa05057d305241e00dc521552748401}
+```
+
+Come on, the challenge was easy, but not *that* easy :>.
+
+#### "Elementary" challenge
+
+The definition of irony:
+
+```
+p4{I_really_hope_youatomaed_this_somehow_otherwise_it_might_be_a_bit_frustrating_to_do_this_manually}
+p4{I_really_hope_you_atomaed_this_somehow_otherwise_it_might_be_a_bit_frustrating_to_do_this_manually}
+```
+
+And others didn't even have enough patience:
+
+```
+p4{I_really_hope_you_automated_this_some}"
+```
+
 ## 6. Closing thoughts
 
 Thanks everyone for playing!
