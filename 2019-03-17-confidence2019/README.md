@@ -1,7 +1,5 @@
 # CONFidence2019 CTF Post Mortem
 
-> by msm
-
 Hi all, thanks for playing CONFidence 2019 CTF! Now the CTF is over, so we'd like to dump some data, share some perspective, and show how things worked from behind the scenes.
 
 ## 1. Challenges
