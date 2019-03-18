@@ -140,7 +140,9 @@ p4{[a-zA-Z][0-9]!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}
 p4{[a-zA-Z][0-9][!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}
 ```
 
-Or tried to submit their csrf_token as a flag:
+That's not what we mean by "sanity".
+
+And finally, one player thought that it's all a trick and tried to submit their csrf_token as a flag:
 
 ```
 p4{IjJkZjJlNWRmODZhNzY2NmMxOTRhNjFlNGJkNzgxNGY5N2ZlZWVmMjIi.D262gw.eqIm8yyJvL_Gm0daaBDUAynlKjY}
