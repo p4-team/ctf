@@ -2,6 +2,7 @@
 
 ## 2019
 
+* [2019.03.23 **0CTF 2019 Quals**(23rd place/915 teams)](2019-03-23-0ctf-quals)
 * [2019.03.17 **CONFidence 2019 Teaser**(organisers)](2019-03-17-confidence2019)
 * [2019.01.19 **InsomniHack quals**(1st place/236 teams)](2019-01-19-insomnihack-quals)
 
