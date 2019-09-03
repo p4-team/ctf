@@ -2,7 +2,7 @@
 
 Officially this challenge was marked as `RE`, however we only reversed this as much as to be able to run it, and understand roughly what it might be doing, and then just solved this as blackbox crypto problem.
 
-In the challenge we get [bytecode](meow.n) for NEKO VM and (encrypted flag)[flag_enc.png].
+In the challenge we get [bytecode](meow.n) for NEKO VM and [encrypted flag](flag_enc.png).
 First thing we did was to dump the [disassembly](meow.dump) via `nekoc -d meow.n`.
 
 After some reversing, and replacing the global references in the code, we noticed that it seems to be doing 2 steps:
