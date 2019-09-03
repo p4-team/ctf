@@ -1,7 +1,7 @@
 # M-Poly-Cipher (re/crypto, 279p, 26 solved)
 
 In the challenge we get [a binary](cipher) to reverse.
-We also get a [public key](public.key) and [encrypted flat](flag.enc).
+We also get a [public key](public.key) and [encrypted flag](flag.enc).
 After hours of blood, sweat and tears we finally reach a [working python implementation](code.py).
 
 The key part is:
