@@ -16,7 +16,7 @@ for char in flag:
 
 ```
 
-It's a classic textbook RSA encryption with large unfctorizable modulus and standard exponent, nothing wrong here.
+It's a classic textbook RSA encryption with large unfactorizable modulus and standard exponent, nothing wrong here.
 The vuln is pretty obvious -> the flag is encrypted character-by-character without using any random padding.
 
 If `e` was small (eg. 3) we could just compute integer root to recover the original character.
@@ -25,7 +25,7 @@ After that the the result starts to wrap around modulus.
 
 Here `e` is bigger so we can't do it like that.
 However, since there is no random padding, each character encrypted looks always the same, a bit like in ECB encryption (with single character as blocks).
-It's easy to confirm this by looking into the (output file)[output].
+It's easy to confirm this by looking into the [output file](output).
 We know the flag prefix is `TWCTF{` so 1st and 4th letters are identical, and in the file we have:
 
 `9073209977571176486825453267118351996016396235857623493182258724402523182425555398048461088180575997426276026776186441023571190870577545894667546140441145538176352391499376279774875943812941321565506013356240326235158415041323709138860753984228634160552040417002326854872319407516200542564071756611880349380322282130265915072405694912128104078505106072784722670288292878670301302909960910520529391182927036489958388823511447221117040898358990430312656065571576446469592472217394596577973531530126373565564994195530324540432367900449603179849204693929275999798234441199340509474634967526614647348655247823230784374`
