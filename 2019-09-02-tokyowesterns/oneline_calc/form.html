@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Oneline Calculator</title>
+    </head>
+    <body>
+        <input type="text" id="formula" placeholder="formula" value="114 + 514">
+        % 256
+        <button id="button">=</button>
+        <input type="text" id="result" disabled>
+        <script>
+            document.querySelector('#button').addEventListener('click', (e) => {
+                const input = document.querySelector('#formula')
+                const result = document.querySelector('#result')
+                input.disabled = true
+                const es = new EventSource(`/calc.php?formula=${encodeURIComponent(input.value)}`);
+                es.addEventListener('message', (e) => {
+                    result.value = e.data
+                })
+                es.addEventListener('error', (e) => {
+                    result.value = e.data
+                    input.disabled = false
+                })
+                es.addEventListener('close', (e) => {
+                    es.close()
+                    input.disabled = false
+                })
+            })
+        </script>
+    </body>
+</html>
