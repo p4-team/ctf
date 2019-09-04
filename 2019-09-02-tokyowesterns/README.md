@@ -8,3 +8,4 @@ Team: c7, shalom, nazywam, rev, chivay, Eternal, rodbert, msm, des, psrok1, nied
 * [Simple logic (crypto)](simple_logic)
 * [Meow (re/crypto)](meow)
 * [M-Poly-Cipher (re/crypto)](mpolycipher)
+* [Happy (crypto)](happy)
