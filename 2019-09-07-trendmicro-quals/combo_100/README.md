@@ -100,7 +100,7 @@ main()
 
 Now it would be pretty confusing, but from solving later AMERICA and AFRICA steps, we already knew that we're looking for obfuscated VBS code where `:` denote newlines.
 
-This way we extract [stage1.vbs](stage1ob.vbs).
+This way we extract [obfuscated stage1](stage1ob.vbs).
 This code is `obfuscated` by lots of useless instructions:
 
 ```vbscript
@@ -111,6 +111,7 @@ End If
 
 Such instruction does nothing so we can remove all of them.
 Finally we get [stage1.vbs](stage1.vbs) and combined with the inputs we got from zip we get [results of stage1](resultstage1.txt).
+Interestingly enough antivirus and windows defender get triggered by stage1 script after we remove the obfuscation.
 
 Now we follow the emails trail to figure out what to do with this:
 
