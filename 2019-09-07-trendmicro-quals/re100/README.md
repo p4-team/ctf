@@ -37,7 +37,7 @@ b'&N0wu4rEgeTTinGth3re!'
 
 ![img](./img.jpg)
 
-So we've got a shell ¯\_(ツ)_/¯. After steganalysis and trying various tools popular in this kind of tasks, we've found that message was hidden using Steghide with blank password.
+So we've got a shell ¯\\_(ツ)_/¯. After steganalysis and trying various tools popular in this kind of tasks, we've found that message was hidden using Steghide with blank password.
 
 ```
 $ steghide info img.jpg
