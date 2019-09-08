@@ -10,7 +10,7 @@ Flag shape = `(560, 50, 50, 3)`
 
 After inspection of `y.npy` we can see that there are only two classes.
 
-So we have 40k data to learn from. This should easily suffice.
+Our data is actually a set of images with different animals in them. We have 40k data to learn from. This should easily suffice.
 
 I adapted some keras CNN example code to the shapes of the arrays above and tried to decode the flag after each epoch of learning (instead of at the end, this helps with cases of overfitting). For each entry from flag classified as first class I wrote down `0` and `1` otherwise. 
 This string concatenated and converted to ASCII is the final flag.
