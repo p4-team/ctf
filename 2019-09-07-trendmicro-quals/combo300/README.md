@@ -1,14 +1,14 @@
 # Combo 300
 
-We were given a link to a repository with potentially suspicious content: `https://github.com/HelmutVonSay/explorer`. Unfortunately, repository was removed and nowhere forked nor archived.
+We were given a link to the repository with potentially suspicious content: `https://github.com/HelmutVonSay/explorer`. Unfortunately, repository was removed and nowhere forked nor archived.
 
-We've noticed that related account has two another projects and one of them has 10 stargazers, regardless of the fact that it is a:
+We've noticed that related account has two another projects and one of them has 10 stargazers, regardless of the fact that it is:
 
-* fork of another repository ([Hoaxr/DekkCrypt](https://github.com/Hoaxr/DekkCrypt), latest commit from 2016)
-* the only change is single commit with added pretty laconic `README.md` file
+* a fork of another repository ([Hoaxr/DekkCrypt](https://github.com/Hoaxr/DekkCrypt), latest commit from 2016)
+* the only change is a single commit with added pretty laconic `README.md` file
 * HelmutVonSay's fork has more stargazers than original repo
 
-All stargazers joined Github on the same time as HelmutVonSay (15-16 Aug 2019). All ten accounts have been pushed single repository `demo` on their accounts and starred around 50 other (mostly popular) repositories. After looking at these accounts, we've found that another jointly starred repository is [loyza0/agent](https://github.com/loyza0/agent).
+All stargazers joined Github on the same time as HelmutVonSay (15-16 Aug 2019). All ten accounts have pushed single repository `demo` on their accounts and starred around 50 other (mostly popular) repositories. After looking at these accounts, we've found that another jointly starred repository is [loyza0/agent](https://github.com/loyza0/agent).
 
 Repository contained few files:
 
