@@ -88,7 +88,7 @@ After triggering `getConfigFromVault` we got a JSON message about incorrect toke
 
 This is the endpoint we need to hit but with correct token (correct token can be found inside env vars and leaked with LFI of /proc/self/environ). This would be easy to do if we could provide the `getConfigFromVault` endpoint our own token, which is not the case.
 
-Another way to make this request to the proxy is through the `getProxy` function. We would like to set request with `GET /proxy?url=/get_secret/f0af17449a83681de22db7ce16672f16f37131bec0022371d4ace5d1854301e0`. 
+Another way to make this request to the proxy is through the `getProxy` function. We would like to send request like `GET /proxy?url=/get_secret/f0af17449a83681de22db7ce16672f16f37131bec0022371d4ace5d1854301e0`. Which should give us the flag.
 
 Application defends itself from that with `if(fields.url.indexOf('get_secret') !== -1 || fields.url.indexOf('/') !== -1) {`.
 But fortunately both of the checks can be bypassed. For the first one we just change `get_secret` to `get_sEcret`. Second one is a bit harder, we need to send something that is not a `/` but will become one after `fields.url = Buffer.from(fields.url.toLowerCase(), "latin1").toString();`.
