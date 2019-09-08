@@ -6,7 +6,7 @@ After a lot of poking, changing random things in burp we found a way to trigger 
 
 Application turned out to be simple HTTP server written in NodeJS. There were two interesting functions:
 
-```
+```js
 getProxy: function(request, response) {
    this.getRequestFields(request, global.config, function(fields) {
 
@@ -65,7 +65,7 @@ getConfigFromVault: function(req, res) {
 
 Available under following routes:
 
-```
+```js
 if(urlParts[0]) {
     switch(urlParts[0]) {
         case 'getconfig':
