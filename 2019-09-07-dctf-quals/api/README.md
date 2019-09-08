@@ -1,6 +1,6 @@
 # API
 We are given URL of some service that allegedly provides `Secure API`.
-The site was really plain, nothing was interactive, there were no links that could point us to any endpoint worth exploring.
+The site was plain, nothing was interactive, there were no links that could point us to any endpoint worth exploring.
 
 After a lot of poking, changing random things in burp we found a way to trigger LFI with `GET file:///../../../../etc/passwd`. This gave us possibility to leak every piece of the source code.
 
