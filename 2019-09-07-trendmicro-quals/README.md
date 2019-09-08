@@ -4,4 +4,6 @@ Team: c7, rev, chivay, Eternal, rodbert, des, psrok1, shalom, shizzer
 
 ### Table of contents
 
-* Soon
+* [Forensics 100- Knocks](forensics_100)
+* [Exploit 300 - Java](exploit_300)
+* [Combo 100 - World trip](combo_100)
