@@ -2,8 +2,8 @@
 
 ## 2019
 
-* [2019.09.07 **TrendMicro Quals 2019**(3rd place/XX teams)](2019-09-07-trendmicro-quals)
-* [2019.09.07 **DCTF Quals 2019**(8th place/306 teams)](2019-09-07-dctf-quals)
+* [2019.09.07 **TrendMicro Quals 2019**(3rd place/70 teams)](2019-09-07-trendmicro-quals)
+* [2019.09.07 **DCTF Quals 2019**(8th place/304 teams)](2019-09-07-dctf-quals)
 * [2019.09.02 **TokyoWesterns CTF 2019**(15th place/1005 teams)](2019-09-02-tokyowesterns)
 * [2019.04.07 **Spam&Flags Teaser 2019**(2nd place/176 teams)](2019-04-07-spam-and-flags-teaser)
 * [2019.03.23 **0CTF 2019 Quals**(23rd place/915 teams)](2019-03-23-0ctf-quals)
