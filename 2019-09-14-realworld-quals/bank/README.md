@@ -72,4 +72,4 @@ def main():
 main()
 ```
 
-And we get back the flag: ``
+And we get back the flag: `rwctf{P1Ain_SChNorr_n33Ds_m0re_5ecur1ty!}`
