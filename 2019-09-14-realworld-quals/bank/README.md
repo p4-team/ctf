@@ -1,4 +1,4 @@
-# Bank (crypto, Xp, X solved)
+# Bank (crypto, 94p)
 
 In the challenge we get two files.
 First one contains [properly looking Schnorr signature code](schnorr.py) and the second one is the [server code](multi-schnorr.py).

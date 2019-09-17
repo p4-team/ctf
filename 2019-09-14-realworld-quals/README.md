@@ -1,6 +1,6 @@
 # RealWorld CTF Quals 2019
 
-Team: c7, rev, chivay, Eternal, rodbert, des, shalom, sasza
+Team: c7, rev, chivay, Eternal, rodbert, sasza, shalom
 
 ### Table of contents
 

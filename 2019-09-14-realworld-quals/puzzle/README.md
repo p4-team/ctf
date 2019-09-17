@@ -1,4 +1,4 @@
-# Puzzle (re, Xp, X solved)
+# Puzzle (re, 126p)
 
 In the challenge we get to play a simple sliding puzzle game.
 It's a browser game so we can get the [game script](main.dart.js).
