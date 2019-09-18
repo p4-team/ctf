@@ -17,7 +17,7 @@ We can perform 3 actions:
 There are 2 key points to notice here:
 
 1. In given connection (so while server maintains his private-public key pair) we can perform multiple operations and each one of the for `different` public key. This is because public key is requested every time.
-2. Adding and subtracting points on Elliptic Curve is not a difficult operation. It's "division" that is the hard operation that security is based on. This means if we have points `P` and `Q` it's very simple to calculate point `S` such that `P+S = Q`. Subtraction is simply addition of point with `y` coordinate negated, so `S = P-Q = (xp,-yp)+(xq,-yq)`
+2. Adding and subtracting points on Elliptic Curve is not a difficult operation. It's "division" that is the hard operation that security is based on. This means if we have points `P` and `Q` it's very simple to calculate point `S` such that `P+S = Q`. Subtraction is simply addition of point with `y` coordinate negated, so `S = P-Q = (xp,yp)+(xq,-yq)`
 
 The layout of the attack is pretty simple:
 
