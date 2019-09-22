@@ -1,0 +1,6635 @@
+uM-FPU V3.1
+Instruction Set
+32-bit Floating Point Coprocessor
+Introduction
+The uM-FPU V3.1 floating point coprocessor provides instructions for working with 32-bit IEEE 754 compatible
+floating point numbers and 32-bit long integer. A typical calculation involves sending instructions and data from the
+microcontroller to the uM-FPU, performing the calculation, and transferring the result back to the microcontroller.
+Send data and
+instructions
+
+Microcontroller
+
+Perform calculations
+
+uM-FPU
+V3.1
+
+Read results
+Instructions and data are sent to the uM-FPU using either a SPI or I2C interface. The uM-FPU V3.1 chip has a 256
+byte instruction buffer which allows for multiple instructions to sent. This improves the transfer times and allows the
+microcontroller to perform other tasks while the uM-FPU is performing a series of calculations. Prior to issuing any
+instruction that reads data from the uM-FPU, the Busy/Ready status must be checked to ensure that all instructions
+have been executed. If more than 256 bytes are required to specify a sequence of operations, the Busy/Ready status
+must be checked at least every 256 bytes to ensure that the instruction buffer does not overflow. See the datasheet for
+more detail regarding the SPI or I2C interfaces.
+Instructions consist of an single opcode byte, optionally followed by addition data bytes. A detailed description of
+each instruction is provided later in this document, and a summary table is provided in Appendix A.
+For instruction timing, see Appendix B of the uM-FPU V3.1 Datasheet.
+
+Micromega Corporation
+
+1
+
+Revised 2008-02-28
+
+uM-FPU Registers
+The uM-FPU V3.1 contains 128 general purpose registers, and 8 temporary registers. All registers are 32-bits and
+can be used to store either floating point or long integer values. The general purpose registers are numbered 0 to 127,
+and can be directly accessed by the instruction set. The eight temporary registers are used by the LEFT and RIGHT
+parenthesis instructions to store temporary results and can’t be accessed directly. Register 0 is normally only used to
+store temporary values, since it is modified by many instructions.
+
+General Registers
+0
+Register A
+
+Register X
+
+32-bit Register
+32-bit Register
+32-bit Register
+32-bit Register
+•
+•
+•
+32-bit Register
+
+1
+2
+3
+•
+•
+•
+127
+
+Temporary Registers
+T1
+•
+
+32-bit Register
+•
+•
+•
+32-bit Register
+
+•
+•
+T8
+
+Register A
+To perform arithmetic operations, one of the uM-FPU registers is selected as register A. Register A can be regarded
+as the accumulator or working register. Arithmetic instructions use the value in register A as an operand and store the
+results of an operation in register A. Any register can be selected as register A using the SELECTA instruction. For
+example,
+SELECTA,5
+select register 5 as register A
+Arithmetic instructions that only involve one register implicitly refer to register A. For example,
+FNEG
+negate the value in register A
+Arithmetic instructions that use two registers will specify the second register as part of the instruction. For example,
+FADD,4
+add the value of register 4 to register A
+
+Micromega Corporation
+
+2
+
+uM-FPU V3.1 Instruction Set
+
+Register X
+Register X is used to reference a series of sequential registers. The register X selection is automatically incremented
+to the next register in sequence by all instructions that use register X. Any register can be selected as register X
+using the SELECTX instruction. For example,
+SELECTX,16 select register 16 as register X
+CLRX
+clear register 16 (and increment register X)
+CLRX
+clear register 17 (and increment register X)
+CLRX
+clear register 18 (and increment register X)
+Another example would be to use the FWRITEX and READX instructions to store and retrieve blocks of data.
+In this document the following abbreviations are used to refer to registers:
+reg[0]
+register 0
+reg[A]
+register A
+reg[X]
+register X
+reg[nn]
+any one of the 128 general purpose registers
+
+Micromega Corporation
+
+3
+
+uM-FPU V3.1 Instruction Set
+
+Floating Point Instructions
+The following descriptions provide a quick summary of the floating point instructions. Detailed descriptions are
+provided in the next section.
+
+Basic Floating Point Instructions
+Each of the basic floating point arithmetic instructions are provided in three different forms as shown in the table
+below. The FADD instruction will be used as an example to describe the three different forms of the instructions. The
+FADD,nn instruction allows any general purpose register to be added to register A. The register to be added to
+register A is specified by the byte following the opcode. The FADD0 instruction adds register 0 to register A and only
+requires the opcode. The FADDB instruction adds a small integer value the register A. The signed byte (-128 to 127)
+following the opcode is converted to floating point and added to register A. The FADD,nn instruction is most
+general, but the FADD0 and FADDI,bb instructions are more efficient for many common operations.
+Register nn
+FSET,nn
+FADD,nn
+FSUB,nn
+FSUBR,nn
+FMUL,nn
+FDIV,nn
+FDIVR,nn
+FPOW,nn
+FCMP,nn
+
+Register 0
+FSET0
+FADD0
+FSUB0
+FSUBR0
+FMUL0
+FDIV0
+FDIVR0
+FPOW0
+FCMP0
+
+Immediate value
+FSETI,bb
+FADDI,bb
+FSUBI,bb
+FSUBRI,bb
+FMULI,bb
+FDIVI,bb
+FDIVRI,bb
+FPOWI,bb
+FCMPI,bb
+
+Description
+Set
+Add
+Subtract
+Subtract Reverse
+Multiply
+Divide
+Divide Reverse
+Power
+Compare
+
+Loading Floating Point Values
+The following instructions are used to load data from the microprocessor and store it on the uM-FPU as 32-bit
+floating point values.
+FWRITE,nn,b1,b2,b3,b4
+FWRITEA,b1,b2,b3,b4
+FWRITEX,b1,b2,b3,b4
+FWRITE0,b1,b2,b3,b4
+WRBLK, tc, t1…tn
+ATOF,aa…00
+LOADBYTE,bb
+LOADUBYTE,bb
+LOADWORD,b1,b2
+LOADUWORD,b1,b2
+LOADUWORD,b1,b2
+LOADE
+LOADPI
+
+Micromega Corporation
+
+Write 32-bit floating point value to reg[nn]
+Write 32-bit floating point value to reg[A]
+Write 32-bit floating point value to reg[X]
+Write 32-bit floating point value to reg[0]
+Write multiple 32-bit values
+Convert ASCII string to floating point value and store in reg[0]
+Convert signed byte to floating point and store in reg[0]
+Convert unsigned byte to floating point and store in reg[0]
+Convert signed 16-bit value to floating point and store in reg[0]
+Convert unsigned 16-bit value to floating point and store in reg[0]
+Convert unsigned 16-bit value to floating point and store in reg[0]
+Load the value of e (2.7182818) to reg[0]
+Load the value of pi (3.1415927) to reg[0]
+
+4
+
+uM-FPU V3.1 Instruction Set
+
+Reading Floating Point Values
+The following instructions are used to read floating point values from the uM-FPU.
+FREAD,nn [b1,b2,b3,b4]
+FREADA [b1,b2,b3,b4]
+FREADX [b1,b2,b3,b4]
+FREAD0 [b1,b2,b3,b4]
+RDBLK,tc [t1…tn]
+FTOA,bb
+
+Return 32-bit floating point value from reg[nn]
+Return 32-bit floating point value from reg[A]
+Return 32-bit floating point value from reg[X]
+Return 32-bit floating point value from reg[0]
+Read multiple 32-bit values
+Convert floating point to ASCII string (use READSTR to read string)
+
+Additional Floating Point Instructions
+FSTATUS,nn
+FSTATUSA
+FCMP2,nn,mm
+FNEG
+FABS
+FINV
+SQRT
+ROOT,nn
+
+LOG
+LOG10
+EXP
+EXP10
+SIN
+COS
+TAN
+ASIN
+
+ACOS
+ATAN
+ATAN2,nn
+DEGREES
+RADIANS
+FMOD
+FLOOR
+CEIL
+
+ROUND
+FMIN,nn
+FMAX,nn
+FCNV,bb
+FMAC,nn,mm
+FMSC,nn,mm
+FRACTION
+
+Matrix Instructions
+SELECTMA,nn,b1,b2
+SELECTMB,nn,b1,b2
+SELECTMC,nn,b1,b2
+LOADMA,b1,b2
+LOADMB,b1,b2
+LOADMC,b1,b2
+SAVEMA,b1,b2
+SAVEMB,b1,b2
+SAVEMC,b1,b2
+MOP,bb
+
+select matrix A at register nn of size b1 rows x b2 columns
+select matrix B at register nn of size b1 rows x b2 columns
+select matrix C at register nn of size b1 rows x b2 columns
+load reg[0] with value from matrix A row b1, column b2
+load reg[0] with value from matrix B row b1, column b2
+load reg[0] with value from matrix C r row b1, column b2
+store reg[A] value to matrix A row b1, column b2
+store reg[A] value to matrix A row b1, column b2
+store reg[A] value to matrix A row b1, column b2
+perform matrix operation
+
+Fast Fourier Transform Instruction
+FFT
+
+perform Fast Fourier Transform operation
+
+Conversion Instructions
+FLOAT
+FIX
+FIXR
+FSPLIT
+
+Micromega Corporation
+
+convert reg[A] from long integer to floating point
+convert reg[A] from floating point to long integer
+convert reg[A] from floating point to long integer (with rounding)
+reg[A] = integer value, reg[0] = fractional value
+
+5
+
+uM-FPU V3.1 Instruction Set
+
+Long Integer Instructions
+The following descriptions provide a quick summary of the long integer instructions. Detailed descriptions are
+provided in the next section.
+
+Basic Long Integer Instructions
+Each of the basic long integer arithmetic instructions are provided in three different forms as shown in the table
+below. The LADD instruction will be used as an example to descibe the three different forms of the instructions. The
+LADD,nn instruction allows any general purpose register to be added to register A. The register to be added to
+register A is specified by the byte following the opcode. The LADD0 instruction adds register 0 to register A and only
+requires the opcode. The LADDB instruction adds a small integer value the register A. The signed byte (-128 to 127)
+following the opcode is converted to a long integer and added to register A. The LADD,nn instruction is most
+general, but the LADD0 and LADDB,bb instructions are more efficient for many common operations.
+Register nn
+LSET,nn
+LADD,nn
+LSUB,nn
+LMUL,nn
+LDIV,nn
+LCMP,nn
+LUDIV,nn
+LUCMP,nn
+LTST,nn
+
+Register 0
+LSET0
+LADD0
+LSUB0
+LMUL0
+LDIV0
+LCMP0
+LUDIV0
+LUCMP0
+LTST0
+
+Immediate value
+LSETI,bb
+LADDI,bb
+LSUBI,bb
+LMULI,bb
+LDIVI,bb
+LCMPI,bb
+LUDIVI,bb
+LUCMPI,bb
+LTSTI,bb
+
+Description
+Set
+Add
+Subtract
+Multiply
+Divide
+Compare
+Unsigned Divide
+Unsigned Compare
+Test Bits
+
+Loading Long Integer Values
+The following instructions are used to load data from the microprocessor and store it on the uM-FPU as 32-bit long
+integer values.
+LWRITE,nn,b1,b2,b3,b4
+LWRITEA,b1,b2,b3,b4
+LWRITEX,b1,b2,b3,b4
+LWRITE0,b1,b2,b3,b4
+WRBLK, tc, t1…tn
+ATOL,aa…00
+LONGBYTE,bb
+LONGUBYTE,bb
+LONGWORD,b1,b2
+LONGUWORD,b1,b2
+
+Micromega Corporation
+
+Write 32-bit long integer value to reg[nn]
+Write 32-bit long integer value to reg[A]
+Write 32-bit long integer value to reg[X]
+Write 32-bit long integer value to reg[0]
+Write multiple 32-bit values
+Convert ASCII string to long integer value and store in reg[0]
+Convert signed byte to long integer and store in reg[0]
+Convert unsigned byte to long integer and store in reg[0]
+Convert signed 16-bit value to long integer and store in reg[0]
+Convert unsigned 16-bit value to long integer and store in reg[0]
+
+6
+
+uM-FPU V3.1 Instruction Set
+
+Reading Long Integer Values
+The following instructions are used to read long integer values from the uM-FPU.
+LREAD,nn [b1,b2,b3,b4]
+LREADA [b1,b2,b3,b4]
+LREADX [b1,b2,b3,b4]
+LREAD0 [b1,b2,b3,b4]
+RDBLK,tc [t1…tn]
+LREADBYTE [b1]
+LREADWORD [b1,b2]
+LTOA,bb
+
+returns 32-bit long integer value from reg[nn]
+returns 32-bit long integer value from reg[A]
+returns 32-bit long integer value from reg[X]
+returns 32-bit long integer value from reg[0]
+Read multiple 32-bit values
+returns 8-bit byte from reg[A]
+returns 16-bit value from reg[A]
+convert long integer to ASCII string (use READSTR to read string)
+
+Additional Long Integer Instructions
+LSTATUS,nn
+LSTATUSA
+LCMP2,nn,mm
+LUCMP2,nn,mm
+
+Micromega Corporation
+
+LNEG
+LABS
+LINC,nn
+LDEC,nn
+
+LNOT
+LAND,nn
+LOR,nn
+LXOR,nn
+
+7
+
+LSHIFT,nn
+LMIN,nn
+LMAX,nn
+
+uM-FPU V3.1 Instruction Set
+
+General Purpose Instructions
+RESET
+NOP
+SELECTA,nn
+SELECTX,nn
+CLR,nn
+CLRA
+CLRX
+COPY,mm,nn
+COPY0,nn
+
+COPYI,bb,nn
+COPYA,nn
+COPYX,nn
+LOAD,nn
+LOADA
+LOADX
+ALOADX
+XSAVE,nn
+XSAVEA
+
+LOADIND,nn
+SAVEIND,nn
+INDA
+INDX
+SWAP,nn,mm
+SWAPA,nn
+LEFT
+RIGHT
+SETOUT,bb
+
+SYNC
+READSTATUS
+READSTR
+VERSION
+IEEEMODE
+PICMODE
+CHECKSUM
+READVAR,bb
+SETSTATUS,bb
+
+Special Purpose Instructions
+Stored Function Instructions
+FCALL,fn
+EECALL,fn
+RET
+RET,cc
+BRA,bb
+BRA,cc,bb
+JMP,b1,b2
+JMP,cc,b1,b2
+GOTO,nn
+TABLE,tc,t1…tn
+FTABLE,cc,tc,t1…tn
+LTABLE,cc,tc,t1…tn
+POLY,tc,t1…tn
+
+Call Flash user-defined function
+Call EPROM user-defined function
+Return from user-defined function
+Conditional return from user-defined function
+Unconditional branch inside user-defined function
+Conditional branch inside user-defined function
+Unconditional jump inside user-defined function
+Conditional jump inside user-defined function
+Computed goto
+Table lookup
+Floating point reverse table lookup
+Long integer reverse table lookup
+Nth order polynomial
+
+Analog to Digital Conversion Instructions
+ADCMODE,bb
+ADCTRIG
+ADCSCALE,bb
+ADCLONG,bb
+ADCLOAD,bb
+ADCWAIT
+
+Select A/D trigger mode
+Manual A/D trigger
+Set A/D floating point scale factor
+Get raw long integer A/D reading
+Get scaled floating point A/D reading
+Wait for A/D conversion to complete
+
+Timer Instructions
+TIMESET
+TIMELONG
+TICKLONG
+
+Set timers
+Get time in seconds
+Get time in milliseconds
+
+EEPROM Instructions
+EESAVE,mm,nn
+EESAVEA,nn
+EELOAD,mm,nn
+EELOADA,nn
+EEWRITE,nn,bc,b1..bn
+
+Micromega Corporation
+
+Save reg[nn] value to EEPROM
+Save reg[A] to EEPROM
+Load reg[nn] with EEPROM value
+Load reg[A] with EEPROM value
+Write byte string to EEPROM
+
+8
+
+uM-FPU V3.1 Instruction Set
+
+External Input Instructions
+EXTSET
+EXTLONG
+EXTWAIT
+
+Set external input counter
+Get external input counter
+Wait for next external input pulse
+
+String Manipulation Instructions
+STRSET,aa…00
+STRSEL,bb,bb
+STRINC
+STRDEC
+STRINS,aa…00
+STRBYTE
+STRCMP,aa…00
+STRFIND,aa…00
+STRFCHR,aa…00
+STRFIELD,bb
+STRTOF
+STRTOL
+FTOA,bb
+LTOA,bb
+READSTR
+READSEL
+
+Copy string to string buffer
+Set string selection point
+Increment string selection point
+Decrement string selection point
+Insert string at selection point
+Insert byte at selection point
+Compare string with string selection
+Find string
+Set field delimiters
+Find field
+Convert string selection to floating point
+Convert string selection to long integer
+Convert floating point value to string
+Convert long integer value to string
+Read entire string buffer
+Read string selection
+
+Serial Input/Output
+SEROUT,bb
+SEROUT,bb,bd
+SEROUT,bb,aa…00
+SERIN,bb
+
+Serial Output
+Serial Output
+Serial Output
+Serial Input
+
+Debugging Instructions
+BREAK
+TRACEOFF
+TRACEON
+TRACESTR,aa…00
+TRACEREG,nn
+
+Micromega Corporation
+
+Debug breakpoint
+Turn debug trace off
+Turn debug trace on
+Display string in debug trace
+Display contents of register in debug trace
+
+9
+
+uM-FPU V3.1 Instruction Set
+
+Test Conditions
+Several of the stored function instructions use a test condition byte. The test condition is an 8-bit byte that defines
+the expected state of the internal status byte. The upper nibble is used as a mask to determine which status bits to
+check. A status bit will only be checked if the corresponding mask bit is set to 1. The lower nibble specifies the
+expected value for each of the corresponding status bits in the internal status byte. A test condition is considered to
+be true if all of the masked test bits have the same value as the corresponding bits in the internal status byte. There
+are two special cases: 0x60 evaluates as greater than or equal, and 0x62 evaluates as less than or equal.
+Bit 7 6 5 4 3 2 1 0
+Mask
+I N S Z
+
+Bits 4-7 Mask bits
+Bit 7
+Mask bit for Infinity
+Bit 6
+Mask bit for NaN
+Bit 5
+Mask bit for Sign
+Bit 4
+Mask bit for Zero
+Bits 0-3 Test bits
+Bit 3
+Expected state of Infinity status bit
+Bit 2
+Expected state of NaN status bit
+Bit 1
+Expected state of Sign status bit
+Bit 0
+Expected state of Zero status bit
+The uM-FPU V3 IDE assembler has built-in symbols for the most common test conditions. They are as follows:
+Assembler Symbol
+Z
+EQ
+NZ
+NE
+LT
+LE
+GT
+GE
+PZ
+MZ
+INF
+FIN
+PINF
+MINF
+NAN
+TRUE
+FALSE
+
+Micromega Corporation
+
+Test Condition
+0x51
+0x51
+0x50
+0x50
+0x72
+0x62
+0x70
+0x60
+0x71
+0x73
+0xC8
+0xC0
+0xE8
+0xEA
+0x44
+0x00
+0xFF
+
+Description
+Zero
+Equal
+Not Zero
+Not Equal
+Less Than
+Less Than or Equal
+Greater Than
+Greater Than or Equal
+Positive Zero
+Negative Zero
+Infinity
+Finite
+Positive Infinity
+Minus infinity
+Not-a-Number (NaN)
+True
+False
+
+10
+
+uM-FPU V3.1 Instruction Set
+
+uM-FPU V3.1 Instruction Reference
+ACOS
+Opcode:
+
+Arc Cosine
+4B
+
+Description:
+
+reg[A] = acos(reg[A])
+Calculates the arc cosine of an angle in the range 0.0 through pi. The initial value is contained in
+register A, and the result is returned in register A.
+
+Special Cases:
+
+• if reg[A] is NaN or its absolute value is greater than 1, then the result is NaN
+
+ADCLOAD
+Opcode:
+
+Load scaled A/D value
+D5 nn
+where: nn is the A/D channel number
+
+Description:
+
+reg[0] = float(ADCchannel[nn]) * ADCscale[nn])
+Wait until the A/D conversion is complete, then load register 0 with the reading from channel nn
+of the A/D converter. The 12-bit value is converted to floating point, multiplied by a scale value,
+and stored in register 0. The instruction buffer should be empty when this instruction is executed.
+If there are other instructions in the instruction buffer, or another instruction is sent before the
+ADCLOAD instruction has been completed, the wait will terminate and the previous value for the
+selected channel will be used.
+
+ADCLONG
+Opcode:
+
+Load raw A/D value
+D4 nn
+
+Description:
+
+reg[0] = ADCchannel[nn]
+Wait until the A/D conversion is complete, then load register 0 with the reading from channel nn
+of the A/D converter. The 12-bit value is converted to a long integer and stored in register 0. The
+instruction buffer should be empty when this instruction is executed. If there are other instructions
+in the instruction buffer, or another instruction is sent before the ADCLONG instruction has been
+completed, the wait will terminate and the previous value for the selected channel will be used.
+
+ADCMODE
+Opcode:
+
+Set A/D trigger mode
+D1 nn
+where: nn is the trigger mode
+
+Description:
+
+Set the trigger mode of the A/D converter. The value nn is interpreted as follows:
+
+where: nn is the A/D channel number
+
+Bit 7 6 5 4 3 2 1 0
+Trigger
+Repeat
+
+Bits 4-7 Trigger Type (high nibble)
+0 - disable A/D conversions
+1 - manual trigger
+2 - external input trigger
+3 - timer trigger, the value in register 0 specifies the period in microseconds
+(the minimum period is 100 microseconds)
+Bits 0-3 Repeat Count (low nibble)
+The number of samples taken for each trigger is equal to the repeat count plus one.
+(e.g. a value of 0 will result in one sample per trigger)
+Micromega Corporation
+
+11
+
+uM-FPU V3.1 Instruction Set
+
+Examples:
+
+ADCMODE,0x10
+
+set manual trigger with 1 sample per trigger
+
+ADCMODE,0x24
+
+set external trigger with 5 samples per trigger
+
+LOADWORD,1000
+ADCMODE,0x30
+
+set timer trigger every 1000 usec, with 1 sample per trigger
+
+ADCMODE,0
+
+disable A/D conversions
+
+ADCSCALE
+Opcode:
+
+Set scale multiplier for A/D
+D3 nn
+where: nn is the A/D channel number
+
+Description:
+
+ADCscale[nn] = reg[0]
+Set the scale value for channel nn to the floating point value in register 0. The scale value for all
+channels is set to 1.0 at device reset or when the ADCMODE mode is set to disable A/D
+conversions.
+
+ADCTRIG
+Opcode:
+
+Trigger an A/D conversion
+D2
+
+Description:
+
+Trigger an A/D conversion. If a conversion is already in progress the trigger is ignored. This is
+normally used only when the ADCMODE is set for manual trigger.
+
+ADCWAIT
+Opcode:
+
+Wait for next A/D sample
+D6
+
+Description:
+
+Wait until the next A/D sample is ready. When ADCMODE is set for manual trigger, this instruction
+can be used to wait until the conversion started by the last ADCTRIG is done. ADCLONG and
+ADCLOAD automatically wait until the next sample is ready. If the ADCMODE is set for timer
+trigger or external input trigger, this instruction will wait until the next full conversion is
+completed. The instruction buffer should be empty when this instruction is executed. If there are
+other instructions in the instruction buffer, or another instruction is sent before the ADCWAIT
+instruction has been completed, the wait will terminate.
+
+ALOADX
+Opcode:
+
+Load register A from register X
+0D nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[X] , X = X + 1
+Set register A to the value of register X, and increment X to select the next register in sequence.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+ASIN
+Opcode:
+
+Arc Sine
+4A
+
+Description:
+
+reg[A] = asin(reg[A])
+Calculates the arc sine of an angle in the range of –pi/2 through pi/2. The initial value is contained
+
+Micromega Corporation
+
+12
+
+uM-FPU V3.1 Instruction Set
+
+in register A, and the result in returned in register A.
+Special Cases:
+
+• if reg[A] is NaN or its absolute value is greater than 1, then the result is NaN
+• if reg[A] is 0.0, then the result is a 0.0
+• if reg[A] is –0.0, then the result is –0.0
+
+ATAN
+Opcode:
+
+Arc Tangent
+4C
+
+Description:
+
+reg[A] = atan(reg[A])
+Calculates the arc tangent of an angle in the range of –pi/2 through pi/2. The initial value is
+contained in register A, and the result in returned in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is 0.0, then the result is a 0.0
+• if reg[A] is –0.0, then the result is –0.0
+
+ATAN2
+Opcode:
+
+Arc Tangent (two arguments)
+4D nn
+where: nn is a register number
+
+Description:
+
+reg[A] = atan(reg[A] / reg[nn])
+Calculates the arc tangent of an angle in the range of –pi/2 through pi/2. The initial value is
+determined by dividing the value in register A by the value in register nn, and the result in
+returned in register A. This instruction is used to convert rectangular coordinates (reg[A], reg[nn])
+to polar coordinates (r, theta). The value of theta is returned in register A.
+
+Special Cases:
+
+• if reg[A] or reg[nn] is NaN, then the result is NaN
+• if reg[A] is 0.0 and reg[nn] > 0, then the result is 0.0
+• if reg[A] > 0 and finite, and reg[nn] is +inf, then the result is 0.0
+• if reg[A] is –0.0 and reg[nn] > 0, then the result is –0.0
+• if reg[A] < 0 and finite, and reg[nn] is +inf, then the result is –0.0
+• if reg[A] is 0.0 and reg[nn] < 0, then the result is pi
+• if reg[A] > 0 and finite, and reg[nn] is –inf, then the result is pi
+• if reg[A] is –0.0, and reg[nn] < 0, then the result is –pi
+• if reg[A] < 0 and finite, and reg[nn] is –inf, then the result is –pi
+• if reg[A] > 0, and reg[nn] is 0.0 or –0.0, then the result is pi/2
+• if reg[A] is +inf, and reg[nn] is finite, then the result is pi/2
+• if reg[A] < 0, and reg[nn] is 0.0 or –0.0, then the result is –pi/2
+• if reg[A] is –inf, and reg[nn] is finite, then the result is –pi/2
+• if reg[A] is +inf, and reg[nn] is +inf, then the result is pi/4
+• if reg[A] is +inf, and reg[nn] is –inf, then the result is 3*pi/4
+• if reg[A] is –inf, and reg[nn] is +inf, then the result is –pi/4
+• if reg[A] is –inf, and reg[nn] is –inf, then the result is –3*pi/4
+
+ATOF
+Opcode:
+
+Convert ASCII string to floating point
+1E aa…00
+where: aa…00 is a zero-terminated ASCII string
+
+Description:
+
+Converts a zero terminated ASCII string to a 32-bit floating point number and stores the result in
+register 0. The string to convert is sent immediately following the opcode. The string can be
+
+Micromega Corporation
+
+13
+
+uM-FPU V3.1 Instruction Set
+
+normal number format (e.g. 1.56, -0.5) or exponential format (e.g. 10E6). Conversion will stop at
+the first invalid character, but data will continue to be read until a zero terminator is encountered.
+Examples:
+
+1E 32 2E 35 34 00
+1E 31 46 33 00
+
+ATOL
+Opcode:
+
+Convert ASCII string to long integer
+9A aa…00
+where: aa...00 is a zero-terminated ASCII string
+
+Description:
+
+Converts a zero terminated ASCII string to a 32-bit long integer and stores the result in register 0.
+The string to convert is sent immediately following the opcode. Conversion will stop at the first
+invalid character, but data will continue to be read until a zero terminator is encountered.
+
+Examples:
+
+9A 35 30 30 30 30 30 00 (string 500000) stores the value 500000 in register 0
+9A 2D 35 00
+(string -5) stores the value -5 in register 0
+
+BRA
+Opcode:
+
+Unconditional branch
+81 bb
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory.
+Function execution will continue at the address determined by adding the signed byte value to the
+address of the byte immediately following the instruction. It has a range of -128 to 127 bytes. The
+JMP instruction can be used for addresses that are outside this range. If the new address is outside
+the address range of the function, a function return occurs.
+
+BRA,cc
+Opcode:
+
+Conditional branch
+82 cc, bb
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. If
+the test condition is true, then function execution will continue at the address determined by
+adding the signed byte value to the address of the byte immediately following the instruction. It
+has a range of -128 to 127 bytes. The JMP instruction can be used for addresses that are outside
+this range. If the new address is outside the address range of the function, a function return occurs.
+
+BREAK
+Opcode:
+
+Debug breakpoint
+F7
+
+Description:
+
+Used in conjunction with the built-in debugger. If the debugger is enabled, a breakpoint occurs and
+the debug monitor is entered. If debug mode is not selected, this instruction is ignored.
+
+CEIL
+Opcode:
+
+Ceiling
+52
+
+Description:
+
+reg[A] = ceil(reg[A])
+Calculates the floating point value equal to the nearest integer that is greater than or equal to the
+floating point value in register A. The result is stored in register A.
+
+Micromega Corporation
+
+(string 2.54) stores the value 2.54 in register 0
+(string 1E3) stores the value 1000.0 in register 0
+
+where: bb is the relative address in bytes (-128 to +127)
+
+where: cc is the test condition
+bb is the relative address in bytes (-128 to +127)
+
+14
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+• if is NaN, then the result is NaN
+• if reg[A] is +infinity or -infinity, then the result is +infinity or -infinity
+• if reg[A] is 0.0 or –0.0, then the result is 0.0 or –0.0
+• if reg[A] is less than zero but greater than –1.0, then the result is –0.0
+
+CHECKSUM
+Opcode:
+
+Calculate checksum for uM-FPU code
+F6
+
+Description:
+
+A checksum is calculated for the uM-FPU code and user-defined functions stored in Flash. The
+checksum value is stored in register 0. This can be used as a diagnostic test for confirming the
+state of a uM-FPU chip.
+
+CLR
+Opcode:
+
+Clear register
+03 nn
+
+Description:
+
+reg[nn] = 0
+Set the value of register nn to zero.
+
+CLR0
+Opcode:
+
+Clear register 0
+06
+
+Description:
+
+reg[0] = 0
+Set the value of register 0 to zero.
+
+CLRA
+Opcode:
+
+Clear register A
+04
+
+Description:
+
+reg[A] = 0
+Set the value of register A to zero.
+
+CLRX
+Opcode:
+
+Clear register X
+05
+
+Description:
+
+reg[X] = 0, X = X + 1
+Set the value of register A to zero, and increment X to select the next register in sequence.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+COPY
+Opcode:
+
+Copy registers
+07 mm nn
+
+Description:
+
+reg[nn] = reg[mm]
+The value of register mm is copied to register nn.
+
+COPYA
+Opcode:
+
+Copy register A
+08 nn
+
+Description:
+
+reg[nn] = reg[A]
+Set register nn to the value of register A.
+
+Micromega Corporation
+
+where: nn is a register number
+
+where: mm and nn are register numbers
+
+where: nn is a register number
+
+15
+
+uM-FPU V3.1 Instruction Set
+
+COPY0
+Opcode:
+
+Copy register 0
+10 nn
+
+Description:
+
+reg[nn] = reg[0]
+Set register nn to the value of register 0.
+
+COPYI
+Opcode:
+
+Copy Immediate value
+11 bb nn
+where: bb is an unsigned byte value (0 to 255)
+nn is a register number
+
+Description:
+
+reg[nn] = long(unsigned bb)
+The 8-bit unsigned value is converted to a long integer and stored in register nn.
+
+COPYX
+Opcode:
+
+Copy register X
+09 nn
+
+Description:
+
+reg[nn] = reg[X], X = X + 1
+Set register nn to the value of register X, and increment X to select the next register in sequence.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+COS
+Opcode:
+
+Cosine
+48
+
+Description:
+
+reg[A] = cosine(reg[A])
+Calculates the cosine of the angle (in radians) in register A and stored the result in register A.
+
+Special Cases:
+
+• if reg[A] is NaN or an infinity, then the result is NaN
+
+DEGREES
+Opcode:
+
+Convert radians to degrees
+4E
+
+Description:
+
+The floating point value in register A is converted from radians to degrees and the result is stored
+in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+
+EECALL
+Opcode:
+
+Call EEPROM memory user defined function
+7F fn
+where: fn is the function number
+
+Description:
+
+The user defined function nn, stored in EEPROM memory, is executed. Up to 16 levels of nesting
+is supported for function calls. The EEPROM functions can be stored at run-time using the
+EEWRITE instruction.
+
+Special Cases:
+
+If the selected user function is not defined, register 0 is set to NaN, and execution continues.
+
+Micromega Corporation
+
+where: nn is a register number
+
+where: nn is a register number
+
+16
+
+uM-FPU V3.1 Instruction Set
+
+EELOAD
+Opcode:
+
+Load register nn with value from EEPROM
+DC nn ee
+where: nn is a register number
+ee is the EEPROM address slot.
+
+Description:
+
+reg[nn] = EEPROM[ee]
+Register nn is set to the value in EEPROM at the address slot specified by ee. EEPROM address
+slots are 4 bytes in length (32-bits).
+
+EELOADA
+Opcode:
+
+Load register A with value from EEPROM
+DD ee
+where: ee is the EEPROM address slot
+
+Description:
+
+reg[A] = EEPROM[ee]
+Register A is set to the value in EEPROM at the address slot specified by ee . EEPROM address
+slots are 4 bytes in length (32-bits).
+
+EESAVE
+Opcode:
+
+Save register nn to EEPROM
+DA nn ee
+where: nn is a register number
+ee is the EEPROM address slot
+
+Description:
+
+EEPROM[ee] = reg[nn]
+The value in register nn is stored in EEPROM at the address slot specified by ee. EEPROM
+address slots are 4 bytes in length (32-bits).
+
+EESAVEA
+Opcode:
+
+Save register A to EEPROM
+DB ee
+where: ee is the EEPROM address slot
+
+Description:
+
+EEPROM[ee] = reg[A]
+The value in register A is stored in EEPROM at the address slot specified by ee. EEPROM
+address slots are 4 bytes in length (32-bits).
+
+EEWRITE
+Opcode:
+
+Write bytes to EEPROM
+DE ee bc bb...bb
+where: ee is the EEPROM address slot
+bc is the number of bytes
+bb...bb is a string of bytes
+Bytes are stored sequentially in EEPROM starting at the EEPROM[ee] address slot
+The number of bytes specified by bc are copied to the EEPROM starting at address slot ee.
+Address slots are 4 bytes in length (32-bits). Consecutive address slots are used to store the
+specified number of bytes. This instruction can be used to store multiple values to the EEPROM
+address slots or to dynamically store a user-defined function.
+
+Description:
+
+EXP
+Opcode:
+
+The value e raised to a power
+45
+
+Description:
+
+reg[A] = exp(reg[A])
+Calculates the value of e (2.7182818) raised to the power of the floating point value in register A.
+The result is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity or greater than 88, then the result is +infinity
+
+Micromega Corporation
+
+17
+
+uM-FPU V3.1 Instruction Set
+
+• if reg[A] is –infinity or less than -88, then the result is 0.0
+EXP10
+Opcode:
+
+The value 10 raised to a power
+46
+
+Description:
+
+reg[A] = exp10(reg[A])
+Calculates the value of 10 raised to the power of the floating point value in register A. The result is
+stored in A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity or greater than 38, then the result is +infinity
+• if reg[A] is –infinity or less than -38, then the result is 0.0
+
+EXTLONG
+Opcode:
+
+Load value of external input counter
+E1
+
+Description:
+
+reg[0] = external input count
+Load register 0 with the external input count.
+
+EXTSET
+Opcode:
+
+Set value of external input counter
+E0
+
+Description:
+
+external input count = reg[0]
+The external input count is set to the value in register 0.
+
+EXTWAIT
+Opcode:
+
+Wait for next external input pulse
+E2
+
+Description:
+
+Wait for the next external input to occur.
+
+FABS
+Opcode:
+
+Floating point absolute value
+3F
+
+Description:
+
+reg[A] = | reg[A] |
+Sets the floating value in register A to the absolute value.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+
+FADD
+Opcode:
+
+Floating point add
+21 nn
+
+Description:
+
+reg[A] = reg[A] + reg[nn]
+The floating point value in register nn is added to the floating point value in register A and the
+result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if one value is +infinity and the other is –infinity, then the result is NaN
+• if one value is +infinity and the other is not –infinity, then the result is +infinity
+• if one value is -infinity and the other is not +infinity, then the result is -infinity
+
+Micromega Corporation
+
+where: nn is a register number
+
+18
+
+uM-FPU V3.1 Instruction Set
+
+FADD0
+Opcode:
+
+Floating point add register 0
+2A
+
+Description:
+
+reg[A] = reg[A] + reg[0]
+The floating point value in register 0 is added to the floating point value in register A and the result
+is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if one value is +infinity and the other is –infinity, then the result is NaN
+• if one value is +infinity and the other is not –infinity, then the result is +infinity
+• if one value is -infinity and the other is not +infinity, then the result is -infinity
+
+FADDI
+Opcode:
+
+Floating point add immediate value
+33 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] + float(bb)
+The signed byte value is converted to floating point and added to the value in register A and the
+result is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity, then the result is +infinity
+• if reg[A] is -infinity, then the result is -infinity
+
+FCALL
+Opcode:
+
+Call Flash memory user defined function
+7E fn
+where: fn is the function number
+
+Description:
+
+The user defined function nn, stored in Flash memory, is executed. Up to 16 levels of nesting is
+supported for function calls. The uM-FPU IDE provides support for programming user defined
+functions in Flash memory using the serial debug monitor (see datasheet).
+
+Special Cases:
+
+If the selected user function is not defined, register 0 is set to NaN, and execution continues.
+
+FCMP
+Opcode:
+
+Floating point compare
+28 nn
+where: nn is a register number
+
+Description:
+
+status = compare(reg[A] - reg[nn])
+Compares the floating point value in register A with the value in register nn and sets the internal
+status byte. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - N S Z
+
+Bit 2
+Bit 1
+Bit 0
+
+Micromega Corporation
+
+Not-a-Number
+Sign
+Zero
+
+Set if either value is not a valid number
+Set if reg[A] < reg[nn]
+Set if reg[A] = reg[nn]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[nn]
+
+19
+
+uM-FPU V3.1 Instruction Set
+
+FCMP0
+Opcode:
+
+Floating point compare register 0
+31
+
+Description:
+
+status = compare(reg[A] - reg[0])
+Compares the floating point value in register A with the value in register 0 and sets the internal
+status byte. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - N S Z
+
+Bit 2
+Bit 1
+Bit 0
+
+Not-a-Number
+Sign
+Zero
+
+Set if either value is not a valid number
+Set if reg[A] < reg[0]
+Set if reg[A] = reg[0]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[0]
+
+FCMP2
+Opcode:
+
+Floating point compare
+3D nn mm
+where: nn and mm are register numbers
+
+Description:
+
+status = compare(reg[nn] - reg[mm])
+Compares the floating point value in register nn with the value in register mm and sets the internal
+status byte. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - N S Z
+
+Bit 2
+Bit 1
+Bit 0
+
+Not-a-Number
+Sign
+Zero
+
+Set if either value is not a valid number
+Set if reg[mm] < reg[nn]
+Set if reg[mm] = reg[nn]
+If neither Bit 0 or Bit 1 is set, reg[mm] > reg[nn]
+
+FCMPI
+Opcode:
+
+Floating point compare immediate value
+3A bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+status = compare(reg[A] - float(bb))
+The signed byte value is converted to floating point and compared to the floating point value in
+register A. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - N S Z
+
+Bit 2
+Bit 1
+Bit 0
+
+Not-a-Number
+Sign
+Zero
+
+Set if either value is not a valid number
+Set if reg[A] < float(bb)
+Set if reg[A] = float(bb)
+If neither Bit 0 or Bit 1 is set, reg[A] > float(bb)
+
+FCNV
+Opcode:
+
+Floating point conversion
+56 bb
+where: bb is an unsigned byte value (0 to 255)
+
+Description:
+
+reg[A] = the converted value of reg[A]
+Convert the value in register A using the conversion specified by the byte bb and store the fresult
+in register A. The conversions are as follows:
+0
+Fahrenheit to Celsius
+1
+Celsius to Fahrenheit
+2
+inches to millimeters
+
+Micromega Corporation
+
+20
+
+uM-FPU V3.1 Instruction Set
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+
+millimeters to inches
+inches to centimeters
+centimeters to inches
+inches to meters
+meters to inches
+feet to meters
+meters to feet
+yards to meters
+meters to yards
+miles to kilometers
+kilometers to miles
+nautical miles to meters
+meters to nautical miles
+acres to meters2
+meters 2 to acres
+ounces to grams
+grams to ounces
+pounds to kilograms
+kilograms to pounds
+US gallons to liters
+liters to US gallons
+UK gallons to liters
+liters to UK gallons
+US fluid ounces to milliliters
+milliliters to US fluid ounces
+UK fluid ounces to milliliters
+milliliters to UK fluid ounces
+calories to Joules
+Joules to calories
+horsepower to watts
+watts to horsepower
+atmospheres to kilopascals
+kilopascals to atmospheres
+mmHg to kilopascals
+kilopascals to mmHg
+degrees to radians
+radians to degrees
+
+Special Cases:
+
+• if the byte value bb is greater than 39, the value of register A is unchanged.
+
+FDIV
+Opcode:
+
+Floating point divide
+25 nn
+
+Description:
+
+reg[A] = reg[A] / reg[nn]
+The floating point value in register A is divided by the floating point value in register nn and the
+result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are zero or both values are infinity, then the result is NaN
+
+Micromega Corporation
+
+where: nn is a register number
+
+21
+
+uM-FPU V3.1 Instruction Set
+
+• if reg[nn] is zero and reg[A] is not zero, then the result is infinity
+• if reg[nn] is infinity, then the result is zero
+FDIV0
+Opcode:
+
+Floating point divide by register 0
+2E
+
+Description:
+
+reg[A] = reg[A] / reg[0]
+The floating point value in register A is divided by the floating point value in register 0 and the
+result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are zero or both values are infinity, then the result is NaN
+• if reg[nn] is zero and reg[A] is not zero, then the result is infinity
+• if reg[nn] is infinity, then the result is zero
+
+FDIVI
+Opcode:
+
+Floating point divide by immediate value
+37 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] / float(bb)
+The signed byte value is converted to floating point and the value in register A is divided by the
+converted value and the result is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if both values are zero, then the result is NaN
+• if the value bb is zero and reg[A] is not zero, then the result is infinity
+
+FDIVR
+Opcode:
+
+Floating point divide (reversed)
+26 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[nn] / reg[A]
+The floating point value in register nn is divided by the floating point value in register A and the
+result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are zero or both values are infinity, then the result is NaN
+• if reg[A] is zero and reg[nn] is not zero, then the result is infinity
+• if reg[A] is infinity, then the result is zero
+
+FDIVR0
+Opcode:
+
+Floating point divide register 0 (reversed)
+2F
+
+Description:
+
+reg[A] = reg[0] / reg[A]
+The floating point value in register 0 is divided by the floating point value in register A and the
+result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are zero or both values are infinity, then the result is NaN
+• if reg[A] is zero and reg[0] is not zero, then the result is infinity
+• if reg[A] is infinity, then the result is zero
+
+Micromega Corporation
+
+22
+
+uM-FPU V3.1 Instruction Set
+
+FDIVRI
+Opcode:
+
+Floating point divide by immediate value (reversed)
+38 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = float(bb) / reg[A]
+The signed byte value is converted to floating point and divided by the value in register A. The
+result is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if both values are zero, then the result is NaN
+• if the value reg[A] is zero and float(bb) is not zero, then the result is infinity
+
+FFT
+Opcode:
+
+Fast Fourier Transform
+6F bb
+where: bb specifies the type of operation
+
+Description:
+
+The type of operation is specified as follows:
+0
+first stage
+1
+next stage
+2
+next level
+3
+next block
++4
+pre-processing bit reverse sort
++8
+pre-processing for inverse FFT
++16
+post-processing for inverse FFT
+The data for the FFT instruction is stored in matrix A as a Nx2 matrix, where N must be a power
+of two. The data points are specified as complex numbers, with the real part stored in the first
+column and the imaginary part stored in the second column. If all data points can be stored in the
+matrix (maximum of 64 points if all 128 registers are used), the Fast Fourier Transform can be
+calculated with a single instruction. If more data points are required than will fit in the matrix, the
+calculation must be done in blocks. The algorithm iteratively writes the next block of data,
+executes the FFT instruction for the appropriate stage of the FFT calculation, and reads the data
+back to the microcontroller. This proceeds in stages until all data points have been processed. See
+application notes for more details.
+
+FINV
+Opcode:
+
+Floating point inverse
+40
+
+Description:
+
+reg[A] = 1 / reg[A]
+The inverse of the floating point value in register A is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is zero, then the result is infinity
+• if reg[A] is infinity, then the result is zero
+
+FIX
+Opcode:
+
+Convert floating point to long integer
+61
+
+Description:
+
+reg[A] = fix(reg[A])
+Converts the floating point value in register A to a long integer value.
+
+Micromega Corporation
+
+23
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is zero
+• if reg[A] is +infinity or greater than the maximum signed long integer, then the result is the
+maximum signed long integer (decimal: 2147483647, hex: $7FFFFFFF)
+• if reg[A] is –infinity or less than the minimum signed long integer, then the result is the
+minimum signed long integer (decimal: -2147483648, hex: $80000000)
+
+FIXR
+Opcode:
+
+Convert floating point to long integer with rounding
+62
+
+Description:
+
+reg[A] = fix(round(reg[A]))
+Converts the floating point value in register A to a long integer value with rounding.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is zero
+• if reg[A] is +infinity or greater than the maximum signed long integer, then the result is the
+maximum signed long integer (decimal: 2147483647, hex: $7FFFFFFF)
+• if reg[A] is –infinity or less than the minimum signed long integer, then the result is the
+minimum signed long integer (decimal: -2147483648, hex: $80000000)
+
+FLOAT
+Opcode:
+
+Convert long integer to floating point
+60
+
+Description:
+
+reg[A] = float(reg[A])
+Converts the long integer value in register A to a floating point value.
+
+FLOOR
+Opcode:
+
+Floor
+51
+
+Description:
+
+reg[A] = floor(reg[A])
+Calculates the floating point value equal to the nearest integer that is less than or equal to the
+floating point value in register A. The result is stored in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity or -infinity, then the result is +infinity or -infinity
+• if reg[A] is 0.0 or –0.0, then the result is 0.0 or –0.0
+
+FMAC
+Opcode:
+
+Multiply and add to accumulator
+57 nn mm
+where: nn and mm are a register numbers
+
+Description:
+
+reg[A] = reg[A] + (reg[nn] * reg[mm])
+The floating point value in register nn is multiplied by the value in register mm and the result is
+added to register A.
+
+Special Cases:
+
+• if either value is NaN, or one value is zero and the other is infinity, then the result is NaN
+• if either values is infinity and the other is nonzero, then the result is infinity
+
+FMAX
+Opcode:
+
+Floating point maximum
+55 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = max(reg[A], reg[nn])
+The maximum floating point value of registers A and register nn is stored in register A.
+
+Micromega Corporation
+
+24
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+
+FMIN
+Opcode:
+
+Floating point minimum
+54 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = min(reg[A], reg[nn])
+The minimum floating point value of registers A and register nn is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+
+FMOD
+Opcode:
+
+Floating point remainder
+50 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = remainder of reg[A] / (reg[nn]
+The floating point remainder of the floating point value in register A divided by register nn is
+stored in register A.
+
+FMSC
+Opcode:
+
+Multiply and subtract from accumulator
+58 nn mm
+where: nn and mm are a register numbers
+
+Description:
+
+reg[A] = reg[A] - (reg[nn] * reg[mm])
+The floating point value in register nn is multiplied by the value in register mm and the result is
+subtracted from register A.
+
+Special Cases:
+
+• if either value is NaN, or one value is zero and the other is infinity, then the result is NaN
+• if either values is infinity and the other is nonzero, then the result is infinity
+
+FMUL
+Opcode:
+
+Floating point multiply
+24 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] * reg[nn]
+The floating point value in register A is multiplied by the value in register nn and the result is
+stored in register A.
+
+Special Cases:
+
+• if either value is NaN, or one value is zero and the other is infinity, then the result is NaN
+• if either values is infinity and the other is nonzero, then the result is infinity
+
+FMUL0
+Opcode:
+
+Floating point multiply by register 0
+2D
+
+Description:
+
+reg[A] = reg[A] * reg[0]
+The floating point value in register 0 is multiplied by the value in register nn and the result is
+stored in register A.
+
+Special Cases:
+
+• if either value is NaN, or one value is zero and the other is infinity, then the result is NaN
+• if either values is infinity and the other is nonzero, then the result is infinity
+
+Micromega Corporation
+
+25
+
+uM-FPU V3.1 Instruction Set
+
+FMULI
+Opcode:
+
+Floating point multiply by immediate value
+36 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] * float[bb]
+The signed byte value is converted to floating point and the value in register A is multiplied by the
+converted value and the result is stored in reg[A].
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if the signed byte is zero and reg[A] is infinity, then the result is NaN
+
+FNEG
+Opcode:
+
+Floating point negate
+3E
+
+Description:
+
+reg[A] = -reg[A]
+The negative of the floating point value in register A is stored in register A.
+
+Special Cases:
+
+• if the value is NaN, then the result is NaN
+
+FPOW
+Opcode:
+
+Floating point power
+27 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] ** reg[nn]
+The floating point value in register A is raised to the power of the floating point value in register
+nn and stored in register A.
+
+Special Cases:
+
+• if reg[nn] is 0.0 or –0.0, then the result is 1.0
+• if reg[nn] is 1.0, then the result is the same as the A value
+• if reg[nn] is NaN, then the result is Nan
+• if reg[A] is NaN and reg[nn] is nonzero, then the result is NaN
+• if | reg[A] | > 1 and reg[nn] is +infinite, then the result is +infinity
+• if | reg[A] | < 1 and reg[nn] is -infinite, then the result is +infinity
+• if | reg[A] | > 1 and reg[nn] is -infinite, then the result is 0.0
+• if | reg[A] | < 1 and reg[nn] is +infinite, then the result is 0.0
+• if | reg[A] | = 1 and reg[nn] is infinite, then the result is NaN
+• if reg[A] is 0.0 and reg[nn] > 0, then the result is 0.0
+• if reg[A] is +infinity and reg[nn] < 0, then the result is 0.0
+• if reg[A] is 0.0 and reg[nn] < 0, then the result is +infinity
+• if reg[A] is +infinity and reg[nn] > 0, then the result is +infinity
+• if reg[A] is -0.0 and reg[nn] > 0 but not a finite odd integer, then the result is 0.0
+• if the reg[A] is -infinity and reg[nn] < 0 but not a finite odd integer, then the result is 0.0
+• if reg[A] is -0.0 and the reg[nn] is a positive finite odd integer, then the result is –0.0
+• if reg[A] is -infinity and reg[nn] is a negative finite odd integer, then the result is –0.0
+• if reg[A] is -0.0 and reg[nn] < 0 but not a finite odd integer, then the result is +infinity
+• if reg[A] is -infinity and reg[nn] > 0 but not a finite odd integer,
+then the result is +infinity
+• if reg[A] is -0.0 and reg[nn] is a negative finite odd integer, then the result is –infinity
+• if reg[A] is -infinity and reg[nn] is a positive finite odd integer,
+then the result is –infinity
+• if reg[A] < 0 and reg[nn] is a finite even integer,
+
+Micromega Corporation
+
+26
+
+uM-FPU V3.1 Instruction Set
+
+then the result is equal to | reg[A] | to the power of reg[nn]
+• if reg[A] < 0 and reg[nn] is a finite odd integer,
+then the result is equal to the negative of | reg[A] | to the power of reg[nn]
+• if reg[A] < 0 and finite and reg[nn] is finite and not an integer, then the result is NaN
+FPOW0
+Opcode:
+
+Floating point power by register 0
+30 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] ** reg[0]
+The floating point value in register A is raised to the power of the floating point value in register 0
+and stored in register A.
+
+Special Cases:
+
+• if reg[0] is 0.0 or –0.0, then the result is 1.0
+• if reg[0] is 1.0, then the result is the same as the A value
+• if reg[0] is NaN, then the result is Nan
+• if reg[A] is NaN and reg[0] is nonzero, then the result is NaN
+• if | reg[A] | > 1 and reg[0] is +infinite, then the result is +infinity
+• if | reg[A] | < 1 and reg[0] is -infinite, then the result is +infinity
+• if | reg[A] | > 1 and reg[0] is -infinite, then the result is 0.0
+• if | reg[A] | < 1 and reg[0] is +infinite, then the result is 0.0
+• if | reg[A] | = 1 and reg[0] is infinite, then the result is NaN
+• if reg[A] is 0.0 and reg[0] > 0, then the result is 0.0
+• if reg[A] is +infinity and reg[0] < 0, then the result is 0.0
+• if reg[A] is 0.0 and reg[0] < 0, then the result is +infinity
+• if reg[A] is +infinity and reg[0] > 0, then the result is +infinity
+• if reg[A] is -0.0 and reg[0] > 0 but not a finite odd integer, then the result is 0.0
+• if the reg[A] is -infinity and reg[0] < 0 but not a finite odd integer, then the result is 0.0
+• if reg[A] is -0.0 and the reg[0] is a positive finite odd integer, then the result is –0.0
+• if reg[A] is -infinity and reg[0] is a negative finite odd integer, then the result is –0.0
+• if reg[A] is -0.0 and reg[0] < 0 but not a finite odd integer, then the result is +infinity
+• if reg[A] is -infinity and reg[0] > 0 but not a finite odd integer,
+then the result is +infinity
+• if reg[A] is -0.0 and reg[0] is a negative finite odd integer, then the result is –infinity
+• if reg[A] is -infinity and reg[0] is a positive finite odd integer,
+then the result is –infinity
+• if reg[A] < 0 and reg[0] is a finite even integer,
+then the result is equal to | reg[A] | to the power of reg[0]
+• if reg[A] < 0 and reg[0] is a finite odd integer,
+then the result is equal to the negative of | reg[A] | to the power of reg[0]
+• if reg[A] < 0 and finite and reg[0] is finite and not an integer, then the result is NaN
+
+FPOWI
+Opcode:
+
+Floating point power by immediate value
+39 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] ** float[bb]
+The signed byte value is converted to floating point and the value in register A is raised to the
+power of the converted value. The result is stored in register A.
+
+Micromega Corporation
+
+27
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+• if bb is 0, then the result is 1.0
+• if bb is 1, then the result is the same as the A value
+• if reg[A] is NaN and bb is nonzero, then the result is NaN
+• if reg[A] is 0.0 and bb > 0, then the result is 0.0
+• if reg[A] is +infinity and bb < 0, then the result is 0.0
+• if reg[A] is 0.0 and bb < 0, then the result is +infinity
+• if reg[A] is +infinity and bb > 0, then the result is +infinity
+• if reg[A] is -0.0 and bb > 0 but not an odd integer, then the result is 0.0
+• if the reg[A] is -infinity and bb < 0 but not an odd integer, then the result is 0.0
+• if reg[A] is -0.0 and bb is a positive odd integer, then the result is –0.0
+• if reg[A] is -infinity and bb is a negative odd integer, then the result is –0.0
+• if reg[A] is -0.0 and bb < 0 but not an odd integer, then the result is +infinity
+• if reg[A] is -infinity and bb > 0 but not an odd integer, then the result is +infinity
+• if reg[A] is -0.0 and bb is a negative odd integer, then the result is –infinity
+• if reg[A] is -infinity and bb is a positive odd integer, then the result is –infinity
+• if reg[A] < 0 and bb is an even integer,
+then the result is equal to | reg[A] | to the power of bb
+• if reg[A] < 0 and bb is an odd integer,
+then the result is equal to the negative of | reg[A] | to the power of bb
+
+FRAC
+Opcode:
+
+Get fractional part of floating point value
+63
+
+Description:
+
+Register A is loaded with the fractional part the floating point value in register A. The sign of the
+fraction is the same as the sign of the original value.
+
+Special Cases:
+
+• if register A is NaN or infinity, then the result is NaN
+
+FREAD
+Opcode:
+Returns:
+
+Read floating point value
+1A nn
+where: nn is a register number
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[nn]
+The floating point value of register nn is returned. The four bytes of the 32-bit floating point value
+must be read immediately following this instruction. If the PIC data format has been selected
+(using the PICMODE instruction), the IEEE 754 format floating point value is converted to PIC
+format before being sent.
+
+FREAD0
+Opcode:
+Returns:
+
+Read floating point value from register 0
+1D
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[0]
+The floating point value from register 0 is returned. The four bytes of the 32-bit floating point
+value must be read immediately following this instruction. If the PIC data format has been selected
+(using the PICMODE instruction), the IEEE 754 format floating point value is converted to PIC
+format before being sent.
+
+Micromega Corporation
+
+28
+
+uM-FPU V3.1 Instruction Set
+
+FREADA
+Opcode:
+Returns:
+
+Read floating point value from register A
+1B
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[A]
+The floating point value of register A is returned. The four bytes of the 32-bit floating point value
+must be read immediately following this instruction. If the PIC data format has been selected
+(using the PICMODE instruction), the IEEE 754 format floating point value is converted to PIC
+format before being sent.
+
+FREADX
+Opcode:
+Returns:
+
+Read floating point value from register X
+1C
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[X], X = X + 1
+The floating point value from register X is returned, and X is incremented to the next register. The
+four bytes of the 32-bit floating point value must be read immediately following this instruction. If
+the PIC data format has been selected (using the PICMODE instruction), the IEEE 754 format
+floating point value is converted to PIC format before being sent.
+
+FSET
+Opcode:
+
+Set register A
+20 nn
+
+Description:
+
+reg[A] = reg[nn]
+Set register A to the value of register nn.
+
+FSET0
+Opcode:
+Description:
+
+Set register A from register 0
+29
+reg[A] = reg[0]
+Set register A to the value of register 0.
+
+FSETI
+Opcode:
+
+Set register from immediate value
+32 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = float(bb)
+The signed byte value is converted to floating point and stored in register A.
+
+FSPLIT
+Opcode:
+
+Split integer and fractional portions of floating point value
+64
+
+Description:
+
+reg[A] = integer portion of reg[A], reg[0] = fractional portion of reg[A]
+The integer portion of the original value in register A is stored in register A, and the fractional
+portion is stored in register 0. Both values are stored as floating point values.
+
+Special Cases:
+
+• if the original value is NaN or Infinity, reg[A] is set to zero and reg[0] is set to NaN
+
+Micromega Corporation
+
+where: nn is a register number
+
+29
+
+uM-FPU V3.1 Instruction Set
+
+FSTATUS
+Opcode:
+
+Get floating point status
+3B nn
+where: nn is a register number
+
+Description:
+
+status = status(reg[nn])
+Set the internal status byte to the floating point status of the value in register nn. The status byte
+can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - I N S Z
+
+Bit 3
+Bit 2
+Bit 1
+Bit 0
+
+Infinity
+Not-a-Number
+Sign
+Zero
+
+Set if the value is an infinity
+Set if the value is not a valid number
+Set if the value is negative
+Set if the value is zero
+
+FSTATUSA
+Opcode:
+
+Get floating point status of register A
+3C
+
+Description:
+
+status = status(reg[A])
+Set the internal status byte to the floating point status of the value in register A. The status byte can
+be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - I N S Z
+
+Bit 3
+Bit 2
+Bit 1
+Bit 0
+
+Infinity
+Not-a-Number
+Sign
+Zero
+
+Set if the value is an infinity
+Set if the value is not a valid number
+Set if the value is negative
+Set if the value is zero
+
+FSUB
+Opcode:
+
+Floating point subtract
+22 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] - reg[nn]
+The floating point value in register nn is subtracted from the floating point value in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are infinity and the same sign, then the result is NaN
+• if reg[A] is +infinity and reg[nn] is not +infinity, then the result is +infinity
+• if reg[A] is -infinity and reg[nn] is not -infinity, then the result is -infinity
+• if reg[A] is not an infinity and reg[nn] is an infinity, then the result is an infinity of the opposite
+sign as reg[nn]
+
+FSUB0
+Opcode:
+
+Floating point subtract register 0
+2B
+
+Description:
+
+reg[A] = reg[A] - reg[0]
+The floating point value in register 0 is subtracted from the floating point value in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are infinity and the same sign, then the result is NaN
+• if reg[A] is +infinity and reg[0] is not +infinity, then the result is +infinity
+• if reg[A] is -infinity and reg[0] is not -infinity, then the result is -infinity
+
+Micromega Corporation
+
+30
+
+uM-FPU V3.1 Instruction Set
+
+• if reg[A] is not an infinity and reg[0] is an infinity, then the result is an infinity of the opposite
+sign as reg[0]
+FSUBI
+Opcode:
+
+Floating point subtract immediate value
+34 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] - float[bb]
+The signed byte value is converted to floating point and subtracted from the value in register A.
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity, then the result is +infinity
+• if reg[A] is -infinity, then the result is -infinity
+
+FSUBR
+Opcode:
+
+Floating point subtract (reversed)
+23 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[nn] - reg[A]
+The floating point value in register A is subtracted from the floating point value in register nn and
+the result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are infinity and the same sign, then the result is NaN
+• if reg[nn] is +infinity and reg[A] is not +infinity, then the result is +infinity
+• if reg[nn] is -infinity and reg[A] is not -infinity, then the result is -infinity
+• if reg[nn] is not an infinity and reg[A] is an infinity, then the result is an infinity of the opposite
+sign as reg[A]
+
+FSUBR0
+Opcode:
+
+Floating point subtract register 0 (reversed)
+2C
+
+Description:
+
+reg[A] = reg[0] - reg[A]
+The floating point value in register A is subtracted from the floating point value in register 0 and
+the result is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+• if both values are infinity and the same sign, then the result is NaN
+• if reg[nn] is +infinity and reg[0] is not +infinity, then the result is +infinity
+• if reg[nn] is -infinity and reg[A] is not -infinity, then the result is -infinity
+• if reg[nn] is not an infinity and reg[A] is an infinity, then the result is an infinity of the opposite
+sign as reg[A]
+
+FSUBRI
+Opcode:
+
+Floating point subtract immediate value (reversed)
+35 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = float[bb] - reg[A]
+The signed byte value is converted to floating point and the value in reg[A] is subtracted from it
+and stored in reg[A].
+
+Special Cases:
+
+• if reg[A] is NaN, then the result is NaN
+• if reg[A] is +infinity, then the result is +infinity
+
+Micromega Corporation
+
+31
+
+uM-FPU V3.1 Instruction Set
+
+• if reg[A] is -infinity, then the result is -infinity
+FTABLE
+Opcode:
+
+Floating point reverse table lookup
+85 cc tc t1…tn
+where: cc is the test condition
+tc is the size of the table
+t1…tn are 32-bit floating point values
+
+Description:
+
+reg[0] = index of table entry that matches the test condition for reg[A]
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. It
+performs a reverse table lookup on a floating point value. The value in register A is compared to
+the values in the table using the test condition. The index number of the first table entry that
+satisfies the test condition is returned in register 0. If no entry is found, register 0 is unchanged.
+The index number for the first table entry is zero.
+
+FTOA
+Opcode:
+
+Convert floating point value to ASCII string
+1F bb
+where: bb is the format byte
+
+Description:
+
+The floating point value in register A is converted to an ASCII string and stored in the string buffer
+at the current selection point. The selection point is updated to point immediately after the inserted
+string, so multiple insertions can be appended. The byte immediately following the FTOA opcode
+is the format byte and determines the format of the converted value.
+If the format byte is zero, as many digits as necessary will be used to represent the number with up
+to eight significant digits. Very large or very small numbers are represented in exponential
+notation. The length of the displayed value is variable and can be from 3 to 12 characters in length.
+The special cases of NaN (Not a Number), +infinity, -infinity, and -0.0 are handled. Examples of
+the ASCII strings produced are as follows:
+1.0
+10e20
+3.1415927
+-52.333334
+
+NaN
+Infinity
+-Infinity
+-3.5e-5
+
+0.0
+-0.0
+1.0
+0.01
+
+If the format byte is non-zero, it is interpreted as a decimal number. The tens digit specifies the
+maximum length of the converted string, and the ones digit specifies the number of decimal points.
+The maximum number of digits for the formatted conversion is 9, and the maximum number of
+decimal points is 6. If the floating point value is too large for the format specified, asterisks will be
+stored. If the number of decimal points is zero, no decimal point will be displayed. Examples of
+the display format are as follows: (note: leading spaces are shown where applicable)
+Value in register A
+123.567
+123.567
+123.567
+0.9999
+0.9999
+
+Format byte
+61 (6.1)
+62 (6.2)
+42 (4.2)
+20 (2.0)
+31 (3.1)
+
+Display format
+123.6
+123.57
+*.**
+1
+1.0
+
+This instruction is usually followed by a READSTR instruction to read the string.
+
+Micromega Corporation
+
+32
+
+uM-FPU V3.1 Instruction Set
+
+FWRITE
+Opcode:
+Description:
+
+Write floating point value
+16 nn b1...b4
+where: nn is register number
+b1...b4 is floating point value (b1 is MSB)
+reg[nn] = 32-bit floating point value
+The floating point value is stored in register nn. If the PIC data format has been selected (using
+the PICMODE instruction), the PIC format floating point value is converted to IEEE 754 format
+before being stored in the register.
+
+FWRITE0
+Opcode:
+
+Write floating point value to register 0
+19 b1...b4
+where: b1...b4 is floating point value (b1 is MSB)
+
+Description:
+
+reg[0] = 32-bit floating point value
+The floating point value is stored in register A. If the PIC data format has been selected (using the
+PICMODE instruction), the PIC format floating point value is converted to IEEE 754 format before
+being stored in register A.
+
+FWRITEA
+Opcode:
+
+Write floating point value to register A
+17 b1...b4
+where: b1...b4 is floating point value (b1 is MSB)
+
+Description:
+
+reg[A] = 32-bit floating point value
+The floating point value is stored in register A. If the PIC data format has been selected (using the
+PICMODE instruction), the PIC format floating point value is converted to IEEE 754 format before
+being stored in register A.
+
+FWRITEX
+Opcode:
+
+Write floating point value to register X
+18 b1...b4
+where: b1...b4 is floating point value (b1 is MSB)
+
+Description:
+
+reg[A] = 32-bit floating point value, X = X + 1
+The floating point value is stored in register X, and X is incremented to the next register. If the PIC
+data format has been selected (using the PICMODE instruction), the PIC format floating point
+value is converted to IEEE 754 format before being stored in register A.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+GOTO
+Opcode:
+
+Computed GOTO
+89 nn
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory.
+Function execution will continue at the address determined by adding the register value to the
+current function address. If the register value is negative, or the new address is outside the address
+range of the function, a function return occurs.
+
+IEEEMODE
+Opcode:
+
+Select IEEE floating point format
+F4
+
+Description:
+
+Selects the IEEE 754 floating point format for the FREAD, FREADA, FREADX, FWRITE,
+FWRITEA, and FWRITEX instructions. This is the default mode on reset and only needs to be
+changed if the PICMODE instruction has been used.
+
+Micromega Corporation
+
+where: nn is a register number
+
+33
+
+uM-FPU V3.1 Instruction Set
+
+INDA
+Opcode:
+
+Select A using value in register
+7C nn
+where: nn is a register number
+
+Description:
+
+A = reg[nn]
+Select register A using the value contained in register nn
+
+INDX
+Opcode:
+
+Select X using value in register
+7D nn
+where: nn is a register number
+
+Description:
+
+X = reg[nn]
+Select register X using the value contained in register nn.
+
+JMP
+Opcode:
+
+Unconditional jump
+83 b1 b2
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory.
+Function execution will continue at the address specified. The BRA instruction can be used for
+addresses that are within -128 to 127 bytes of the current address. If the new address is outside the
+address range of the function, a function return occurs.
+
+JMP,cc
+Opcode:
+
+Conditional jump
+84 cc, bb
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. If
+the test condition is true, then function execution will continue at the address specified. The BRA
+instruction can be used for addresses that are within -128 to 127 bytes of the current address. If the
+new address is outside the address range of the function, a function return occurs.
+
+LABS
+Opcode:
+
+Long Integer absolute value
+BC
+
+Description:
+
+reg[A] = | reg[A] |, status = status(reg[A])
+The absolute value of the long integer value in register A is stored in register A.
+
+LADD
+Opcode:
+
+Long integer add
+9B nn
+
+Description:
+
+reg[A] = reg[A] + reg[nn], status = status(reg[A])
+The long integer value in register nn is added to register A.
+
+LADD0
+Opcode:
+
+Long integer add register 0
+A6
+
+Description:
+
+reg[A] = reg[A] + reg[0], status = status(reg[A])
+The long integer value in register 0 is added to register A.
+
+Micromega Corporation
+
+where: b1,b2 is the function address
+
+where: cc is the test condition
+b1,b2 is the function address
+
+where: nn is a register number
+
+34
+
+uM-FPU V3.1 Instruction Set
+
+LADDI
+Opcode:
+
+Long integer add immediate value
+AF bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] + long(bb), status = status(reg[A])
+The signed byte value is converted to a long integer and added to register A.
+
+LAND
+Opcode:
+
+C0 nn
+
+Description:
+
+reg[A] = reg[A] AND reg[nn], status = status(reg[A])
+The bitwise AND of the values in register A and register nn is stored in register A.
+
+LCMP
+Opcode:
+
+Long integer compare
+A1 nn
+where: nn is a register number
+
+Description:
+
+status = compare(reg[A] - reg[nn])
+Compares the signed long integer value in register A with the value in register nn and sets the
+internal status byte. The status byte can be read with the READSTATUS instruction. It is set as
+follows:
+
+where: nn is a register number
+
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[A] < reg[nn]
+Set if reg[A] = reg[nn]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[nn]
+
+LCMP0
+Opcode:
+
+Long integer compare register 0
+AA
+
+Description:
+
+status = compare(reg[A] - reg[0])
+Compares the signed long integer value in register A with the value in register 0 and sets the
+internal status byte. The status byte can be read with the READSTATUS instruction. It is set as
+follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[A] < reg[0]
+Set if reg[A] = reg[0]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[0]
+
+LCMP2
+Opcode:
+
+Long integer compare
+B9 nn mm
+where: nn and mm are register numbers
+
+Description:
+
+status = compare(reg[nn] - reg[mm])
+Compares the signed long integer value in register nn with the value in register mm and sets the
+internal status byte. The status byte can be read with the READSTATUS instruction. It is set as
+follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Micromega Corporation
+
+Sign
+
+Set if reg[nn] < reg[mm]
+35
+
+uM-FPU V3.1 Instruction Set
+
+Bit 0
+
+Zero
+
+Set if reg[nn] = reg[mm]
+If neither Bit 0 or Bit 1 is set, reg[nn] > reg[mm]
+
+LCMPI
+Opcode:
+
+Long integer compare immediate value
+B3 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+status = compare(reg[A] - long(bb))
+The signed byte value is converted to long integer and compared to the signed long integer value
+in register A. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[A] < long(bb)
+Set if reg[A] = long(bb)
+If neither Bit 0 or Bit 1 is set, reg[A] > long(bb)
+
+LDEC
+Opcode:
+
+Long integer decrement
+BE nn
+where: nn is a register number
+
+Description:
+
+reg[nn] = reg[nn] - 1, status = status(reg[nn])
+The long integer value in register nn is decremented by one. The long integer status is stored in
+the status byte.
+
+LDIV
+Opcode:
+
+Long integer divide
+A0 nn
+
+Description:
+
+regA] = reg[A] / reg[nn], reg[0] = remainder, status = status(reg[A])
+The long integer value in register A is divided by the signed value in register nn, and the result is
+stored in register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if reg[nn] is zero, the result is the largest positive long integer ($7FFFFFFF)
+
+LDIV0
+Opcode:
+
+Long integer divide by register 0
+A9
+
+Description:
+
+reg[A] = reg[A] / reg[0], reg[0] = remainder, status = status(reg[A])
+The long integer value in register A is divided by the signed value in register 0, and the result is
+stored in register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if reg[0] is zero, the result is the largest positive long integer ($7FFFFFFF)
+
+LDIVI
+Opcode:
+
+Long integer divide by immediate value
+B2 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] / long(bb), reg[0] = remainder, status = status(reg[A])
+The signed byte value is converted to a long integer and register A is divided by the converted
+value. The result is stored in register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if the signed byte value is zero, the result is the largest positive long integer ($7FFFFFFF)
+
+Micromega Corporation
+
+where: nn is a register number
+
+36
+
+uM-FPU V3.1 Instruction Set
+
+LEFT
+Opcode:
+
+Left Parenthesis
+14
+
+Description:
+
+The LEFT instruction saves the current register A selection, allocates the next temporary register,
+sets the value of the temporary register to the current register A value, then selects the temporary
+register as register A. The RIGHT instruction is used to restore previous values. When used
+together, these instruction are like parentheses in an equation, and can be used to allocate
+temporary registers, and change the order of a calculation. Parentheses can be nested up to eight
+levels.
+
+Special Cases:
+
+• If the maximum number of temporary register is exceeded, the value of register A is set to NaN
+($7FFFFFFF).
+
+LINC
+Opcode:
+
+BD nn
+
+Description:
+
+reg[nn] = reg[nn] + 1, status = status(reg[nn])
+The long integer value in register nn is incremented by one. The long integer status is stored in the
+status byte.
+
+LMAX
+Opcode:
+
+Floating point maximum
+C5 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = max(reg[A], reg[nn]), status = status(reg[A])
+The maximum signed long integer value of registers A and register nn is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+
+LMIN
+Opcode:
+
+Floating point minimum
+C4 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = min(reg[A], reg[nn]), status = status(reg[A])
+The minimum signed long integer value of registers A and register nn is stored in register A.
+
+Special Cases:
+
+• if either value is NaN, then the result is NaN
+
+LMUL
+Opcode:
+
+Long integer multiply
+9F nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] * reg[nn], status = status(reg[A])
+The long integer value in register A is multiplied by register nn and the result is stored in register
+A.
+
+LMUL0
+Opcode:
+
+Long integer multiply by register 0
+A8
+
+Description:
+
+reg[A] = reg[A] * reg[0], status = status(reg[A])
+The long integer value in register A is multiplied by register 0 and the result is stored in register A.
+
+Micromega Corporation
+
+(modified V3.1)
+
+where: nn is a register number
+
+37
+
+uM-FPU V3.1 Instruction Set
+
+LMULI
+Opcode:
+
+Long integer multiply by immediate value
+B1 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] * long(bb), status = status(reg[A])
+The signed byte value is converted to a long integer and the long integer value in register A is
+multiplied by the converted value. The result is stored in register A.
+
+LNEG
+Opcode:
+
+Long integer negate
+BB
+
+Description:
+
+reg[A] = -reg[A], status = status(reg[A])
+The negative of the long integer value in register A is stored in register A.
+
+LNOT
+Opcode:
+
+A = NOT A
+BF
+
+Description:
+
+reg[A] = NOT reg[A], status = status(reg[A])
+The bitwise complement of the value in register A is stored in register A.
+
+LOAD
+Opcode:
+
+reg[0] = reg[nn]
+0A nn
+
+Description:
+
+reg[0] = reg[nn]
+Load register 0 with the value in register nn.
+
+LOADA
+Opcode:
+
+Load register 0 with the value of register A
+0B
+
+Description:
+
+reg[0] = reg[A]
+Load register 0 with the value of register A.
+
+LOADBYTE
+Opcode:
+
+Load register 0 with 8-bit signed value
+59 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[0] = float(signed bb)
+Loads register 0 with the 8-bit signed integer value converted to floating point value.
+
+LOADCON
+Opcode:
+
+Load register 0 with floating point constant
+5F bb
+where: bb selects the constant
+
+Description:
+
+This instruction is defined for version 3.0.0 to V3.1.3 of the uM-FPU V3 chip, but will be removed
+in future versions. Use of this instruction is not recommended. Constant values can easily be
+loaded using the FWRITE0 instruction.
+
+where: nn is a register number
+
+reg[0] = constant[bb]
+Loads register 0 with the floating point constant specified by bb as follows:
+0
+1.0
+100
+1
+10.0
+101
+2
+100.0
+102
+3
+1000.0
+103
+Micromega Corporation
+
+38
+
+uM-FPU V3.1 Instruction Set
+
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+10000.0
+100000.0
+1000000.0
+10000000.0
+100000000.0
+1000000000.0
+! 3.4028235"1038
+! 1.4012985"10#45
+299792458.0
+6.6742e-11
+9.80665
+9.1093826e-31
+1.67262171e-27
+1.67492728e-27
+6.0221415e23
+1.60217653e-19
+101.325
+
+104
+105
+106
+107
+108
+109
+largest positive finite 32-bit floating point value
+smallest positive non-zero 32-bit floating point value
+speed of light in vacuum (m/s)
+Newtonian constant of gravitation (m3/kg*s2)
+acceleration of gravity
+electron mass (kg)
+proton mass (kg)
+neutron mass (kg)
+Avogadro constant (/mol)
+elementary charge, electron volt
+standard atmosphere (kPa)
+
+Special Cases:
+
+• if the byte value bb is greater than 20, register A is set to NaN.
+
+LOADE
+Opcode:
+
+Load register 0 with floating point value of e (2.7182818)
+5D
+
+Description:
+
+reg[0] = 2.7182818
+Loads register 0 with the floating point value of e (2.7182818).
+
+LOADIND
+Opcode:
+
+Load Indirect
+7A nn
+
+Description:
+
+reg[0] = reg[reg[nn]]
+Load register 0 with the value of the register number contained in register nn. The value in
+register nn is assumed to be a long integer value.
+
+Special Cases:
+
+If the value in register nn > 127, register 127 is used.
+
+LOADMA
+Opcode:
+
+Load register 0 with the value from matrix A
+68 bb bb
+where: bb, bb selects the row, column of matrix A
+
+Description:
+
+reg[0] = matrix A [bb, bb]
+Load register 0 with a value from matrix A.
+
+Special Cases:
+
+If the row or column is out of range, NaN is returned.
+
+LOADMB
+Opcode:
+
+Load register 0 with the value from matrix A
+69 bb bb
+where: bb, bb selects the row, column of matrix B
+
+Description:
+
+reg[0] = matrix B [bb, bb]
+Load register 0 with a value from matrix B.
+
+Micromega Corporation
+
+where: nn is a register number
+
+39
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+If the row or column is out of range, NaN is returned.
+
+LOADMC
+Opcode:
+
+Load register 0 with the value from matrix A
+6A bb bb
+where: bb, bb selects the row, column of matrix C
+
+Description:
+
+reg[0] = matrix C [bb, bb]
+Load register 0 with a value from matrix C.
+
+Special Cases:
+
+If the row or column is out of range, NaN is returned.
+
+LOADPI
+Opcode:
+
+Load register 0 with value of Pi
+5E
+
+Description:
+
+reg[0] = 3.1415927
+Loads register 0 with the floating point value of pi (3.1415927).
+
+LOADUBYTE Load register 0 with 8-bit unsigned value
+Opcode:
+5A bb
+where: bb is an unsigned byte value (0 to 255)
+Description:
+
+reg[0] = float(unsigned bb)
+The 8-bit unsigned value is converted to floating point and stored in register 0.
+
+LOADUWORD Load register 0 with 16-bit unsigned value
+Opcode:
+5C b1,b2
+where: b1,b2 is an unsigned word value (0 to 65535)
+Description:
+
+reg[0] = float(unsigned (b1*256 + b2))
+The 16-bit unsigned value is converted to floating point and stored in register 0.
+
+LOADWORD
+Opcode:
+
+Load register 0 with 16-bit signed value
+5B b1,b2
+where: b1,b2 is a signed word value (-32768 to 32767)
+
+Description:
+
+reg[0] = float (signed(b1*256 + b2))
+The 16-bit signed value is converted to floating point and stored in register 0.
+
+LOADX
+Opcode:
+
+Load register 0 with the value of register X
+0C
+
+Description:
+
+reg[0] = reg[X], X = X + 1
+Load register 0 with the value of register X, and increment X to select the next register in
+sequence.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+LOG
+Opcode:
+
+Logarithm (base e)
+43
+
+Description:
+
+reg[A] = log(reg[A])
+Calculates the natural log of the floating point value in register A. The result is stored in register A.
+The number e (2.7182818) is the base of the natural system of logarithms.
+
+Micromega Corporation
+
+40
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+• if the value is NaN or less than zero, then the result is NaN
+• if the value is +infinity, then the result is +infinity
+• if the value is 0.0 or –0.0, then the result is -infinity
+
+LOG10
+Opcode:
+
+Logarithm (base 10)
+44
+
+Description:
+
+reg[A] = log10(reg[A])
+Calculates the base 10 logarithm of the floating point value in register A. The result is stored in
+register A.
+
+Special Cases:
+
+• if the value is NaN or less than zero, then the result is NaN
+• if the value is +infinity, then the result is +infinity
+• if the value is 0.0 or –0.0, then the result is -infinity
+
+LONGBYTE
+Opcode:
+
+Load register 0 with 8-bit signed value
+C6 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[0] = long(signed (bb)), status = status(reg[0])
+The 8-bit signed value is converted to a long integer and stored in register 0.
+
+LONGUBYTE Load register 0 with 8-bit unsigned value
+Opcode:
+C7 bb
+where: bb is an unsigned byte value (0 to 255)
+Description:
+
+reg[0] = long(unsigned (bb)), status = status(reg[0])
+The 8-bit unsigned value is converted to a long integer and stored in register 0.
+
+LONGUWORD Load register 0 with 16-bit unsigned value
+Opcode:
+C9 b1,b2
+where: b1,b2 is an unsigned word value (0 to 65535)
+Description:
+
+reg[0] = long(unsigned (b1*256 + b2)), status = status(reg[0])
+The 16-bit unsigned value is converted to a long integer and stored in register 0.
+
+LONGWORD
+Opcode:
+
+Load register 0 with 16-bit signed value
+C8 b1,b2
+where: b1,b2 is a signed word value (-32768 to 32767)
+
+Description:
+
+reg[0] = long(signed (b1*256 + b2)), status = status(reg[0])
+The 16-bit signed value is converted to a long integer and stored in register 0.
+
+LOR
+Opcode:
+
+Long integer OR
+C1 nn
+
+Description:
+
+reg[A] = reg[A] OR reg[nn], status = status(reg[A])
+The bitwise OR of the values in register A and register nn is stored in register A.
+
+LREAD
+Opcode:
+Returns:
+
+Read long integer value
+94 nn
+where: nn is a register number
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[nn]
+
+Micromega Corporation
+
+where: nn is a register number
+
+41
+
+uM-FPU V3.1 Instruction Set
+
+The long integer value of register nn is returned. The four bytes of the 32-bit floating point value
+must be read immediately following this instruction.
+LREAD0
+Opcode:
+Returns:
+
+Read long integer value from register 0
+97
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[0]
+The long integer value of register 0 is returned. The four bytes of the 32-bit floating point value
+must be read immediately following this instruction.
+
+LREADA
+Opcode:
+Returns:
+
+Read long integer value from register A
+95
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[A], status = status(reg[A])
+The long integer value of register A is returned. The four bytes of the 32-bit floating point value
+must be read immediately following this instruction.
+
+LREADBYTE
+Opcode:
+Returns:
+
+Read the lower 8-bits of register A
+98
+bb
+where: bb is 8-bit value
+
+Description:
+
+Return 8-bit value from reg[A]
+Returns the lower 8 bits of register A. The byte containing the 8-bit long integer value must be
+read immediately following the instruction.
+
+LREADWORD Read the lower 16-bits of register A
+Opcode:
+99
+Returns:
+b1,b2
+where: b1, b2 is 16-bit value (b1 is MSB)
+Description:
+
+Return 16-bit value from reg[A]
+Returns the lower 16 bits of register A. The two bytes containing the 16-bit long integer value
+must be read immediately following this instruction.
+
+LREADX
+Opcode:
+Returns:
+
+Read long integer value from register X
+96
+b1,b2,b3,b4
+where: b1, b2, b3, b4 is floating point value (b1 is MSB)
+
+Description:
+
+Return 32-bit value from reg[X], X = X + 1
+The long integer value from register X is returned, and X is incremented to the next register. The
+four bytes of the 32-bit floating point value must be read immediately following this instruction.
+
+LSET
+Opcode:
+
+Set register A
+9C nn
+
+Description:
+
+reg[A] = reg[nn], status = status(reg[A])
+Set register A to the value of register nn.
+
+Micromega Corporation
+
+where: nn is a register number
+
+42
+
+uM-FPU V3.1 Instruction Set
+
+LSET0
+Opcode:
+Description:
+
+Set register A from register 0
+A5
+reg[A] = reg[0], status = status(reg[A])
+Set register A to the value of register 0.
+
+LSETI
+Opcode:
+
+Set register from immediate value
+AE bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = long(bb), status = status(reg[A])
+The signed byte value is converted to a long integer and stored in register A.
+
+LSHIFT
+Opcode:
+
+A = A shifted by B bit positions
+C3 nn
+where: nn is a register number
+
+Description:
+
+if reg[nn] > 0, then reg[A] = reg[A] shifted left by bb bits
+if reg[nn]< 0, then reg[A] = reg[A] shifted right by bb bits
+status = status(reg[nn])
+The value in register A is shifted by the number of bit positions specified by the long integer value
+in register nn. Register A is shifted left if the value in register nn is positive, and right if the value
+is negative.
+
+Special Cases:
+
+• if reg[nn] = 0, no shift occurs
+• if reg[nn] > 32 or reg[nn] < –32, then reg[A] = 0
+
+LSTATUS
+Opcode:
+
+Get long integer status
+B7 nn
+where: nn is a register number
+
+Description:
+
+status = status(reg[nn])
+Set the internal status byte to the long integer status of the value in register nn. The status byte can
+be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if the value is negative
+Set if the value is zero
+
+LSTATUSA
+Opcode:
+
+Get long integer status of register A
+B8
+
+Description:
+
+status = status(reg[A])
+Set the internal status byte to the long integer status of the value in register A. The status byte can
+be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Micromega Corporation
+
+Sign
+Zero
+
+Set if the value is negative
+Set if the value is zero
+
+43
+
+uM-FPU V3.1 Instruction Set
+
+LSUB
+Opcode:
+
+Long integer subtract
+9E nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] - reg[nn], status = status(reg[A])
+The long integer value in register nn is subtracted from register A.
+
+LSUB0
+Opcode:
+
+Long integer subtract register 0
+A7
+
+Description:
+
+reg[A] = reg[A] - reg[0], status = status(reg[A])
+The long integer value in register 0 is subtracted from register A.
+
+LSUBI
+Opcode:
+
+Long integer subtract immediate value
+B0 bb
+where: bb is a signed byte value (-128 to 127)
+
+Description:
+
+reg[A] = reg[A] - long(bb), status = status(reg[A])
+The signed byte value is converted to a long integer and subtracted from register A.
+
+LTABLE
+Opcode:
+
+Long integer reverse table lookup
+87 cc tc t1…tn
+where: cc is the test condition
+tc is the size of the table
+t1…tn are 32-bit long integer values
+
+Description:
+
+reg[0] = index of table entry that matches the test condition for reg[A]
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. It
+performs a reverse table lookup on a long integer value. The value in register A is compared to the
+values in the table using the specified test condition. The index number of the first table entry that
+satisfied the test condition is returned in register 0. If no entry is found, register 0 is unchanged.
+The index number for the first table entry is zero.
+
+LTOA
+Opcode:
+
+Convert long integer value to ASCII string and store in string buffer
+9B bb
+where: bb is the format byte
+
+Description:
+
+stringbuffer = converted string, status = status(reg[A])
+The long integer value in register A is converted to an ASCII string and stored in the string buffer
+at the current selection point. The selection point is updated to point immediately after the inserted
+string, so multiple insertions can be appended. The byte immediately following the LTOA opcode
+is the format byte and determines the format of the converted value.
+If the format byte is zero, the length of the converted string is variable and can range from 1 to 11
+characters in length. Examples of the converted string are as follows:
+1
+500000
+-3598390
+If the format byte is non-zero, it is interpreted as a decimal number. A value between 0 and 15
+specifies the length of the converted string. The converted string is right justified. If 100 is added
+to the format value the value is converted as an unsigned long integer, otherwise it is converted as
+an signed long integer. If the value is larger than the specified width, asterisks are stored. If the
+length is specified as zero, the string will be as long as necessary to represent the number.
+
+Micromega Corporation
+
+44
+
+uM-FPU V3.1 Instruction Set
+
+Examples of the converted string are as follows: (note: leading spaces are shown where
+applicable)
+Value in register A
+-1
+10
+-1
+110
+-1
+4
+-1
+104
+0
+4
+0
+0
+1000
+6
+
+Format byte
+(signed 10)
+(unsigned 10)
+(signed 4)
+(unsigned 4)
+(signed 4)
+(unformatted)
+(signed 6)
+
+Display format
+-1
+4294967295
+-1
+****
+0
+0
+1000
+
+The maximum length of the string is 15. This instruction is usually followed by a READSTR
+instruction to read the string.
+LTST
+Opcode:
+
+Long integer bit test
+A4 nn
+
+Description:
+
+status = status(reg[A] AND reg[nn])
+Sets the internal status byte based on the result of a bitwise AND of the values in register A and
+register nn. The values of register A and register nn are not changed. The status byte can be read
+with the READSTATUS instruction. It is set as follows:
+
+where: nn is a register number
+
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if the MSB of the result is set
+Set the result is zero
+
+LTST0
+Opcode:
+
+Long integer bit test register 0
+AD
+
+Description:
+
+status = status(reg[A] AND reg[0])
+Sets the internal status byte based on the result of a bitwise AND of the value in register A and
+register 0. The values of register A and register 0 are not changed. The status byte can be read with
+the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if the MSB of the result is set
+Set the result is zero
+
+LTSTI
+Opcode:
+
+Long integer bit test using immediate value
+B6 bb
+where: bb is a signed byte value (0 to 255)
+
+Description:
+
+status = status(reg[A] AND long(bb))
+The unsigned byte value is converted to long integer and the internal status byte is set based on the
+result of a bitwise AND of the converted value and register A. The value of register A is not
+changed. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - - Z
+
+Bit 0
+
+Micromega Corporation
+
+Zero
+
+Set if the result is zero
+
+45
+
+uM-FPU V3.1 Instruction Set
+
+LUCMP
+Opcode:
+
+Unsigned long integer compare
+A3 nn
+where: nn is a register number
+
+Description:
+
+status = compare(reg[A] - reg[nn])
+Compares the unsigned long integer value in register A with register nn and sets the internal status
+byte. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[A] < reg[nn]
+Set if reg[A] = reg[nn]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[nn]
+
+LUCMP0
+Opcode:
+
+Unsigned long integer compare register 0
+AC
+
+Description:
+
+status = compare(reg[A] - reg[0])
+Compares the unsigned long integer value in register A with register 0 and sets the internal status
+byte. The status byte can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[A] < reg[0]
+Set if reg[A] = reg[0]
+If neither Bit 0 or Bit 1 is set, reg[A] > reg[0]
+
+LUCMP2
+Opcode:
+
+Unsigned long integer compare
+BA nn mm
+where: nn and mm are register numbers
+
+Description:
+
+status = compare(reg[nn] - reg[mm])
+Compares the signed long integer value in register nn with the signed long integer value in
+register mm and sets the internal status byte. The status byte can be read with the READSTATUS
+instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Sign
+Zero
+
+Set if reg[nn] < reg[mm]
+Set if reg[nn] = reg[mm]
+If neither Bit 0 or Bit 1 is set, reg[nn] > reg[mm]
+
+LUCMPI
+Opcode:
+
+Unsigned long integer compare immediate value
+B5 bb
+where: bb is an unsigned byte value (0 to 255)
+
+Description:
+
+status = compare(reg[A] - long(bb))
+The unsigned byte value is converted to long integer and compared to register A. The status byte
+can be read with the READSTATUS instruction. It is set as follows:
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+Micromega Corporation
+
+Sign
+Zero
+
+Set if reg[A] < long(bb)
+Set if reg[A] = long(bb)
+
+46
+
+uM-FPU V3.1 Instruction Set
+
+If neither Bit 0 or Bit 1 is set, reg[A] > long(bb)
+LUDIV
+Opcode:
+
+Unsigned long integer divide
+A2 nn
+where: nn is a register number
+
+Description:
+
+reg[A] = reg[A] / reg[nn], reg[0] = remainder, status = status(reg[A])
+The unsigned long integer value in register A is divided by register nn, and the result is stored in
+register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if register nn is zero, the result is the largest unsigned long integer ($FFFFFFFF)
+
+LUDIV0
+Opcode:
+
+Unsigned long integer divide by register 0
+AB
+
+Description:
+
+reg[A] = reg[A] / reg[0] , reg[0] = remainder, status = status(reg[A])
+The unsigned long integer value in register A is divided by the signed value in register 0, and the
+result is stored in register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if register 0 is zero, the result is the largest unsigned long integer ($FFFFFFFF)
+
+LUDIVI
+Opcode:
+
+Unsigned long integer divide by immediate value
+B4 bb
+where: bb is a signed byte value (0 to 255)
+
+Description:
+
+reg[A] = reg[A] / long(bb) , reg[0] = remainder, status = status(reg[A])
+The unsigned byte value is converted to a long integer and register A is divided by the converted
+value. The result is stored in register A. The remainder is stored in register 0.
+
+Special Cases:
+
+• if the signed byte value is zero, the result is the largest unsigned long integer ($FFFFFFFF)
+
+LWRITE
+Opcode:
+
+Write long integer value
+90 nn b1,b2,b3,b4 where: nn is register number
+b1, b2, b3, b4 is long integer value (b1 is MSB)
+reg[nn] = 32-bit long integer value, status = status(reg[nn])
+The long integer value is stored in register nn.
+
+Description:
+
+LWRITE0
+Opcode:
+
+Write long integer value to register0
+93 b1,b2,b3,b4
+where: b1, b2, b3, b4 is long integer value (b1 is MSB)
+
+Description:
+
+reg[0] = 32-bit long integer value, status = status(reg[0])
+The long integer value is stored in register 0.
+
+LWRITEA
+Opcode:
+
+Write long integer value to register A
+91 b1,b2,b3,b4
+where: b1, b2, b3, b4 is long integer value (b1 is MSB)
+
+Description:
+
+reg[A] = 32-bit long integer value, status = status(reg[A])
+The long integer value is stored in register A.
+
+LWRITEX
+Opcode:
+
+Write long integer value to register X
+92 b1,b2,b3,b4
+where: b1, b2, b3, b4 is long integer value (b1 is MSB)
+
+Micromega Corporation
+
+47
+
+uM-FPU V3.1 Instruction Set
+
+Description:
+
+reg[X] = 32-bit long integer value, status = status(reg[X]), X = X + 1
+The long integer value is stored in register X, and X is incremented to the next register.
+
+LXOR
+Opcode:
+
+Long integer XOR
+C2 nn
+
+Description:
+
+reg[A] = reg[A] XOR reg[nn], status = status(reg[A])
+The bitwise XOR of the values in register A and register nn is stored in register A.
+
+MOP
+Opcode:
+
+Matrix Operation
+6E bb
+6E bb ic, i1…in
+
+Description:
+
+The operation code nn selects one of the following operations:
+0
+Scalar Set. Each element: MA[r,c] = reg[0]
+1
+Scalar Add. For each element: MA[r,c] = MA[r,c] + reg[0]
+2
+Scalar Subtract. For each element: MA[r,c] = MA[r,c] + reg[0]
+3
+Scalar Subtract (reverse). For each element: MA[r,c] = reg[0] - MA[r,c]
+4
+Scalar Multiply. For each element: MA[r,c] = MA[r,c] * reg[0]
+5
+Scalar Divide. For each element: MA[r,c] = MA[r,c] / reg[0]
+6
+Scalar Divide (reverse). For each element: MA[r,c] = reg[0] / MA[r,c]
+7
+Scalar Power. For each element: MA[r,c] = MA[r,c] ** reg[0]
+8
+Element-wise Set. Each element: MA[r,c] = MB[r,c]
+9
+Element-wise Add. For each element: MA[r,c] = MA[r,c] + MB[r,c]
+10
+Element-wise Subtract. For each element: MA[r,c] = MA[r,c] + MB[r,c]
+11
+Element-wise Subtract (reverse). For each element: MA[r,c] = MB[r,c] - MA[r,c]
+12
+Element-wise Multiply. For each element: MA[r,c] = MA[r,c] * MB[r,c]
+13
+Element-wise Divide. For each element: MA[r,c] = MA[r,c] / MB[r,c]
+14
+Element-wise Divide (reverse). For each element: MA[r,c] = MB[r,c] / MA[r,c]
+15
+Element-wise Power. For each element: MA[r,c] = MA[r,c] ** MB[r,c]
+16
+Matrix Multiply. Calculate: MA = MB * MC
+17
+Identity matrix. Set: MA = identity matrix
+18
+Diagonal matrix. Set: MA = diagonal matrix (reg[0] value stored on diagonal)
+19
+Transpose. Set: MA = transpose MB
+20
+Count. Set: reg[0] = count of all elements in MA
+21
+Sum. Set: reg[0] = sum of all elements in MA
+22
+Average. Set: reg[0] = average of all elements in MA
+23
+Minimum. Set: reg[0] = minimum of all elements in MA
+24
+Maximum Set: reg[0] = maximum of all elements in MA
+25
+Copy matrix A to matrix B
+26
+Copy matrix A to matrix C
+27
+Copy matrix B to matrix A
+28
+Copy matrix B to matrix C
+29
+Copy matrix C to matrix A
+30
+Copy matrix C to matrix B
+31
+Matrix Determinant: reg[0] = determinant of MA (2x2 and 3x3 matrices only)
+32
+Matrix Inverse: MA = inverse of MB (2x2 and 3x3 matrices only)
+33
+Indexed Load Registers to Matrix A : MOP,33,ic,i1...in
+
+Micromega Corporation
+
+where: nn is a register number
+
+where: bb is the operation code
+ic is the index count
+i1…in are the index values
+
+48
+
+uM-FPU V3.1 Instruction Set
+
+34
+35
+36
+37
+38
+39
+40
+
+Indexed Load Registers to Matrix B : MOP,34,ic,i1...in
+Indexed Load Registers to Matrix C : MOP,35,ic,i1...in
+Indexed Load Matrix B to Matrix A: MOP,36,ic,i1...in
+Indexed Load Matrix C to Matrix A: MOP,37,ic,i1...in
+Indexed Save Matrix A to Register: MOP,38,ic,i1...in
+Indexed Save Matrix A to Matrix B: MOP,39,ic,i1...in
+Indexed Save Matrix A to Matrix C: MOP,40,ic,i1...in
+
+The Indexed Load Registers operations take a list of register numbers and sequentially copy the
+indexed register values to the matrix specified. The Indexed Load Matrix operations take a list of
+matrix indexes and sequentially copy the indexed matrix values to Matrix A. The Indexed Save
+operations take a list of register numbers or matrix indices and sequentially copy the values from
+matrix A to registers, matrix B, or matrix C. These operations can be used to quickly load matrices
+and save results, or to extract and save matrix subsets.
+Special Cases:
+
+• Indexed Load Register: register 0 is cleared to zero before the indexed values are copied, to
+provide an easy way to load zero values to a matrix.
+• Indexed Load Register: if index is negative, the absolute value is used as an index, and the
+negative of the indexed value is copied.
+• Indexed Load Matrix: an index of 0x80 is used to copy the negative of the value at index 0.
+• Indexed Save Matrix: if index value is negative, the matrix A value for that index position is not
+stored.
+
+NOP
+Opcode:
+
+No operation
+00
+
+Description:
+
+No operation.
+
+PICMODE
+Opcode:
+
+Select PIC floating point format
+F5
+
+Description:
+
+Selects the alternate PIC floating point mode using by many PIC compilers. All internal data on
+the uM-FPU is stored in IEEE 754 format, but when the uM-FPU is in PIC mode an automatic
+conversion is done by the FREAD, FREADA, FREADX, FWRITE, FWRITEA, and FWRITEX
+instructions so the PIC program can use floating point data in the alternate format. Normally this
+instruction would be issued immediately after the reset as part of the initialization code. The
+IEEEMODE instruction can be used to revert to standard IEEE 754 floating point mode.
+
+POLY
+Opcode:
+
+A = nth order polynomial
+88 tc t1…tn
+where: tc is the number of coefficient values
+t1…tn are 32-bit floating point values
+
+Description:
+
+reg[A] = result of nth order polynomial calculation
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory.
+The value of the specified polynomial is calculated and stored in register A. The general form of
+the polynomial is:
+y = A0 + A1x1 + A2x2 + … Anxn
+The value of x is the initial value of register A. An nth order polynomial will have n+1 coefficients
+
+Micromega Corporation
+
+49
+
+uM-FPU V3.1 Instruction Set
+
+stored in the table. The coefficient values A0, A1, A2, … are stored as a series of 32-bit floating
+point values (4 bytes) stored in order from An to A0. If a given term in the polynomial is not
+needed, a zero must be is stored for that value.
+Example:
+
+The polynomial 3x + 5 would be represented as follows:
+88 02 40 A0 00 00 40 40 00 00
+Where:
+
+88
+02
+40 40 00 00
+40 A0 00 00
+
+opcode
+size of the table (order of the polynomial + 1)
+floating point constant 3.0
+floating point constant 5.0
+
+RADIANS
+Opcode:
+
+Convert degrees to radians
+4F
+
+Description:
+
+reg[A] = radians(reg[A])
+The floating point value in register A is converted from degrees to radians and the result is stored
+in register A.
+
+Special Cases:
+
+• if the value is NaN, then the result is NaN
+
+RDBLK
+Opcode:
+
+Read multiple 32-bit point values
+71 tc
+where: tc is the number of 32-bit values to read
+
+Description:
+
+Return tc 32-bit values from reg[X], X = X+1
+This instruction is used to read multiple 32-bit values from the uM-FPU registers. The byte
+immediately following the opcode is the transfer count, and bits 6:0 specify the number of 32-bit
+values that follow (a value of zero specifies a transfer count of 128). If bit 7 of the transfer count is
+set, the bytes are reversed for each 32-bit value that follows. This allows for efficient data transfers
+when the native storage format of the microcontroller is the reverse of the uM-FPU format. The X
+register specifies the register to read from, and it is incremented after each 32-bit value is read.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+• if PICMODE is enabled, the 32-bit values are assumed to be floating point values
+
+READSEL
+Opcode:
+Returns:
+
+Read string selection
+EC
+aa...00
+where: aa...00 is a zero-terminated string
+
+Description:
+
+Returns the current string selection. Data bytes must be read immediately following this
+instruction and continue until a zero byte is read. This instruction is typically used after STRSEL
+or STRFIELD instructions.
+
+(new V3.1)
+
+READSTATUS Return the last status byte
+Opcode:
+F1
+Returns:
+ss
+where: ss is the status byte
+Description:
+
+The 8-bit internal status byte is returned.
+
+Micromega Corporation
+
+50
+
+uM-FPU V3.1 Instruction Set
+
+READSTR
+Opcode:
+Returns:
+
+Read string
+F2
+aa...00
+
+Description:
+
+Returns the zero terminated string in the string buffer. Data bytes must be read immediately
+following this instruction and continue until a zero byte is read. This instruction is used after
+instructions that load the string buffer (e.g. FTOA, LTOA, VERSION). On completion of the
+READSTR instruction the string selection is set to select the entire string.
+
+READVAR
+Opcode:
+
+Read internal variable
+FC bb
+where: bb is index of internal register
+
+Description:
+
+reg[0] = internal register value, status = status(reg[0])
+Sets register 0 to the current value of one of the internal registers (based on index value passed).
+0
+A register
+1
+X register
+2
+Matrix A register
+3
+Matrix A rows
+4
+Matrix A columns
+5
+Matrix B register
+6
+Matrix B rows
+7
+Matrix B columns
+8
+Matrix C register
+9
+Matrix C rows
+10
+Matrix C columns
+11
+internal mode word
+12
+last status byte
+13
+clock ticks per millisecond
+14
+current length of string buffer
+15
+string selection starting point
+16
+string selection length
+17
+8-bit character at string selection point
+18
+number of bytes in instruction buffer
+
+RESET
+Opcode:
+
+Reset
+FF
+
+Description:
+
+Nine consecutive FF bytes will cause the uM-FPU to reset. If less then nine consecutive FF bytes
+are received, they are treated as NOPs.
+
+RET
+Opcode:
+
+Return from user-defined function
+80
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. It
+causes a return from the current function. Execution will continue with the instruction following
+the last function call. This instruction is required as the last instruction of a user-defined function
+in EEPROM memory.
+
+Micromega Corporation
+
+where: aa...00 is a zero-terminated string
+
+51
+
+(modified V3.1)
+
+uM-FPU V3.1 Instruction Set
+
+RET,cc
+Opcode:
+
+Conditional return from user-defined function
+8A cc
+where: cc is the test condition
+
+Description:
+
+This instruction is only valid in a user-defined function in Flash memory or EEPROM memory. If
+the test condition is true, it causes a return from the current function, and execution will continue
+with the instruction following the last function call. If the test condition is false, execution
+continues with the next instruction.
+
+RIGHT
+Opcode:
+
+Right Parenthesis
+15
+
+Description:
+
+The right parenthesis command copies the value of register A (the current temporary register) to
+register 0. If the right parenthesis is the outermost parenthesis, the register A selection from before
+the first left parenthesis is restored, otherwise the previous temporary register is selected as
+register. Used together with the left parenthesis command to allocate temporary registers, and to
+change the order of a calculation. Parentheses can be nested up to eight levels.
+
+Special Cases:
+
+• if no left parenthesis is currently outstanding, then register 0 is set to NaN. ($7FFFFFFF).
+
+ROOT
+Opcode:
+
+Calculate nth root
+42 nn
+
+Description:
+
+reg[A] = reg[A] ** (1 / reg[nn])
+Calculates the nth root of the floating point value in register A and stores the result in register A.
+Where the value n is equal to the floating point value in register nn. It is equivalent to raising A to
+the power of (1 / nn).
+
+Special Cases:
+
+• see the description of the POWER instruction for the special cases of (1/reg[nn])
+• if reg[nn] is infinity, then (1 / reg[nn]) is zero
+• if reg[nn] is zero, then (1 / reg[nn]) is infinity
+
+ROUND
+Opcode:
+
+Floating point Rounding
+53
+
+Description:
+
+reg[A] = round(reg[A])
+The floating point value equal to the nearest integer to the floating point value in register A is
+stored in register A.
+
+Special Cases:
+
+• if the value is NaN, then the result is NaN
+• if the value is +infinity or -infinity, then the result is +infinity or -infinity
+• if the value is 0.0 or –0.0, then the result is 0.0 or –0.0
+
+SAVEIND
+Opcode:
+
+Save Indirect
+7B nn
+
+Description:
+
+reg[reg[nn]] = reg[A]
+The value of register A is stored in the register whose register number is contained in register nn.
+The value in register nn is assumed to be long integer.
+
+Micromega Corporation
+
+(new V3.1)
+
+where: nn is a register number
+
+where: nn is a register number
+
+52
+
+uM-FPU V3.1 Instruction Set
+
+Special Cases:
+
+If the value in register nn > 127, register 127 is used.
+
+SAVEMA
+Opcode:
+
+Save register A value to matrix A
+6B b1 b2
+where: b1 selects the row and b2 selects the column of matrix A
+
+Description:
+
+matrix A [b1, b2] = reg[A]
+Store the register A value to matrix A at the row, column specified.
+
+Special Cases:
+
+If the row or column is out of range, no value is stored
+
+SAVEMB
+Opcode:
+
+Save register A value to matrix B
+6C b1 b2
+where: b1 selects the row and b2 selects the column of matrix B
+
+Description:
+
+matrix A [b1, b2] = reg[A]
+Store the register A value to matrix B at the row, column specified.
+
+Special Cases:
+
+If the row or column is out of range, no value is stored
+
+SAVEMC
+Opcode:
+
+Save register A value to matrix C
+6D b1 b2
+where: b1 selects the row and b2 selects the column of matrix C
+
+Description:
+
+matrix A [b1, b2] = reg[A]
+Store the register A value to matrix C at the row, column specified.
+
+Special Cases:
+
+If the row or column is out of range, no value is stored
+
+SELECTA
+Opcode:
+
+Select A
+01 nn
+
+Description:
+
+A = nn
+The value nn is used to select register A.
+
+SELECTMA
+Opcode:
+
+Select matrix A
+65 nn b1 b2
+
+Description:
+
+Select matrix A, X = nn
+The value nn is used to select a register that is the start of matrix A. Matrix values are stored in
+sequential registers (rows * columns). The upper four bits of the rc value specify the number of
+rows, and the lower four bits specify the number of columns (a row or column value of zero is
+interpreted as 16). The X register is also set to the first element of the matrix so that the FREADX,
+FWRITEX, LREADX, LWRITEX, SAVEX, SETX, LOADX instructions can be immediately
+used to store values to or retrieve vales from the matrix.
+
+SELECTMB
+Opcode:
+
+Select matrix B
+66 nn b1 b2
+
+Description:
+
+Select matrix B, X = nn
+The value nn is used to select a register that is the start of matrix B. Matrix values are stored in
+
+Micromega Corporation
+
+where: nn is a register number
+
+where: nn is a register number
+b1 is the number of rows, b2 is number of columns
+
+where: nn is a register number
+b1 is the number of rows, b2 is number of columns
+
+53
+
+uM-FPU V3.1 Instruction Set
+
+sequential registers (rows * columns). The upper four bits of the rc value specify the number of
+rows, and the lower four bits specify the number of columns (a row or column value of zero is
+interpreted as 16). The X register is also set to the first element of the matrix so that the FREADX,
+FWRITEX, LREADX, LWRITEX, SAVEX, SETX, LOADX instructions can be immediately
+used to store values to or retrieve vales from the matrix.
+SELECTMC
+Opcode:
+
+Select matrix C
+67 nn b1 b2
+
+Description:
+
+Select matrix C, X = nn
+The value nn is used to select a register that is the start of matrix B. Matrix values are stored in
+sequential registers (rows * columns). The upper four bits of the rc value specify the number of
+rows, and the lower four bits specify the number of columns (a row or column value of zero is
+interpreted as 16). The X register is also set to the first element of the matrix so that the FREADX,
+FWRITEX, LREADX, LWRITEX, SAVEX, SETX, LOADX instructions can be immediately
+used to store values to or retrieve vales from the matrix.
+
+SELECTX
+Opcode:
+
+Select register X
+02 nn
+
+Description:
+
+X = nn
+The value nn is used to select register X.
+
+SERIN
+Opcode:
+
+Serial input
+CF bb
+
+Description:
+
+This instruction is used to read serial data from the SERIN pin. The instruction is ignored if Debug
+Mode is enabled. The baud rate for serial input is the same as the baud rate for serial output, and is
+set with the SEROUT,0 instruction. The operation to be performed is specified by the byte
+immediately following the opcode:
+0
+Disable serial input
+1
+Enable character mode serial input
+2
+Get character mode serial input status
+3
+Get serial input character
+4
+Enable NMEA serial input
+5
+Get NMEA input status
+6
+Transfer NMEA sentence to string buffer
+
+where: nn is a register number
+b1 is the number of rows, b2 is number of columns
+
+where: nn is a register number
+
+(new V3.1)
+where: bb specifies the type of operation
+
+SERIN,0
+Disable serial input. This can be used to save interrupt processing time if serial input is not used
+continuously.
+SERIN,1
+Enable character mode serial input. Serial input is enabled, and incoming characters are stored in a
+160 byte buffer. The serial input status can be checked with the SERIN,2 instruction and input
+characters can be read using the SERIN,3 instruction.
+SERIN,2
+Get character mode serial input status. The status byte is set to zero (Z) if the input buffer is empty,
+Micromega Corporation
+
+54
+
+uM-FPU V3.1 Instruction Set
+
+or non-zero (NZ) if the input buffer is not empty.
+SERIN,3
+Get serial input character. The serial input character is returned in register 0. If this instruction is
+the last instruction in the instruction buffer, it will wait for the next available input character. It
+there are other instructions in the instruction buffer, or another instruction is sent before the
+SERIN,3 instruction has completed, it will terminate and return a zero value.
+SERIN,4
+Enable NMEA serial input. Serial input is enabled, and the serial input data is scanned for NMEA
+sentences which are then stored in a 200 byte buffer. Additional NMEA sentences can be buffered
+while the current sentence is being processed. The sentence prefix character ($), trailing checksum
+characters (if specified), and the terminator (CR,LF) are not stored in the buffer. NMEA sentences
+are transferred to the string buffer for processing using the SERIN,6 instruction, and the NMEA
+input status can be checked with the SERIN,5 instruction.
+SERIN,5
+Get the NMEA input status. The status byte is set to zero (Z) if the buffer is empty, or non-zero
+(NZ) if at least one NMEA sentence is available in the buffer.
+SERIN,6
+Transfer NMEA sentence to string buffer. This instruction transfers the next NMEA sentence to
+the string buffer, and selects the first field of the string so that a STRCMP instruction can be used to
+check the sentence type. If the sentence is valid, the status byte is set to 0x80 and the greater-than
+(GT) test condition will be true. If an error occurs, the status byte will be set to 0x82, 0x92,
+0xA2, or 0xB2. Bit 4 of the status byte is set if an overrun error occurred. Bit 5 of the status byte
+is set if a checksum error occurred. The less-than (LT) test condition will be true for all errors. If
+this instruction is the last instruction in the instruction buffer, it will wait for the next available
+NMEA sentence. It there are other instructions in the instruction buffer, or another instruction is
+sent before the SERIN,6 instruction has completed, it will terminate and return an empty
+sentence.
+SEROUT
+Opcode:
+
+Serial Output
+CE bb
+CE bb bd
+CE bb aa…00
+
+Description:
+
+This instruction is used to set the serial input/output mode and baud rate, and to send serial data to
+the SEROUT pin. The operation to be performed is specified by the byte immediately following
+the opcode:
+0
+Set serial I/O mode and baud rate
+1
+Send text string to serial output
+2
+Send string buffer to serial output
+3
+Send string selection to serial output
+4
+Send lower 8 bits of register 0 to serial output
+5
+Send text string and zero terminator to serial output
+
+(new V3.1)
+where: bb specifies the type of operation
+bd specifies the I/O mode and baud rate
+aa…00 is a zero-terminated string
+
+SEROUT,0,bb
+This instruction sets the baud rate for serial input/output, and enables or disables Debug Mode.
+Micromega Corporation
+
+55
+
+uM-FPU V3.1 Instruction Set
+
+The mode is specified by the byte immediately following the operation code:
+0
+57,600 baud, Debug Mode enabled
+1
+300 baud, Debug Mode disabled
+2
+600 baud, Debug Mode disabled
+3
+1200 baud, Debug Mode disabled
+4
+2400 baud, Debug Mode disabled
+5
+4800 baud, Debug Mode disabled
+6
+9600 baud, Debug Mode disabled
+7
+19200 baud, Debug Mode disabled
+8
+38400 baud, Debug Mode disabled
+9
+57600 baud, Debug Mode disabled
+10
+115200 baud, Debug Mode disabled
+For mode 0, a {DEBUG ON} message is sent to the serial output and the baud rate is changed.
+For modes 1 to 10, if the debug mode is enabled, a {DEBUG OFF} message is sent to the serial
+output before the baud rate is changed.
+SEROUT,1,aa..00
+The text string specified by the instruction (not including the zero-terminator) is sent to the serial
+output. The instruction is ignored if Debug Mode is enabled.
+SEROUT,2
+The contents of the string buffer are sent to the serial output. The instruction is ignored if Debug
+Mode is enabled.
+SEROUT,3
+The current string selection is sent to the serial port. The instruction is ignored if Debug Mode is
+enabled.
+SEROUT,4
+The lower 8 bits of register 0 are sent to the serial port as an 8-bit character. The instruction is
+ignored if Debug Mode is enabled.
+SEROUT,5,aa..00
+The text string specified by the instruction (including the zero-terminator) is sent to the serial
+output. The instruction is ignored if Debug Mode is enabled.
+
+SETOUT
+Opcode:
+
+Set output
+D0 nn
+
+Description:
+
+Set the OUT0 or OUT1 output pin according to the command byte nn as follows:
+
+where: nn is a command byte
+
+Bit 7 6 5 4 3 2 1 0
+Pin
+Action
+
+Bits 4-7
+
+Bits 0-3
+
+Micromega Corporation
+
+Output pin (upper nibble)
+0 - OUT 0
+1 - OUT 1
+Action (lower nibble)
+0 - set output low
+
+56
+
+uM-FPU V3.1 Instruction Set
+
+1 - set output high
+2 - toggle the output to opposite level
+3 - set output to high impedance
+SETSTATUS
+Opcode:
+
+Set status byte
+CD bb
+
+Description:
+
+The internal status byte is set to the 8-bit value specified.
+
+SIN
+Opcode:
+
+Sine
+47
+
+Description:
+
+reg[A] = sin(reg[A])
+Calculates the sine of the angle (in radians) in register A and stored the result in register A.
+
+Special Cases:
+
+• if A is NaN or an infinity, then the result is NaN
+• if A is 0.0, then the result is 0.0
+• if A is –0.0, then the result is –0.0
+
+SQRT
+Opcode:
+
+Square root
+41
+
+Description:
+
+reg[A] = sqrt(reg[A])
+Calculates the square root of the floating point value in register A and stored the result in register
+A.
+
+Special Cases:
+
+• if the value is NaN or less than zero, then the result is NaN
+• if the value is +infinity, then the result is +infinity
+• if the value is 0.0 or –0.0, then the result is 0.0 or –0.0
+
+STRBYTE
+Opcode:
+
+Insert byte at string selection
+ED
+
+Description:
+
+The lower 8 bits of register 0 are stored as an 8-bit character in the string buffer at the current
+selection point. The selection point is updated to point immediately after the stored byte, so
+multiple bytes can be appended.
+
+STRCMP
+Opcode:
+
+Compare string with string selection
+E6 aa...00
+where: aa...00 is a zero-terminated string
+
+Description:
+
+The string is compared with the string at the current selection point and the internal status byte is
+set. The status byte can be read with the READSTATUS instruction. It is set as follows:
+
+(new V3.1)
+where: ss is status value
+
+(new V3.1)
+
+Bit 7 6 5 4 3 2 1 0
+1 - - - - - S Z
+
+Bit 1
+Bit 0
+
+STRDEC
+
+Sign
+Zero
+
+Set if string selection < specified string
+Set if string selection = specified string
+If neither Bit 0 or Bit 1 is set, string selection > specified string
+
+Decrement string selection point
+
+Micromega Corporation
+
+57
+
+(new V3.1)
+uM-FPU V3.1 Instruction Set
+
+Opcode:
+
+EF
+
+Description:
+
+The string selection point is incremented and the selection length is set to zero.
+
+Special Cases:
+
+• the selection point will not decrement past the beginning of the string
+
+STRFCHR
+Opcode:
+
+Set field separator characters
+E8 aa...00
+where: aa...00 is a zero-terminated string
+
+Description:
+
+The string specifies a list of characters to be used as field separators. The default field separator is
+a comma.
+
+STRFIELD
+Opcode:
+
+Find field in string
+E9 bb
+
+Description:
+
+The selection point is set to the specified field. Fields are numbered from 1 to n, and are separated
+by the characters specified by the last STRFCHR instruction. If no STRFCHR instruction has been
+executed, the default field separator is a comma. If bit 7 of bb is set, then bits 6:0 of bb specify a
+register number, and the lower 8 bits of the register specify the field number.
+
+Special Cases:
+
+• if bb = 0, selection point is set to the start of the string buffer
+• if bb > number of fields, selection point is set to the end of the string buffer
+
+STRFIND
+Opcode:
+
+Find string in the string buffer
+E7 aa...00
+where: aa...00 is a zero-terminated string
+
+Description:
+
+Search the string selection for the first occurrence of the specified string. If the string is found, the
+selection point is set to the matching substring. If the string is not found, the selection point is set
+to the end of the string selection.
+
+STRINC
+Opcode:
+
+Increment string selection point
+EE
+
+Description:
+
+The string selection point is incremented and the selection length is set to zero.
+
+Special Cases:
+
+• the selection point will not increment past the end of the string
+
+STRINS
+Opcode:
+
+Insert string
+E5 aa...00
+
+Description:
+
+Insert the string in the string buffer at the current selection point. The selection point is updated to
+point immediately after the inserted string, so multiple insertions can be appended.
+
+STRSEL
+Opcode:
+
+Set string selection point
+E4 nn mm
+where: nn is the start of the selection
+mm is the length of the selection
+
+Micromega Corporation
+
+(modified V3.1)
+where: bb is the field number
+
+(modified V3.1)
+
+(new V3.1)
+
+where: aa...00 is a zero-terminated string
+
+58
+
+(modified V3.1)
+
+uM-FPU V3.1 Instruction Set
+
+Description:
+
+Set the start of the string selection to character nn and the length of the selection to mm characters.
+Characters are numbered from 0 to n. If bit 7 of nn is set, then bits 6:0 of nn specify a register
+number, and the lower 8 bits of the register specify the start of the selection. If bit 7 of mm is set,
+then bits 6:0 of mm specify a register number, and the lower 8 bits of the register specify the length
+of the selection.
+
+Special Cases:
+
+• if nn > string length, start of selection is set to end of string
+• if nn+mm > string length, selection is adjusted for the end of string
+
+STRSET
+Opcode:
+
+Copy string to string buffer
+E3 aa...00 where: aa...00 is a zero-terminated string
+
+Description:
+
+Copy the string to the string buffer and set the selection point to the end of the string.
+
+Special Cases:
+
+• if nn > string length, start of selection is set to end of string
+
+STRTOF
+Opcode:
+
+Convert string selection to floating point
+EA
+
+Description:
+
+Convert the string at the current selection point to a floating point value and store the result in
+register 0.
+
+STRTOL
+Opcode:
+
+Convert string selection to long integer
+EB
+
+Description:
+
+Convert the string at the current selection point to a long integer value and store the result in
+register 0.
+
+SWAP
+Opcode:
+
+Swap registers
+12 nn mm
+
+Description:
+
+tmp = reg[nn], reg[nn] = reg[mm], reg[mm] = tmp
+The values of register nn and register mm are swapped.
+
+SWAPA
+Opcode:
+
+Swap register A
+13 nn
+
+Description:
+
+tmp = reg[nn], reg[nn] = reg[A], reg[A] = tmp
+The values of register nn and register A are swapped.
+
+SYNC
+Opcode:
+Returns:
+
+Synchronization
+F0
+5C
+
+Description:
+
+A sync character (0x5C) is sent in reply. This instruction is typically used after a reset to verify
+communications.
+
+TABLE
+
+Table lookup
+
+Micromega Corporation
+
+where: nn and mm are register numbers
+
+where: nn is a register number
+
+59
+
+uM-FPU V3.1 Instruction Set
+
+Opcode:
+
+85 tc t1…tn
+
+Description:
+
+reg[A] = value from table indexed by reg[0]
+This opcode is only valid within a user function stored in the uM-FPU Flash memory or EEPROM
+memory. The value of the item in the table, indexed by register 0, is stored in register A. The first
+byte after the opcode specifies the size of the table, followed by groups of four bytes representing
+the 32-bit values for each item in the table. This instruction can be used to load either floating
+point values or long integer values. The long integer value in register 0 is used as an index into the
+table. The index number for the first table entry is zero.
+
+Special Cases:
+
+• if reg[0] <= 0, then the result is item 0
+• if reg[0] > maximum size of table, then the result is the last item in the table
+
+TAN
+Opcode:
+
+Tangent
+49
+
+Description:
+
+reg[A] = tan(reg[A])
+Calculates the tangent of the angle (in radians) in register A and stored the result in register A.
+
+Special Cases:
+
+• if reg[A] is NaN or an infinity, then the result is NaN
+• if reg[A] is 0.0, then the result is 0.0
+• if reg[A] is –0.0, then the result is –0.0
+
+TICKLONG
+Opcode:
+
+Load register 0 with millisecond ticks
+D9
+
+Description:
+
+reg[0] = ticks
+Load register 0 with the ticks (in milliseconds).
+
+TIMELONG
+Opcode:
+
+Load register 0 with time value in seconds
+D8
+
+Operation:
+Description:
+
+reg[0] = time
+Load register 0 with the time (in seconds).
+
+TIMESET
+Opcode:
+
+Set time value in seconds
+D7
+
+Description:
+
+time = reg[0], ticks = 0
+The time (in seconds) is set from the value in register 0. The ticks (in milliseconds) is set to zero.
+
+Special Cases:
+
+• if reg[0] is -1, the timer is turned off.
+
+TRACEOFF
+Opcode:
+
+Turn debug trace off
+F8
+
+Description:
+
+Used with the built-in debugger. If the debugger is not enabled, this instruction is ignored. Debug
+tracing is turned off, and a {TRACE OFF} message is sent to the serial output.
+
+Micromega Corporation
+
+where: tc is the size of the table
+t1…tn are 32-bit floating point or integer values
+
+60
+
+uM-FPU V3.1 Instruction Set
+
+TRACEON
+Opcode:
+
+Turn debug trace on
+F9
+
+Description:
+
+Used with the built-in debugger. If the debugger is not enabled, this instruction is ignored. Debug
+tracing is turned on, and a {TRACE ON} message is sent to the serial output. The debug terminal
+will display a trace of all instructions executed until tracing is turned off.
+
+TRACEREG
+Opcode:
+
+Display register value in debug trace
+FB nn
+where: nn is a register number
+
+Description:
+
+Used with the built-in debugger. If the debugger is not enabled, this instruction is ignored. If the
+debugger is enabled, the value of register nn will be displayed on the debug terminal.
+
+TRACESTR
+Opcode:
+
+Display debug trace message
+FA aa…00
+where: aa…00 is a zero-terminated string
+
+Description:
+
+Used with the built-in debugger. If the debugger is not enabled, this instruction is ignored. If the
+debugger is enabled, a message will be displayed on the debug terminal. The zero terminated
+ASCII string to be displayed is sent immediately following the opcode.
+
+VERSION
+Opcode:
+
+Copy the version string to the string buffer
+F3
+
+Description:
+
+The uM-FPU V3.1 version string is copied to the string buffer at the current selection point, and
+the version code is copied to register 0. The version code is represented as follows:
+Bit 15 14 13 12 11 10 9 8
+3
+Major
+
+Bits 12-15
+Bits 8-11
+Bits 4-7
+Bits 0-3
+
+(modified V3.1)
+
+7 6 5 4 3 2 1 0
+Minor
+Beta
+
+Chip Version (always set to 3)
+Major Version
+Minor Version
+Beta Version
+
+As an example, for the uM-FPU V3.1.3 general release:
+version string: uM-FPU V3.1
+version code:
+0x3130
+WRBLK
+Opcode:
+Description:
+
+Special Cases:
+
+Write multiple 32-bit values
+(new V3.1)
+70 tc t1…tn
+where: tc is the number of 32-bit values to write
+t1…tn are 32-bit values
+reg[X] = t, X = X+1, for t = t0 to tn
+This instruction is used to write multiple 32-bit values to the uM-FPU registers. The byte
+immediately following the opcode is the transfer count, and bits 6:0 specify the number of 32-bit
+values that follow (a value of zero specifies a transfer count of 128). If bit 7 of the transfer count is
+set, the bytes are reversed for each 32-bit value that follows. This allows for efficient data transfers
+when the native storage format of the microcontroller is the reverse of the uM-FPU format. The X
+register specifies the register to write to, and it is incremented after each 32-bit value is written.
+• the X register will not increment past the maximum register value of 127
+• if PICMODE is enabled, the 32-bit values are assumed to be floating point values
+
+Micromega Corporation
+
+61
+
+uM-FPU V3.1 Instruction Set
+
+XSAVE
+Opcode:
+
+Save register nn to register X
+0E nn
+where: nn is a register number
+
+Description:
+
+reg[X] = reg[nn], X = X + 1
+Set register X to the value of register nn, and select the next register in sequence as register X.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+XSAVEA
+Opcode:
+
+Save register A to register X
+0F
+
+Description:
+
+reg[X] = reg[A], X = X + 1
+Set register X to the value of register A, and select the next register in sequence as register X.
+
+Special Cases:
+
+• the X register will not increment past the maximum register value of 127
+
+Micromega Corporation
+
+62
+
+uM-FPU V3.1 Instruction Set
+
+Appendix A
+uM-FPU V3.1 Instruction Summary
+Instruction Opcode Arguments
+NOP
+SELECTA
+SELECTX
+CLR
+CLRA
+CLRX
+CLR0
+COPY
+COPYA
+COPYX
+LOAD
+LOADA
+LOADX
+ALOADX
+XSAVE
+XSAVEA
+COPY0
+COPYI
+SWAP
+SWAPA
+LEFT
+RIGHT
+FWRITE
+FWRITEA
+FWRITEX
+FWRITE0
+FREAD
+FREADA
+FREADX
+FREAD0
+ATOF
+FTOA
+FSET
+FADD
+FSUB
+FSUBR
+FMUL
+FDIV
+FDIVR
+FPOW
+FCMP
+
+00
+01
+02
+03
+04
+05
+06
+07
+08
+09
+0A
+0B
+0C
+0D
+0E
+0F
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+1A
+1B
+1C
+1D
+1E
+1F
+20
+21
+22
+23
+24
+25
+26
+27
+28
+
+FSET0
+FADD0
+FSUB0
+
+29
+2A
+2B
+
+Returns
+
+nn
+nn
+nn
+
+mm,nn
+nn
+nn
+nn
+
+nn
+nn
+bb,nn
+nn,mm
+nn
+
+nn,b1,b2,b3,b4
+b1,b2,b3,b4
+b1,b2,b3,b4
+b1,b2,b3,b4
+nn
+
+b1,b2,b3,b4
+b1,b2,b3,b4
+b1,b2,b3,b4
+b1,b2,b3,b4
+
+aa…00
+bb
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+
+Micromega Corporation
+
+63
+
+Description
+No Operation
+Select register A
+Select register X
+reg[nn] = 0
+reg[A] = 0
+reg[X] = 0, X = X + 1
+reg[0] = 0
+reg[nn] = reg[mm]
+reg[nn] = reg[A]
+reg[nn] = reg[X], X = X + 1
+reg[0] = reg[nn]
+reg[0] = reg[A]
+reg[0] = reg[X], X = X + 1
+reg[A] = reg[X], X = X + 1
+reg[X] = reg[nn], X = X + 1
+reg[X] = reg[A], X = X + 1
+reg[nn] = reg[0]
+reg[nn] = long(unsigned byte bb)
+Swap reg[nn] and reg[mm]
+Swap reg[nn] and reg[A]
+Left parenthesis
+Right parenthesis
+Write 32-bit floating point to reg[nn]
+Write 32-bit floating point to reg[A]
+Write 32-bit floating point to reg[X]
+Write 32-bit floating point to reg[0]
+Read 32-bit floating point from reg[nn]
+Read 32-bit floating point from reg[A]
+Read 32-bit floating point from reg[X]
+Read 32-bit floating point from reg[0]
+Convert ASCII to floating point
+Convert floating point to ASCII
+reg[A] = reg[nn]
+reg[A] = reg[A] + reg[nn]
+reg[A] = reg[A] - reg[nn]
+reg[A] = reg[nn] - reg[A]
+reg[A] = reg[A] * reg[nn]
+reg[A] = reg[A] / reg[nn]
+reg[A] = reg[nn] / reg[A]
+reg[A] = reg[A] ** reg[nn]
+Compare reg[A], reg[nn],
+Set floating point status
+reg[A] = reg[0]
+reg[A] = reg[A] + reg[0]
+reg[A] = reg[A] - reg[0]
+
+uM-FPU V3.1 Instruction Set
+
+FSUBR0
+FMUL0
+FDIV0
+FDIVR0
+FPOW0
+FCMP0
+
+2C
+2D
+2E
+2F
+30
+31
+
+FSETI
+FADDI
+FSUBI
+FSUBRI
+FMULI
+FDIVI
+FDIVRI
+FPOWI
+FCMPI
+
+32
+33
+34
+35
+36
+37
+38
+39
+3A
+
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+
+FSTATUS
+FSTATUSA
+FCMP2
+
+3B
+3C
+3D
+
+nn
+
+FNEG
+FABS
+FINV
+SQRT
+ROOT
+LOG
+LOG10
+EXP
+EXP10
+SIN
+COS
+TAN
+ASIN
+ACOS
+ATAN
+ATAN2
+DEGREES
+RADIANS
+FMOD
+FLOOR
+CEIL
+ROUND
+FMIN
+FMAX
+FCNV
+FMAC
+FMSC
+LOADBYTE
+LOADUBYTE
+
+3E
+3F
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+4A
+4B
+4C
+4D
+4E
+4F
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+5A
+
+reg[A] = reg[0] - reg[A]
+reg[A] = reg[A] * reg[0]
+reg[A] = reg[A] / reg[0]
+reg[A] = reg[0] / reg[A]
+reg[A] = reg[A] ** reg[0]
+Compare reg[A], reg[0],
+Set floating point status
+reg[A] = float(bb)
+reg[A] = reg[A] - float(bb)
+reg[A] = reg[A] - float(bb)
+reg[A] = float(bb) - reg[A]
+reg[A] = reg[A] * float(bb)
+reg[A] = reg[A] / float(bb)
+reg[A] = float(bb) / reg[A]
+reg[A] = reg[A] ** bb
+Compare reg[A], float(bb),
+Set floating point status
+Set floating point status for reg[nn]
+Set floating point status for reg[A]
+Compare reg[nn], reg[mm]
+Set floating point status
+reg[A] = -reg[A]
+reg[A] = | reg[A] |
+reg[A] = 1 / reg[A]
+reg[A] = sqrt(reg[A])
+reg[A] = root(reg[A], reg[nn])
+reg[A] = log(reg[A])
+reg[A] = log10(reg[A])
+reg[A] = exp(reg[A])
+reg[A] = exp10(reg[A])
+reg[A] = sin(reg[A])
+reg[A] = cos(reg[A])
+reg[A] = tan(reg[A])
+reg[A] = asin(reg[A])
+reg[A] = acos(reg[A])
+reg[A] = atan(reg[A])
+reg[A] = atan2(reg[A], reg[nn])
+reg[A] = degrees(reg[A])
+reg[A] = radians(reg[A])
+reg[A] = reg[A] MOD reg[nn]
+reg[A] = floor(reg[A])
+reg[A] = ceil(reg[A])
+reg[A] = round(reg[A])
+reg[A] = min(reg[A], reg[nn])
+reg[A] = max(reg[A], reg[nn])
+reg[A] = conversion(bb, reg[A])
+reg[A] = reg[A] + (reg[nn] * reg[mm])
+reg[A] = reg[A] - (reg[nn] * reg[mm])
+reg[0] = float(signed bb)
+reg[0] = float(unsigned byte)
+
+nn,mm
+
+nn
+
+nn
+
+nn
+
+nn
+nn
+bb
+nn,mm
+nn,mm
+bb
+bb
+
+Micromega Corporation
+
+64
+
+uM-FPU V3.1 Instruction Set
+
+LOADWORD
+LOADUWORD
+LOADE
+LOADPI
+LOADCON
+FLOAT
+FIX
+FIXR
+FRAC
+FSPLIT
+
+5B
+5C
+5D
+5E
+5F
+60
+61
+62
+63
+64
+
+b1,b2
+b1,b2
+
+SELECTMA
+SELECTMB
+SELECTMC
+LOADMA
+LOADMB
+LOADMC
+SAVEMA
+SAVEMB
+SAVEMC
+MOP
+FFT
+WRBLK
+RDBLK
+LOADIND
+SAVEIND
+INDA
+INDX
+FCALL
+EECALL
+RET
+BRA
+BRA,cc
+JMP
+JMP,cc
+TABLE
+FTABLE
+LTABLE
+POLY
+GOTO
+RET,cc
+
+65
+66
+67
+68
+69
+6A
+6B
+6C
+6D
+6E
+6F
+70
+71
+7A
+7B
+7C
+7D
+7E
+7F
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+8A
+
+nn,bb,bb
+nn,bb,bb
+nn,bb,bb
+bb,bb
+bb,bb
+bb,bb
+bb,bb
+bb,bb
+bb,bb
+bb
+bb
+tc,t1…tn
+tc
+nn
+nn
+nn
+nn
+fn
+fn
+
+LWRITE
+LWRITEA
+LWRITEX
+
+90
+91
+92
+
+nn,b1,b2,b3,b4
+b1,b2,b3,b4
+b1,b2,b3,b4
+
+LWRITE0
+LREAD
+LREADA
+
+93
+94
+95
+
+b1,b2,b3,b4
+nn
+
+bb
+
+t1…tn
+
+bb
+cc,bb
+b1,b2
+cc,b1,b2
+tc,t1…tn
+cc,tc,t1…tn
+cc,tc,t1…tn
+tc,t1…tn
+nn
+cc
+
+Micromega Corporation
+
+b1,b2,b3,b4
+b1,b2,b3,b4
+
+65
+
+reg[0] = float(signed b1*256 + b2)
+reg[0] = float(unsigned b1*256 + b2)
+reg[0] = 2.7182818
+reg[0] = 3.1415927
+reg[0] = float constant(bb)
+reg[A] = float(reg[A])
+reg[A] = fix(reg[A])
+reg[A] = fix(round(reg[A]))
+reg[A] = fraction(reg[A])
+reg[A] = integer(reg[A]),
+reg[0] = fraction(reg[A])
+Select matrix A
+Select matrix B
+Select matrix C
+reg[0] = Matrix A[bb, bb]
+reg[0] = Matrix B[bb, bb]
+reg[0] = Matrix C[bb, bb]
+Matrix A[bb, bb] = reg[A]
+Matrix B[bb, bb] = reg[A]
+Matrix C[bb, bb] = reg[A]
+Matrix/Vector operation
+Fast Fourier Transform
+Write multiple 32-bit values
+Read multiple 32-bit values
+reg[0] = reg[reg[nn]]
+reg[reg[nn]] = reg[A]
+Select register A using value in reg[nn]
+Select register X using value in reg[nn]
+Call user-defined function in Flash
+Call user-defined function in EEPROM
+Return from user-defined function
+Unconditional branch
+Conditional branch
+Unconditional jump
+Conditional jump
+Table lookup
+Floating point reverse table lookup
+Long integer reverse table lookup
+reg[A] = nth order polynomial
+Computed GOTO
+Conditional return from user-defined
+function
+Write 32-bit long integer to reg[nn]
+Write 32-bit long integer to reg[A]
+Write 32-bit long integer to reg[X],
+X=X+1
+Write 32-bit long integer to reg[0]
+Read 32-bit long integer from reg[nn]
+Read 32-bit long value from reg[A]
+
+uM-FPU V3.1 Instruction Set
+
+LREADX
+
+96
+
+b1,b2,b3,b4
+
+LREAD0
+LREADBYTE
+LREADWORD
+ATOL
+LTOA
+LSET
+LADD
+LSUB
+LMUL
+LDIV
+
+97
+98
+99
+9A
+9B
+9C
+9D
+9E
+9F
+A0
+
+b1,b2,b3,b4
+bb
+b1,b2
+aa…00
+bb
+nn
+nn
+nn
+nn
+nn
+
+LCMP
+
+A1
+
+nn
+
+LUDIV
+
+A2
+
+nn
+
+LUCMP
+
+A3
+
+nn
+
+LTST
+
+A4
+
+nn
+
+LSET0
+LADD0
+LSUB0
+LMUL0
+LDIV0
+
+A5
+A6
+A7
+A8
+A9
+
+LCMP0
+
+AA
+
+LUDIV0
+
+AB
+
+LUCMP0
+
+AC
+
+LTST0
+
+AD
+
+LSETI
+LADDI
+LSUBI
+LMULI
+LDIVI
+
+AE
+AF
+B0
+B1
+B2
+
+bb
+bb
+bb
+bb
+bb
+
+LCMPI
+
+B3
+
+bb
+
+LUDIVI
+
+B4
+
+bb
+
+LUCMPI
+
+B5
+
+bb
+
+LTSTI
+
+B6
+
+bb
+
+LSTATUS
+LSTATUSA
+
+B7
+B8
+
+nn
+
+Micromega Corporation
+
+66
+
+Read 32-bit long integer from reg[X],
+X=X+1
+Read 32-bit long integer from reg[0]
+Read lower 8 bits of reg[A]
+Read lower 16 bits reg[A]
+Convert ASCII to long integer
+Convert long integer to ASCII
+reg[A] = reg[nn]
+reg[A] = reg[A] + reg[nn]
+reg[A] = reg[A] - reg[nn]
+reg[A] = reg[A] * reg[nn]
+reg[A] = reg[A] / reg[nn]
+reg[0] = remainder
+Signed compare reg[A] and reg[nn],
+Set long integer status
+reg[A] = reg[A] / reg[nn]
+reg[0] = remainder
+Unsigned compare reg[A] and reg[nn],
+Set long integer status
+Test reg[A] AND reg[nn],
+Set long integer status
+reg[A] = reg[0]
+reg[A] = reg[A] + reg[0]
+reg[A] = reg[A] - reg[0]
+reg[A] = reg[A] * reg[0]
+reg[A] = reg[A] / reg[0]
+reg[0] = remainder
+Signed compare reg[A] and reg[0],
+set long integer status
+reg[A] = reg[A] / reg[0]
+reg[0] = remainder
+Unsigned compare reg[A] and reg[0],
+Set long integer status
+Test reg[A] AND reg[0],
+Set long integer status
+reg[A] = long(bb)
+reg[A] = reg[A] + long(bb)
+reg[A] = reg[A] - long(bb)
+reg[A] = reg[A] * long(bb)
+reg[A] = reg[A] / long(bb)
+reg[0] = remainder
+Signed compare reg[A] - long(bb),
+Set long integer status
+reg[A] = reg[A] / unsigned long(bb)
+reg[0] = remainder
+Unsigned compare reg[A] and long(bb),
+Set long integer status
+Test reg[A] AND long(bb),
+Set long integer status
+Set long integer status for reg[nn]
+Set long integer status for reg[A]
+
+uM-FPU V3.1 Instruction Set
+
+LCMP2
+
+B9
+
+nn,mm
+
+LUCMP2
+
+BA
+
+nn,mm
+
+LNEG
+LABS
+LINC
+LDEC
+LNOT
+LAND
+LOR
+LXOR
+LSHIFT
+LMIN
+LMAX
+LONGBYTE
+LONGUBYTE
+LONGWORD
+LONGUWORD
+SETSTATUS
+SEROUT
+
+BB
+BC
+BD
+BE
+BF
+C0
+C1
+C2
+C3
+C4
+C5
+C6
+C7
+C8
+C9
+CD
+CE
+
+SERIN
+SETOUT
+ADCMODE
+ADCTRIG
+ADCSCALE
+ADCLONG
+ADCLOAD
+
+CF
+D0
+D1
+D2
+D3
+D4
+D5
+
+ADCWAIT
+TIMESET
+TIMELONG
+TICKLONG
+EESAVE
+EESAVEA
+EELOAD
+EELOADA
+EEWRITE
+EXTSET
+EXTLONG
+EXTWAIT
+STRSET
+STRSEL
+STRINS
+STRCMP
+STRFIND
+STRFCHR
+STRFIELD
+
+D6
+D7
+D8
+D9
+DA
+DB
+DC
+DD
+DE
+E0
+E1
+E2
+E3
+E4
+E5
+E6
+E7
+E8
+E9
+
+Signed long compare reg[nn], reg[mm]
+Set long integer status
+Unsigned long compare reg[nn], reg[mm]
+Set long integer status
+reg[A] = -reg[A]
+reg[A] = | reg[A] |
+reg[nn] = reg[nn] + 1, set status
+reg[nn] = reg[nn] - 1, set status
+reg[A] = NOT reg[A]
+reg[A] = reg[A] AND reg[nn]
+reg[A] = reg[A] OR reg[nn]
+reg[A] = reg[A] XOR reg[nn]
+reg[A] = reg[A] shift reg[nn]
+reg[A] = min(reg[A], reg[nn])
+reg[A] = max(reg[A], reg[nn])
+reg[0] = long(signed byte bb)
+reg[0] = long(unsigned byte bb)
+reg[0] = long(signed b1*256 + b2)
+reg[0] = long(unsigned b1*256 + b2)
+Set status byte
+Serial output
+
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+nn
+bb
+bb
+b1,b2
+b1,b2
+ss
+bb
+bb,bd
+bb,aa…00
+bb
+bb
+bb
+
+Serial input
+Set OUT1 and OUT2 output pins
+Set A/D trigger mode
+A/D manual trigger
+ADCscale[ch] = reg[0]
+reg[0] = ADCvalue[ch]
+reg[0] =
+float(ADCvalue[ch]) * ADCscale[ch]
+wait for next A/D sample
+time = reg[0]
+reg[0] = time (long integer)
+reg[0] = ticks (long integer)
+EEPROM[ee] = reg[nn]
+EEPROM[ee] = reg[A]
+reg[nn] = EEPROM[ee]
+reg[A] = EEPROM[ee]
+Store bytes starting at EEPROM[ee]
+external input count = reg[0]
+reg[0] = external input counter
+wait for next external input
+Copy string to string buffer
+Set selection point
+Insert string at selection point
+Compare string with string selection
+Find string
+Set field separators
+Find field
+
+ch
+ch
+ch
+
+nn,ee
+ee
+nn,ee
+ee
+ee,bc,b1…bn
+
+aa…00
+bb,bb
+aa…00
+aa…00
+aa…00
+aa…00
+bb
+
+Micromega Corporation
+
+67
+
+uM-FPU V3.1 Instruction Set
+
+STRTOF
+STRTOL
+READSEL
+STRBYTE
+STRINC
+STRDEC
+SYNC
+READSTATUS
+READSTR
+VERSION
+IEEEMODE
+PICMODE
+CHECKSUM
+BREAK
+TRACEOFF
+TRACEON
+TRACESTR
+TRACEREG
+READVAR
+RESET
+
+EA
+EB
+EC
+ED
+EE
+EF
+F0
+F1
+F2
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+FA
+FB
+FC
+FF
+
+aa…00
+bb
+
+5C
+ss
+aa…00
+
+aa…00
+nn
+bb
+
+Convert string selection to floating point
+Convert string selection to long integer
+Read string selection
+Insert byte at selection point
+Increment string selection point
+Decrement string selection point
+Get synchronization byte
+Read status byte
+Read string from string buffer
+Copy version string to string buffer
+Set IEEE mode (default)
+Set PIC mode
+Calculate checksum for uM-FPU code
+Debug breakpoint
+Turn debug trace off
+Turn debug trace on
+Send string to debug trace buffer
+Send register value to trace buffer
+Read internal register value
+Reset (9 consecutive FF bytes cause a
+reset, otherwise it is a NOP)
+
+Notes:
+Opcode
+Arguments
+Returns
+nn
+mm
+fn
+bb
+b1,b2
+b1,b2,b3,b4
+b1…bn
+ss
+bd
+cc
+ee
+ch
+bc
+tc
+t1…tn
+aa…00
+
+Opcode value in hexadecimal
+Additional data required by instruction
+Data returned by instruction
+register number (0-127)
+register number (0-127)
+function number (0-63)
+8-bit value
+16-bit value (b1 is MSB)
+32-bit value (b1 is MSB)
+string of 8-bit bytes
+Status byte
+baud rate and debug mode
+Condition code
+EEPROM address slot (0-255)
+A/D channel number
+Byte count
+32-bit value count
+String of 32-bit values
+Zero terminated ASCII string
+
+Micromega Corporation
+
+68
+
+uM-FPU V3.1 Instruction Set
+
+

@@ -1,0 +1,382 @@
+----
+000: COPY 01, 7f # reg_7f = reg_01
+003: LSETI 5c # reg_A = 0x5c
+005: EECALL 08 # call 08
+007: RET 
+----
+008: LSTATUSA 
+009: SELECTMA 10, 01, 08 # matA is now 1x8, at 0x10
+00d: SELECTMB 18, 01, 08 # matB is now 1x8, at 0x18
+011: MOP 19              # reg[18:20] = reg[10:18]
+013: LONGUBYTE 02        # reg_0 = 2
+015: COPY0 10            # reg_10 = 2
+017: LONGUWORD 00, 2f    # reg_0 = 2f
+01a: COPY0 11            # reg_11 = 2f
+01c: LONGUWORD 00, 97    # reg_0 = 97
+01f: COPY0 12            # reg_12 = 97
+021: SELECTA 12          # A points to 12
+023: LSUB 11             # reg_A -= reg_11
+025: LWRITE 13, 4b, a9, dc, 18 # reg_13 = 4ba9dc18
+02b: EECALL 250          # call 250
+02d: SELECTMA 10, 01, 08 # matA is now 1x8, at 0x8
+031: SELECTMB 18, 01, 08 # matB is now 1x8, at 0x8
+035: MOP 1b              # matA = matB
+037: NOP                 #
+038: STRSEL d2, a8       # select string from 0x52 of length 0x28
+03b: ACOS 
+03c: LTST0 
+03d: 0xcb 
+03e: FSUB0 
+03f: LOADWORD 56, 38
+042: LDIV0 
+043: ATAN2 fe
+045: LREADBYTE 
+046: EESAVEA b0
+048: 0x76 
+049: 0x8f 
+04a: ADCTRIG 
+04b: ACOS 
+04c: ATOL cc
+04e: STRFIELD af
+050: XSAVE dd
+052: RADIANS 
+053: FMULI 18
+055: LOADPI 
+056: LCMP2 7c, f0
+059: LSUB0 
+05a: ADCLONG 4b
+05c: READSTATUS 
+05d: EEWRITE a8, 4a, b6
+061: IEEEMODE 
+062: LCMP0 
+063: TAN 
+064: FWRITE0 dc
+066: FMAX 5a
+068: FRAC 
+069: EELOADA 50
+06b: ASIN 
+06c: LSET0 
+06d: EEWRITE 47, 4a, 1a
+071: LOADMB b9, cf
+074: COS 
+075: EELOAD f2, d0
+078: FINV 
+079: EELOADA 2a4
+07b: 0xfe 
+07c: FWRITE0 5e
+07e: TRACEON 
+07f: LOG10 
+080: TRACEREG 8b
+082: 0xcc 
+083: FPOW 74
+085: READVAR ed
+087: FMUL 76
+089: LCMP2 88, 4b
+08c: LTOA dc
+08e: FNEG 
+08f: LMUL0 
+090: RADIANS 
+091: LSETI c6
+093: FDIV 7f
+095: READVAR cf
+097: FPOW 79
+099: LNEG 
+09a: LTABLE 4b, 9b, dc
+09e: FNEG 
+09f: ACOS 
+0a0: COPY 00, 18
+0a3: LONGUBYTE 02
+0a5: COPY0 10
+0a7: LONGUWORD 00, 2f
+0aa: COPY0 11
+0ac: LONGUWORD 00, 97
+0af: COPY0 12
+0b1: SELECTA 12
+0b3: LSUB 11
+0b5: LWRITE 13, 4b, a9, dc, 18
+0bb: EECALL 250
+0bd: COPY 18, 00
+0c0: RET 
+0c1: NOP 
+0c2: NOP 
+0c3: NOP 
+----
+0c4: LREADBYTE 
+0c5: SELECTMA 10, 01, 08
+0c9: SELECTMB 18, 01, 08
+0cd: MOP 19
+0cf: LONGUBYTE 31
+0d1: COPY0 10
+0d3: LONGUWORD 00, 2f
+0d6: COPY0 11
+0d8: LONGUWORD 00, 77
+0db: COPY0 12
+0dd: SELECTA 12
+0df: LSUB 11
+0e1: LWRITE 13, 17, db, 41, dc
+0e7: EECALL 250
+0e9: SELECTMA 10, 01, 08
+0ed: SELECTMB 18, 01, 08
+0f1: MOP 1b
+0f3: NOP 
+0f4: EEWRITE 09, ab, 07
+0f8: LADD0 
+0f9: LTST 5e
+0fb: RIGHT 
+0fc: 0xfe 
+0fd: TRACEON 
+0fe: CHECKSUM 
+0ff: FMSC e1, 68
+102: EESAVEA 3b8
+104: SERIN 76
+106: 0x74 
+107: MOP cc
+109: FFT fc
+10b: SELECTA b2
+10d: EECALL 3f0
+10f: LOADIND d1
+111: STRTOF 
+112: LDIV0 
+113: RADIANS 
+114: SYNC 
+115: CLR 4e
+117: FSTATUS ae
+119: LWRITEX 53, 8c, cd, 4c
+11e: FCMPI e7
+120: JMP,cc e1, 43
+123: LONGBYTE a5
+125: FIXR 
+126: EEWRITE 22, eb, 91
+12a: LADD 66
+12c: ADCLOAD 24
+12e: 0x74 
+12f: LWRITEX cf, d0, 4e, b1
+134: BREAK 
+135: FSETI ee
+137: 0x75 
+138: LOADCON 41
+13a: LUCMP0 
+13b: FWRITEA 07
+13d: NOP 
+13e: FWRITEX c7
+140: FCMP0 
+141: COPY0 10
+143: LONGUWORD 00, 2f
+146: COPY0 11
+148: LONGUWORD 00, 77
+14b: COPY0 12
+14d: SELECTA 12
+14f: LSUB 11
+151: LWRITE 13, 17, db, 41, dc
+157: EECALL 250
+159: COPY 18, 00
+15c: RET 
+15d: NOP 
+15e: NOP 
+15f: NOP 
+----
+160: EELOAD 65, 40
+163: SELECTA 08
+165: SELECTMB 18, 01, 08
+169: MOP 19
+16b: LONGUBYTE 58
+16d: COPY0 10
+16f: LONGUWORD 00, 2f
+172: COPY0 11
+174: LONGUWORD 00, bb
+177: COPY0 12
+179: SELECTA 12
+17b: LSUB 11
+17d: LWRITE 13, 73, d4, 01, ac
+183: EECALL 250
+185: SELECTMA 10, 01, 08
+189: SELECTMB 18, 01, 08
+18d: MOP 1b
+18f: NOP 
+190: ADCSCALE 30
+192: LDIVI 5b
+194: LMUL0 
+195: CLRX 
+196: LMULI 4b
+198: LMUL0 
+199: CLRX 
+19a: LUCMP2 60, aa
+19d: LABS 
+19e: ADCLONG ce
+1a0: LUCMP0 
+1a1: LABS 
+1a2: ADCLONG 1d
+1a4: LTST0 
+1a5: LWRITEA d6, 32, 6a, 4f
+1aa: LCMP2 e3, af
+1ad: LTST 71
+1af: ADCWAIT 
+1b0: COPYX 91
+1b2: SETOUT 73
+1b4: LUCMP0 
+1b5: FCMP0 
+1b6: STRBYTE 
+1b7: STRSET a9
+1b9: FCALL 2b
+1bb: 0x8c 
+1bc: ROUND 
+1bd: NOP 
+1be: EELOADA 374
+1c0: LTST 00
+1c2: EEWRITE dd, bc, 00
+1c6: 0xdf 
+1c7: EELOADA 2d0
+1c9: NOP 
+1ca: ADCLOAD dd
+1cc: LREAD 02
+1ce: TIMELONG 
+1cf: 0x72 
+1d0: LCMP af
+1d2: LSET 72
+1d4: LADDI 9e
+1d6: ADCWAIT 
+1d7: STRINC 
+1d8: LMUL0 
+1d9: LOR d1
+1db: COPYX ad
+1dd: NOP 
+1de: ADCLONG 63
+1e0: LCMP0 
+1e1: COPYI d3, 63
+1e4: LTST 00
+1e6: ADCTRIG 
+1e7: LSUBI a5
+1e9: NOP 
+1ea: ADCSCALE b0
+1ec: LADD0 
+1ed: NOP 
+1ee: EELOAD b0, 29c
+1f1: NOP 
+1f2: ADCLONG b2
+1f4: LCMP0 
+1f5: LAND d3
+1f7: LDIVI a4
+1f9: LSHIFT d7
+1fb: COPYA ad
+1fd: COPYI d2, 09
+200: LCMP 00
+202: ADCLONG b1
+204: LCMP0 
+205: NOP 
+206: TIMELONG 
+207: LDIVI ac
+209: LABS 
+20a: TICKLONG 
+20b: SEROUT ad
+20d: NOP 
+20e: ADCLOAD c6
+210: STRSEL 83, 84
+213: 0xcc 
+214: COPYI 0d, d3
+217: EECALL 2b0
+219: BRA,cc d4, c8
+21c: COPY 00, 18
+21f: LONGUBYTE 58
+221: COPY0 10
+223: LONGUWORD 00, 2f
+226: COPY0 11
+228: LONGUWORD 00, bb
+22b: COPY0 12
+22d: SELECTA 12
+22f: LSUB 11
+231: LWRITE 13, 73, d4, 01, ac
+237: EECALL 250
+239: COPY 18, 00
+23c: RET 
+23d: NOP 
+23e: NOP 
+23f: NOP 
+
+---- "push"
+240: CLRX       # *X++ = 0
+241: SAVEIND 7f # reg[reg_7f] = A
+243: LINC 7f    # reg_7f++
+245: RET 
+246: NOP 
+247: NOP 
+
+---- "pop"
+248: CLR0       # reg_0 = 0
+249: LDEC 7f    # reg_7f--
+24b: LOADIND 7f # reg_0 = reg[reg_7f]
+24d: LSET0      # reg_A = reg_0
+24e: RET 
+24f: NOP 
+
+----
+250: FLOOR      # regA = floor(regA)
+251: SELECTA 18 # A points to 18
+253: EECALL 240 # call 240 - push
+255: SELECTA 19 # A points to 19
+257: EECALL 240 # call 240 - push
+259: SELECTA 1a # A points to 1a
+25b: EECALL 240 # call 240 - push
+25d: SELECTA 01 # A points to 01
+25f: LSETI fe   # A = fe
+261: SELECTA 12 # A points to 12
+263: LSHIFT 01  # A is shifted left by reg_01
+265: SELECTA 11 # A points to 11
+267: LINC 11    # reg_11++
+269: LSHIFT 01  # A is shifted left by reg_01
+26b: SELECTA 10 # A points to 10
+26d: LADD 11    # A += reg_11
+26f: SELECTA 18 # A points to 18
+271: LSET 10    # A = reg_10
+273: LADD 12    # A += reg_12
+275: COPY 10, 19 # reg_19 = reg_10
+278: COPY 13, 1a # reg_1a = reg_13
+27b: COPY 19, 10 # reg_10 = reg_19
+27e: EECALL 2c0  # call 2c0
+280: SELECTA 00  # A points to 0
+282: LXOR 1a     # A ^= reg_1a
+284: COPY 00, 11 # reg_11 = reg_0
+287: COPY 19, 10 # reg_10 = reg_19
+28a: EECALL 2a4  # call 2a4
+28c: LINC 19     # reg_19++
+28e: LUCMP2 19, 18 # status = reg_19-reg_19 SZ
+291: JMP,cc 50, 00 # JNE 0
+294: FADD0         # A += reg_0
+295: SELECTA 1a    # A points to 1a
+297: EECALL 248    # call 248 - pop
+299: SELECTA 19    # A points to 19
+29b: EECALL 248    # call 248 - pop
+29d: SELECTA 18    # A points to 18
+29f: EECALL 248    # call 248 - pop
+2a1: RET 
+2a2: NOP 
+2a3: NOP 
+
+---- call runtime???
+2a4: FWRITEX 01, 02, ae, 10 # *X++ = 0102ae10
+2a9: SELECTA 10             # A points to 10
+2ab: LSHIFT 02              # A is shifted left by reg_02
+2ad: SELECTA 01             # A points to 1
+2af: LWRITEA 80, 00, db, 03 # reg_1 = 8000db03
+2b4: LOR 10                 # A |= reg_10
+2b6: EESAVEA 3fc            # EE_3fc = A
+2b8: SELECTA 11             # A points to 11
+2ba: EECALL 3fc             # call 3fc
+2bc: RET 
+2bd: NOP 
+2be: NOP 
+2bf: NOP 
+
+---- call other runtime???
+2c0: FWRITEX 01, 02, ae, 10 # *X++ = 0102ae10
+2c5: SELECTA 10             # A points to 10
+2c7: LSHIFT 02              # A is shifted left by reg_02
+2c9: SELECTA 01             # A points to 1
+2cb: LWRITEA 80, 00, dd, 03 # reg_1 = 8000dd03
+2d0: LOR 10                 # A |= reg_10
+2d2: EESAVEA 3fc            # EE_3fc = A
+2d4: SELECTA 00             # A points to 0
+2d6: EECALL 3fc             # call 3fc
+2d8: RET 
+2d9: NOP 
+2da: NOP 
+2db: NOP 
