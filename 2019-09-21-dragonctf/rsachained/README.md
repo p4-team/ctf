@@ -38,7 +38,7 @@ e * d0 - k*phi(N) == 1 mod 2**1050
 
 This is pretty much what we start with for each of the public keys we have.
 
-## Case N = p*q*r
+## Case `N = p*q*r`
 
 First case we will tackle is `N = p*q*r` simply because it's the easiest one to spot.
 For the other two equations we actually don't know which one is which.
@@ -118,7 +118,7 @@ p1 = 902985578846825776692383207600964239942178128988225125141049309450421224180
 p2 = 142270506848638924547091203976235495577725242858694711068289574174127601000137457280276860615471044907560710121669055364010408768146949985099404319539891688093875478389341632242096859500255283810703767020918479
 ```
 
-## Case N = pq**2
+## Case `N = pq**2`
 
 Now let's tackle another case using pretty much the same approach.
 The only different is the equation since now `phi(N) = (p-1)*(q-1)*q` and `N = pq^2`
@@ -152,7 +152,7 @@ It turns out to be key number 2 and we recover q:
 q3 = 267307309343866797026967908679365544381223264502857628608660439661084648014195234872217075156454448820508389018205344581075300847474799458610853350116251989700007053821013120164193801622760845268409925117073227
 ```
 
-## Case N=pq where q.nbits() == 1400
+## Case `N=p*q` where `q.nbits() == 1400`
 
 Now we need to tacle the last equation, proceeding the same way as before.
 In this case more classically `phi(N) = (p-1)*(q-1)`:
