@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package main;
+
+message Command {
+  enum IpVersion {
+    IPv4 = 4;
+    IPv6 = 6;
+  }
+
+  message Ping {
+    optional string address = 1 [default = "dragonsector.pl"];
+    optional uint64 count = 2 [default = 1];
+    optional IpVersion ip_version = 3 [default = IPv4];
+  }
+
+  message Traceroute {
+    optional string address = 1 [default = "dragonsector.pl"];
+    optional IpVersion ip_version = 2 [default = IPv4];
+  }
+
+  oneof command {
+    Ping ping_command = 1;
+    Traceroute traceroute_command = 2;
+  }
+}
+
+message ExecutionResult {
+  message Success {
+    optional bytes output = 1;
+  }
+
+  message Error {
+    optional string error = 1;
+  }
+
+  oneof result {
+    Success success = 1;
+    Error error = 2;
+  }
+}
