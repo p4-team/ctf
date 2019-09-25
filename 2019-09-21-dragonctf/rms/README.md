@@ -71,7 +71,7 @@ The important function to look at is `fetch`:
 
 The flow for each thread is as follows:
 
-1. Use `gethostbyname2` on given domain asking for IPv6 address. If we got response and it is in fact IPv6 then check if it's not localhost and fail if it is. The pointer from 
+1. Use `gethostbyname2` on given domain asking for IPv6 address. If we got response and it is in fact IPv6 then check if it's not localhost and fail if it is.
 2. Use `gethostbyname2` on given domain asking for IPv4 address. If we got response and it is in fact IPv4 then check if it's not localhost and fail if it is.
 3. If address check for IPv6 succeeded then make request to returned address.
 4. If the request to IPv6 failed then check the result from IPv4 address check.
