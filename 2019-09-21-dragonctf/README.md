@@ -1,6 +1,6 @@
 # Dragon CTF Teaser 2019
 
-Team: c7, akrasuski1, rev, chivay, Eternal, rodbert, sasza, shalom
+Team: c7, akrasuski1, nazywam, chivay, rodbert, Eternal, sasza, rev, shalom
 
 ### Table of contents
 
