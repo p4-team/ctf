@@ -2,6 +2,7 @@
 
 ## 2019
 
+* [2019.10.12 **HITCON Quals 2019**(20th place/662 teams)](2019-10-12-hitcon)
 * [2019.09.21 **Dragon CTF Teaser 2019**(2nd place/297 teams)](2019-09-21-dragonctf)
 * [2019.09.14 **RealWorld CTF Quals 2019**(21st place/576 teams)](2019-09-14-realworld-quals)
 * [2019.09.07 **TrendMicro Quals 2019**(3rd place/70 teams)](2019-09-07-trendmicro-quals)
