@@ -70,7 +70,7 @@ This way obviously `A*B = x*y*z*v = C*D`.
 Now we need to make sure each of the values matches the prefix.
 In order to do that we figured we can factor the prefix into primes, and then create `x,y,z,v` as combination of some factors, so that each of `A, B, C, D` will contain full set of factors.
 
-Of course values `A, B, C, D` have o be different, so we need to include also some random padding at the end of each of them:
+Of course values `A, B, C, D` have to be different, so we need to include also some random padding at the end of each of them:
 
 
 ```python

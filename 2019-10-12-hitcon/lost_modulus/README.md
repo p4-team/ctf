@@ -48,7 +48,7 @@ ipmq*iqmp*p*q = k*m*p*q + k*q + m*p + 1
 ipmq*iqmp*N = k*m*N + k*q + m*p + 1
 ```
 
-Now let's move `N` to one side:
+Let's move `N` to one side:
 
 ```
 N*(ipmq*iqmp - k*m) = k*q + m*p + 1
@@ -59,7 +59,7 @@ This means that the right side of the equations has to also be a multiple of N.
 
 Now the **key** observation in this task:
 
-Let's remember now the bounds for `k` and `m` -> `k<q` and `m<p`.
+Let's remember the bounds for `k` and `m` -> `k<q` and `m<p`.
 
 On the right side we have `k*q + m*p + 1`.
 What is the upper bound? It has to be smaller than `q*q + p*p +1`.
