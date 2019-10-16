@@ -112,3 +112,5 @@ q = 5299153007069647356332056429324234475397569873481985654145499388899055555668
 
 Unfortunately we were unable to recover `e` and finish the challenge.
 Solver for the described part is [here](modulus.py)
+
+We only managed to come up with an idea that calculating modular sqrt can tell us the LSB of `e`, and it worked, we know it's a odd number :)
