@@ -41,7 +41,7 @@ The code above is the result of such tests.
 
 Prefix we got was:
 
-![](prefix.png)
+![](prefix.PNG)
 
 And the code above finally, for the first set of unique bytes: 
 
