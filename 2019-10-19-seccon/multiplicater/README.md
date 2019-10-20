@@ -79,4 +79,6 @@ def main():
 main()
 ```
 
-And connect to the target server to get the flag: `SECCON{Did_you_calculate_it?}`
+Keep in mind the browser will encode the space in `%s %s|%s` to `+` when sending POST, so you should actually send it by hand to avoid this!
+
+Finally connect to the target server to get the flag: `SECCON{Did_you_calculate_it?}`
