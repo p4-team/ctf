@@ -9,3 +9,6 @@ Team: rev, nazywam, Eternal, kazet, rodbert, c7, msm, chivay, shalom
 * [Pngbomb (misc)](pngbomb)
 * [Multiplicater (web)](multiplicater)
 * [Crazy repetition of codes (crypto)](crc)
+
+
+![](scoreboard.png)
