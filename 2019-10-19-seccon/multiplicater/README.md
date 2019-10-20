@@ -31,7 +31,7 @@ Another issue is that `var1` and `var2` upon assignment will be evaluated and ca
 Anything that is not a valid int will result in `0`.
 This means that we can't really "leak" much with the last echo, because it will `always` result in integer, and it's inputs will always be integers.
 
-This leaves us with not much space at all, we somehow need to gain RCE with `var1="$(echo SOMETHING)"
+This leaves us with not much space at all, we somehow need to gain RCE with `var1="$(echo SOMETHING)"`
 
 This assignment, since the variable is typed, performs `arithmetic evaluation` before the assignment.
 If we read the documentation, it `claims` thar such evaluation does perform shell expansion and variable substitution, however if we try to send a simple sanity check like `$$` as variable value, it doesn't actually work.
