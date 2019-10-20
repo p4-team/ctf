@@ -25,7 +25,7 @@ echo  "$var1" '*' "$var2 = $((var1 * var2))"
 We don't know where the flag is, so we need an actual RCE here.
 
 First issue here is that `tr -d a-zA-Z` removes all letters, so any payload we send has to be free of those.
-This is not terrible if we can evaluate things like `'$\101'` in bash, because they will be interpolated to letters.
+This is not terrible if we can evaluate things like `$'\101'` in bash, because they will be interpolated to letters.
 
 Another issue is that `var1` and `var2` upon assignment will be evaluated and casted to int.
 Anything that is not a valid int will result in `0`.
