@@ -2,6 +2,7 @@
 
 ## 2019
 
+* [2019.11.14 **Dragon CTF 2019 Finals**(1st place/14 teams) on site](2019-11-14-dragon-finals)
 * [2019.11.07 **DefCamp CTF 2019 Finals**(2nd place/16 teams) on site](2019-11-07-defcamp-finals)
 * [2019.11.02 **Google CTF 2019 Finals**(4th place/10 teams) on site](2019-11-02-google-ctf)
 * [2019.10.19 **SECCON Quals 2019**(4th place/799 teams)](2019-10-19-seccon)
