@@ -27,7 +27,7 @@ Our assumption is that also in this case, those pattern bytes are basically encr
 Since this part has only `0` as flag, it means it contains only the `key` part.
 We can use this, to unxor the `key` from the encrypted flag.
 
-Se sanity test:
+See sanity test:
 
 ```python
 def sanity2():
