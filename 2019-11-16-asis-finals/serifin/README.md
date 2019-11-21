@@ -60,20 +60,18 @@ We need to:
 def cubic_root_prime(c,p):
     F.<x> = PolynomialRing(Zmod(p), implementation='NTL')
     poly = x^3 - c
-    return poly.roots()
+    return [root for (root,_) in poly.roots()]
         
 def cubic_composite_root(c, p, q):
-    return cubic_root_prime(c,p), cubic_root_prime(c, q)
+    rootsp, rootsq = cubic_root_prime(c,p), cubic_root_prime(c, q)
+    return [CRT([int(rp), int(rq)],[p,q]) for rp, rq in itertools.product(rootsp, rootsq)]
 ```
 
 The last part is simply to take every possible combination of the roots and check if it's the right flag:
 
 ```python
     c = 78643169701772559588799235367819734778096402374604527417084323620408059019575192358078539818358733737255857476385895538384775148891045101302925145675409962992412316886938945993724412615232830803246511441681246452297825709122570818987869680882524715843237380910432586361889181947636507663665579725822511143923
-    rootsp, rootsq = cubic_composite_root(c,p,q)
-    print('roots', rootsp, rootsq)
-    for rp, rq in itertools.product(rootsp, rootsq):
-        solution = CRT([int(rp), int(rq)],[p,q])
+    for solution in cubic_composite_root(c,p,q):
         flag = long_to_bytes(solution)
         if "ASIS" in flag:
             print(flag)
