@@ -31,7 +31,7 @@ for v in self.seed[:16]:
 This is basically adding up all values from `self.seed[:16]` multiplied by constant `v` and then takes modulo.
 The loop iterates over each byte of the seed. 
 This literally kills the entropy.
-If we take 2 bytes, separately they have 8*8=64 bits of entropy.
+If we take 2 bytes, separately they have 8+8=16 bits of entropy.
 But if we add them, we get a single number `0..(256+256)` so only 9 bits.
 
 It's the same here -> initially we had 16 bytes (128 bits), but if we add them, we have a number `0..4096` so only 12 bits.
