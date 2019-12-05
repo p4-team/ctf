@@ -2,6 +2,7 @@
 
 ## 2019
 
+* [2019.12.01 **CTFZone 2019 quals**(9th place/1040 teams)](2019-12-01-ctfzone-quals)
 * [2019.11.16 **ASIS CTF 2019 Finals**(5th place/357 teams)](2019-11-16-asis-finals)
 * [2019.11.14 **Dragon CTF 2019 Finals**(1st place/14 teams) on site](2019-11-14-dragon-finals)
 * [2019.11.07 **DefCamp CTF 2019 Finals**(2nd place/16 teams) on site](2019-11-07-defcamp-finals)
