@@ -1,5 +1,8 @@
 # CTF writeups from P4 Team
 
+## 2020
+* [2020.01.04 **WhiteHat 2020 Quals**(13th place/150 teams)](2020-01-04-whitehat)
+
 ## 2019
 
 * [2019.12.01 **CTFZone 2019 quals**(9th place/1040 teams)](2019-12-01-ctfzone-quals)
