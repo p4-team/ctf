@@ -76,7 +76,7 @@ To get list of possible endings for 2 character password, we can multiply it by 
 pass2char = mat * start
 print "number of possible passwords with length 2: ", sum(pass2char)
 
-pass3char = mat * start
+pass3char = mat * pass2char
 print "number of possible passwords with length 3: ", sum(pass3char)
 ```
 
