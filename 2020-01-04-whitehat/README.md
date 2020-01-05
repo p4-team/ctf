@@ -6,3 +6,4 @@ Team: msm, chivay, c7, k.2, eternal, rodbert, nazywam
 
 * reversing01 (TODO)
 * [programming02](programming02)
+* [misc04](misc04)
