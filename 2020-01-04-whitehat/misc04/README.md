@@ -54,7 +54,7 @@ Volatility Foundation Volatility Framework 2.6.1
 73 ftp://necsoftwares.com/sourcecode/  Index of /sourcecode/ 
 [...]
 ```
-Some of the entries that stand out among things like logging into Gmail, googling Kevin Mitnick are entries 72 and 73 which access an FTP server. What's even more suspicious is that the service is not responding, because the domain is pointing at:w `1.1.1.1`. Time for some DNS archeology.
+Some of the entries that stand out among things like logging into Gmail, googling Kevin Mitnick are entries 72 and 73 which access an FTP server. What's even more suspicious is that the service is not responding, because the domain is pointing at `1.1.1.1`. Time for some DNS archeology.
 
 Searching for the history of `necsoftwares.com` domain we can find the original IP address - `172.104.71.146`, last seen on `2019-12-30`.
 
