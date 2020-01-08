@@ -120,9 +120,10 @@ All of this means that bytes of the resulting sha1 hash which are invalid utf8 s
 The bug gives some collision potential, finding two different messages(ideally one with `ls -l` and one with `cat flag.txt`) that hash to 20*`\xfffd` would result in the same signature.
 
 To find a collision we have to generate a lot of messages. This can be done thanks to many represenations of single IP address, especially with use of ipv6(although only with ipv4 it works fine as well). 
-IP `192.168.1.1` can be represented as `::0:0:0:0:ffff:192.168.1.1`, `::0:0:0:00:ffff:192.168.1.1`, `::0:0:0:000:ffff:192.168.1.1`...
-We can pad with zeros as much as we want.
 
+IP `192.168.1.1` can be represented as `::0:0:0:0:ffff:192.168.1.1`, `::0:0:0:00:ffff:192.168.1.1`, `::0:0:0:000:ffff:192.168.1.1`...
+
+This allows us to create as many messages as we want.
 So our goal is to find such ipX and ipY which both resolve to our ip that `ipX|ls -l` and `ipY|cat flag.txt` hash to 20*'\xfffd'.
 
 For that purpose we wrote [go program](main.go).
