@@ -125,4 +125,4 @@ We can pad with zeros as much as we want.
 
 So our goal is to find such ipX and ipY which both resolve to our ip that `ipX|ls -l` and `ipY|cat flag.txt` hash to 20*'\xfffd'.
 
-For that purpose we wrote ![go program](main.go).
+For that purpose we wrote [go program](main.go).
