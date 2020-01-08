@@ -124,6 +124,7 @@ To find a collision we have to generate a lot of messages. This can be done than
 IP `192.168.1.1` can be represented as `::0:0:0:0:ffff:192.168.1.1`, `::0:0:0:00:ffff:192.168.1.1`, `::0:0:0:000:ffff:192.168.1.1`...
 
 This allows us to create as many messages as we want.
-So our goal is to find such ipX and ipY which both resolve to our ip that `ipX|ls -l` and `ipY|cat flag.txt` hash to 20*`\xfffd`.
+So our goal is to find such `ipX` and `ipY` which both resolve to our ip and `ipX|ls -l`, `ipY|cat flag.txt` hash to 20*`\xfffd`.
 
+This allows us to then send a first message, get the signature, prepend to the latter one and `/exec` it.
 For that purpose we wrote [go program](main.go).
