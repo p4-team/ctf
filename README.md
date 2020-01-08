@@ -4,7 +4,7 @@
 * [2020.01.04 **WhiteHat 2020 Quals**(13th place/150 teams)](2020-01-04-whitehat)
 
 ## 2019
-
+* [2019.12.27 **hxp 36C3 CTF**(13th place/1749 teams)](2019-12-27-hxp-36c3)
 * [2019.12.01 **CTFZone 2019 quals**(9th place/1040 teams)](2019-12-01-ctfzone-quals)
 * [2019.11.16 **ASIS CTF 2019 Finals**(5th place/357 teams)](2019-11-16-asis-finals)
 * [2019.11.14 **Dragon CTF 2019 Finals**(1st place/14 teams) on site](2019-11-14-dragon-finals)
