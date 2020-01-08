@@ -92,7 +92,13 @@ func work(id int, ips chan int) {
 					current := countUndefined(b)
 
 					if current >= 19 {
-						sm.Store(b, Thing{msg, 0})
+						i, loaded := sm.LoadOrStore(b, Thing{msg, 0})
+						if loaded && (i.(Thing)).t == 1 {
+							thing := i.(Thing)
+							fmt.Println("SUCCESS")
+							fmt.Println(thing.msg)
+							fmt.Println(msg)
+						}
 						fmt.Printf("ID %d found a match\n", id)
 						fmt.Println(current)
 						fmt.Println(ip3)
