@@ -1,5 +1,6 @@
 # Nativity Scene (pwn, 312+21 pts, 8 solved)
 
+We can use `import` function to leak content of the flag file "/app/flag" as follows:
 ```
 $ nc 35.246.66.119 1337
 Solve PoW with: hashcash -mqb28 uuqmslhq
@@ -20,3 +21,5 @@ SaF{https://www.youtube.com/watch?v=bUx9yPS4ExY}
 SyntaxError: Unexpected token '{'
 
 ```
+
+The above does not depend on any _runtime functions_ that are enabled with `--allow-natives-syntax`, so I believe it is not the intended solution.

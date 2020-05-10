@@ -2,4 +2,4 @@
 
 ### Table of contents
 
-* [Nativity Scene](nativity_scene)
+* [Nativity Scene (pwn)](nativity_scene)
