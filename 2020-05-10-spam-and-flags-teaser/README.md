@@ -4,3 +4,4 @@
 
 * [Hashing@Home (pwn)](hashing_at_home)
 * [Nativity Scene (pwn)](nativity_scene)
+* [The 3D Printer Task (misc)](3d_printer)
