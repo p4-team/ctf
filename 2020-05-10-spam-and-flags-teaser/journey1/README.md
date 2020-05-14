@@ -1,4 +1,4 @@
-# Journey: Chapter I (web, 278+16 pts, 10 solved)
+# Journey: Chapter I (web, 278+16 pts, 10 solves)
 
 To quote the source of `admin.html`,
 ```html
