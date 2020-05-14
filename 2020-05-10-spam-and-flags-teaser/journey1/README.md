@@ -1,3 +1,5 @@
+# Journey: Chapter I (web, 278+16 pts, 10 solved)
+
 To quote the source of `admin.html`,
 ```html
 Your flag is: <span id="flag" style="font-weight: bold"></span></br>

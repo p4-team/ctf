@@ -1,3 +1,5 @@
+# Environmental Issues (pwn or misc, depends on who you ask; 6 flags with varying solve counts)
+
 The server greets us with
 ```
 Hello! Send me a json array of [key, val, arg] lists and I will
