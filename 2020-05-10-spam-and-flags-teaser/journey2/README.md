@@ -201,7 +201,7 @@ After all, breakpoints are implemented by overwriting an opcode with `int3`.
 
 The culprit is an entry in the `.init_array` section:
 
-![init_array.png]
+![Binary Ninja screenshot because copy-paste is wonky](init_array.png)
 
 I noticed this function during the CTF, but the code looked like decompiled
 `/dev/urandom` at a glance, and [the XREF panel was empty](https://github.com/Vector35/binaryninja-cloud-public/issues/123), so I concluded that it's probably a false positive.
