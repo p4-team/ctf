@@ -209,6 +209,8 @@ I noticed this function during the CTF, but the code looked like decompiled
 However, further analysis reveals that it checksums most of the code section
 and derives an address from the checksum, which is then patched with a `xor`.
 
+![](init_array_graph.png)
+
 Checking with gdb, we see that the address being patched is `0x400902`. This
 corresponds to an `add` instruction in the RC4 code, which this xor turns into
 a `sub`. The following change in the decoding script makes it decrypt the flag
