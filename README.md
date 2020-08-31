@@ -1,6 +1,7 @@
 # CTF writeups from P4 Team
 
 ## 2020
+* [2020.08.22 **Google CTF 2020**(9th place/625 teams)](2020-08-22-google-ctf)
 * [2020.05.10 **SpamAndFlags Teaser 2020**(3rd place/531 teams)](2020-05-10-spam-and-flags-teaser)
 * [2020.01.04 **WhiteHat 2020 Quals**(13th place/150 teams)](2020-01-04-whitehat)
 
