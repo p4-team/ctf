@@ -37,6 +37,6 @@ Thus, the hash won't change if we increment one of the bytes while decrementing
 another:
 
 ```
-curl https://crypto01.chal.ctf.westerns.tokyo -d 'twctf: qleare give me the flag of 2020'
+$ curl https://crypto01.chal.ctf.westerns.tokyo -d 'twctf: qleare give me the flag of 2020'
 Congrats! The flag is TWCTF{colorfully_decorated_dream}
 ```
