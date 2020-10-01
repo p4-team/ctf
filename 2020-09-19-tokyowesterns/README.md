@@ -8,3 +8,4 @@
 * [The Melancholy of Alice (crypto)](https://ctftime.org/writeup/23633)
 * [urlcheck v1 (web)](https://bonusplay.pl/writeups/urlcheckv1)
 * [Angular of the Universe (flag 1), and Angular of another Universe (web)](https://bonusplay.pl/writeups/angular_of_the_universe)
+* [smash (pwn)](smash)
