@@ -1,4 +1,4 @@
-# We reverse the binary to obtain the parameters, then perform RSA decryption:
+# We reverse the binary to obtain the parameters, then perform RSA:
 
 from Crypto.PublicKey import RSA
 from Crypto.Util.number import long_to_bytes
