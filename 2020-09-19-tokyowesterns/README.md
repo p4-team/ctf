@@ -9,3 +9,4 @@
 * [urlcheck v1 (web)](https://bonusplay.pl/writeups/urlcheckv1)
 * [Angular of the Universe (flag 1), and Angular of another Universe (web)](https://bonusplay.pl/writeups/angular_of_the_universe)
 * [smash (pwn)](smash)
+* [Reversing iS Amazing (re)](reversing_is_amazing/rsa.py)
