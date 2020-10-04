@@ -16,7 +16,7 @@ After failing to figure out how to open a ROM in higan, I cloned the source for 
 Some strategic source spelunking quickly lead me to the code responsible for dispatching an instruction:
 
 ```cpp
-   // x6502.cpp, around line 490
+   // x6502.cpp, in X6502_Run, around line 490
    IncrementInstructionsCounters();
 
    _PI=_P;
@@ -120,7 +120,7 @@ New PC: 0x9315, [0x0031] = 00, Y = 00
 New PC: 0x9317, [0x0031] = 00, Y = 00
 ```
 
-Looks like we need to patch `$9916`, then. Careful to take into account the iNES header, we try our modification out:
+Looks like we need to patch `$9916`, then. Careful to take into account the iNES header and ROM load address, we try our modification out:
 
 ```python
 >>> d = open('impossible_game.nes', 'rb').read()
