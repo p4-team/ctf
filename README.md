@@ -1,6 +1,7 @@
 # CTF writeups from P4 Team
 
 ## 2020
+* [2020.10.04 **Trend Micro CTF 2020 Qualifiers**(5th place/67 teams)](2020-10-04-trendmicro)
 * [2020.09.19 **TokyoWesterns CTF 2020**(8th place/648 teams)](2020-09-19-tokyowesterns)
 * [2020.08.22 **Google CTF 2020**(9th place/625 teams)](2020-08-22-google-ctf)
 * [2020.05.10 **SpamAndFlags Teaser 2020**(3rd place/531 teams)](2020-05-10-spam-and-flags-teaser)
