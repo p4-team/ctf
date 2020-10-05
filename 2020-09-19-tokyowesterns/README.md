@@ -16,3 +16,4 @@
 * [tamarin (re)](tamarin)
 * [Does Linux dream of Windows (web, misc)](does_linux_dream_of_windows)
 * [bfnote (web)](bfnote)
+* [XOR and shift encryptor (crypto)](xor_and_shift/solve.sage)
