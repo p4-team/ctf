@@ -12,3 +12,4 @@
 * [Reversing iS Amazing (re)](reversing_is_amazing/rsa.py)
 * [Nothing more to say (pwn)](nothing_more_to_say/exploit.py)
 * [mask (misc)](mask/solve.py)
+* [tamarin (re)](tamarin/README.md)
