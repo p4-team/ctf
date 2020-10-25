@@ -1,0 +1,242 @@
+SECTOR 0
+sets X 1; Y 0; Z 30
+print greeting
+set V as ret addr, and go to X(1)
+finally prints goodbye
+
+SECTOR 1 - load @ X
+; looks like generic call?
+; usage: 
+; 03.hi: -0-+0.0-+.0 [-1b8d]   mov V, pc+X11.hi
+; 03.lo: +++++.000.0 [ 2649]   jmp 1+Z26.lo
+; 04.hi: 00000.00+.+ [    4] - sector + 1
+; 04.lo: 00000.-+0.0 [  -12] - offset
+
+
+
+X26lo = ret
+
+V = X12hi ; @X13
+ACC = X26 ;ret
+[V] = ACC
+V += 3
+X12hi = V
+; the above is: [X12hi++] = ret
+; so: push? with X12hi as sp
+
+V = X26lo ; ret
+ACC = [V-1] ;
+X26 = ACC ; ret = [*(ret-1)]
+V = X26hi ; 1
+Y = drumsector V-1 ; Y = sector 0
+V = x26lo ; go there?
+jmp V
+
+then:
+06.lo: -00-0.0-0.0 [-1a9d]   mov V, X12.hi
+07.hi: -0-++.0--.0 [-1b42]   add V, X11.lo
+07.lo: -00-0.00-.0 [-1a97]   mov X12.hi, V
+08.hi: 00000.+00.+ [   1c]   (V+) mov ACC, Y13.hi ; ACC = [--sp]
+08.lo: -+++-.-++.0 [ -daa]   mov X26.lo, ACC ; 
+09.hi: -+++0.0-0.0 [ -d53]   mov V, X26.hi
+09.lo: 00000.-0-.+ [  -1d]   (V+) Y = drumsector -1
+10.hi: -++++.0-0.0 [ -d02]   mov V, X26.lo
+10.lo: 0000+.000.+ [   52]   (V+) jmp 1+Y13.lo
+11.hi: 00000.00+.0 [    3]   mov Y13.hi, pc
+11.lo: 00000.00-.0 [   -3]   mov Y13.hi, V
+12.hi: 0000-.000.- [  -52]   (V-)jmp 1+Y13.lo
+
+
+
+SECTOR 3 - load @ Y
+; menu print & dispatch
+7.lo
+while(1) {
+	put menu
+	put menu part 2 (this)
+	call S4
+	if Z0 == 1:
+		call S5.21.hi+1
+	if z0 == 2: ; trivia
+		call S10.13.hi+1
+	3: ; admin
+		call S6.X26.lo+1
+	4:
+		return
+	puts sec34 ; wrong menu id
+}
+
+SECTOR 4
+; get int
+
+V = 0
+A = [V+str]
+if A == 0: Z0=Y26, return
+A -= 0x30
+if A < 0: goto bad
+[V+str] = A
+A -= 9
+if A > 0: goto bad
+A = [V+str]
+B = y26 ; 0
+y26 += 10*B + A
+V++
+jmp y1lo
+bad:
+puts 33 ; wrong char
+
+SECTOR 5
+; korobeiniki
+
+SECTOR 6
+; pass
+
+puts inputpass
+gets pass into SEC9
+
+ACC = pass20hi
+if pass20hi != 0: print "too long", return
+SEC15 = pass
+call S8
+SEC2 = X
+X = SEC7
+V = 0x3a
+
+loop
+A = X[V] - Z[V]
+if A != 0:
+  print bad, return
+
+; decrypt now...
+while 1:
+	V--
+	if V >= 0:
+	  Z26lo = V
+	  ACC = V
+	  ACC wxor= -1
+      if ACC < 0: continue
+
+X = S16
+Z = S15
+V = 0x3a
+A = X[V] - Z[V]
+if A < 0:
+	A += 256
+Z[V] += A
+while 1:
+	V--
+	Z26lo = V
+	A = V wxor -1
+	if A < 0: continue
+
+S15 = S35
+puts Z
+return
+
+SECTOR 8
+; password transformation? pass in Z
+S2 = X
+V = 0x3a
+loopx:
+Z25lo += Z[V]
+V--
+while:
+	Z26hi = V
+	A = Z26hi wxor -1
+	as long A < 0
+
+V = 0x3a
+Z26lo = V
+
+bigloop:
+	A = Z[V]
+	V = 0
+	while:
+		A -= 0x1b
+		if A < 0: next
+		V++
+
+	next:
+	A += 0x1b
+	X = drumsector 17+V
+	A <<= 1
+	A -= 1
+	Z26hi = A
+	V = Z26hi
+	A = X[V]
+	V = Z26lo
+	Z[V] = A
+	V--
+	if V < 0: jmp next2
+	while:
+		Z26lo = V
+		Acc = Z26lo wxor -1
+		if ACC < 0: loop
+	bigloop goto
+
+Z25lo--
+
+
+
+
+
+
+
+SECTOR 8:
+00.hi:    drumsector 2 = X
+00.lo:    mov V, 0x3a
+firstloop:
+01.hi:    mov ACC, apple
+01.lo:    (V+) add ACC, Z0.hi
+02.hi:    mov apple, ACC
+
+02.lo:    add V, -1
+03.hi:    jneg hugeloop
+
+03.lo:    mov tmp, V
+04.hi:    mov ACC, tmp
+04.lo:    weirdxor ACC, -1
+05.hi:    jneg 1+Y2.hi
+05.lo:    jmp firstloop
+
+hugeloop:
+06.hi:    mov V, 0x3a
+06.lo:    mov cucumber, V
+
+bigloop:
+07.hi:    (V+) mov ACC, Z0.hi
+07.lo:    mov V, 0
+
+08.hi:    sub ACC, 27
+08.lo:    jneg 1+Y9.lo
+
+09.hi:    add V, 1
+09.lo:    jmp 1+Y7.lo
+
+10.hi:    add ACC, 27
+10.lo:    (V+) X = drumsector 17
+11.hi:    shift ACC, 1
+11.lo:    sub ACC, 1
+12.hi:    mov tmp, ACC
+12.lo:    mov V, tmp
+13.hi:    (V+) mov ACC, X0.hi
+13.lo:    mov V, cucumber
+14.hi:    (V+) mov Z0.hi, ACC
+
+14.lo:    add V, -1
+15.hi:    jneg 1+Y17.lo
+
+15.lo:    mov cucumber, V
+16.hi:    mov ACC, cucumber
+16.lo:    weirdxor ACC, -1
+17.hi:    jneg 1+Y14.hi
+17.lo:    jmp bigloop
+
+18.hi:    mov ACC, apple
+18.lo:    sub ACC, 1
+19.hi:    mov apple, ACC
+19.lo:    jpos hugeloop
+
+20.hi:    X = drumsector 2
+20.lo:    return
+

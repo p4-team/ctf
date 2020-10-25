@@ -1,0 +1,1078 @@
+SECTOR 0:
+00.hi: -0-.0000+.0 [00033]   Y = drumsector 0
+00.lo: 000.0--00.0 [ff49c]   jmp 1+Y1.hi
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: -0-.-00+-.0 [fe6e3]   X = drumsector 1
+02.hi: -0-.++0++.0 [02352]   Z = drumsector 30
+02.lo: -00.+----.0 [00cde]   IO.puts Z
+03.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+03.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+04.hi: 00+.00000.+ [00004]   [ENCRYPTED] mov Y13.hi, pc
+04.lo: -+0.00000.0 [fffee]   shift ACC, Y13.hi
+05.hi: -0-.+++-0.0 [023f4]   Z = drumsector 32
+05.lo: -00.+----.0 [00cde]   IO.puts Z
+06.hi: +--.00000.0 [0000f]   halt
+06.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 1:
+00.hi: 00-.-++++.0 [ff304]   mov X26.lo, V
+00.lo: 0-0.-00-0.0 [fe563]   mov V, X12.hi
+01.hi: +00.-+++-.0 [ff280]   mov ACC, X26.lo
+01.lo: -++.00000.+ [ffff2]   [ENCRYPTED] mov Y13.hi, ACC
+02.hi: 0--.-0-+0.0 [fe46d]   add V, X11.hi
+02.lo: 00-.-00-0.0 [fe569]   mov X12.hi, V
+03.hi: 0-0.-++++.0 [ff2fe]   mov V, X26.lo
+03.lo: +00.0000-.+ [fffcb]   [ENCRYPTED] mov ACC, Y13.lo
+04.hi: -++.-+++-.0 [ff256]   mov X26.lo, ACC
+04.lo: 0-0.-+++0.0 [ff2ad]   mov V, X26.hi
+05.hi: -0-.00000.+ [fffe3]   [ENCRYPTED] Y = drumsector -1
+05.lo: 0-0.-++++.0 [ff2fe]   mov V, X26.lo
+06.hi: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+06.lo: 0-0.-00-0.0 [fe563]   mov V, X12.hi
+07.hi: 0--.-0-++.0 [fe4be]   add V, X11.lo
+07.lo: 00-.-00-0.0 [fe569]   mov X12.hi, V
+08.hi: +00.00000.+ [0001c]   [ENCRYPTED] mov ACC, Y13.hi
+08.lo: -++.-+++-.0 [ff256]   mov X26.lo, ACC
+09.hi: 0-0.-+++0.0 [ff2ad]   mov V, X26.hi
+09.lo: -0-.00000.+ [fffe3]   [ENCRYPTED] Y = drumsector -1
+10.hi: 0-0.-++++.0 [ff2fe]   mov V, X26.lo
+10.lo: 000.0000+.+ [00052]   [ENCRYPTED] jmp 1+Y13.lo
+11.hi: 00+.00000.0 [00003]   mov Y13.hi, pc
+11.lo: 00-.00000.0 [ffffd]   mov Y13.hi, V
+12.hi: 000.0000-.- [fffae]   [ENCRYPTED] jmp 1+Y13.lo
+12.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.hi: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+26.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 2:
+SECTOR 3:
+--- as string:
+4. Остановить
+
+---
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: -0-.+++--.0 [023a3]   Z = drumsector 31
+08.hi: -00.+----.0 [00cde]   IO.puts Z
+08.lo: -00.0----.0 [ff33d]   IO.puts Y
+09.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+09.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+10.hi: 0+-.00000.- [00005]   [ENCRYPTED] jneg 1+Y13.hi
+10.lo: +++.0000-.+ [fffd7]   [ENCRYPTED] add ACC, Y13.lo * BETA
+11.hi: +00.+----.0 [00d14]   mov ACC, Z0.lo
+11.lo: +0-.0++++.0 [00cc0]   sub ACC, Y26.lo
+12.hi: 0+0.00+0+.0 [00333]   jzer 1+Y16.lo
+12.lo: +0-.0++++.0 [00cc0]   sub ACC, Y26.lo
+13.hi: 0+0.0+-0+.0 [0060c]   jzer 1+Y19.lo
+13.lo: +0-.0++++.0 [00cc0]   sub ACC, Y26.lo
+14.hi: 0+0.0+00+.0 [008e5]   jzer 1+Y22.lo
+14.lo: +0-.0++++.0 [00cc0]   sub ACC, Y26.lo
+15.hi: 0+0.0++00.0 [00b6d]   jzer 1+Y25.hi
+15.lo: -0-.+++0-.0 [02496]   Z = drumsector 34
+16.hi: -00.+----.0 [00cde]   IO.puts Z
+16.lo: 000.0-+00.0 [ffa4e]   jmp 1+Y7.hi
+17.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+17.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+18.hi: 0+-.00000.0 [00006]   jneg 1+Y13.hi
+18.lo: +0-.00000.0 [00018]   sub ACC, Y13.hi
+19.hi: 000.0-+00.0 [ffa4e]   jmp 1+Y7.hi
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+20.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+21.hi: 0++.00000.- [0000b]   [ENCRYPTED] jpos 1+Y13.hi
+21.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.hi: 000.0-+00.0 [ffa4e]   jmp 1+Y7.hi
+22.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+23.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+24.hi: 0+-.00000.+ [00007]   [ENCRYPTED] jneg 1+Y13.hi
+24.lo: +++.0000-.+ [fffd7]   [ENCRYPTED] add ACC, Y13.lo * BETA
+25.hi: 000.0-+00.0 [ffa4e]   jmp 1+Y7.hi
+25.lo: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+SECTOR 4:
+00.hi: -0-.+++00.0 [024e7]   Z = drumsector 35
+00.lo: -00.+---0.0 [00d2f]   IO.gets Z
+01.hi: 0-0.0+0++.0 [009c6]   mov V, Y23.lo
+01.lo: +00.+---0.+ [00d66]   [ENCRYPTED] mov ACC, Z0.hi
+02.hi: 0+0.0-+0+.0 [ffaa8]   jzer 1+Y7.lo
+02.lo: +0-.0++0+.0 [00bcd]   sub ACC, Y25.lo
+03.hi: 0+-.00--0.0 [ffc3a]   jneg 1+Y9.hi
+03.lo: -++.+---0.+ [00d3c]   [ENCRYPTED] mov Z0.hi, ACC
+04.hi: +0-.0++-+.0 [00ada]   sub ACC, Y24.lo
+04.lo: 0++.00--0.0 [ffc40]   jpos 1+Y9.hi
+05.hi: +00.+---0.+ [00d66]   [ENCRYPTED] mov ACC, Z0.hi
+05.lo: +-+.0+++-.0 [00c1b]   mov BETA, Y26.lo
+06.hi: +++.0++00.0 [00b8b]   add ACC, Y25.hi * BETA
+06.lo: -++.0+++-.0 [00bf7]   mov Y26.lo, ACC
+07.hi: 0--.0++-0.0 [00a65]   add V, Y24.hi
+07.lo: 000.0--00.0 [ff49c]   jmp 1+Y1.hi
+08.hi: +00.0+++-.0 [00c21]   mov ACC, Y26.lo
+08.lo: -++.+----.0 [00cea]   mov Z0.lo, ACC
+09.hi: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+09.lo: -0-.+++-+.0 [02445]   Z = drumsector 33
+10.hi: -00.+----.0 [00cde]   IO.puts Z
+10.lo: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.hi: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+24.lo: 0+0.00000.0 [00009]   jzer 1+Y13.hi
+25.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+25.lo: --+.0000+.0 [00030]   unk #48 (0x30)
+SECTOR 5:
+00.hi: +--.----+.+ [fda69]   [ENCRYPTED] halt
+00.lo: 0++.----0.- [fda13]   [ENCRYPTED] jpos 1+X0.hi
+01.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+01.lo: +--.----+.- [fda67]   [ENCRYPTED] halt
+02.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+02.lo: 0++.----0.- [fda13]   [ENCRYPTED] jpos 1+X0.hi
+03.hi: 0+0.----+.0 [fda62]   jzer 1+X0.lo
+03.lo: 0+0.----0.0 [fda11]   jzer 1+X0.hi
+04.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+04.lo: +--.----+.+ [fda69]   [ENCRYPTED] halt
+05.hi: +--.----0.- [fda16]   [ENCRYPTED] halt
+05.lo: 0++.----0.0 [fda14]   jpos 1+X0.hi
+06.hi: 0++.----+.- [fda64]   [ENCRYPTED] jpos 1+X0.lo
+06.lo: 0++.----0.- [fda13]   [ENCRYPTED] jpos 1+X0.hi
+07.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+07.lo: +--.----+.- [fda67]   [ENCRYPTED] halt
+08.hi: +--.----+.+ [fda69]   [ENCRYPTED] halt
+08.lo: 0++.----+.0 [fda65]   jpos 1+X0.lo
+09.hi: 0+0.----+.0 [fda62]   jzer 1+X0.lo
+09.lo: 0+0.----+.0 [fda62]   jzer 1+X0.lo
+10.hi: ---.----+.- [fda31]   [ENCRYPTED] unk #-9679 (0x-25cf)
+10.lo: ---.----0.- [fd9e0]   [ENCRYPTED] unk #-9760 (0x-2620)
+11.hi: +--.----+.- [fda67]   [ENCRYPTED] halt
+11.lo: +-0.----0.- [fda19]   [ENCRYPTED] weirdxor ACC, X0.hi
+12.hi: +-+.----+.0 [fda6e]   mov BETA, X0.lo
+12.lo: +-0.----0.+ [fda1b]   [ENCRYPTED] weirdxor ACC, X0.hi
+13.hi: +-0.----0.- [fda19]   [ENCRYPTED] weirdxor ACC, X0.hi
+13.lo: +--.---0-.+ [fdaba]   [ENCRYPTED] halt
+14.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+14.lo: +--.----+.+ [fda69]   [ENCRYPTED] halt
+15.hi: +--.----0.- [fda16]   [ENCRYPTED] halt
+15.lo: 0++.----0.0 [fda14]   jpos 1+X0.hi
+16.hi: 0++.----+.- [fda64]   [ENCRYPTED] jpos 1+X0.lo
+16.lo: 0++.----0.- [fda13]   [ENCRYPTED] jpos 1+X0.hi
+17.hi: 0++.----0.0 [fda14]   jpos 1+X0.hi
+17.lo: +--.----+.- [fda67]   [ENCRYPTED] halt
+18.hi: +--.----+.+ [fda69]   [ENCRYPTED] halt
+18.lo: 0++.----+.0 [fda65]   jpos 1+X0.lo
+19.hi: 0+0.----+.0 [fda62]   jzer 1+X0.lo
+19.lo: 0+0.----+.0 [fda62]   jzer 1+X0.lo
+20.hi: ---.----+.- [fda31]   [ENCRYPTED] unk #-9679 (0x-25cf)
+20.lo: ---.-----.- [fd98f]   [ENCRYPTED] unk #-9841 (0x-2671)
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: -0-.+0+-0.0 [01b69]   Z = drumsector 5
+22.hi: -00.+-+++.0 [01518]   IO.audio Z
+22.lo: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+SECTOR 6:
+00.hi: -0-.++0+-.0 [022b0]   Z = drumsector 28
+00.lo: -00.+----.0 [00cde]   IO.puts Z
+01.hi: -0-.+0+0+.0 [01cad]   Z = drumsector 9
+01.lo: -00.+---0.0 [00d2f]   IO.gets Z
+02.hi: +00.++-+0.0 [02061]   mov ACC, Z20.hi
+02.lo: 0+0.0-000.0 [ff77e]   jzer 1+Y4.hi
+03.hi: -0-.++0+0.0 [02301]   Z = drumsector 29
+03.lo: -00.+----.0 [00cde]   IO.puts Z
+04.hi: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+04.lo: -0+.++--+.0 [01e99]   drumsector 15 = Z
+05.hi: 0-+.-0-+0.0 [fe473]   mov V, pc+X11.hi
+05.lo: 000.+++++.0 [02649]   jmp 1+Z26.lo
+06.hi: 0+0.00000.0 [00009]   jzer 1+Y13.hi
+06.lo: +++.0000-.+ [fffd7]   [ENCRYPTED] add ACC, Y13.lo * BETA
+07.hi: -0+.-00+0.0 [fe73a]   drumsector 2 = X
+07.lo: -0-.-0+0-.0 [fe8c9]   X = drumsector 7
+08.hi: 0-0.++00+.0 [02274]   mov V, Z22.lo
+08.lo: +00.----0.+ [fda24]   [ENCRYPTED] mov ACC, X0.hi
+09.hi: +0-.+---0.+ [00d63]   [ENCRYPTED] sub ACC, Z0.hi
+09.lo: 0+0.00-+0.0 [ffe23]   jzer 1+Y11.hi
+10.hi: -0-.++00+.0 [0225f]   Z = drumsector 27
+10.lo: -00.+----.0 [00cde]   IO.puts Z
+11.hi: 000.0++-0.0 [00a71]   jmp 1+Y24.hi
+11.lo: 0--.+++-0.0 [02406]   add V, Z24.hi
+12.hi: 0+-.000++.0 [0014a]   jneg 1+Y14.lo
+12.lo: 00-.+++++.0 [02646]   mov Z26.lo, V
+13.hi: +00.+++++.0 [02664]   mov ACC, Z26.lo
+13.lo: +-0.+++-0.0 [02424]   weirdxor ACC, Z24.hi
+14.hi: 0+-.00-+0.0 [ffe20]   jneg 1+Y11.hi
+14.lo: 000.0-++0.0 [ffb41]   jmp 1+Y8.hi
+15.hi: -0-.-+-0-.0 [feba2]   X = drumsector 16
+15.lo: -0-.++--+.0 [01e93]   Z = drumsector 15
+16.hi: 0-0.++00+.0 [02274]   mov V, Z22.lo
+16.lo: +00.----0.+ [fda24]   [ENCRYPTED] mov ACC, X0.hi
+17.hi: +0-.+---0.+ [00d63]   [ENCRYPTED] sub ACC, Z0.hi
+17.lo: 0+0.0+--+.0 [00519]   jzer 1+Y18.lo
+18.hi: 0++.0+--+.0 [0051c]   jpos 1+Y18.lo
+18.lo: +0+.+++00.0 [02523]   add ACC, Z25.hi
+19.hi: -++.+---0.+ [00d3c]   [ENCRYPTED] mov Z0.hi, ACC
+19.lo: 0--.+++-0.0 [02406]   add V, Z24.hi
+20.hi: 0+-.0+00+.0 [008e2]   jneg 1+Y22.lo
+20.lo: 00-.+++++.0 [02646]   mov Z26.lo, V
+21.hi: +00.+++++.0 [02664]   mov ACC, Z26.lo
+21.lo: +-0.+++-0.0 [02424]   weirdxor ACC, Z24.hi
+22.hi: 0+-.0+-00.0 [005b8]   jneg 1+Y19.hi
+22.lo: 000.00+00.0 [002d9]   jmp 1+Y16.hi
+23.hi: -0-.-++00.0 [ff1a5]   X = drumsector 35
+23.lo: -0+.-+--+.0 [feb57]   drumsector 15 = X
+24.hi: -00.+----.0 [00cde]   IO.puts Z
+24.lo: -0-.-00+0.0 [fe734]   X = drumsector 2
+25.hi: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+25.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 7:
+00.hi: 00-.0000+.+ [0004f]   [ENCRYPTED] mov Y13.lo, V
+00.lo: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+01.hi: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+01.lo: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+02.hi: 000.0000+.+ [00052]   [ENCRYPTED] jmp 1+Y13.lo
+02.lo: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+03.hi: +0+.0000+.- [0006e]   [ENCRYPTED] add ACC, Y13.lo
+03.lo: 0+-.000+-.- [000a7]   [ENCRYPTED] jneg 1+Y14.lo
+04.hi: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+04.lo: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+05.hi: -+-.0000+.+ [0003d]   [ENCRYPTED] unk #61 (0x3d)
+05.lo: +0+.00000.- [0001d]   [ENCRYPTED] add ACC, Y13.hi
+06.hi: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+06.lo: +-0.00000.+ [00013]   [ENCRYPTED] weirdxor ACC, Y13.hi
+07.hi: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+07.lo: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+08.hi: -+0.000+0.+ [000e2]   [ENCRYPTED] shift ACC, Y14.hi
+08.lo: +0+.00000.- [0001d]   [ENCRYPTED] add ACC, Y13.hi
+09.hi: -++.0000+.- [00041]   [ENCRYPTED] mov Y13.lo, ACC
+09.lo: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+10.hi: 0-0.0000+.+ [00049]   [ENCRYPTED] mov V, Y13.lo
+10.lo: +00.0000+.0 [0006c]   mov ACC, Y13.lo
+11.hi: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+11.lo: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+12.hi: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+12.lo: -+-.0000+.+ [0003d]   [ENCRYPTED] unk #61 (0x3d)
+13.hi: +--.00000.- [0000e]   [ENCRYPTED] halt
+13.lo: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+14.hi: -+-.0000+.+ [0003d]   [ENCRYPTED] unk #61 (0x3d)
+14.lo: -++.0000+.- [00041]   [ENCRYPTED] mov Y13.lo, ACC
+15.hi: ++-.0000+.0 [00072]   mov ACC, Y13.lo + ACC*BETA
+15.lo: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+16.hi: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+16.lo: ++0.00000.- [00023]   [ENCRYPTED] mul ACC, Y13.hi
+17.hi: 0++.00000.- [0000b]   [ENCRYPTED] jpos 1+Y13.hi
+17.lo: -++.0000+.- [00041]   [ENCRYPTED] mov Y13.lo, ACC
+18.hi: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+18.lo: 0-0.0000+.+ [00049]   [ENCRYPTED] mov V, Y13.lo
+19.hi: 0++.0000+.0 [0005d]   jpos 1+Y13.lo
+19.lo: 0+-.00000.+ [00007]   [ENCRYPTED] jneg 1+Y13.hi
+SECTOR 8:
+00.hi: -0+.-00+0.0 [fe73a]   drumsector 2 = X
+00.lo: 0-0.++00+.0 [02274]   mov V, Z22.lo
+01.hi: +00.+++0+.0 [02571]   mov ACC, Z25.lo
+01.lo: +0+.+---0.+ [00d69]   [ENCRYPTED] add ACC, Z0.hi
+02.hi: -++.+++0+.0 [02547]   mov Z25.lo, ACC
+02.lo: 0--.+++-0.0 [02406]   add V, Z24.hi
+03.hi: 0+-.0-0++.0 [ff8bf]   jneg 1+Y5.lo
+03.lo: 00-.++++0.0 [025f5]   mov Z26.hi, V
+04.hi: +00.++++0.0 [02613]   mov ACC, Z26.hi
+04.lo: +-0.+++-0.0 [02424]   weirdxor ACC, Z24.hi
+05.hi: 0+-.0--+0.0 [ff595]   jneg 1+Y2.hi
+05.lo: 000.0---+.0 [ff3fa]   jmp 1+Y0.lo
+06.hi: 0-0.++00+.0 [02274]   mov V, Z22.lo
+06.lo: 00-.+++++.0 [02646]   mov Z26.lo, V
+07.hi: +00.+---0.+ [00d66]   [ENCRYPTED] mov ACC, Z0.hi
+07.lo: 0-0.++0+0.0 [02316]   mov V, Z23.hi
+08.hi: +0-.++000.0 [02244]   sub ACC, Z22.hi
+08.lo: 0+-.00--+.0 [ffc8b]   jneg 1+Y9.lo
+09.hi: 0--.++0++.0 [02364]   add V, Z23.lo
+09.lo: 000.0-+0+.0 [ffa9f]   jmp 1+Y7.lo
+10.hi: +0+.++000.0 [0224a]   add ACC, Z22.hi
+10.lo: -0-.-+-00.+ [febf4]   [ENCRYPTED] X = drumsector 17
+11.hi: -+0.++0++.0 [0235e]   shift ACC, Z23.lo
+11.lo: +0-.++0++.0 [02388]   sub ACC, Z23.lo
+12.hi: -++.++++0.0 [025e9]   mov Z26.hi, ACC
+12.lo: 0-0.++++0.0 [025ef]   mov V, Z26.hi
+13.hi: +00.----0.+ [fda24]   [ENCRYPTED] mov ACC, X0.hi
+13.lo: 0-0.+++++.0 [02640]   mov V, Z26.lo
+14.hi: -++.+---0.+ [00d3c]   [ENCRYPTED] mov Z0.hi, ACC
+14.lo: 0--.+++-0.0 [02406]   add V, Z24.hi
+15.hi: 0+-.00+++.0 [00423]   jneg 1+Y17.lo
+15.lo: 00-.+++++.0 [02646]   mov Z26.lo, V
+16.hi: +00.+++++.0 [02664]   mov ACC, Z26.lo
+16.lo: +-0.+++-0.0 [02424]   weirdxor ACC, Z24.hi
+17.hi: 0+-.000+0.0 [000f9]   jneg 1+Y14.hi
+17.lo: 000.0-+-+.0 [ff9ac]   jmp 1+Y6.lo
+18.hi: +00.+++0+.0 [02571]   mov ACC, Z25.lo
+18.lo: +0-.++0++.0 [02388]   sub ACC, Z23.lo
+19.hi: -++.+++0+.0 [02547]   mov Z25.lo, ACC
+19.lo: 0++.0-0++.0 [ff8c5]   jpos 1+Y5.lo
+20.hi: -0-.-00+0.0 [fe734]   X = drumsector 2
+20.lo: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+SECTOR 9:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.hi: +00.00000.0 [0001b]   mov ACC, Y13.hi
+22.lo: -0+.0000+.+ [0003a]   [ENCRYPTED] drumsector 0 = Y
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+24.hi: 000.00000.- [fffff]   [ENCRYPTED] jmp 1+Y13.hi
+24.lo: 0+-.00000.0 [00006]   jneg 1+Y13.hi
+25.hi: 0++.000+0.+ [00100]   [ENCRYPTED] jpos 1+Y14.hi
+25.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 10:
+--- as string:
+Интересный факт о Сетунь:
+
+---
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: 0-0.0+++0.0 [00c4e]   mov V, Y26.hi
+14.hi: -0-.+0++-.0 [01cfe]   Z = drumsector 10
+14.lo: -00.+----.0 [00cde]   IO.puts Z
+15.hi: -0-.+0++-.+ [01cff]   [ENCRYPTED] Z = drumsector 10
+15.lo: -00.+----.0 [00cde]   IO.puts Z
+16.hi: 0--.0++00.0 [00b58]   add V, Y25.hi
+16.lo: 0++.00++0.0 [003d8]   jpos 1+Y17.hi
+17.hi: 0-0.0++0+.0 [00bac]   mov V, Y25.lo
+17.lo: 00-.0+++0.0 [00c54]   mov Y26.hi, V
+18.hi: -0+.00++-.0 [00363]   drumsector 10 = Y
+18.lo: 000.--+-0.0 [fdfba]   jmp 1+X6.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.hi: 000.00000.- [fffff]   [ENCRYPTED] jmp 1+Y13.hi
+25.lo: 00+.00000.+ [00004]   [ENCRYPTED] mov Y13.hi, pc
+26.hi: 00+.00000.+ [00004]   [ENCRYPTED] mov Y13.hi, pc
+26.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 11:
+--- as string:
+Для установки машины требуется площадь 25-30 м2.
+
+---
+24.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+24.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 12:
+--- as string:
+Скорость вращения магнитного барабана 6000 об/мин.
+
+---
+25.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+25.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 13:
+--- as string:
+Потребляемая мощность — 2,5 кВт.
+
+---
+16.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+16.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 14:
+--- as string:
+Быстродействие – 4800 оп/сек.
+
+---
+SECTOR 15:
+SECTOR 16:
+00.hi: -0-.000+0.- [000d4]   [ENCRYPTED] Y = drumsector 2
+00.lo: 0+0.000+0.0 [000fc]   jzer 1+Y14.hi
+01.hi: 00+.0000+.0 [00054]   mov Y13.lo, pc
+01.lo: -+-.000+-.- [0008c]   [ENCRYPTED] unk #140 (0x8c)
+02.hi: 0+-.0000+.- [00056]   [ENCRYPTED] jneg 1+Y13.lo
+02.lo: 00+.0000+.+ [00055]   [ENCRYPTED] mov Y13.lo, pc
+03.hi: ++-.0000+.0 [00072]   mov ACC, Y13.lo + ACC*BETA
+03.lo: 00+.0000+.+ [00055]   [ENCRYPTED] mov Y13.lo, pc
+04.hi: +-+.0000+.+ [00067]   [ENCRYPTED] mov BETA, Y13.lo
+04.lo: -++.000+-.+ [00094]   [ENCRYPTED] mov Y14.lo, ACC
+05.hi: 0-+.0000+.0 [0004b]   mov V, pc+Y13.lo
+05.lo: +-+.0000+.0 [00066]   mov BETA, Y13.lo
+06.hi: 0++.0000+.0 [0005d]   jpos 1+Y13.lo
+06.lo: 0+-.0000+.+ [00058]   [ENCRYPTED] jneg 1+Y13.lo
+07.hi: +--.0000+.0 [00060]   halt
+07.lo: --0.000+-.+ [0007f]   [ENCRYPTED] unk #127 (0x7f)
+08.hi: 0+0.0000+.+ [0005b]   [ENCRYPTED] jzer 1+Y13.lo
+08.lo: +--.0000+.- [0005f]   [ENCRYPTED] halt
+09.hi: 0-0.0000+.+ [00049]   [ENCRYPTED] mov V, Y13.lo
+09.lo: +-+.0000+.0 [00066]   mov BETA, Y13.lo
+10.hi: +0+.0000+.0 [0006f]   add ACC, Y13.lo
+10.lo: -0+.000+-.+ [0008b]   [ENCRYPTED] drumsector 1 = Y
+11.hi: -0+.000+-.- [00089]   [ENCRYPTED] drumsector 1 = Y
+11.lo: +--.0000+.0 [00060]   halt
+12.hi: +--.0000+.+ [00061]   [ENCRYPTED] halt
+12.lo: 00+.0000+.+ [00055]   [ENCRYPTED] mov Y13.lo, pc
+13.hi: 0+-.0000+.0 [00057]   jneg 1+Y13.lo
+13.lo: -0-.000+-.+ [00085]   [ENCRYPTED] Y = drumsector 1
+14.hi: 0-+.0000+.0 [0004b]   mov V, pc+Y13.lo
+14.lo: 00-.0000+.- [0004d]   [ENCRYPTED] mov Y13.lo, V
+15.hi: +-0.0000+.+ [00064]   [ENCRYPTED] weirdxor ACC, Y13.lo
+15.lo: 00-.0000+.- [0004d]   [ENCRYPTED] mov Y13.lo, V
+16.hi: -0-.000+-.0 [00084]   Y = drumsector 1
+16.lo: +-0.0000+.0 [00063]   weirdxor ACC, Y13.lo
+17.hi: +-0.0000+.+ [00064]   [ENCRYPTED] weirdxor ACC, Y13.lo
+17.lo: 00-.0000+.- [0004d]   [ENCRYPTED] mov Y13.lo, V
+18.hi: +0+.0000+.0 [0006f]   add ACC, Y13.lo
+18.lo: 0+-.00000.0 [00006]   jneg 1+Y13.hi
+19.hi: -0+.0000+.- [00038]   [ENCRYPTED] drumsector 0 = Y
+19.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 17:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: +-0.0000+.0 [00063]   weirdxor ACC, Y13.lo
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: ---.000+-.+ [0007c]   [ENCRYPTED] unk #124 (0x7c)
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: +++.0000+.- [00077]   [ENCRYPTED] add ACC, Y13.lo * BETA
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: ---.000+-.0 [0007b]   unk #123 (0x7b)
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: 000.000+0.- [000f2]   [ENCRYPTED] jmp 1+Y14.hi
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: +00.0000+.- [0006b]   [ENCRYPTED] mov ACC, Y13.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: +0+.0000+.0 [0006f]   add ACC, Y13.lo
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: ++0.000+-.- [000c5]   [ENCRYPTED] mul ACC, Y14.lo
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: --+.0000+.0 [00030]   unk #48 (0x30)
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: 000.00000.+ [00001]   [ENCRYPTED] jmp 1+Y13.hi
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: +-+.0000+.+ [00067]   [ENCRYPTED] mov BETA, Y13.lo
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: ---.0000+.+ [0002b]   [ENCRYPTED] unk #43 (0x2b)
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: 0++.000+0.- [000fe]   [ENCRYPTED] jpos 1+Y14.hi
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: -00.000+0.- [000d7]   [ENCRYPTED] IO.broken
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 0+0.000+-.0 [000ab]   jzer 1+Y14.lo
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: ++0.0000+.+ [00076]   [ENCRYPTED] mul ACC, Y13.lo
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: +++.000+-.+ [000ca]   [ENCRYPTED] add ACC, Y14.lo * BETA
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: --+.000+-.+ [00082]   [ENCRYPTED] unk #130 (0x82)
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: +++.000+-.0 [000c9]   add ACC, Y14.lo * BETA
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: --0.000+-.- [0007d]   [ENCRYPTED] unk #125 (0x7d)
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 0+-.000+0.+ [000fa]   [ENCRYPTED] jneg 1+Y14.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 0+0.0000+.- [00059]   [ENCRYPTED] jzer 1+Y13.lo
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: 0-0.0000+.- [00047]   [ENCRYPTED] mov V, Y13.lo
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 00-.000+0.0 [000f0]   mov Y14.hi, V
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 0++.000+-.- [000ad]   [ENCRYPTED] jpos 1+Y14.lo
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: -0-.000+0.- [000d4]   [ENCRYPTED] Y = drumsector 2
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: 000.000+-.0 [000a2]   jmp 1+Y14.lo
+SECTOR 18:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: 0++.000+-.+ [000af]   [ENCRYPTED] jpos 1+Y14.lo
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 0-+.000+-.0 [0009c]   mov V, pc+Y14.lo
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 00+.000+-.- [000a4]   [ENCRYPTED] mov Y14.lo, pc
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: ++-.0000+.0 [00072]   mov ACC, Y13.lo + ACC*BETA
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: +0+.000+-.0 [000c0]   add ACC, Y14.lo
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: +-+.000+-.0 [000b7]   mov BETA, Y14.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 0+0.000+0.+ [000fd]   [ENCRYPTED] jzer 1+Y14.hi
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: -++.000+-.0 [00093]   mov Y14.lo, ACC
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: +++.00000.- [00026]   [ENCRYPTED] add ACC, Y13.hi * BETA
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: -00.0000+.0 [00036]   IO.broken
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: -+0.0000+.0 [0003f]   shift ACC, Y13.lo
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 00+.000+0.+ [000f7]   [ENCRYPTED] mov Y14.hi, pc
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: ---.000+0.0 [000cc]   unk #204 (0xcc)
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: -0-.0000+.+ [00034]   [ENCRYPTED] Y = drumsector 0
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 00+.000+-.0 [000a5]   mov Y14.lo, pc
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: -++.000+0.+ [000e5]   [ENCRYPTED] mov Y14.hi, ACC
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 00-.000+0.+ [000f1]   [ENCRYPTED] mov Y14.hi, V
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: ++-.0000+.- [00071]   [ENCRYPTED] mov ACC, Y13.lo + ACC*BETA
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: -00.000+0.0 [000d8]   IO.broken
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: --+.0000+.+ [00031]   [ENCRYPTED] unk #49 (0x31)
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: +-+.00000.0 [00015]   mov BETA, Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 00+.00000.+ [00004]   [ENCRYPTED] mov Y13.hi, pc
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: ++0.000+-.+ [000c7]   [ENCRYPTED] mul ACC, Y14.lo
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: ++0.00000.- [00023]   [ENCRYPTED] mul ACC, Y13.hi
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: ++-.000+-.0 [000c3]   mov ACC, Y14.lo + ACC*BETA
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: +0-.00000.0 [00018]   sub ACC, Y13.hi
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: 0--.000+-.0 [00096]   add V, Y14.lo
+SECTOR 19:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: 0+-.00000.- [00005]   [ENCRYPTED] jneg 1+Y13.hi
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 0-0.000+-.+ [0009a]   [ENCRYPTED] mov V, Y14.lo
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0+-.00000.+ [00007]   [ENCRYPTED] jneg 1+Y13.hi
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: +-0.00000.0 [00012]   weirdxor ACC, Y13.hi
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: --+.000+-.- [00080]   [ENCRYPTED] unk #128 (0x80)
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: -+0.000+0.+ [000e2]   [ENCRYPTED] shift ACC, Y14.hi
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 0-0.000+0.+ [000eb]   [ENCRYPTED] mov V, Y14.hi
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: +++.00000.0 [00027]   add ACC, Y13.hi * BETA
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: +--.000+-.+ [000b2]   [ENCRYPTED] halt
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: ++0.0000+.0 [00075]   mul ACC, Y13.lo
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: 0+0.00000.0 [00009]   jzer 1+Y13.hi
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: -0-.000+-.- [00083]   [ENCRYPTED] Y = drumsector 1
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: --0.0000+.- [0002c]   [ENCRYPTED] unk #44 (0x2c)
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: +00.00000.- [0001a]   [ENCRYPTED] mov ACC, Y13.hi
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: +00.00000.0 [0001b]   mov ACC, Y13.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: +0+.0000+.- [0006e]   [ENCRYPTED] add ACC, Y13.lo
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 0+0.0000+.0 [0005a]   jzer 1+Y13.lo
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 00-.000+-.+ [000a0]   [ENCRYPTED] mov Y14.lo, V
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 000.0000+.+ [00052]   [ENCRYPTED] jmp 1+Y13.lo
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: -+-.0000+.- [0003b]   [ENCRYPTED] unk #59 (0x3b)
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: -0-.000+0.+ [000d6]   [ENCRYPTED] Y = drumsector 2
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: +-0.000+-.- [000b3]   [ENCRYPTED] weirdxor ACC, Y14.lo
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: ---.0000+.- [00029]   [ENCRYPTED] unk #41 (0x29)
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: -++.000+0.- [000e3]   [ENCRYPTED] mov Y14.hi, ACC
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: --+.0000+.- [0002f]   [ENCRYPTED] unk #47 (0x2f)
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: -0-.000+-.0 [00084]   Y = drumsector 1
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: 00+.0000+.- [00053]   [ENCRYPTED] mov Y13.lo, pc
+SECTOR 20:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: --+.000+0.- [000d1]   [ENCRYPTED] unk #209 (0xd1)
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0-+.000+0.0 [000ed]   mov V, pc+Y14.hi
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: ++-.00000.- [00020]   [ENCRYPTED] mov ACC, Y13.hi + ACC*BETA
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: 0+0.000+0.0 [000fc]   jzer 1+Y14.hi
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: +--.000+-.0 [000b1]   halt
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 0+0.0000+.+ [0005b]   [ENCRYPTED] jzer 1+Y13.lo
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: +0-.0000+.+ [0006a]   [ENCRYPTED] sub ACC, Y13.lo
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: ---.000+0.- [000cb]   [ENCRYPTED] unk #203 (0xcb)
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: +00.000+-.+ [000be]   [ENCRYPTED] mov ACC, Y14.lo
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: -0+.0000+.0 [00039]   drumsector 0 = Y
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 0-+.0000+.- [0004a]   [ENCRYPTED] mov V, pc+Y13.lo
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: 0-+.0000+.+ [0004c]   [ENCRYPTED] mov V, pc+Y13.lo
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: 0+-.0000+.+ [00058]   [ENCRYPTED] jneg 1+Y13.lo
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: --0.000+0.0 [000cf]   unk #207 (0xcf)
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: --0.000+0.+ [000d0]   [ENCRYPTED] unk #208 (0xd0)
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 00-.000+0.- [000ef]   [ENCRYPTED] mov Y14.hi, V
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 0+0.000+-.- [000aa]   [ENCRYPTED] jzer 1+Y14.lo
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 0+0.000+0.- [000fb]   [ENCRYPTED] jzer 1+Y14.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: -++.0000+.+ [00043]   [ENCRYPTED] mov Y13.lo, ACC
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 00-.0000+.- [0004d]   [ENCRYPTED] mov Y13.lo, V
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: -0-.0000+.0 [00033]   Y = drumsector 0
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: -0-.000+-.+ [00085]   [ENCRYPTED] Y = drumsector 1
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 0--.0000+.0 [00045]   add V, Y13.lo
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 0+-.000+0.0 [000f9]   jneg 1+Y14.hi
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 00+.00000.- [00002]   [ENCRYPTED] mov Y13.hi, pc
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: --0.000+-.+ [0007f]   [ENCRYPTED] unk #127 (0x7f)
+SECTOR 21:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: 000.0000+.- [00050]   [ENCRYPTED] jmp 1+Y13.lo
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: -+-.0000+.0 [0003c]   unk #60 (0x3c)
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 00-.000+-.0 [0009f]   mov Y14.lo, V
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: 0+-.000+-.0 [000a8]   jneg 1+Y14.lo
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: 000.0000+.0 [00051]   jmp 1+Y13.lo
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: 000.000+-.+ [000a3]   [ENCRYPTED] jmp 1+Y14.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: -+0.0000+.+ [00040]   [ENCRYPTED] shift ACC, Y13.lo
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: -+0.000+-.- [0008f]   [ENCRYPTED] shift ACC, Y14.lo
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: -++.000+-.- [00092]   [ENCRYPTED] mov Y14.lo, ACC
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: 0-+.000+-.+ [0009d]   [ENCRYPTED] mov V, pc+Y14.lo
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: -0+.0000+.- [00038]   [ENCRYPTED] drumsector 0 = Y
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 00+.000+0.- [000f5]   [ENCRYPTED] mov Y14.hi, pc
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: +00.000+-.- [000bc]   [ENCRYPTED] mov ACC, Y14.lo
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: +-+.000+-.- [000b6]   [ENCRYPTED] mov BETA, Y14.lo
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: -0+.000+0.- [000da]   [ENCRYPTED] drumsector 2 = Y
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: ++-.00000.0 [00021]   mov ACC, Y13.hi + ACC*BETA
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: +--.00000.+ [00010]   [ENCRYPTED] halt
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 0++.000+0.0 [000ff]   jpos 1+Y14.hi
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 000.000+0.0 [000f3]   jmp 1+Y14.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: --+.000+0.0 [000d2]   unk #210 (0xd2)
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: ---.000+0.+ [000cd]   [ENCRYPTED] unk #205 (0xcd)
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 0++.00000.0 [0000c]   jpos 1+Y13.hi
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: +-0.00000.+ [00013]   [ENCRYPTED] weirdxor ACC, Y13.hi
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 0-+.000+0.- [000ec]   [ENCRYPTED] mov V, pc+Y14.hi
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: +--.0000+.- [0005f]   [ENCRYPTED] halt
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 0--.000+-.+ [00097]   [ENCRYPTED] add V, Y14.lo
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: 0--.0000+.- [00044]   [ENCRYPTED] add V, Y13.lo
+SECTOR 22:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: +0-.00000.- [00017]   [ENCRYPTED] sub ACC, Y13.hi
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: ++-.000+-.+ [000c4]   [ENCRYPTED] mov ACC, Y14.lo + ACC*BETA
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0+-.000+-.- [000a7]   [ENCRYPTED] jneg 1+Y14.lo
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: --0.000+-.0 [0007e]   unk #126 (0x7e)
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: -+-.0000+.+ [0003d]   [ENCRYPTED] unk #61 (0x3d)
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: +-0.0000+.+ [00064]   [ENCRYPTED] weirdxor ACC, Y13.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 0++.0000+.0 [0005d]   jpos 1+Y13.lo
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: +0-.00000.+ [00019]   [ENCRYPTED] sub ACC, Y13.hi
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: ++-.0000+.+ [00073]   [ENCRYPTED] mov ACC, Y13.lo + ACC*BETA
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: +--.0000+.0 [00060]   halt
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: --+.000+-.0 [00081]   unk #129 (0x81)
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 00-.0000+.+ [0004f]   [ENCRYPTED] mov Y13.lo, V
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: -0+.000+0.+ [000dc]   [ENCRYPTED] drumsector 2 = Y
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: ++-.00000.+ [00022]   [ENCRYPTED] mov ACC, Y13.hi + ACC*BETA
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: ---.0000+.0 [0002a]   unk #42 (0x2a)
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: -+0.000+-.0 [00090]   shift ACC, Y14.lo
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: -00.000+-.+ [00088]   [ENCRYPTED] IO.broken
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: 0--.0000+.+ [00046]   [ENCRYPTED] add V, Y13.lo
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: 0-+.000+0.+ [000ee]   [ENCRYPTED] mov V, pc+Y14.hi
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: +-+.000+-.+ [000b8]   [ENCRYPTED] mov BETA, Y14.lo
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: +-+.00000.- [00014]   [ENCRYPTED] mov BETA, Y13.hi
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: -+-.000+0.0 [000de]   unk #222 (0xde)
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: 0++.0000+.+ [0005e]   [ENCRYPTED] jpos 1+Y13.lo
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 0++.00000.- [0000b]   [ENCRYPTED] jpos 1+Y13.hi
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: -0+.000+0.0 [000db]   drumsector 2 = Y
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: -+0.000+0.- [000e0]   [ENCRYPTED] shift ACC, Y14.hi
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: -0-.0000+.- [00032]   [ENCRYPTED] Y = drumsector 0
+SECTOR 23:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: -0+.0000+.+ [0003a]   [ENCRYPTED] drumsector 0 = Y
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0-0.0000+.+ [00049]   [ENCRYPTED] mov V, Y13.lo
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: 0+-.00000.0 [00006]   jneg 1+Y13.hi
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: ++0.00000.0 [00024]   mul ACC, Y13.hi
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: 0++.0000+.- [0005c]   [ENCRYPTED] jpos 1+Y13.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: ++-.000+-.- [000c2]   [ENCRYPTED] mov ACC, Y14.lo + ACC*BETA
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: --+.000+0.+ [000d3]   [ENCRYPTED] unk #211 (0xd3)
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: 0+0.000+-.+ [000ac]   [ENCRYPTED] jzer 1+Y14.lo
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: +-0.0000+.- [00062]   [ENCRYPTED] weirdxor ACC, Y13.lo
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: -+0.000+-.+ [00091]   [ENCRYPTED] shift ACC, Y14.lo
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 0--.000+-.- [00095]   [ENCRYPTED] add V, Y14.lo
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: -++.000+0.0 [000e4]   mov Y14.hi, ACC
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: +++.0000+.+ [00079]   [ENCRYPTED] add ACC, Y13.lo * BETA
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: 0--.000+0.0 [000e7]   add V, Y14.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: +++.000+-.- [000c8]   [ENCRYPTED] add ACC, Y14.lo * BETA
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: -00.0000+.+ [00037]   [ENCRYPTED] IO.broken
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: +00.0000+.+ [0006d]   [ENCRYPTED] mov ACC, Y13.lo
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: -+-.000+-.0 [0008d]   unk #141 (0x8d)
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: -0-.000+0.0 [000d5]   Y = drumsector 2
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: 00-.0000+.0 [0004e]   mov Y13.lo, V
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 0+-.000+-.+ [000a9]   [ENCRYPTED] jneg 1+Y14.lo
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: +00.0000+.0 [0006c]   mov ACC, Y13.lo
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 0+-.0000+.- [00056]   [ENCRYPTED] jneg 1+Y13.lo
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 000.000+0.+ [000f4]   [ENCRYPTED] jmp 1+Y14.hi
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 0-0.000+0.0 [000ea]   mov V, Y14.hi
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: +-+.0000+.- [00065]   [ENCRYPTED] mov BETA, Y13.lo
+SECTOR 24:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: ---.000+-.- [0007a]   [ENCRYPTED] unk #122 (0x7a)
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: 0++.000+-.0 [000ae]   jpos 1+Y14.lo
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0+0.00000.- [00008]   [ENCRYPTED] jzer 1+Y13.hi
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: +0-.000+-.0 [000ba]   sub ACC, Y14.lo
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: +++.0000+.0 [00078]   add ACC, Y13.lo * BETA
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: ++0.00000.+ [00025]   [ENCRYPTED] mul ACC, Y13.hi
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: --0.0000+.+ [0002e]   [ENCRYPTED] unk #46 (0x2e)
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: +00.00000.+ [0001c]   [ENCRYPTED] mov ACC, Y13.hi
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: 00+.000+-.+ [000a6]   [ENCRYPTED] mov Y14.lo, pc
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: +-0.000+-.0 [000b4]   weirdxor ACC, Y14.lo
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: ++0.000+-.0 [000c6]   mul ACC, Y14.lo
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: 0--.000+0.+ [000e8]   [ENCRYPTED] add V, Y14.hi
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: -+-.000+0.- [000dd]   [ENCRYPTED] unk #221 (0xdd)
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: ++0.0000+.- [00074]   [ENCRYPTED] mul ACC, Y13.lo
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: +0+.00000.+ [0001f]   [ENCRYPTED] add ACC, Y13.hi
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: 0-+.0000+.0 [0004b]   mov V, pc+Y13.lo
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: +00.000+-.0 [000bd]   mov ACC, Y14.lo
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: -0+.000+-.+ [0008b]   [ENCRYPTED] drumsector 1 = Y
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: -0+.000+-.0 [0008a]   drumsector 1 = Y
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: +0+.0000+.+ [00070]   [ENCRYPTED] add ACC, Y13.lo
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: -+0.0000+.- [0003e]   [ENCRYPTED] shift ACC, Y13.lo
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: +-0.000+-.+ [000b5]   [ENCRYPTED] weirdxor ACC, Y14.lo
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: +-+.0000+.0 [00066]   mov BETA, Y13.lo
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: 0-0.0000+.0 [00048]   mov V, Y13.lo
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: 00+.00000.0 [00003]   mov Y13.hi, pc
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 00+.000+0.0 [000f6]   mov Y14.hi, pc
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: +--.00000.- [0000e]   [ENCRYPTED] halt
+SECTOR 25:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: +--.0000+.+ [00061]   [ENCRYPTED] halt
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: -00.0000+.- [00035]   [ENCRYPTED] IO.broken
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0+-.0000+.0 [00057]   jneg 1+Y13.lo
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: +0-.000+-.- [000b9]   [ENCRYPTED] sub ACC, Y14.lo
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: -00.000+-.- [00086]   [ENCRYPTED] IO.broken
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: +0+.000+-.+ [000c1]   [ENCRYPTED] add ACC, Y14.lo
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: +0+.00000.- [0001d]   [ENCRYPTED] add ACC, Y13.hi
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: 00-.000+-.- [0009e]   [ENCRYPTED] mov Y14.lo, V
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: -+0.000+0.0 [000e1]   shift ACC, Y14.hi
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: 0+-.000+0.- [000f8]   [ENCRYPTED] jneg 1+Y14.hi
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: 0-0.000+-.- [00098]   [ENCRYPTED] mov V, Y14.lo
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: +-0.00000.- [00011]   [ENCRYPTED] weirdxor ACC, Y13.hi
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: +0-.0000+.0 [00069]   sub ACC, Y13.lo
+13.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+13.lo: -00.000+0.+ [000d9]   [ENCRYPTED] IO.broken
+14.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+14.lo: -+-.000+-.+ [0008e]   [ENCRYPTED] unk #142 (0x8e)
+15.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+15.lo: -++.000+-.+ [00094]   [ENCRYPTED] mov Y14.lo, ACC
+16.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+16.lo: 0-+.000+-.- [0009b]   [ENCRYPTED] mov V, pc+Y14.lo
+17.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+17.lo: +0+.00000.0 [0001e]   add ACC, Y13.hi
+18.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+18.lo: -00.000+-.0 [00087]   IO.broken
+19.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+19.lo: 0-0.000+0.- [000e9]   [ENCRYPTED] mov V, Y14.hi
+20.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+20.lo: --0.000+0.- [000ce]   [ENCRYPTED] unk #206 (0xce)
+21.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+21.lo: 00+.0000+.+ [00055]   [ENCRYPTED] mov Y13.lo, pc
+22.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+22.lo: +++.00000.+ [00028]   [ENCRYPTED] add ACC, Y13.hi * BETA
+23.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+23.lo: -+-.000+0.+ [000df]   [ENCRYPTED] unk #223 (0xdf)
+24.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+24.lo: -+-.000+-.- [0008c]   [ENCRYPTED] unk #140 (0x8c)
+25.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+25.lo: 000.000+-.- [000a1]   [ENCRYPTED] jmp 1+Y14.lo
+26.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+26.lo: -0+.000+-.- [00089]   [ENCRYPTED] drumsector 1 = Y
+SECTOR 26:
+00.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+00.lo: 0++.00000.+ [0000d]   [ENCRYPTED] jpos 1+Y13.hi
+01.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+01.lo: +0+.000+-.- [000bf]   [ENCRYPTED] add ACC, Y14.lo
+02.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+02.lo: 0--.000+0.- [000e6]   [ENCRYPTED] add V, Y14.hi
+03.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+03.lo: -++.0000+.0 [00042]   mov Y13.lo, ACC
+04.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+04.lo: +0-.0000+.- [00068]   [ENCRYPTED] sub ACC, Y13.lo
+05.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+05.lo: -++.0000+.- [00041]   [ENCRYPTED] mov Y13.lo, ACC
+06.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+06.lo: 0-0.000+-.0 [00099]   mov V, Y14.lo
+07.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+07.lo: --0.0000+.0 [0002d]   unk #45 (0x2d)
+08.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+08.lo: +--.00000.0 [0000f]   halt
+09.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+09.lo: +--.000+-.- [000b0]   [ENCRYPTED] halt
+10.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+10.lo: 00+.0000+.0 [00054]   mov Y13.lo, pc
+11.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+11.lo: +0-.000+-.+ [000bb]   [ENCRYPTED] sub ACC, Y14.lo
+12.hi: 000.00000.0 [00000]   jmp 1+Y13.hi
+12.lo: +-+.00000.+ [00016]   [ENCRYPTED] mov BETA, Y13.hi
+SECTOR 27:
+--- as string:
+Пароль неверен!
+
+---
+SECTOR 28:
+--- as string:
+Введите пароль: 
+---
+SECTOR 29:
+--- as string:
+Введенный пароль слишком длинный!
+
+---
+SECTOR 30:
+--- as string:
+Добро пожаловать!
+
+---
+SECTOR 31:
+--- as string:
+
+Меню:
+1. Коробейники
+2. Сведения
+3. Админка
+
+---
+22.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+22.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 32:
+--- as string:
+
+Спасибо, что выбрали сегодня Сетунь.
+
+---
+SECTOR 33:
+--- as string:
+Ошибка: недопустимый символ!
+
+---
+14.hi: 0+0.00000.+ [0000a]   [ENCRYPTED] jzer 1+Y13.hi
+14.lo: 000.00000.0 [00000]   jmp 1+Y13.hi
+SECTOR 34:
+--- as string:
+Ошибка: нет такого пункта меню!
+
+---
+SECTOR 35:
