@@ -1,8 +1,4 @@
----
-title: "Dragon CTF 2020 - Harmony Chat"
-date: 2020-11-26T19:19:49+01:00
-draft: false
----
+# Harmony Chat [283 points] (27 solves)
 
 Files:
 
