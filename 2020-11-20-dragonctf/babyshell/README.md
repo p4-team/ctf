@@ -104,11 +104,11 @@ the server is echo'ing back what we send. This was solved by performing `stty -e
 
 Netcat would send our payload until stdin is closed. That's no good. We managed to bypass this with a `(while true; do read s; printf "$s"; done) | /bin/busybox nc 127.0.0.1 4433`
 
-This did work, but we needed to change our encoding from base64 to `\\\\x41`.
+This did work, but we needed to change our encoding from base64 to `\\x41`.
 
 ### problem #3
 
-Solution from #2 did work, but now we needed to fix some bytes (`\\x10` to `\\x16`). This was solved by adding <coed>| xxd -c1` at the end.
+Solution from #2 did work, but now we needed to fix some bytes (`\\x10` to `\\x16`). This was solved by adding `| xxd -c1` at the end.
 
 After a bit of debugging and hammering a **very** horrible pwntools script we got the flag:
 `DrgnS{Shellcoding_and_shellscripting_whats_not_to_like}`. Turns out author had a completely different solution to the challenge. Well, unintended solution it is!
