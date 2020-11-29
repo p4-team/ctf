@@ -1,0 +1,51 @@
+read 0x217000: our input (32B)
+set  0x217020..6c: some constants (shellcode!)
+rt_sigaction(0x217050)
+no new privs
+set  0x217050..294: some constants (seccomp shellcode)
+
+(5280)
+set seccomp (0x217050)
+
+r2:r5 = constants
+r6:.. = our input
+
+then: many "rounds" of getpid etc. with some constants, our input etc.
+encrypt each 8-byte block of input with XTEA (so 4 reps)
+(12360)
+compare each block with const.
+
+SIGSYS:
+00000020    mov rcx,0x3f8495f5793a342c
+0000002A    mov edx,[rsi+0x4]
+0000002D    mov [rcx],dx
+00000030    lea rcx,[rel 0x22]
+00000037    inc qword [rcx]
+0000003A    inc qword [rcx]
+0000003D    ret
+
+SECCOMP:
+sysnum == 1:    return r4 ? 0x7fff0000 : 0
+sysnum == 104:  return r4 & r6
+sysnum == 102:  return r4 >> r6
+sysnum == 186:  return r4 | r6
+sysnum == 39:   return r4 + r6
+sysnum == 108:  return r4 - r6
+sysnum == 111:  return r4 * r6
+sysnum == 110:  return r4 << r6
+sysnum == 107:  return r4 ^ r6
+sysnum == 57:   return r4 / r6
+actually return (X >> r8) & 0xffff | 0x30000
+
+
+05352: r6 = INPUT1
+05464: r7 = INPUT2
+05576: r8 = 0
+32 times do:
+	05624: r8 += C9
+	06136: r6 += (r7 + r8) ^ ((r7 >> 5) + C3) ^ ((r7 << 4) + C2)
+	06648: r7 += (r6 + r8) ^ ((r6 >> 5) + C5) ^ ((r6 << 4) + C4)
+
+result is r6:r7
+
+
