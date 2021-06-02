@@ -1,4 +1,4 @@
-# A2S [355 solves] (10 solves)
+# A2S [355 points] (10 solves)
 
 The challenge is to recover the key of a reduced AES variant (only 2 rounds), given only
 3 ciphertext-plaintext pairs. While we are also given two bytes of the key, I only noticed
