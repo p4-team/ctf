@@ -40,3 +40,9 @@ And so we can successfully reveal the content of `flag.txt`:
 ```
 p4{zero_values_move_faster}
 ```
+
+## Post Mortem
+
+While content-dependent optimizations may be risky in general, we cannot think of any practical abuse of _Hardware Store Elimination_ against real-world applications.
+
+However Intel found some reasons to disable this with most recent [microcode update](https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00464.html).
