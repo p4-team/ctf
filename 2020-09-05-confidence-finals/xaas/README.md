@@ -19,7 +19,7 @@ The task is clearly to leak content of the text file by abusing executable.
 The binary reads the secret from `flag.txt` file at startup and starts a simple service implementing the following commands:
 * `ResizeCommand` to resize an internal buffer,
 * `ReadSecretCommand` to copy an arbitrary slice of the secret into an arbitrary location within the buffer,
-* `ScrambleCommand` to xor an arbitrary slice of the buffer with provided key string results into arbitrary location within the buffer, and
+* `ScrambleCommand` to xor an arbitrary slice of the buffer with provided key and store result into new location within the buffer, and
 * `StopCommand` to terminate the service.
 
 There are no known programming bugs in the binary and the hint points to hardware issues.
