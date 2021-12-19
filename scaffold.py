@@ -4,6 +4,7 @@
 Usage:
 
 python3 scaffold.py new hxp "hxp CTF 2021" 10 1017
+python3 scaffold.py add hxp "Log 4 Sanity" misc
 """
 
 from pathlib import Path
