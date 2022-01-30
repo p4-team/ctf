@@ -55,3 +55,7 @@ def main():
 ```
 
 This allowed us to recover the flag.
+
+```
+INS{7ru57_7h3_5c13nc3}
+```
