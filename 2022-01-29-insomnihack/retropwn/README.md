@@ -63,6 +63,7 @@ c3dd ?? ??    int16_t ??
 - we prepare our gold for next steps to end with exactly E9, which will be `JMP (HL)` opcode
 - we setup our shellcode at 0xc3ca by moving cursor to our shellcode and tossing X amount of items
 by doing that we can decrement any positive value (that is <= 0x7F), we can't point our cursor at negative values (or 0).
+- call our shellcode by using item
 
 So here's how our shellcode worked without garbage opcodes:
 
