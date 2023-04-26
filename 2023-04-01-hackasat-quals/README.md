@@ -3,3 +3,4 @@
 ### Table of contents
 
 * [Leavenworth Street (The Magician)](leavenworth-street)
+* [Hyde Street (The Magician)](hyde-street)
