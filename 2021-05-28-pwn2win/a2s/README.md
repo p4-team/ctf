@@ -19,7 +19,7 @@ mix_columns(plain_state)
 add_round_key(plain_state, self._key_matrices[2])
 ```
 
-However, `sub_bytes` is a byte-wise transformation, while `shift_rows` simply performs
+However, `sub_bytes` is a byte-wise transformation, while `shift_rows` simply permutes
 the bytes. We can therefore write it down in this order:
 
 ```python
@@ -38,17 +38,38 @@ The `mix_columns` at the end was explicitly added by the author of the challenge
 see why, as it is an affine operation, meaning:
 
 ```
-mix_columns(S ^ K) = mix_columns(S) ^ f(K)
+mix_columns(x) = f(x) ^ c         where f linear
 ```
 
-(what `f` is exactly is not relevant to the solution, but it is the linear part of the
-affine transformation)
+and so
+
+```
+mix_columns(S ^ K) = f(S ^ K) ^ c = f(S) ^ f(K) ^ c = mix_columns(S) ^ f(K)
+```
 
 This allows out to swap the final `mix_columns` with `add_round_key`, if we're willing
-to imagine a different key expansion procedure.
+to imagine a different key expansion procedure:
 
-Long story short, we can calculate the XOR between internal states at the beginning and
-end of this part of the cipher:
+```python
+add_round_key(plain_state, self._key_matrices[0])
+shift_rows(plain_state)
+sub_bytes(plain_state)
+mix_columns(plain_state)
+add_round_key(plain_state, self._key_matrices[1])
+sub_bytes(plain_state)
+shift_rows(plain_state)
+add_round_key(plain_state, f(self._key_matrices[2]))
+mix_columns(plain_state)
+```
+
+At this point, we can perform differential cryptanalysis. For two given `(plaintext, ciphertext)` pairs,
+we
+
+1. Calculate the XOR of the plaintexts. 
+2. This is also the XOR of the cipher states after the first `add_round_key`
+3. We apply the `shift_rows` permutation to get the difference in cipher states after the first `shift_rows`.
+
+This gives us the XOR between internal states at the beginning of this part of the cipher:
 
 ```python
 sub_bytes(plain_state)
@@ -57,7 +78,9 @@ add_round_key(plain_state, self._key_matrices[1])
 sub_bytes(plain_state)
 ```
 
-Namely, the following code does the trick:
+The difference at the end can be calculated from the known ciphertexts through a similar process.
+
+This is the part of the code that does this:
 
 ```python
 def shift(st):
@@ -78,6 +101,7 @@ post_delta1 = xor_bytes(unmix(ciphertexts[0]), unmix(ciphertexts[1]))
 post_delta2 = xor_bytes(unmix(ciphertexts[0]), unmix(ciphertexts[2]))
 ```
 
+Let's focus on the part of the cipher we still need to analyze.
 Notice how each of these four operations are either byte-wise or column-wise:
 
 ```python
@@ -87,43 +111,30 @@ add_round_key(plain_state, self._key_matrices[1])  # byte-wise
 sub_bytes(plain_state)      # byte-wise again
 ```
 
-We will therefore consider this as four independent transformations of each of the 32-bit columns.
-Let's look at the state at this moment:
+This means that each column of the cipher state is transformed independently.
+Let's introduce the following names:
 
 ```python
 # Call the state here P1, P2, P3 for each of the pt-ct pairs.
 sub_bytes(plain_state)
 mix_columns(plain_state)
+# Call the state here Q1, Q2, Q3 for each of the pt-ct pairs.
 add_round_key(plain_state, self._key_matrices[1])
 # Call the state here S1, S2, S3 for each of the pt-ct pairs.
 sub_bytes(plain_state)
 # Call the state here C1, C2, C3 for each of the pt-ct pairs.
 ```
 
-When you look at it bytewise, `(S1 ^ S2, S1 ^ S3)` has very little possibilities.
+When you look at it bytewise, `(S1 ^ S2, S1 ^ S3)` has few possibilities — at each position,
+about 256 out of the 65536 values are possible.
 
 1. There are 256 possible values for `C1[i]`.
 2. This determines `C2[i]` and `C3[i]` because of the known `post_delta`.
 3. The inverse S-box determines the possible values for `S1[i]`, `S2[i]`, `S3[i]`.
 
-```rust
-fn expected_deltas(d1: u8, d2: u8) -> DeltaSet {
-    let mut deltas = DeltaSet(BitArray::zeroed());
-    for a in 0..=255 {
-        let p = INV_SBOX[a as usize] ^ INV_SBOX[(a ^ d1) as usize];
-        let q = INV_SBOX[a as usize] ^ INV_SBOX[(a ^ d2) as usize];
-        deltas.add([p, q]);
-    }
-    deltas
-}
-
-// ...
-    let expected: [DeltaSet; 4] = array_init(|i| expected_deltas(post_delta1[i], post_delta2[i]));
-```
-
-The reason why we're interested in the deltas is that `add_round_key` won't change them. Now we just
-bruteforce the input P1, determine P2 and P3, calculate `sub_bytes` and `mix_columns`, and check
-whether the differences match what we expect. The chance of a false positive for any specific attempt
+Notice that this is also the same set of possible values of `(Q1 ^ Q2, Q1 ^ Q3)`. This allows us
+to bruteforce `P1`, calculating `P2`, `P3`, `Q1` through `Q3`, and checking whether the XORs
+are what we expect. The chance of a false positive for any specific attempt
 is `2**-32`, so we should expect about one spurious result. And indeed, this is the result produced:
 
 ```
@@ -151,5 +162,9 @@ Internally, I am representing the `DeltaSet` as a bit array of `2**16` bits. Aft
 tried storing a sorted array and either binary or linear searching, but as I estimated, the bit array
 is fastest, as memory bandwidth is nowhere near saturated.
 
-All that's left to do is try out the 32 candidates, compute the corresponding key for each, and see if
-the ciphertexts match. Calculating said key essentially amounts to a single XOR.
+All that separates `P1` from the actual plaintext is
+```python
+add_round_key(plain_state, self._key_matrices[0])
+shift_rows(plain_state)
+```
+...and so we can calculate the key in use. Thus we obtain 32 candidates for the key and check each of them.
